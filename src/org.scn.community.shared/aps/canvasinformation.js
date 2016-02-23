@@ -18,19 +18,14 @@ define([], function () {
 		notifyDataChange : function () {
 			this.updateTable();
 		},
-		setValue : function (a) {
-			this._value = a;
+		setValue : function (o) {
+			this._value = o;
 			this.updateTable();
+			this.updateItems();
 			return this;
 		},
 		getValue : function () {
 			return this._value;
-		},
-		updateProfile : function(index){
-			var a = this.getValue();
-			a[index].componentLayout = this.componentTable.getModel().getData();
-			this.setValue(a);
-			this.fireValueChange();
 		},
 		showDetails : function(index){
 			var overlay = new sap.ui.ux3.OverlayContainer({
@@ -42,7 +37,8 @@ define([], function () {
 				displayWelcome : false,
 				displayLogoff : false
 			});
-			var a = this.getValue();
+			var o = this.getValue();
+			var a = o.profiles;
 			var layout = a[index].componentLayout;
 			var components = layout.components;
 			this.componentTable = new sap.ui.table.Table({
@@ -61,6 +57,49 @@ define([], function () {
 				icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNkoBAwAvH6ATeAYi8MAwNGY2EwGDDEYwEA8MUEK153B5IAAAAASUVORK5CYII=",
 				menu : rowMenu
 			});
+			var rowUpdate = new sap.ui.commons.MenuItem({
+				icon : "sap-icon://download",
+				text : "Update from Canvas"
+			});
+			rowUpdate.attachSelect(function(profileIndex){
+				return function(oControlEvent){
+					var model = oControlEvent.getSource().getModel();
+					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
+			        var arrPath = path.split("/");
+			        var index = parseInt(arrPath[2]);
+			        var o = this.getValue();
+			        var a = o.profiles;
+			        var profile = a[profileIndex];
+			        var componentKey = profile.componentLayout.components[index].key;
+			        var that = this;
+			        propertyPage.callZTLFunction("examineCanvas", function(result){
+			        	var rtResult = JSON.parse(result);
+			        	var o = that.getValue();
+			        	var profiles = o.profiles;
+			        	var compIndex = -1;
+			        	for(var i=0;i<rtResult.components.length;i++){
+			        		var comp = rtResult.components[i];
+			        		if(comp.key == componentKey) compIndex = i;
+			        	}
+			        	if(compIndex>-1){
+			        		profiles[profileIndex].componentLayout.components[index] = rtResult.components[compIndex];
+			        		componentModel.setData({
+			    				components : profiles[profileIndex].componentLayout.components
+			    			});
+			        		that.setValue(o);
+		        			that.fireValueChange();
+			        	}else{
+			        		alert("Component with ID " + componentKey + " no longer present in the canvas.");
+			        	}
+			        });
+				};
+			}(index),this);// need closure?
+			var rowDelete = new sap.ui.commons.MenuItem({
+				text : "Delete from Profile",
+				icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA3SURBVDhPY1yzZjMDKQCkwd3dB8ojBHbu3MIEZRINaK+BLE87rlgK5REC+yOih4unR1hMMzAAADMQF2dN9VQWAAAAAElFTkSuQmCC"
+			});
+			rowMenu.addItem(rowUpdate);
+			rowMenu.addItem(rowDelete);
 			var uiCol = new sap.ui.table.Column({
 				label : "",
 				width : "50px",
@@ -78,13 +117,30 @@ define([], function () {
 				width : "125px"
 			});
 			// Visible
-			var visibleField = new sap.ui.commons.CheckBox();
+			var visibleField = new sap.ui.commons.ComboBox({
+				items : [
+					new sap.ui.core.ListItem({
+						key : "unchanged",
+						text : "Unchanged"
+					}),
+					new sap.ui.core.ListItem({
+						key : "visible",
+						icon : "sap-icon://show",
+						text : "Show"
+					}),
+					new sap.ui.core.ListItem({
+						key : "hidden",
+						icon : "sap-icon://hide",
+						text : "Hide"
+					}),
+				]
+			});
 			visibleField.attachChange(function(){this.updateProfile(index)}, this);
-			visibleField.bindProperty("checked", "position/visible");
+			visibleField.bindProperty("selectedKey", "position/visible");
 			var visibleColumn = new sap.ui.table.Column({
 				template : visibleField,
 				label : new sap.ui.commons.Label({
-					text : "Visible"
+					text : "Visiblity"
 				}),
 				width : "75px"
 			});
@@ -163,21 +219,13 @@ define([], function () {
 			this.componentTable.addColumn(bottomColumn);
 			this.componentTable.addColumn(widthColumn);
 			this.componentTable.addColumn(heightColumn);
-			//this.componentTable.addColumn(keyColumn);
-			/*
-			var complex = new org.scn.community.aps.ComplexProperty({
-				config : that.getConfig(),
-				value : detailValue
-			});
-			complex.attachValueChange(function(oControlEvent){
-				var a = that.getValue();
-				that.setValue(a);
-				that.fireValueChange();
-			},this);
-			*/
+			
 			overlay.addContent(overlayHeader);
 			overlay.addContent(this.componentTable);
 			overlay.open();
+		},
+		updateItems : function(){
+			
 		},
 		updateTable : function () {
 			var defaults = {
@@ -186,111 +234,219 @@ define([], function () {
 				browserMinHeight : 480,
 				browserMaxHeight : 600,
 			}
-			this.columnModel.setData({
-				profileData : this.getValue()
-			});
+			this.columnModel.setData(this.getValue());
 		},
+		// Basically the model handles the value it seems - just fire a value change event, I guess...  Cool.
 		buildColumns : function (oControlEvent) {
-			this._value = this.columnModel.getData().profileData;
 			this.fireValueChange();
-			return;
-			var a = [];
-			for (var i = 0; i < this.cols.length; i++) {
-				a.push({
-					targets : this.cols[i].targets,
-					//targets : i,
-					title : this.cols[i].title,
-					orderable : this.cols[i].orderable,
-					searchable : this.cols[i].searchable
-				});
-			};
-			//		/alert(JSON.stringify(a));
-			// this._value = a;
-			
 		},
-		examComplete : function(result,index,direction){
+		updateProfile : function(index){
+			this.fireValueChange();
+		},
+		examComplete : function(result,index,direction,mode){
 			var profile = JSON.parse(result);
-			var a = this.getValue();
+			var comps = [];
+			var o = this.getValue();
+			// Remove untracked items
+			for(var i=0;i<profile.components.length;i++){
+				var found = false;
+				for(var j=0;j<o.items.length;j++){
+					if(o.items[j].key == profile.components[i].key && o.items[j].use) found = true;
+				}
+				if(found) comps.push(profile.components[i]);
+			}
+			
+			var a = o.profiles;
 			var newProfile = {
-				key : "profile" + profile.browserWidth + "x" + profile.browserHeight,
+				key : "New Profile",
 				os : "Any",
 				device : "Any",
-				browserMinWidth : profile.browserWidth,
-				browserMaxWidth : profile.browserWidth,
-				browserMinHeight : profile.browserHeight,
-				browserMaxHeight : profile.browserHeight,
-				componentLayout : profile
+				browserMinWidth : -1, //profile.browserWidth,
+				browserMaxWidth : -1, //profile.browserWidth,
+				browserMinHeight : -1, //profile.browserHeight,
+				browserMaxHeight : -1, //profile.browserHeight,
+				componentLayout : {components : comps}
 			};
 			if(index===undefined){
 				a.push(newProfile);	
 			}else{
 				if(direction == -1 ){	// Update
-					a[index].componentLayout = newProfile.componentLayout;
+					for(var j=0;j<newProfile.componentLayout.components.length;j++){
+						var isNew = true;
+						for(var i=0;i<a[index].componentLayout.components.length;i++){
+							if(newProfile.componentLayout.components[j].key == a[index].componentLayout.components[i].key){
+								isNew = false;
+							}
+						}
+						if(isNew){
+							a[index].componentLayout.components.push(newProfile.componentLayout.components[j]);
+						}
+					}
+					//a[index].componentLayout = newProfile.componentLayout;
 				}else{
 					a.splice(index + direction,0,newProfile);	
 				}
 				
 			}
 			
-			this.setValue(a);
+			this.setValue(o);
 			this.fireValueChange();
 			this.updateTable();
 		},
 		loadProfile : function(index){
 			var that = this;
-			var a = this.getValue();
+			var o = this.getValue();
+			var a = o.profiles;
 			propertyPage.callRuntimeHandler("updateProfile",a[index].key);
 			return;
 			// Cosmetically works in canvas at DT, but properties never update :(
 			propertyPage.callZTLFunction("layoutCanvas", function(result){
-				
-				var a = that.getValue();
+				var o = that.getValue();
+				var a = o.profiles;
 				var profile = a[index];
 				// Hack to force canvas to update - I still cannot update other properties :P
 				if(!profile.tick) profile.tick = 0;
 				profile.tick++;
-				that.setValue(a);
+				that.setValue(o);
 				that.fireValueChange();
 			},a[index].key);
 		},
+		/**
+		 * Add a new Profile
+		 */
 		addNewProfile : function(oControlEvent){
 			var that = this;
 			propertyPage.callZTLFunction("examineCanvas", function(result){that.examComplete(result);});
 		},
 		/**
+		 * Insert a Profile
+		 */
+		insertProfile : function(index,direction,mode){
+			var that = this;
+			propertyPage.callZTLFunction("examineCanvas", function(index,direction,mode){
+				return function(result){that.examComplete(result,index,direction,mode);}
+			}(index,direction,mode));
+		},
+		/**
 		 * Delete a Profile
 		 */
 		deleteProfile : function(index){
-			var a = this.getValue();
+			var o = this.getValue();
+			var a = o.profiles;
 			a.splice(index,1);
-			this.setValue(a);
+			this.setValue(o);
 			this.fireValueChange();
 		},
-		/**
-		 * Insert a Profile
-		 */
-		insertProfile : function(index,direction){
+		detectComponents : function(){
 			var that = this;
-			propertyPage.callZTLFunction("examineCanvas", function(index,direction){
-				return function(result){that.examComplete(result,index,direction);}
-			}(index,direction));
+			propertyPage.callZTLFunction("getItems", function(result){that.detectionComplete(result);});
 		},
-		init : function () {
-			// propertyPage.registerDataComponent(this);
+		detectionComplete : function(result){
+			var a = JSON.parse(result);
+			// if(!this.getValue()) return;	// Not set yet :(
+			var items = this.getValue().items;
+			// Add Missing Items
+			for(var i=0;i<a.length;i++){
+				var found = false;
+				for(var j=0;j<items.length;j++){
+					if(a[i].key == items[j].key) {
+						found = true;
+					}
+				}
+				if(!found) {
+					a[i].use = false;
+					items.push(a[i]);
+				}
+			}
+			// Remove Obsolete Items
+			for(var j=items.length-1;j>=0;j--){
+				var found = false;
+				for(var i=0;i<a.length;i++){
+					if(a[i].key == items[j].key) found = true;
+				}
+				if(!found) items.splice(j,1);
+			}
+			// Cleanse profiles of untracked items.
+			this.cleanseProfiles();
+			this.columnModel.setData(this.getValue());
+			this.fireValueChange();
+			//alert(result);
+		},
+		cleanseProfiles : function(){
+			var o = this.getValue();
+			var profiles = o.profiles;
+			for(var i=0;i<profiles.length;i++){
+				var components = profiles[i].componentLayout.components;
+				for(var j=components.length-1;j>=0;j--){
+					var found = false;
+					for(var k=0;k<o.items.length;k++){
+						if(o.items[k].key == components[j].key && o.items[k].use) found = true;
+					}
+					if(!found) components.splice(j,1);
+				}
+			}
+		},
+		componentSelected : function(){
+			this.detectComponents();
+		},
+		init : function () {try{
+			propertyPage.registerSelectionSensitive(this);
 			this.addProfile = new sap.ui.commons.Button({
 				icon : "sap-icon://download",
 				text : "New Profile"
 			});
 			this.addProfile.attachPress(this.addNewProfile, this);
+			// Item Table
+
+			this.itemTable = new sap.ui.table.Table({
+				title : "Item Filter",
+				visibleRowCount : 10,
+				selectionMode : sap.ui.table.SelectionMode.None
+			});
+			var filterField = new sap.ui.commons.CheckBox().bindProperty("checked","use");
+			filterField.attachChange(this.buildColumns, this);
+			var filterColumn = new sap.ui.table.Column({
+				label : "Use",
+				width : "50px",
+				resizable : false,
+				template : filterField
+			});
+			var itemField = new sap.ui.commons.Label({});
+			itemField.bindProperty("text", "key");
+			var itemColumn = new sap.ui.table.Column({
+				template : itemField,
+				label : new sap.ui.commons.Label({
+					text : "Item Key"
+				}),
+				width : "125px"
+			});
+			var typeColumn = new sap.ui.table.Column({
+				template : new sap.ui.commons.Label({}).bindProperty("text", "type"),
+				label : new sap.ui.commons.Label({
+					text : "Item Type"
+				}),
+				width : "125px"
+			});
+			this.itemTable.addColumn(filterColumn);
+			this.itemTable.addColumn(itemColumn);
+			this.itemTable.addColumn(typeColumn);
+
+			// Profile Table
 			this.columnTable = new sap.ui.table.Table({
 				title : "Profiles",
-				visibleRowCount : 15,
+				visibleRowCount : 5,
 				selectionMode : sap.ui.table.SelectionMode.None
 			});
 			var rowMenu = new sap.ui.commons.Menu({});
 			var rowMenuButton = new sap.ui.commons.MenuButton({
 				icon : "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIElEQVR42mNkoBAwAvH6ATeAYi8MAwNGY2EwGDDEYwEA8MUEK153B5IAAAAASUVORK5CYII=",
 				menu : rowMenu
+			});
+			var uiCol = new sap.ui.table.Column({
+				label : "",
+				width : "50px",
+				resizable : false,
+				template : rowMenuButton //.bindProperty("text",)
 			});
 			var uiCol = new sap.ui.table.Column({
 				label : "",
@@ -380,19 +536,40 @@ define([], function () {
 			        this.insertProfile(index,1);
 				};
 			}(i),this);
-			var rowUpdate = new sap.ui.commons.MenuItem({
-				text : "Update Profile from Canvas",
-				icon : "sap-icon://download"
+			var updateMenu = new sap.ui.commons.Menu({});
+			var updateOnlyNew = new sap.ui.commons.MenuItem({
+				icon : "sap-icon://add",
+				text : "Only New Components"
 			});
-			rowUpdate.attachSelect(function(index){
+			var updateAll = new sap.ui.commons.MenuItem({
+				icon : "sap-icon://download",
+				text : "All Components"
+			});
+			updateAll.attachSelect(function(index){
 				return function(oControlEvent){
 					var model = oControlEvent.getSource().getModel();
 					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
 			        var arrPath = path.split("/");
 			        var index = parseInt(arrPath[2]);
-			        this.insertProfile(index,-1);
+			        this.insertProfile(index,-1,"all");
 				};
 			}(i),this);
+			updateOnlyNew.attachSelect(function(index){
+				return function(oControlEvent){
+					var model = oControlEvent.getSource().getModel();
+					var path = oControlEvent.getSource().getBindingContext().getPath("rows");
+			        var arrPath = path.split("/");
+			        var index = parseInt(arrPath[2]);
+			        this.insertProfile(index,-1,"new");
+				};
+			}(i),this);
+			var rowUpdate = new sap.ui.commons.MenuItem({
+				text : "Update Profile from Canvas",
+				icon : "sap-icon://download",
+				submenu : updateMenu
+			});
+			updateMenu.addItem(updateOnlyNew);
+			updateMenu.addItem(updateAll);
 			var rowLoad = new sap.ui.commons.MenuItem({
 				text : "Load Profile to Canvas",
 				icon : "sap-icon://upload"
@@ -527,10 +704,15 @@ define([], function () {
 			
 			this.addContent(this.addProfile);
 			this.addContent(this.columnTable);
+			this.addContent(this.itemTable);
 			this.columnModel = new sap.ui.model.json.JSONModel();
 			this.columnTable.setModel(this.columnModel);
-			this.columnTable.bindRows("/profileData");
-		},
+			this.columnTable.bindRows("/profiles");
+			//this.itemModel = new sap.ui.model.json.JSONModel();
+			this.itemTable.setModel(this.columnModel);
+			this.itemTable.bindRows("/items");
+			//this.detectComponents();
+		}catch(e){alert(e);}},
 		renderer : {},
 		needsLabel : function () {
 			return false;
@@ -541,20 +723,21 @@ define([], function () {
 		setter : function (property, value) {
 			var newValue = jQuery.parseJSON(value);
 			this["cmp_" + property].setValue(newValue);
+			this["cmp_" + property].detectComponents();
 		},
 		getter : function (property, control) {
-			var arrayValue = control.getValue();
-			newValue = JSON.stringify(arrayValue);
+			var o = control.getValue();
+			newValue = JSON.stringify(o);
 			return newValue;
 		},
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.CanvasInformation({
-					width : "100%",
-					title : new sap.ui.commons.Title({
-						text : propertyOptions.desc
-					}),
-					showCollapseIcon : false
-				});
+				width : "100%",
+				title : new sap.ui.commons.Title({
+					text : propertyOptions.desc
+				}),
+				showCollapseIcon : false
+			});
 			component.attachValueChange(changeHandler, this);
 			return component;
 		}

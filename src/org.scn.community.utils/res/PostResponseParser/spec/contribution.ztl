@@ -19,3 +19,23 @@
 	void triggerExecution () {*
 		this.DTrigger = "GO";
 	*}
+
+	/**
+	 * Remove All Parameters from the Array.
+	 */	
+	void cleanAllParameters (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DParameters = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Headers from the Array.
+	 */	
+	void cleanAllHeaders (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DHeaders = JSON.stringify(elementsArray);
+	*}

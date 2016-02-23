@@ -8,6 +8,7 @@
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
+	"modes":"commons m",
 
 	"require": 
 	[
@@ -21,6 +22,6 @@
 		}
 	],
 	
-	"width": "48",
-	"height": "48"
+	"width": "32",
+	"height": "32"
 }

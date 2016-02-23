@@ -1,0 +1,12 @@
+
+<component
+		id="CalendarViz"
+		title="Calendar Visualization"
+		icon="res/CalendarViz/CalendarViz.png"
+		handlerType="div"
+		modes="commons m"
+		propertySheetPath="aps/PropertyPage.html"
+		group="ScnCommunityVisualizations"
+		databound="true"
+>
+<requireJs modes="commons m">res/CalendarViz/CalendarViz</requireJs>

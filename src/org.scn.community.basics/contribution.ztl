@@ -3176,6 +3176,20 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets Checkbox Width (Horizontal) Property
+	 */	
+	void setCheckboxWidth( /**Checkbox Width (Horizontal)*/ int checkboxWidth){*
+		this.checkboxWidth = checkboxWidth;
+	*}
+
+	/**
+	 * Gets Checkbox Width (Horizontal) Property
+	 */	
+	int getCheckboxWidth() {*
+		return this.checkboxWidth;
+	*}
+
+	/**
 	 * Clean All Elements from the Array.
 	 */	
 	void cleanAllElements (){*
@@ -3720,6 +3734,34 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	 */	
 	org_scn_community_shared_ConstImageSizeEnumfield getPictureSize() {*
 		return this.pictureSize;
+	*}
+
+	/**
+	 * Sets Layout Property by String
+	 */	
+	void setSelLayoutByString( /**Layout*/ String selLayout){*
+		this.selLayout = selLayout;
+	*}
+
+	/**
+	 * Gets Layout Property as String
+	 */	
+	String getSelLayoutAsString() {*
+		return this.selLayout;
+	*}
+	
+	/**
+	 * Sets Layout Property by Choice Option
+	 */	
+	void setSelLayout( /**Layout*/ org_scn_community_shared_Enumfield selLayout){*
+		this.selLayout = selLayout;
+	*}
+	
+	/**
+	 * Gets Layout Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getSelLayout() {*
+		return this.selLayout;
 	*}
 
 	/**
@@ -14827,6 +14869,20 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
 
 
 	/**
+	 * Sets Rows Property
+	 */	
+	void setRows( /**Rows*/ int rows){*
+		this.rows = rows;
+	*}
+
+	/**
+	 * Gets Rows Property
+	 */	
+	int getRows() {*
+		return this.rows;
+	*}
+
+	/**
 	 * Sets Text Value Property
 	 */	
 	void setValue( /**Text Value*/ String value){*
@@ -14838,6 +14894,34 @@ class org.scn.community.basics.TextArea extends org.scn.community.shared.Compone
 	 */	
 	String getValue() {*
 		return this.value;
+	*}
+
+	/**
+	 * Sets Wrapping Property by String
+	 */	
+	void setWrappingByString( /**Wrapping*/ String wrapping){*
+		this.wrapping = wrapping;
+	*}
+
+	/**
+	 * Gets Wrapping Property as String
+	 */	
+	String getWrappingAsString() {*
+		return this.wrapping;
+	*}
+	
+	/**
+	 * Sets Wrapping Property by Choice Option
+	 */	
+	void setWrapping( /**Wrapping*/ org_scn_community_shared_WrappingEnumfield wrapping){*
+		this.wrapping = wrapping;
+	*}
+	
+	/**
+	 * Gets Wrapping Property as Choice Option
+	 */	
+	org_scn_community_shared_WrappingEnumfield getWrapping() {*
+		return this.wrapping;
 	*}
 
 

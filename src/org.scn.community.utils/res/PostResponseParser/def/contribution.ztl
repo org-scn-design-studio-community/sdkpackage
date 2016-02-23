@@ -21,13 +21,6 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Gets Clean All Parameters Property
-	 */	
-	String getCleanAll() {*
-		return this.DCleanAll;
-	*}
-
-	/**
 	 * Sets Content Type Property
 	 */	
 	void setContentType( /**Content Type*/ String contentType){*
@@ -97,12 +90,270 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DExpectedResponseStatus;
 	*}
 
-	/**
-	 * Gets List Of Headers (Name / Value) Property
-	 */	
-	String getHeaders() {*
-		return this.DHeaders;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeHeader(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeHeader (
+			String key
+			) {*
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertHeader(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertHeader (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DHeaders = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Header<br/>
+	 */
+	void updateHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getHeaderAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Headers As JSON String
+	 */	
+	String getHeadersAsJSON() {*
+		var jsonObject = JSON.parse(this.DHeaders);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for Header keys<br/>
+	 */
+	void setHeaderValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Header Key<br/>
+	 */
+	void setHeaderValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Header Key<br/>
+	 */
+	String getHeaderValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Sets Do You Want To Use JSONP Property
@@ -118,12 +369,270 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DJsonp;
 	*}
 
-	/**
-	 * Gets List Of Parameters (Name / Value) Property
-	 */	
-	String getParameters() {*
-		return this.DParameters;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertParameter(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertParameter (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DParameters = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Parameter<br/>
+	 */
+	void updateParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getParameterAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Parameters As JSON String
+	 */	
+	String getParametersAsJSON() {*
+		var jsonObject = JSON.parse(this.DParameters);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for Parameter keys<br/>
+	 */
+	void setParameterValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Parameter Key<br/>
+	 */
+	void setParameterValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Parameter Key<br/>
+	 */
+	String getParameterValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Gets HTTP Reuqest Payload Property
@@ -195,19 +704,535 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DRequestType;
 	*}
 
-	/**
-	 * Gets Return Headers Property
-	 */	
-	String getReturnHeaders() {*
-		return this.DReturnHeaders;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addReturnHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addReturnHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addReturnHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeReturnHeader(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeReturnHeader (
+			String key
+			) {*
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertReturnHeader(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertReturnHeader (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DReturnHeaders = JSON.stringify(newElementsJson);
 	*}
 
 	/**
-	 * Gets Return Parameters Property
-	 */	
-	String getReturnParameters() {*
-		return this.DReturnParameters;
+	 * Updates given ReturnHeader<br/>
+	 */
+	void updateReturnHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
 	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getReturnHeaderAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets ReturnHeaders As JSON String
+	 */	
+	String getReturnHeadersAsJSON() {*
+		var jsonObject = JSON.parse(this.DReturnHeaders);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for ReturnHeader keys<br/>
+	 */
+	void setReturnHeaderValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for ReturnHeader Key<br/>
+	 */
+	void setReturnHeaderValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for ReturnHeader Key<br/>
+	 */
+	String getReturnHeaderValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addReturnParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addReturnParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addReturnParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeReturnParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeReturnParameter (
+			String key
+			) {*
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertReturnParameter(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertReturnParameter (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DReturnParameters);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DReturnParameters = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given ReturnParameter<br/>
+	 */
+	void updateReturnParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getReturnParameterAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets ReturnParameters As JSON String
+	 */	
+	String getReturnParametersAsJSON() {*
+		var jsonObject = JSON.parse(this.DReturnParameters);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for ReturnParameter keys<br/>
+	 */
+	void setReturnParameterValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for ReturnParameter Key<br/>
+	 */
+	void setReturnParameterValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for ReturnParameter Key<br/>
+	 */
+	String getReturnParameterValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Gets Return Response As String Property
@@ -223,12 +1248,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DReturnStatus;
 	*}
 
-	/**
-	 * Gets Just As Simple Triger Property
-	 */	
-	String getTrigger() {*
-		return this.DTrigger;
-	*}
+
 
 	/**
 	 * Sets Url To Send The Request Property
@@ -282,5 +1302,25 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	 */
 	void triggerExecution () {*
 		this.DTrigger = "GO";
+	*}
+
+	/**
+	 * Remove All Parameters from the Array.
+	 */	
+	void cleanAllParameters (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DParameters = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Headers from the Array.
+	 */	
+	void cleanAllHeaders (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DHeaders = JSON.stringify(elementsArray);
 	*}
 }

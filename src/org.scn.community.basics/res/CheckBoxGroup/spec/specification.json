@@ -77,6 +77,50 @@
 			"noZtl" : false
 		}
 	},
+	"selLayout" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "VerticalLayout",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Layout",
+			"cat" : "Display-Layout",
+			"tooltip" : "Layout",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "VerticalLayout",
+					"text" : "Vertical Layout"
+				},
+				{
+					"key" : "HorizontalLayout",
+					"text" : "Horizontal Layout"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"checkboxWidth" : {
+		"template" : "Choice",
+		"type" : "int",
+		"value" : 225,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Checkbox Width (Horizontal)",
+			"cat" : "Display-Layout",
+			"tooltip" : "Checkbox Width (Horizontal)",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
 	"pictureSize" : {
 		"template" : "Choice",
 		"type" : "String",

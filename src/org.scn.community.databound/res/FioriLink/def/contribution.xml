@@ -159,7 +159,7 @@
 		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="subtle"><![CDATA[false]]></defaultValue>
 		<defaultValue property="target"><![CDATA[]]></defaultValue>
-		<defaultValue property="text"><![CDATA[]]></defaultValue>
+		<defaultValue property="text"><![CDATA[Link to...]]></defaultValue>
 		<defaultValue property="textAlign"><![CDATA[Initial]]></defaultValue>
 		<defaultValue property="textDirection"><![CDATA[Inherit]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>

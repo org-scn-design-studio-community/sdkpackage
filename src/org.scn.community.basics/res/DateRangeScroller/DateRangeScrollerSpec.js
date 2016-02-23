@@ -294,6 +294,7 @@ function() {
   "handlerType": "sapui5",
   "height": "30",
   "id": "DateRangeScroller",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.suite.ui.commons.DateRangeScroller",
   "require": [

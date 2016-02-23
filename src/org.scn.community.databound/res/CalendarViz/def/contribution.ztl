@@ -1,0 +1,16 @@
+/**
+ * Class for CalendarViz Properties
+ */
+class org.scn.community.databound.BarProperty {
+  String title;
+  String fillColor;
+  String number;
+  String numberUnit;
+}
+
+/**
+ * Class for CalendarViz
+ */
+class org.scn.community.databound.CalendarViz extends org.scn.community.shared.Component {
+	
+}

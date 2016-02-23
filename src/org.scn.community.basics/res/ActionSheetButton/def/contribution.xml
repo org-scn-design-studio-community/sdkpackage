@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
+	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
@@ -94,8 +94,8 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">48</defaultValue>
-		<defaultValue property="HEIGHT">48</defaultValue>
+		<defaultValue property="WIDTH">32</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
 		
 		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
 		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>

@@ -1370,19 +1370,23 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 	String getDevice(){* return this.device; *}
 	String getOS(){* return this.os; *}
 	String getCurrentProfile(){* return this.currentProfile; *}
+	void setCurrentProfile(String profileName){*
+		this.currentProfile = profileName;
+	*}
 	/**
 	Issue exploratory Rhino command
 	*/
 	String bial(/* Debug */ String bial) {*
 		return JSON.stringify(eval(bial));
 	*}
-	String checkProfiles(){*
+	String checkProfiles(String measurements){*
+		this.measurements = measurements;
 		var width = this.browserWidth;
 		var height = this.browserHeight;
 		var os = this.os;
 		var device = this.device;
 		APPLICATION.log("Checking for a matching profile for [" + width + "x" + height + "] OS: " + os + " Device: " + device);
-		var p = JSON.parse(this.profiles);
+		var p = JSON.parse(this.profiles).profiles;
 		for(var i=0;i<p.length;i++){
 			var profile = p[i];
 			APPLICATION.log("Checking profile " + profile.key);
@@ -1393,77 +1397,148 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				) && (// If height between, or min/max set to -1
 					(height >= profile.browserMinHeight || profile.browserMinHeight == -1) &&
 					(height <= profile.browserMaxHeight || profile.browserMaxHeight == -1)
+			) && (   // Device/OS detection
+					(profile.os == os || profile.os == "Any") &&
+					(profile.device == device || profile.device == "Any")
 			)
-			// Device/OS detection later
 			){
-				this.loadProfile(profile.key);
+				this.loadProfile(profile.key,measurements);
 				return(profile.key);
 			}
 		}
 		return "";
 	*}
+	String loadProfileExt(String profile, String measurements){*
+		APPLICATION.log(profile);
+		this.measurements = measurements;
+		this.loadProfile(profile);
+		return "done";
+	*}
 	String loadProfile(String profile){*
 		APPLICATION.log("Load Profile called for key '" + profile + "'");
+		APPLICATION.log(this.measurements);
+		var m = JSON.parse(this.measurements);
 		this.internal_assureGlobalAccess();
 		var global = this.getGlobal();
-		var p = JSON.parse(this.profiles);
+		var p = JSON.parse(this.profiles).profiles;
 		for(var i=0;i<p.length;i++){
 			if(profile == p[i].key){
 				APPLICATION.log("Applying layout: " + profile + "...");
-				this.currentProfile = (profile);
+				if(this.currentProfile != profile) this.currentProfile = profile;
 				var layout = p[i].componentLayout.components;
 				for(var j=0;j<layout.length;j++){
 					var component = layout[j];
-					if(global[component.key] && component.key != "me"){
+					if(global[component.key] && 
+							component.key != "me"){
+						// Find parent ID
+						APPLICATION.log(global[component.key].getOwner().getItemType());
+						var parent = global[component.key].getOwner().getParent().getId();
+						var pm = {
+							width : 0,
+							height : 0
+						}
+						if(parent=="ROOT") pm = {
+							width : this.browserWidth,
+							height : this.browserHeight
+						}
+						// Locate parent measurement, if possible
+						for(var p=0;p<m.length;p++){
+							if(m[p].key == parent) pm = m[p];
+						}
 						APPLICATION.log("Moving " + component.key + JSON.stringify(component.position) + "...");
 						if(global[component.key].setVisible){
-							global[component.key].setVisible((component.position.visible)?true:false);							
+							if(component.position.visible == "visible"){
+								global[component.key].setVisible(true);	
+							}
+							if(component.position.visible == "hidden"){
+								global[component.key].setVisible(false);	
+							}
 						}
-						component.position.width = parseInt(component.position.width);
-						component.position.height = parseInt(component.position.height);
-						component.position.top = parseInt(component.position.top);
-						component.position.left = parseInt(component.position.left);
-						component.position.bottom = parseInt(component.position.bottom);
-						component.position.right = parseInt(component.position.right);
 						// Width
-						if(component.position.width!=-1){
-							global[component.key].setWidth(component.position.width);
-						}else{
-							global[component.key].setWidth("auto");
+						if(component.position.width != "unchanged"){
+							if(component.position.width != -1 && component.position.width != "auto"){
+								if(component.position.width.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.width.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.width = pm.width * pct;
+								}else{
+									component.position.width = parseInt(component.position.width);	
+								}
+								global[component.key].setWidth(component.position.width);
+							}else{
+								global[component.key].setWidth("auto");
+							}							
 						}
 						// Height
-						if(component.position.height!=-1){
-							global[component.key].setHeight(component.position.height);
-						}else{
-							global[component.key].setHeight("auto");
+						if(component.position.height != "unchanged"){
+							if(component.position.height != -1 && component.position.height != "auto"){
+								if(component.position.height.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.height.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.height = pm.height * pct;
+								}else{
+									component.position.height = parseInt(component.position.height);	
+								}
+								global[component.key].setHeight(component.position.height);
+							}else{
+								global[component.key].setHeight("auto");
+							}
 						}
 						// Top
-						if(component.position.top!=-1){
-							global[component.key].setTopMargin(component.position.top);	
-						}else{
-							global[component.key].setTopMargin("auto");
+						if(component.position.top != "unchanged"){
+							if(component.position.top != -1 && component.position.top != "auto"){
+								if(component.position.top.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.top.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.top = pm.height * pct;
+								}else{
+									component.position.top = parseInt(component.position.top);	
+								}
+								global[component.key].setTopMargin(component.position.top);	
+							}else{
+								global[component.key].setTopMargin("auto");
+							}
 						}
 						// Bottom
-						if(component.position.bottom!=-1){
-							global[component.key].setBottomMargin(component.position.bottom);
-						}else{
-							global[component.key].setBottomMargin("auto");
+						if(component.position.bottom != "unchanged"){
+							if(component.position.bottom != -1  && component.position.bottom != "auto"){
+								if(component.position.bottom.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.bottom.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.bottom = Math.floor(pm.height * pct);
+								}else{
+									component.position.bottom = parseInt(component.position.bottom);	
+								}
+								global[component.key].setBottomMargin(component.position.bottom);
+							}else{
+								global[component.key].setBottomMargin("auto");
+							}
 						}
 						// Left
-						if(component.position.left!=-1){
-							global[component.key].setLeftMargin(component.position.left);
-						}else{
-							global[component.key].setLeftMargin("auto");
+						if(component.position.left != "unchanged"){
+							if(component.position.left != -1 && component.position.left != "auto"){
+								if(component.position.left.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.left.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.left = Math.floor(pm.width * pct);
+								}else{
+									component.position.left = parseInt(component.position.left);	
+								}
+								global[component.key].setLeftMargin(component.position.left);
+							}else{
+								global[component.key].setLeftMargin("auto");
+							}
 						}
 						// Right
-						if(component.position.right!=-1){
-							global[component.key].setRightMargin(component.position.right);
-						}else{
-							global[component.key].setRightMargin("auto");
+						if(component.position.right != "unchanged"){
+							if(component.position.right != -1 && component.position.right != "auto"){
+								if(component.position.right.toString().indexOf("%")>-1){
+									var pct = parseInt(component.position.right.toString().replace(/[^0-9]+/, ''))/100;							
+									component.position.right = Math.floor(pm.width * pct);
+								}else{
+									component.position.right = parseInt(component.position.right);	
+								}
+								global[component.key].setRightMargin(component.position.right);
+							}else{
+								global[component.key].setRightMargin("auto");
+							}
 						}
-						
-						//global[component.key].getOwner().setContentChanged(true);
-						//global[component.key].getOwner().setPositionChanged(true);
+						APPLICATION.log(JSON.stringify(component.position));
 					}else{
 						APPLICATION.log("Could not locate " + component.key + "...");
 						// Component gone
@@ -1471,6 +1546,28 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				}
 			}
 		}
+	*}
+	String getItems(){*
+		this.internal_assureGlobalAccess();
+		var global = this.getGlobal();
+		var a = [];
+		for (var key in global) {
+			var component = global[key];
+			if(component.getOwner && component.getTopMargin && key != "me") {
+				var owner = component.getOwner();
+				var type = "Unknown";
+				if(owner.getItemType) {
+					type = owner.getItemType();
+				}
+				if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
+					a.push({
+						key : key,
+						type : type
+					});				
+				} 
+			}
+		}
+		return JSON.stringify(a);
 	*}
 	String examineCanvas() {*
 		this.internal_assureGlobalAccess();
@@ -1487,7 +1584,8 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 				try{
 					var visible = false;
 					if(component.isVisible) visible = component.isVisible();
-					var position = {
+					// Eh, save for a rainy day.
+					var snapshot = {
 						visible : visible,
 						top : component.getTopMargin(),
 						bottom : component.getBottomMargin(),
@@ -1496,9 +1594,19 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						width : component.getWidth(),
 						height : component.getHeight()
 					}
+					var position = {
+						visible : "unchanged",
+						top : "unchanged",
+						bottom : "unchanged",
+						left : "unchanged",
+						right : "unchanged",
+						width : "unchanged",
+						height : "unchanged"
+					}
 					payload.components.push({
 						key : key,
-						position : position
+						position : position,
+						snapshot : snapshot
 						//owner : global[key].getOwner(),
 						//properties : global[key]
 					});
@@ -2197,7 +2305,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Calendar 2.0 component*/
 	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Check Box Group 2.0 component*/
+	/**Cast to Check Box Group component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Color Picker 2.0 component*/
@@ -2362,6 +2470,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Bullet Micro Chart 2.0 component*/
 	org.scn.community.databound.BulletMicroChart returnAsScnBulletMicroChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Calendar Visualization component*/
+	org.scn.community.databound.CalendarViz returnAsScnCalendarViz (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
@@ -2506,11 +2617,17 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Collection Utility 0.X component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Component Layouter component*/
+	org.scn.community.utils.ComponentLayouter returnAsScnComponentLayouter (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Component Manager 0.X component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Custom Css Collector 0.X component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Iterator component*/
+	org.scn.community.utils.DataIterator returnAsScnDataIterator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Source Helper 2.0 component*/
 	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}
@@ -3066,6 +3183,244 @@ class org.scn.community.utils.Debugger extends org.scn.community.shared.Componen
 		this.clearConsole();
 		this.DStack = "[]";
 		this.DVariables = "[]";
+	*}
+}
+
+class org.scn.community.utils.KeyText {
+	String key;
+	String text;
+}
+
+class org.scn.community.utils.DataRow {
+	String key;
+	org.scn.community.utils.KeyTextArray keys;
+	String getDimensionValueKey( /**Dimension Key**/ String dimensionKey){* *}
+	String getDimensionValueText( /**Dimension Key**/ String dimensionKey){* *}
+	float getMeasureValue( /**Measure Key**/ String measureKey){* *}
+	String getMeasureFormattedValue( /**Measure Key**/ String measureKey){* *}
+}
+class org.scn.community.utils.KeyTextArray extends Array {
+	org.scn.community.utils.KeyTextArray (org.scn.community.utils.KeyText b);
+	org.scn.community.utils.KeyText atIndex(int index) {* *}
+}
+class org.scn.community.utils.DataRowArray extends Array {
+	org.scn.community.utils.DataRowArray (org.scn.community.utils.DataRow b);
+	org.scn.community.utils.DataRow atIndex(int index) {* *}
+	org.scn.community.utils.DataRowArray containing(Object options) {* *}
+	org.scn.community.utils.KeyTextArray distinctMembers(String dimensionKey);
+}
+class org.scn.community.utils.DataIterator extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Ignore Totals
+	 */	
+	void setIgnoreTotals( /**Ignore Totals*/ boolean ignoreTotals){*
+		this.ignoreTotals = ignoreTotals;
+	*}
+
+	/**
+	 * Gets Ignore Totals
+	 */	
+	boolean getIgnoreTotals() {*
+		return this.ignoreTotals;
+	*}
+	/**
+	 * Determine if a value is not a number
+	 */
+	boolean isNaN(float value) {*
+		this.internal_assureGlobalAccess();
+		var global = this.getGlobal();
+		return global.isNaN(value);
+	*}
+	/**
+	 * Determine if a value is null
+	 */
+	boolean isNull(float value) {*
+		return (value == null);
+	*}
+	/**
+	 * Return a null
+	 */
+	float makeNull() {*
+		return null;
+	*}
+	/**
+	 * Get Key/Text of 'Measures' currently assigned in Rows
+	 */
+	org.scn.community.utils.KeyTextArray getMeasures(){*
+		var flat = JSON.parse(this.flat);
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		}
+		if(!flat.values){
+			
+		}else{
+			for(var d = 0; d < flat.columnHeaders.length; d++){
+				ret.push({
+					key : flat.columnHeadersKeys[d],	// 0SALES
+					text : flat.columnHeaders[d] 		// Sales
+				});
+			}			
+		}
+		return ret;
+	*}
+	/**
+	 * Get Key/Text of 'Dimensions' currently assigned in Rows
+	 */
+	org.scn.community.utils.KeyTextArray getDimensions(){*
+		var flat = JSON.parse(this.flat);
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		}
+		if(!flat.values){
+			
+		}else{
+			for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+				ret.push({
+					key : flat.dimensionHeadersKeys[d],	// 0PRODUCT
+					text : flat.dimensionHeaders[d] 	// Product
+				});
+			}			
+		}
+		return ret;
+	*}
+	/**
+	 * Determine Dimension Column Index
+	 */
+	int determineDimension(Object filter) {*
+		var flat = JSON.parse(this.flat);
+		var index = -1;
+		var key = null;
+		if(filter.key){
+			for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+				var fkey = flat.dimensionHeadersKeys[d];
+				if(fkey == filter.key) {
+					index = d;
+					key = fkey;
+				}
+			}
+		}
+		if(filter.index){
+			if(filter.index < flat.fimensionHeadersKeys.length) {
+				index = filter.index;
+				key = flat.dimensionHeadersKeys[index]; 
+			}
+		}
+		return {
+			index : index,
+			key : key
+		};
+	*}
+	/**
+	 * Create Empty Data Row Array Object
+	 */
+	org.scn.community.utils.DataRowArray createDataRowArray() {*
+		var that = this;
+		var ret = [];
+		ret.atIndex = function(index){
+			return this[index];
+		};
+		ret.distinctMembers = function(dimensionKey){
+			var distincts = [];
+			var keys = {};
+			for(var i=0;i<this.length;i++) {
+				var row = this[i];
+				if(row.dimensions[dimensionKey]){
+					var member = row.dimensions[dimensionKey];
+					keys[member.key] = member;
+				}
+			}
+			for(var field in keys) distincts.push(keys[field]);
+			return distincts;
+		},
+		ret.containing = function(options){
+			var newRet = createDataRowArray();
+			var passes = [];
+			for(var i=0;i<this.length;i++) passes.push(false);
+			if(options.dimensions){
+				for(var d=0; d<options.dimensions.length; d++){
+					var dim = that.determineDimension(options.dimensions[d]);
+					if(dim.index>-1) {
+						for(var r=0;r<this.length;r++){
+							var row = this[r];
+							var key = row.getDimensionValueKey(dim.key);
+							//APPLICATION.log("Comparing " + key + " to " + options.dimensions[d].value);
+							if(key == options.dimensions[d].value) passes[r] = true;
+						}
+					}
+				}
+			}
+			for(var r=0;r<this.length;r++){
+				if(passes[r]) newRet.push(this[r]);
+			}
+			if(options.measures){
+				
+			}
+			//APPLICATION.log(JSON.stringify(newRet));
+			return newRet;
+		}
+		return ret;
+	*}
+	/**
+	 * Get Flattened (Rows) representation of the Assigned Data Source's current state.
+	 */
+	org.scn.community.utils.DataRowArray getRows (optional int offset, optional int maxRows) {*
+		var flat = JSON.parse(this.flat);
+		var ret = createDataRowArray();
+		var rowOffset = 0;
+		if(offset) rowOffset = offset;
+		var max = -1;
+		if(maxRows) max = maxRows;
+		if(!flat.values){
+			// No Data Source
+		}else{
+			var count = 0;
+			for(var i=rowOffset;i<flat.values.length;i++){
+				count++;
+				if(max > -1 && count > max) break;
+				var newRow = {
+					key : "",
+					keys : [],
+					measures : {},
+					dimensions : {},
+					getDimensionValueKey : function(key){ return this.dimensions[key].key; },
+					getDimensionValueText : function(key){ return this.dimensions[key].text; },
+					getMeasureValue : function(key){ return this.measures[key].value; },
+					getMeasureFormattedValue : function(key){ return this.measures[key].formattedValue; }
+				};
+				
+				// Assign Dimension Member Values
+				var members = [];
+				for(var d = 0; d < flat.dimensionHeadersKeys.length; d++){
+					var dimension = flat.dimensionHeadersKeys[d];	// 0PRODUCT
+					var member = {
+						key : flat.rowHeadersKeys2D[i][d],
+						text : flat.rowHeaders2D[i][d]
+					};
+					members.push(member);
+					newRow.dimensions[dimension] = member;
+				}			
+				// Assign Measure Values
+				for(var m = 0; m< flat.columnHeadersKeys.length; m++){
+					var measure = flat.columnHeadersKeys[m];	// 0BALANCE
+					var value = {
+						value : flat.values[i][m],
+						formattedValue : flat.formattedValues[i][m]
+					}
+					newRow.measures[measure] = value;
+				}
+				var key = "";
+				members.map(function(member){
+					key += member.key;
+				});
+				newRow.key = key;
+				newRow.keys = members;
+				ret.push(newRow);
+			}
+		}
+		return ret;
 	*}
 }
 
@@ -4142,13 +4497,6 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	*}
 
 	/**
-	 * Gets Clean All Parameters Property
-	 */	
-	String getCleanAll() {*
-		return this.DCleanAll;
-	*}
-
-	/**
 	 * Sets Content Type Property
 	 */	
 	void setContentType( /**Content Type*/ String contentType){*
@@ -4218,12 +4566,270 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DExpectedResponseStatus;
 	*}
 
-	/**
-	 * Gets List Of Headers (Name / Value) Property
-	 */	
-	String getHeaders() {*
-		return this.DHeaders;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeHeader(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeHeader (
+			String key
+			) {*
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertHeader(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertHeader (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DHeaders);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DHeaders = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Header<br/>
+	 */
+	void updateHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getHeaderAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			this.DHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Headers As JSON String
+	 */	
+	String getHeadersAsJSON() {*
+		var jsonObject = JSON.parse(this.DHeaders);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for Header keys<br/>
+	 */
+	void setHeaderValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Header Key<br/>
+	 */
+	void setHeaderValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Header Key<br/>
+	 */
+	String getHeaderValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DHeaders === undefined || this.DHeaders === "" || this.DHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Sets Do You Want To Use JSONP Property
@@ -4239,12 +4845,270 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DJsonp;
 	*}
 
-	/**
-	 * Gets List Of Parameters (Name / Value) Property
-	 */	
-	String getParameters() {*
-		return this.DParameters;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
 	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeParameter (
+			String key
+			) {*
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertParameter(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertParameter (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DParameters);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DParameters = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Parameter<br/>
+	 */
+	void updateParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getParameterAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			this.DParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Parameters As JSON String
+	 */	
+	String getParametersAsJSON() {*
+		var jsonObject = JSON.parse(this.DParameters);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for Parameter keys<br/>
+	 */
+	void setParameterValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Parameter Key<br/>
+	 */
+	void setParameterValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Parameter Key<br/>
+	 */
+	String getParameterValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DParameters === undefined || this.DParameters === "" || this.DParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DParameters);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Gets HTTP Reuqest Payload Property
@@ -4316,19 +5180,535 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DRequestType;
 	*}
 
-	/**
-	 * Gets Return Headers Property
-	 */	
-	String getReturnHeaders() {*
-		return this.DReturnHeaders;
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addReturnHeader(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addReturnHeader(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addReturnHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeReturnHeader(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeReturnHeader (
+			String key
+			) {*
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertReturnHeader(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertReturnHeader (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DReturnHeaders = JSON.stringify(newElementsJson);
 	*}
 
 	/**
-	 * Gets Return Parameters Property
-	 */	
-	String getReturnParameters() {*
-		return this.DReturnParameters;
+	 * Updates given ReturnHeader<br/>
+	 */
+	void updateReturnHeader (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
 	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getReturnHeaderAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			this.DReturnHeaders = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets ReturnHeaders As JSON String
+	 */	
+	String getReturnHeadersAsJSON() {*
+		var jsonObject = JSON.parse(this.DReturnHeaders);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for ReturnHeader keys<br/>
+	 */
+	void setReturnHeaderValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for ReturnHeader Key<br/>
+	 */
+	void setReturnHeaderValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DReturnHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for ReturnHeader Key<br/>
+	 */
+	String getReturnHeaderValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DReturnHeaders === undefined || this.DReturnHeaders === "" || this.DReturnHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+	/** Adds a root element containing key [String], value [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	POSTRESPONSEPARSER.addReturnParameter(key [String], value [String]);<br>
+	POSTRESPONSEPARSER.addReturnParameter(key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addReturnParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+			};
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	POSTRESPONSEPARSER.removeReturnParameter(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeReturnParameter (
+			String key
+			) {*
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	POSTRESPONSEPARSER.insertReturnParameter(index [int], key [String], value [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertReturnParameter (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) {*
+
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.DReturnParameters);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.DReturnParameters = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given ReturnParameter<br/>
+	 */
+	void updateReturnParameter (
+			/**Unique Key*/String key, 
+			/**Given Value*/String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			value:value
+		};
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getReturnParameterAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			this.DReturnParameters = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets ReturnParameters As JSON String
+	 */	
+	String getReturnParametersAsJSON() {*
+		var jsonObject = JSON.parse(this.DReturnParameters);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Value for ReturnParameter keys<br/>
+	 */
+	void setReturnParameterValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for ReturnParameter Key<br/>
+	 */
+	void setReturnParameterValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.DReturnParameters = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for ReturnParameter Key<br/>
+	 */
+	String getReturnParameterValue (
+			/**/ String key
+			) 
+	{*
+		if (this.DReturnParameters === undefined || this.DReturnParameters === "" || this.DReturnParameters === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.DReturnParameters);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
 
 	/**
 	 * Gets Return Response As String Property
@@ -4344,12 +5724,7 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return this.DReturnStatus;
 	*}
 
-	/**
-	 * Gets Just As Simple Triger Property
-	 */	
-	String getTrigger() {*
-		return this.DTrigger;
-	*}
+
 
 	/**
 	 * Sets Url To Send The Request Property
@@ -4403,6 +5778,26 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	 */
 	void triggerExecution () {*
 		this.DTrigger = "GO";
+	*}
+
+	/**
+	 * Remove All Parameters from the Array.
+	 */	
+	void cleanAllParameters (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DParameters = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Headers from the Array.
+	 */	
+	void cleanAllHeaders (){*
+		this.DCleanAll = true;
+
+		var elementsArray = [];
+		this.DHeaders = JSON.stringify(elementsArray);
 	*}
 }
 class org.scn.community.utils.RealDate extends org.scn.community.shared.Component {

@@ -108,11 +108,11 @@ PostResponseParser = {
 		if(lRawParameters != undefined && lRawParameters.length > 0) {
 			lData = lRawParameters;
 		} else {
-			lData = {};
 			var lDataUrl = "";
 
 			var lParameters = that.getDParameters();
 			if((lParameters != undefined || lParameters != undefined) && lParameters != "" && lParameters != "<delete>"){
+				lData = {};
 				var lParametersArray = JSON.parse(lParameters);
 				
 				for (var i = 0; i < lParametersArray.length; i++) {
@@ -120,9 +120,9 @@ PostResponseParser = {
 					lDataUrl += emphason + lParametersArray[i].key + "=" + lParametersArray[i].value + "";
 					emphason = "&";
 				}
+
+				lData = JSON.stringify(lData);
 			}
-			
-			lData = JSON.stringify(lData);
 			
 			if(that.getDContentType().indexOf("json") == -1) {
 				lData = lDataUrl;

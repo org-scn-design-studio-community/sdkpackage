@@ -1,50 +1,66 @@
 {
-	"DCleanAll" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Clean All Parameters",
-			"cat" : "Display",
-			"tooltip" : "Clean All Parameters",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
+	"DHeaders": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "header":{
+	               "type":"Array",
+	               "sequence":"key,value",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "value":{
+	                  "desc":"Given Value",
+	                  "type":"String"
+	               }
+	            }
+	        },
+ 
+			"desc":"Headers",
+			"cat":"Content",
+			"tooltip":"List Of Headers (Name / Value)",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
 		}
 	},
-	"DHeaders" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "List Of Headers (Name / Value)",
-			"cat" : "Display",
-			"tooltip" : "List Of Headers (Name / Value)",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
-		}
-	},
-	"DParameters" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "List Of Parameters (Name / Value)",
-			"cat" : "Display",
-			"tooltip" : "List Of Parameters (Name / Value)",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
+	"DParameters": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "parameter":{
+	               "type":"Array",
+	               "sequence":"key,value",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "value":{
+	                  "desc":"Given Value",
+	                  "type":"String"
+	               }
+	            }
+	        },
+ 
+			"desc":"Parameters",
+			"cat":"Content",
+			"tooltip":"List of Parameters (Name / Value)",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray"
 		}
 	},
 	"DPayload" : {
@@ -56,7 +72,7 @@
 			"ztlType": "String",
 			"ztlFunction": "-get",
 			"desc" : "HTTP Reuqest Payload",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "HTTP Reuqest Payload",
 			"apsControl" : "text",
 			"noAps" : true,
@@ -72,41 +88,77 @@
 			"ztlType": "String",
 			"ztlFunction": "-get",
 			"desc" : "Raw Parameters As String Content",
-			"cat" : "Display",
+			"cat" : "Content",
 			"tooltip" : "Raw Parameters As String Content",
 			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DReturnHeaders": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "returnHeader":{
+	               "type":"Array",
+	               "sequence":"key,value",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "value":{
+	                  "desc":"Given Value",
+	                  "type":"String"
+	               }
+	            }
+	        },
+ 
+			"desc":"Parameters",
+			"cat":"Content",
+			"tooltip":"List of Parameters (Name / Value)",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
 			"noAps" : true,
 			"noZtl" : false
 		}
 	},
-	"DReturnHeaders" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Return Headers",
-			"cat" : "Display",
-			"tooltip" : "Return Headers",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
-		}
-	},
-	"DReturnParameters" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Return Parameters",
-			"cat" : "Display",
-			"tooltip" : "Return Parameters",
-			"apsControl" : "text",
+	"DReturnParameters": {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "returnParameter":{
+	               "type":"Array",
+	               "sequence":"key,value",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "value":{
+	                  "desc":"Given Value",
+	                  "type":"String"
+	               }
+	            }
+	        },
+ 
+			"desc":"Parameters",
+			"cat":"Content",
+			"tooltip":"List of Return Parameters (Name / Value)",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
 			"noAps" : true,
 			"noZtl" : false
 		}
@@ -120,7 +172,7 @@
 			"ztlType": "String",
 			"ztlFunction": "-get",
 			"desc" : "Return Response As String",
-			"cat" : "Display",
+			"cat" : "Return",
 			"tooltip" : "Return Response As String",
 			"apsControl" : "text",
 			"noAps" : true,
@@ -136,7 +188,7 @@
 			"ztlType": "int",
 			"ztlFunction": "-get",
 			"desc" : "Return Status",
-			"cat" : "Display",
+			"cat" : "Return",
 			"tooltip" : "Return Status",
 			"apsControl" : "spinner",
 			"noAps" : true,
@@ -156,7 +208,7 @@
 			"tooltip" : "Just As Simple Triger",
 			"apsControl" : "text",
 			"noAps" : true,
-			"noZtl" : false
+			"noZtl" : true
 		}
 	},
 
@@ -171,7 +223,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Basic Authorization Content [Basic: GUID]",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "Basic Authorization Content [Basic: GUID]",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -187,7 +239,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Content Type",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "Content Type",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -203,7 +255,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Is This Request Cross-Domain",
-			"cat" : "Display",
+			"cat" : "Flags",
 			"tooltip" : "Is This Request Cross-Domain",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -220,7 +272,7 @@
 			"choiceType": "-",
 			"ztlFunction": "",
 			"desc" : "Expected Content Type",
-			"cat" : "Display",
+			"cat" : "Return",
 			"tooltip" : "Expected Content Type",
 			"apsControl" : "combobox",
 			"options":[
@@ -247,7 +299,7 @@
 			"ztlType": "int",
 			"ztlFunction": "",
 			"desc" : "Response Status For Good Response",
-			"cat" : "Display",
+			"cat" : "Return",
 			"tooltip" : "Response Status For Good Response",
 			"apsControl" : "spinner",
 			"noAps" : false,
@@ -263,7 +315,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Do You Want To Use JSONP",
-			"cat" : "Display",
+			"cat" : "Flags",
 			"tooltip" : "Do You Want To Use JSONP",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -280,7 +332,7 @@
 			"choiceType": "-",
 			"ztlFunction": "",
 			"desc" : "Request Method (POST | GET | PUT)",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "Request Method (POST | GET | PUT)",
 			"apsControl" : "combobox",
 			"options":[
@@ -312,7 +364,7 @@
 			"choiceType": "-",
 			"ztlFunction": "",
 			"desc" : "Request Type (JQuery | HTTP)",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "Request Type (JQuery | HTTP)",
 			"apsControl" : "combobox",
 			"options":[
@@ -339,7 +391,7 @@
 			"ztlType": "String",
 			"ztlFunction": "",
 			"desc" : "Url To Send The Request",
-			"cat" : "Display",
+			"cat" : "Config",
 			"tooltip" : "Url To Send The Request",
 			"apsControl" : "text",
 			"noAps" : false,
@@ -355,7 +407,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Do You Need With Credentials",
-			"cat" : "Display",
+			"cat" : "Flags",
 			"tooltip" : "Do You Need With Credentials",
 			"apsControl" : "checkbox",
 			"noAps" : false,

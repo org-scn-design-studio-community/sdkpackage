@@ -352,10 +352,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityVisualizations"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/ActivityViewer/ActivityViewer</requireJs>
+	<requireJs modes="commons m">res/ActivityViewer/ActivityViewer</requireJs>
 
 	<cssInclude>res/ActivityViewer/ActivityViewer.css</cssInclude>
 	
@@ -433,10 +433,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/ActionSheetButton/ActionSheetButton</requireJs>
+	<requireJs modes="commons m">res/ActionSheetButton/ActionSheetButton</requireJs>
 
 	<cssInclude>res/ActionSheetButton/ActionSheetButton.css</cssInclude>
 	
@@ -519,8 +519,8 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="LEFT_MARGIN">0</defaultValue>
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">48</defaultValue>
-		<defaultValue property="HEIGHT">48</defaultValue>
+		<defaultValue property="WIDTH">32</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
 		
 		<defaultValue property="buttonType"><![CDATA[Default]]></defaultValue>
 		<defaultValue property="icon"><![CDATA[sap-icon://menu2]]></defaultValue>
@@ -952,21 +952,30 @@
 
 <component
 	id="CheckBoxGroup"
-	title="Check Box Group 2.0"
+	title="Check Box Group"
 	tooltip="Check Box Group"
 	icon="res/CheckBoxGroup/CheckBoxGroup.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/CheckBoxGroup/CheckBoxGroup</requireJs>
+	<requireJs modes="commons m">res/CheckBoxGroup/CheckBoxGroup</requireJs>
 
 	<cssInclude>res/CheckBoxGroup/CheckBoxGroup.css</cssInclude>
 	
 	
+	<property
+		id="checkboxWidth"
+		type="int"
+		title="Checkbox Width (Horizontal)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="cleanAll"
 		type="boolean"
@@ -1012,6 +1021,15 @@
 
 	</property>
 	<property
+		id="selLayout"
+		type="String"
+		title="Layout"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="withPicture"
 		type="boolean"
 		title="Use Pictures"
@@ -1030,11 +1048,13 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="checkboxWidth"><![CDATA[225]]></defaultValue>
 		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
 		<defaultValue property="elements"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="fallbackPicture"><![CDATA[]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
 		<defaultValue property="pictureSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="selLayout"><![CDATA[VerticalLayout]]></defaultValue>
 		<defaultValue property="withPicture"><![CDATA[true]]></defaultValue>
 
 	</initialization>
@@ -1111,10 +1131,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/DateRangeScroller/DateRangeScroller</requireJs>
+	<requireJs modes="commons m">res/DateRangeScroller/DateRangeScroller</requireJs>
 
 	<cssInclude>res/DateRangeScroller/DateRangeScroller.css</cssInclude>
 	
@@ -1262,10 +1282,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/DateRangeSlider/DateRangeSlider</requireJs>
+	<requireJs modes="commons m">res/DateRangeSlider/DateRangeSlider</requireJs>
 
 	<cssInclude>res/DateRangeSlider/DateRangeSlider.css</cssInclude>
 	
@@ -3469,7 +3489,8 @@
 	title="Modal Browser 0.X"
 	icon="res/ModalBrowser/ModalBrowser.png"
 	handlerType="sapui5"
-	group="ScnCommunityBasics">
+	group="ScnCommunityBasics"
+	modes="commons m">
 	
 	<jsInclude>res/ModalBrowser/ModalBrowser.js</jsInclude>
   	<cssInclude>res/ModalBrowser/ModalBrowser.css</cssInclude>
@@ -5030,10 +5051,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/TextArea/TextArea</requireJs>
+	<requireJs modes="commons m">res/TextArea/TextArea</requireJs>
 
 	<cssInclude>res/TextArea/TextArea.css</cssInclude>
 	
@@ -5074,9 +5095,27 @@
 
 	</property>
 	<property
+		id="rows"
+		type="int"
+		title="Rows"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="value"
 		type="String"
 		title="Text Value"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="wrapping"
+		type="String"
+		title="Wrapping"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -5096,7 +5135,9 @@
 		<defaultValue property="enabled"><![CDATA[true]]></defaultValue>
 		<defaultValue property="maxLength"><![CDATA[0]]></defaultValue>
 		<defaultValue property="onValueChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="rows"><![CDATA[2]]></defaultValue>
 		<defaultValue property="value"><![CDATA[]]></defaultValue>
+		<defaultValue property="wrapping"><![CDATA[None]]></defaultValue>
 
 	</initialization>
 

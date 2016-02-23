@@ -122,6 +122,12 @@ FioriButton = {
 		}
 		
 		that.addStyleClass("scn-pack-FioriButton-" + size);
+
+		if(that._currentIcon != undefined) {
+			that.removeStyleClass(that._currentIcon);
+		}
+
+		that._currentIcon = "sf" + icon;
 		that.addStyleClass("sf" + icon);
 		
 		var aNames = sap.ui.core.IconPool.getIconNames();

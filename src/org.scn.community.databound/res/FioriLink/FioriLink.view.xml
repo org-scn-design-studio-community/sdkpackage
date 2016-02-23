@@ -25,6 +25,7 @@
 			textDirection="{textDirection}"
 			subtle="{subtle}"
 			emphasized="{emphasized}"
+			press="onPressed"
 		>
 	    </Link>
     </l:content>

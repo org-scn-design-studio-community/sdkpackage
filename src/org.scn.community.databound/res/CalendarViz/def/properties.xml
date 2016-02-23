@@ -1,0 +1,10 @@
+	
+	<!-- CalendarViz Properties -->
+	<property id="cellSize" title="Size of Day cell" type="int" visible="false"/>
+	<property id="colorMeasure" title="Measure to use as Color" type="String" visible="false"/>
+	<property id="colorScaleConfig" title="Color Scale Config" type="String" visible="false"/>
+	<property id="dateDimension" title="Dimension to use as Date" type="String" visible="false"/>
+	<property id="dateFormat" title="Date Format in Data Source" type="String" visible="false"/>
+	<property id="dateKeyOrText" title="Use Key or Text?" type="String" visible="false"/>
+  	<property type="ScriptText" title="On Day Select" id="onDaySelect"/>
+	<!-- End of CalendarViz Properties -->

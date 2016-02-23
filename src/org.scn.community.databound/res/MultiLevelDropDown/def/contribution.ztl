@@ -1,37 +1,71 @@
 class org.scn.community.databound.MultiLevelDropDown extends Component {
 	
-	/** ------- Getter / Setter for addSingleRootNode ------ */
+	/**
+	 * Returns the value of addSingleNode (boolean).
+	 */
 	boolean isSingleNodeActivated() {*
 		return this.addSingleRootNode;
 	*}
 
+	/**
+	 * Changes the addSingleNode (boolean).<br>
+	 * Instead of having all of the first nodes displayed directly in the menu, a new root node will be added
+	 */
 	void setAddSingleRootNode(Boolean value) {*
 		this.addSingleRootNode = value;
 	*}
 	
-	/** ------- Getter / Setter for singleRootName ------ */
+	/** 
+	 * Returns the name of the generated root node 
+	 */
 	String getSingleRootNodeName() {*
 		return this.singleRootNodeName;
 	*}
 
+	/** 
+	 * Set the name of the generated root node 
+	 */
 	void setSingleRootNodeName(String newName) {*
 		this.singleRootNodeName = newName;
 	*}
 	
-	/** ------- Getter / Setter for selectedElemKey ------ */
+	/** 
+	 * Returns the selected hierarchy key in the menu.
+	 * You can directly use this value in a setFilter on the dimension displayed as hierarchy.
+	 */
 	String getSelectedElemKey() {*
 		return this.SelectedElemKey;
 	*}
-
+	
+	/** 
+	 * Simulates a click on a node by the user.<br>
+	 * The node will be selected and the event "onClick" will be triggered.
+	 */
 	void setSelectedElemKey(String selectedKey) {*
 		this.SelectedElemKey = selectedKey;
 	*}
 	
-	/** ------- Getter / Setter for selectedElemKey ------ */
+	/** 
+	 * Returns the value of the property LabelDisplay
+	 */
 	String getLabelDisplay() {*
 		return this.labelDisplay;
 	*}
 
+	/** 
+	 * Set the value of the property LabelDisplay (Case-sensitive). It is all depending on how your hierarchy is displayed: Key, Text, Text+Key ...
+	 * <br>Available values:
+	 * <example>
+	 * <code>
+	 * "key":"HIERARCHY_NODE/0HIER_NODE/EUROPE","level":0,"text":"Europe|EUROPE"
+	 * </code>
+	 * The previous hierarchy node is displayed as Text+Key.<br>
+	 * You can use values from: <br>
+	 * - NodeKey: HIERARCHY_NODE/0HIER_NODE/EUROPE (internal hierarchy node key, can be using in setFilter and setVariables calls)<br>
+	 * - Left: Europe<br>
+	 * - Right: EUROPE (External Key)<br>
+	 * </example>
+	 */
 	void setLabelDisplay(String value) {*
 		this.labelDisplay = value;
 	*}
@@ -40,64 +74,178 @@ class org.scn.community.databound.MultiLevelDropDown extends Component {
 	String getSelectedElemText() {*
 		return this.SelectedElemText;
 	*}
-
-	void setSelectedElemText(String selectedText) {*
-		this.SelectedElemText = selectedText;
-	*}
 	
-	/** ------- Getter / Setter for resetButton ------ */
+	/** get the state of the reset button (Left, Right, No) */
 	String getResetButton() {*
 		return this.resetButton;
 	*}
-
+	
+	/** 
+	 * Set the value of the property LabelDisplay (Case-sensitive). It is all depending on how your hierarchy is displayed: Key, Text, Text+Key ...
+	 * Available values:<br>
+	 * - Left<br>
+	 * - Right<br>
+	 * - None
+	 */
 	void setResetButton(String value) {*
 		this.resetButton = value;
 	*}
 
-	/** ------- Getter / Setter for singleRootName ------ */
+	/** Get the technical name of the dimension with the hierarchy */
 	String getDimension() {*
 		return this.selChar;
 	*}
 
+	/** 
+	 * Change the dimension with the hierarchy. OnLoadReady will be called.
+	 */
 	void setDimension(String value) {*
 		this.selChar = value;
 	*}
 	
-	/** ------- Getter / Setter for addMeasure ------ */
+	/**
+	 * Return true/false if a measure should be displayed in the menu.<br>
+	 * If no measure has been selected, it has no effect.
+	  */
 	boolean isMeasureDisplayActivated() {*
 		return this.addMesure;
 	*}
 
+	/** 
+	 * Activate the display of the measure in the menu.<br>
+	 * If no measure has been selected, it has no effect.
+	 */
 	void activateDisplayMeasure(Boolean value) {*
 		this.addMesure = value;
 	*}
 	
-	/** ------- Getter / Setter for selMeasure ------ */
+	/** 
+	 * Hide the menu. Kinda a Utility mode for the hierarchy members accessor
+	 */
+	void hideMenu(Boolean value) {*
+		this.hideMenu = value;
+	*}
+	
+	/** return the technical name of the selected measure */
 	String getSelMeasure() {*
 		return this.selMesure;
 	*}
 
+	/**
+	 * Set the measure that should be displayed in the menu.<br>
+	 * The measure display should be active before (you can use method activateDisplayMeasure())
+	 */
 	void setSelMeasure(String value) {*
 		this.selMesure = value;
 	*}
 	
-	/** ------- Getter / Setter for colorClass ------ */
+	/** return the JSON corresponding to the color classes */
 	String getColorClass() {*
 		return this.colorClass;
 	*}
 
+	/**
+	 * Pass rules that will apply cssClass to the elements.
+	 * Format: [  {"cssClass":"Name of the CSS class to apply", "low":"from value, numeric", "high":"to value, numeric"} ]<br>
+	 * High value is excluded.
+	 * <example>
+	 * <code>[<br>
+	 * {"cssClass":"DD_RED", "low":"0", "high":"10"},<br> 
+     * {"cssClass":"DD_YEL", "low":"10", "high":"40"},<br>
+     * {"cssClass":"DD_GREEN","low":"40", "high":"100"}<br> 
+     * ]</code>
+     * </example>
+	 */
 	void setColorClass(String value) {*
 		this.colorClass = value;
 	*}
 	
-	/** ------- Getter / Setter for replaceNotAssignedText ------ */
+	/** Get the replacement text set instead of the not assigned node. Empty means not replaced */
 	String getNotAssignedText() {*
 		return this.notAssignedText;
 	*}
 
+	/** Set the replacement text set instead of the not assigned node. Empty means not replaced */
 	void setNotAssignedText(String value) {*
 		this.notAssignedText = value;
 	*}
 	
+	/** Return all the hierarchy members as a JSON object. */
+	String getHierarchyMembersAsJsonString() {*
+		return JSON.stringify(this.getHierarchyMembers());
+	*}
 	
+	/* Return the hierarchy members in the native DS format (JSON) */
+	String getHierarchyMembersSource() {*
+		return this.jsonDimensionHierMembers;
+	*}
+	
+	/**
+	 * Return an array with all the hierarchy members. Array support forEach()
+	 * Elements are typed and you can access attributes like:
+	 * - ID: integer, internal ID<br>
+	 * - <strong>key</strong>: hierarchy node key. Can be used in a setFilter or setVariable method call<br>
+	 * - <strong>text</strong>: text of the node. Format depends on the hierarchy display.<br>
+	 *   If text+key, text will contains "text|key". If just text, you'll get only the text.<br>
+	 * - <strong>Level</strong>: Depth of the node/leaf, starts at 0<br>
+	 * - <strong>Type</strong>: infoobject type: HIERARCHY_NODE or technical name of the infoobject<br>
+	 * - <strong>parentID</strong>: parent internal ID<br>
+	 * - <strong>parentKey</strong>: Hierarchy node key, BW value. Can be used by setFilter etc.<br>
+	 * - <strong>isLeaf</strong>: true or false<br>
+	 * - <strong>nodeState</strong>: COLLAPSED / EXPANDED for nodes or leaf for leafs.<br>
+	 */
+	org.scn.community.shared.HierarchyMemberArray getHierarchyMembers() {*
+		var content 		= [];
+		var lifoParents		= [];
+		var previousMember	= {};
+		
+		//nothing in the jsonString.
+		if (this.jsonDimensionHierMembers == "") {
+			return content;
+		}
+		
+		//Parse the Json Array
+		var dimension 		= JSON.parse(this.jsonDimensionHierMembers);
+		
+		var lastLevel 		= 0;
+		
+		for(var i=0;i<dimension.members.length; i++ ){
+			var hierMember 		= {};
+			var member 			= dimension.members[i];
+			
+			hierMember.key 		= 0;
+					
+			if (member.hasOwnProperty('level'))
+				hierMember.level = member.level;
+			else {
+				hierMember.level = 0;
+			}
+			
+			hierMember.key 				= member.key;
+			hierMember.text 			= member.text;
+			hierMember.ID 				= i;
+			
+			if (member.hasOwnProperty('parent') && i > 0) {
+				hierMember.parentKey 	= member.parent;
+				hierMember.parentID 	= content [i-1].ID;
+			} else {
+				hierMember.parentKey 	= "";
+				hierMember.parentID 	= -1;
+			}
+			
+			if (member.hasOwnProperty('type'))
+					hierMember.type 	= member.type;
+			else 	hierMember.type		= dimension.key;
+			
+			if (member.hasOwnProperty('nodeState'))
+					hierMember.nodeState = member.nodeState;
+			else 	hierMember.nodeState = "leaf";	
+			
+			hierMember.isLeaf 			= !member.hasOwnProperty('nodeState');
+
+			content.push(hierMember);
+		}
+		
+		return content;
+	*}
 }

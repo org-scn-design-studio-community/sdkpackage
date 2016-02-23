@@ -71,7 +71,7 @@ function() {
       "desc": "Maximal Length",
       "noAps": false,
       "noZtl": false,
-      "tooltip": "Teh Maximal Length In Characters",
+      "tooltip": "Maximal Length In Characters",
       "ztlFunction": "",
       "ztlType": "int"
     },
@@ -94,6 +94,22 @@ function() {
     "value": "",
     "visible": true
   },
+  "rows": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display",
+      "desc": "Rows",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Number of Rows",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "template": "int",
+    "type": "int",
+    "value": 2,
+    "visible": true
+  },
   "value": {
     "opts": {
       "apsControl": "text",
@@ -108,6 +124,41 @@ function() {
     "template": "String",
     "type": "String",
     "value": "",
+    "visible": true
+  },
+  "wrapping": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display",
+      "choiceType": "Wrapping",
+      "desc": "Wrapping",
+      "noAps": false,
+      "noZtl": false,
+      "options": [
+        {
+          "key": "Off",
+          "text": "Off"
+        },
+        {
+          "key": "None",
+          "text": "None"
+        },
+        {
+          "key": "Soft",
+          "text": "Soft"
+        },
+        {
+          "key": "Hard",
+          "text": "Hard"
+        }
+      ],
+      "tooltip": "Wrapping",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "template": "Choice",
+    "type": "String",
+    "value": "None",
     "visible": true
   }
 };
@@ -140,8 +191,10 @@ function() {
   "handlerType": "sapui5",
   "height": "400",
   "id": "TextArea",
+  "isUniControl": "TextArea",
+  "modes": "commons m",
   "package": "basics",
-  "parentControl": "sap.ui.commons.TextArea",
+  "parentControl": "contextO.TextArea",
   "require": [{
     "id": "common_basics",
     "space": "known"

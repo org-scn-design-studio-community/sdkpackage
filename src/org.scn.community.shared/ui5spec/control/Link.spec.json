@@ -3,7 +3,7 @@
 	"text" : {
 		"template" : "String",
 		"type" : "String",
-		"value" : "",
+		"value" : "Link to...",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",

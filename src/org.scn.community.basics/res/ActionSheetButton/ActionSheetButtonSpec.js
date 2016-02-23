@@ -265,8 +265,9 @@ function() {
   "extension": "Component",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
-  "height": "48",
+  "height": "32",
   "id": "ActionSheetButton",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.m.Button",
   "require": [
@@ -281,7 +282,7 @@ function() {
   ],
   "title": "Action Sheet Button 2.0",
   "tooltip": "Fiori-Inspired Action Sheet Button menu",
-  "width": "48"
+  "width": "32"
 };
 
 	return spec;

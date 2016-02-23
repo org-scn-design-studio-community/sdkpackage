@@ -44,7 +44,23 @@
 			"ztlFunction": "",
 			"desc" : "Maximal Length",
 			"cat" : "Display",
-			"tooltip" : "Teh Maximal Length In Characters",
+			"tooltip" : "Maximal Length In Characters",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"rows" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 2,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Rows",
+			"cat" : "Display",
+			"tooltip" : "Number of Rows",
 			"apsControl" : "spinner",
 			"noAps" : false,
 			"noZtl" : false
@@ -62,6 +78,42 @@
 			"cat" : "Display",
 			"tooltip" : "The Text Content Of This Text Area",
 			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"wrapping" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "None",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "Wrapping",
+			"ztlFunction": "",
+			"desc" : "Wrapping",
+			"cat" : "Display",
+			"tooltip" : "Wrapping",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Off",
+					"text" : "Off"
+				},
+				{
+					"key" : "None",
+					"text" : "None"
+				},
+				{
+					"key" : "Soft",
+					"text" : "Soft"
+				},
+				{
+					"key" : "Hard",
+					"text" : "Hard"
+				}
+				
+            ],
 			"noAps" : false,
 			"noZtl" : false
 		}

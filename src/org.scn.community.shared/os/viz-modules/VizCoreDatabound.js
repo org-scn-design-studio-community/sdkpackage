@@ -20,7 +20,9 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 					ignoreResults : this.ignoreTotals(),
 					useMockData : this.useMockData(),
 					swapAxes : this.swapAxes()
-				});	
+				});
+				// Add event trigger logic - Mike Howles - 02/08/2016
+				if(this.onFlatten) this.onFlatten();
 			}catch(e){
 				// alert("Problem flattening data:\n\n"+e);
 			}

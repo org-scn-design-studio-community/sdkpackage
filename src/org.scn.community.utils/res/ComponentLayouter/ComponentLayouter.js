@@ -22,11 +22,34 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 	ComponentLayouter.prototype = SDKCore;
 	function ComponentLayouter() {
 		SDKCore.call(this, {
+			measurements : {
+				opts : {
+					noAps : true,
+					desc : "Measurements"
+				}
+			},
 			currentProfile :  { 
 				opts : {
 					noAps : true,
 					desc : "Current Profile",
-				}			
+				},
+				onChange : function(v){
+					var that = this;
+					var m = JSON.stringify(that.takeMeasurements());
+					var profile = that.currentProfile();
+					if(profile){
+						if(this._oldProfile != this.currentProfile() || m != this._oldMeasurements){
+							setTimeout(function(){
+								that.callZTLFunction("loadProfileExt", function(result){
+									// alert(result);
+								},profile, m);
+							},50);
+						}
+					}
+					/**/
+					this._oldMeasurements = m;
+					this._oldProfile = this.currentProfile();
+				}
 			},
 			os :  { 
 				opts : {
@@ -55,21 +78,28 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			onResize :  { 
 				opts : {
 					apsControl : "script",
-					cat : "General",
+					cat : "Events",
 					desc : "On Resize"
 				}			
+			},
+			monitorResizes : {
+				opts : {
+					apsControl : "checkbox",
+					cat : "Events",
+					desc : "Monitor Resizes (Required for Events to fire)"
+				}
 			},
 			onProfileChange :  { 
 				opts : {
 					apsControl : "script",
-					cat : "General",
+					cat : "Events",
 					desc : "On Profile Change"
 				}			
 			},
 			profiles :  { 
 				opts : {
 					apsControl : "canvasinformation",
-					cat : "General",
+					cat : "Profiles",
 					desc : "Canvas Information",
 					//ztlFunc : "examineCanvas"
 				}			
@@ -77,9 +107,13 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 		});
 		this.componentInfo.title = "Component Layouter";
 		this.componentInfo.author = "Mike Howles";
-    	this.componentInfo.description = "Manage Component Layout based on browser size rules";
+    	this.componentInfo.description = "Manage Component Layout based on browser size rules.  Blog description here:<a href='http://scn.sap.com/community/businessobjects-design-studio/blog/2016/02/04/design-studio-16-sdk--component-layouter'>Design Studio 1.6 SDK - Component Layouter</a>";
     	this.componentInfo.icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAB3RJTUUH3wEWEyAmPkeZ3wAAAAd0RVh0QXV0aG9yAKmuzEgAAAAMdEVYdERlc2NyaXB0aW9uABMJISMAAAAKdEVYdENvcHlyaWdodACsD8w6AAAADnRFWHRDcmVhdGlvbiB0aW1lADX3DwkAAAAJdEVYdFNvZnR3YXJlAF1w/zoAAAALdEVYdERpc2NsYWltZXIAt8C0jwAAAAh0RVh0V2FybmluZwDAG+aHAAAAB3RFWHRTb3VyY2UA9f+D6wAAAAh0RVh0Q29tbWVudAD2zJa/AAAABnRFWHRUaXRsZQCo7tInAAADPklEQVQ4jQXBS2hcVQCA4f/cc5/zzEwehiTTmISYQIuoVIUuWgQrUkoprSRalICLEgNS6MJ1Fi5ciF25UBTEBhEURLAu1CiNBq00xTa1RgI1sWNizGMyk3nce+bec/w+8dfGqnFixZuXLjI9dYJicQc33sPshwjPwk7l0MLHcyXttkDmHmf2ynVKY49yduIc1kfvf8DkmdPkshHZDoEXDHNv1WOzViDdNUQlybGw3GJp1aHSKvLhu1fJtP5k/us5PFcgZi+9bp467LGz9Ru37v7H3kHAM89NUv57hfV7SyTS4fnJiyzdWKBa/pFzJ0c5Mlbgj+1OFpcNVl5scOxwmlPPDjEzc4rIzvDi9AzHzrzAQw8PkC0OcnbiZS68Ok3f4ABHnx4jmzOMD6cwzTXk1XdemnXNfSz28VNpbt5eQcWG+W8+4eTxAe7cvIUbZFic/4rxQw6j/V0YZSOB8UeGEf/+9IZJm108DAqffyoRS7fX6evxeGysm43tkB9ubHGo1MOJJ0ugDrDtDElSBbcTsbN42XhJiJ2AQCCkQOsIS4cYW9DGQTs+WrfwiDBtsEQRKZpEscF2dQXbliTSQRsHIX1U7GFne4hUGyOhHYcEfo5IKVzHQqsES9h4bojtYKHbNpHIsa+yvDd3je2Gw14jwrUakCRsbzbpzGa5/Np5RkqKIPUAnQRYlsBCJ2gkws3x6RcL/HJnk+X1JltRkfs7DuW9NE1d4sGmzVtvf0wYS6I4RAtDYlrYsdREiUKYkK6CzdEj/axttTB2A+0GhK0WhU6L7lwno/29yLhFyskjYsBWiOrPU0ZKn1A5ILLs1xQtZdDGIhZ5qvUauaymmIGME5NBI9sJ2IpGWMaOFQhRJ+WkieMKhcDQW/T4/e4K3327BlabV6aOk0+5iCRCJBaWdFBRjb2qwd7ZqDHQ42OJCGkEjufTig4olQqcPy0I/DR5RyJjg8BCo6iGu1RqdT67VkZKFc8ODxUJ0g082UTGEk+n8GWafCFPEPg4Voyrq8hwl2rtgI3dkCufbzJ3vYZ4YmjI9BXqXJgYYXzQpbujAyk0QVqQVOs4XkAjjNCxoVJTfP/rPl8ulqmnRsn3jvA/VnNuGSsz1z0AAAAASUVORK5CYII=";
-		
+    	this.componentInfo.topics.splice(1, 0, {
+			title : "Component Layouter License",
+			content : '<a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAIAAAD8q9/YAAABqklEQVRIx+WWMU8CMRTH3wewxRvZoGp0IpJOhDhwdMP1JhLHY3DSwU4kxAHYMIGlX+Gc1MXA4AQhpPEb8BX6FWq05Dyhd3Ju573ccGnea+/3/u+9K0AOTefGvoEfn4Lo07nuAMBwOLSGMcYwxhMxNs6r91XhsJAJXe3AEzHGGMfRhsynZ6fGf/o27fV6GQauX9TL5XJybUgpAaB91TYhS7lsXbayCowwMvJKKQkhAMAYU0oxxgCAECKlNCJXaTWs6tHDyDoXtg/7+W5djEZZnRNOSfC3A3fvuwAwm8201oQQz/O01vzLHMdRSgkhgiAwiwijsKrni7l1962XuA/azY41WXE5SucfBb69uwEAKaVSKjq3PM+jlEarmnOOMTZRL6/Pi9UiIfdWGeMg41Kzu+euvAkip1CYMeb7vlGYcy6E2CiMUiickHtrGf+q2FbsHxX+7GG06eEgCBzHAQDf98MeppSu12utdbPZrJxX9uzh/YH37+G4MZEauFavlUqlHE3piRgjdDAYDBKAXdc9Pjn6J//hcHT1+30rbcNtFIvFbN+08nWXzpV9AD9ivwErgn5oAAAAAElFTkSuQmCC" /></a>' +
+			'<br /><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Advanced Data Table</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Mike Howles</span> is licensed under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" target="_blank" href="http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.utils/res/ComponentLayouter" rel="dct:source">sdkpackage repository on Github</a>.'
+		});
 		var parentInit = this.init;
     	this.init = function(){
     		parentInit.call(this);
@@ -91,6 +125,7 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
     			this.$().css("display", "none");    				
     		}
 			this.onAfterResizing = function(forcedReload) {
+				if(!that.monitorResizes()) return;
 				var isMobile = {
 				    Android: function() {
 				        return navigator.userAgent.match(/Android/i);
@@ -140,15 +175,22 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 				if(sap && sap.zen && sap.zen.designmode) {
 					// Don't callZtl in canvas from DT - Doesn't work anyway.
 				}else{
-					that.callZTLFunction("checkProfiles", function(result){
-						if(result != that.currentProfile()){
-							that.currentProfile(result);
-							// Call asynchronously since I can't raise event from callback won' directly.
-							setTimeout(function(that){return function(){
-								that.fireEvent("onProfileChange");
-							}}(that),100);
-						}
-					});	
+					// Wait and give canvas time to resize?
+					setTimeout(function(){
+						
+						console.log(that.browserWidth());
+						console.log(that.browserHeight());
+						console.log(JSON.stringify(this.takeMeasurements()));
+						that.callZTLFunction("checkProfiles", function(result){
+							if(result != that.currentProfile()){
+								that.currentProfile(result);
+								// Call asynchronously since I can't raise event from callback won' directly.
+								setTimeout(function(that){return function(){
+									that.fireEvent("onProfileChange");
+								}}(that),10);
+							}
+						},JSON.stringify(measurements));
+					},100);
 				}
 			};
 			if(window.attachEvent) {
@@ -166,6 +208,23 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			}
 			this.throttleResize();
 		};
+		this.takeMeasurements = function(){
+			var s = this.profiles();
+			var o = JSON.parse(s);
+			var items = o.items;						
+			var measurements = [];
+			for(var i=0;i<items.length;i++){
+				// Measure all the panels
+				if(items[i].type == "PANEL_COMPONENT"){
+					measurements.push({
+						key : items[i].key,
+						width : $("#" + items[i].key + "_panel1").width(),
+						height : $("#" + items[i].key + "_panel1").height()
+					})
+				}
+			}
+			return measurements;
+		}
 		// Doesn't work.  YET... Dangit...
 		this.updateProfile = function(key){
 			/*

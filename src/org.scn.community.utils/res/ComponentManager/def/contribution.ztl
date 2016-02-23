@@ -684,7 +684,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Calendar 2.0 component*/
 	org.scn.community.basics.Calendar returnAsScnCalendar (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Check Box Group 2.0 component*/
+	/**Cast to Check Box Group component*/
 	org.scn.community.basics.CheckBoxGroup returnAsScnCheckBoxGroup (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Color Picker 2.0 component*/
@@ -849,6 +849,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Bullet Micro Chart 2.0 component*/
 	org.scn.community.databound.BulletMicroChart returnAsScnBulletMicroChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Calendar Visualization component*/
+	org.scn.community.databound.CalendarViz returnAsScnCalendarViz (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
@@ -993,11 +996,17 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Collection Utility 0.X component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Component Layouter component*/
+	org.scn.community.utils.ComponentLayouter returnAsScnComponentLayouter (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Component Manager 0.X component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Custom Css Collector 0.X component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Data Iterator component*/
+	org.scn.community.utils.DataIterator returnAsScnDataIterator (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Source Helper 2.0 component*/
 	org.scn.community.utils.DataSourceHelper returnAsScnDataSourceHelper (Component inputComponent) {* return inputComponent; *}

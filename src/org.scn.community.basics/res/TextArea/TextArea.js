@@ -51,10 +51,8 @@ TextArea = {
 		org_scn_community_component_Core(that, myComponentData);
 
 		/* COMPONENT SPECIFIC CODE - START(initDesignStudio)*/
-that.addStyleClass("scn-pack-TextArea");
+		that.addStyleClass("scn-pack-TextArea");
 		
-		that.setWrapping(sap.ui.core.Wrapping.Off);
-
 		that.attachChange(function() {
 			that.fireDesignStudioPropertiesChangedAndEvent(["value"], "onValueChanged");
 		});
@@ -94,6 +92,10 @@ that.addStyleClass("scn-pack-TextArea");
 
 //%INIT-START%
 myComponentData.instance = TextArea;
-jQuery.sap.require("sap.ui.commons.TextArea");
-sap.ui.commons.TextArea.extend(myComponentData.fullComponentName, myComponentData.instance);
+myComponentData.unifiedContext = "sap.ui.commons";
+myComponentData.unified = sap.ui.commons;
+if(sap.m != undefined) { myComponentData.unifiedContext = "sap.m"; myComponentData.unified = sap.m; }
+
+jQuery.sap.require(myComponentData.unifiedContext+".TextArea");
+myComponentData.unified.TextArea.extend(myComponentData.fullComponentName, myComponentData.instance);
 });
