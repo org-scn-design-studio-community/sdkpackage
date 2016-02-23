@@ -2470,6 +2470,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Bullet Micro Chart 2.0 component*/
 	org.scn.community.databound.BulletMicroChart returnAsScnBulletMicroChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Calendar Visualization component*/
+	org.scn.community.databound.CalendarViz returnAsScnCalendarViz (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
