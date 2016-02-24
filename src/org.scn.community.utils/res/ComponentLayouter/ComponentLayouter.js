@@ -178,13 +178,13 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 					// Wait and give canvas time to resize?
 					setTimeout(function(){
 						
-						console.log(that.browserWidth());
-						console.log(that.browserHeight());
-						console.log(JSON.stringify(this.takeMeasurements()));
+						//console.log(that.browserWidth());
+						//console.log(that.browserHeight());
+						var measurements = that.takeMeasurements();
 						that.callZTLFunction("checkProfiles", function(result){
 							if(result != that.currentProfile()){
 								that.currentProfile(result);
-								// Call asynchronously since I can't raise event from callback won' directly.
+								// Call asynchronously since I can't raise event from callback w/o directly.
 								setTimeout(function(that){return function(){
 									that.fireEvent("onProfileChange");
 								}}(that),10);
