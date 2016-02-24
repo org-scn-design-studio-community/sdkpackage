@@ -2710,7 +2710,7 @@
 	<property
 		id="onLinkClick"
 		type="ScriptText"
-		title="On Click"
+		title="On Link Click"
 		group="Events"
 		visible="true">
 
