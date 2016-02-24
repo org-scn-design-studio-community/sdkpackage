@@ -50,6 +50,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\QRCode\def\contribution.xml ^
 ..\res\ProgressIndicator\def\contribution.xml ^
 ..\res\RangeSlider\def\contribution.xml ^
+..\res\MockUp\def\contribution.xml ^
 ..\res\RatingIndicator\def\contribution.xml ^
 ..\res\RoadMap\def\contribution.xml ^
 ..\res\RSSFeedReader\def\contribution.xml ^
@@ -116,6 +117,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ProgressIndicator\def\contribution.ztl ^
 ..\res\QRCode\def\contribution.ztl ^
 ..\res\RangeSlider\def\contribution.ztl ^
+..\res\MockUp\def\contribution.ztl ^
 ..\res\RatingIndicator\def\contribution.ztl ^
 ..\res\RoadMap\def\contribution.ztl ^
 ..\res\RSSFeedReader\def\contribution.ztl ^

@@ -1,0 +1,75 @@
+<component id="MockUp"
+		title="Rapid MockUp"
+		tooltip="Not recommended for production use!"
+		icon="res/MockUp/MockUp.png"
+		handlerType="div"
+		modes="commons m"
+		group="ScnCommunityBasics"
+		propertySheetPath="aps/PropertyPage.html"
+		databound="true">
+		
+		<requireJs modes="commons m">res/MockUp/MockUp</requireJs>
+
+		<property id="HTML" type="String" title="HTML" group="Display" />
+		<property id="afterInit" type="String" title="JavaScript" group="Display" />
+		<property type="String" title="Placeholder 1" id="term1"></property>
+		<property type="String" title="Manual Replacement 1" id="replacement1"></property>
+				
+		<property type="String" title="Placeholder 2" id="term2"></property>
+		<property type="String" title="Manual Replacement 2" id="replacement2"></property>
+		
+		<property type="String" title="Placeholder 3" id="term3"></property>
+		<property type="String" title="Manual Replacement 3" id="replacement3"></property>
+		
+		<property type="String" title="Placeholder 4" id="term4"></property>
+		<property type="String" title="Manual Replacement 4" id="replacement4"></property>
+		
+		<property type="String" title="Placeholder 5" id="term5"></property>
+		<property type="String" title="Manual Replacement 5" id="replacement5"></property>
+		
+		<property type="String" title="Placeholder 6" id="term6"></property>
+		<property type="String" title="Manual Replacement 6" id="replacement6"></property>
+
+		<property type="String" title="Placeholder 7" id="term7"></property>
+		<property type="String" title="Manual Replacement 7" id="replacement7"></property>
+
+		<property type="String" title="Placeholder 8" id="term8"></property>
+		<property type="String" title="Manual Replacement 8" id="replacement8"></property>
+
+		<property type="String" title="Placeholder 9" id="term9"></property>
+		<property type="String" title="Manual Replacement 9" id="replacement9"></property>
+		
+		<property type="String" title="Placeholder 10" id="term10"></property>
+		<property type="String" title="Manual Replacement 10" id="replacement10"></property>
+		
+		<property type="ResultCell" title="Databound Replacement 1" id="KPIreplacement1"></property>
+		<property type="ResultCell" title="Databound Replacement 2" id="KPIreplacement2"></property>
+		<property type="ResultCell" title="Databound Replacement 3" id="KPIreplacement3"></property>
+		<property type="ResultCell" title="Databound Replacement 4" id="KPIreplacement4"></property>
+		<property type="ResultCell" title="Databound Replacement 5" id="KPIreplacement5"></property>
+		<property type="ResultCell" title="Databound Replacement 6" id="KPIreplacement6"></property>
+		<property type="ResultCell" title="Databound Replacement 7" id="KPIreplacement7"></property>
+		<property type="ResultCell" title="Databound Replacement 8" id="KPIreplacement8"></property>
+		<property type="ResultCell" title="Databound Replacement 9" id="KPIreplacement9"></property>
+		<property type="ResultCell" title="Databound Replacement 10" id="KPIreplacement10"></property>
+		
+		<initialization>
+			<defaultValue property="term1">{kpi1}</defaultValue>
+			<defaultValue property="term2">{kpi2}</defaultValue>
+			<defaultValue property="term3">{kpi3}</defaultValue>
+			<defaultValue property="term4">{kpi4}</defaultValue>
+			<defaultValue property="term5">{kpi5}</defaultValue>
+			<defaultValue property="term6">{kpi6}</defaultValue>
+			<defaultValue property="term7">{kpi7}</defaultValue>
+			<defaultValue property="term8">{kpi8}</defaultValue>
+			<defaultValue property="term9">{kpi9}</defaultValue>
+			<defaultValue property="term10">{kpi10}</defaultValue>
+			<defaultValue property="TOP_MARGIN">0</defaultValue>
+			<defaultValue property="LEFT_MARGIN">0</defaultValue>
+			<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+			<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+			<defaultValue property="WIDTH">400</defaultValue>
+			<defaultValue property="HEIGHT">300</defaultValue>
+			<defaultValue property="HTML"><![CDATA[Type HTML Here.  <br/><b>Use place holders to replace, e.g. Sales:</b> {kpi1} $]]></defaultValue>
+		</initialization>
+	</component>

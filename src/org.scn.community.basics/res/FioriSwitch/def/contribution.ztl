@@ -1,13 +1,16 @@
-class org.scn.community.m.basics.Switch extends org.scn.community.shared.Component {
-	/** 
- 	<example>
-	Get Switch State
-	<code>
-	SWITCH_1.getState();<br>
-	</code>
-	</example>
-	 */
-	boolean getState() {*		
-		return this.state; 
+class org.scn.community.basics.FioriSwitch extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets state Property
+	 */	
+	void setState( /**state*/ boolean state){*
+		this.state = state;
+	*}
+
+	/**
+	 * Gets state Property
+	 */	
+	boolean getState() {*
+		return this.state;
 	*}
 }

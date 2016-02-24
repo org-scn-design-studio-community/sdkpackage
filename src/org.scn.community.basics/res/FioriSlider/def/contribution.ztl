@@ -1,3 +1,45 @@
-class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
-	
+class org.scn.community.basics.FioriSlider extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Maximum Value Property
+	 */	
+	void setMax( /**Maximum Value*/ float max){*
+		this.max = max;
+	*}
+
+	/**
+	 * Gets Maximum Value Property
+	 */	
+	float getMax() {*
+		return this.max;
+	*}
+
+	/**
+	 * Sets Minimum Value Property
+	 */	
+	void setMin( /**Minimum Value*/ float min){*
+		this.min = min;
+	*}
+
+	/**
+	 * Gets Minimum Value Property
+	 */	
+	float getMin() {*
+		return this.min;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ float value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	float getValue() {*
+		return this.value;
+	*}
+
 }

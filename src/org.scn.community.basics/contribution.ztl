@@ -5370,9 +5370,22 @@ class org.scn.community.basics.FioriButton extends org.scn.community.shared.Comp
 	*}
 
 }
-class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
+class org.scn.community.basics.FioriInput extends org.scn.community.shared.Component {
 	
-}class org.scn.community.m.basics.SegmentedButton extends org.scn.community.shared.Component {
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ String value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValue() {*
+		return this.value;
+	*}
+}class org.scn.community.basics.FioriSegmentedButton extends org.scn.community.shared.Component {
 	/** Add an item
  	<example>
 	Add or update a item by key 'A'.
@@ -5404,19 +5417,64 @@ class org.scn.community.m.basics.Input extends org.scn.community.shared.Componen
 		}		
 		itemConfig = o;
 	*}
-}class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
-	
-}class org.scn.community.m.basics.Switch extends org.scn.community.shared.Component {
-	/** 
- 	<example>
-	Get Switch State
-	<code>
-	SWITCH_1.getState();<br>
-	</code>
-	</example>
-	 */
-	boolean getState() {*		
-		return this.state; 
+}class org.scn.community.basics.FioriSlider extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Maximum Value Property
+	 */	
+	void setMax( /**Maximum Value*/ float max){*
+		this.max = max;
+	*}
+
+	/**
+	 * Gets Maximum Value Property
+	 */	
+	float getMax() {*
+		return this.max;
+	*}
+
+	/**
+	 * Sets Minimum Value Property
+	 */	
+	void setMin( /**Minimum Value*/ float min){*
+		this.min = min;
+	*}
+
+	/**
+	 * Gets Minimum Value Property
+	 */	
+	float getMin() {*
+		return this.min;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ float value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	float getValue() {*
+		return this.value;
+	*}
+
+}class org.scn.community.basics.FioriSwitch extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets state Property
+	 */	
+	void setState( /**state*/ boolean state){*
+		this.state = state;
+	*}
+
+	/**
+	 * Gets state Property
+	 */	
+	boolean getState() {*
+		return this.state;
 	*}
 }class org.scn.community.basics.FioriToolbar extends org.scn.community.shared.Component {
 	/** Add a header button
@@ -13078,6 +13136,29 @@ class org.scn.community.basics.RangeSlider extends org.scn.community.shared.Comp
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
+}
+/**
+ * Class for RapidPrototype 
+ */
+class org.scn.community.basics.MockUp extends org.scn.community.shared.Component {
+
+	/* Returns the current value */
+	String getHTML() {*
+		return this.HTML;
+	*}
+
+	/* Sets the value */
+	void setHTML(/* HTML */ String html) {*
+		this.HTML = html;
+	*}
+	
+	void setTerm( /* Placeholder Text */ String term, /* Index */ int index){*
+		this["term"+index] = term;
+	*}
+
+	void setReplacement( /* Placeholder Text */ String replacement, /* Index */ int index){*
+		this["replacement"+index] = replacement;
+	*}
 }
 
 /**

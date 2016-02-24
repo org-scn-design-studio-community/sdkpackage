@@ -768,6 +768,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Menu Button 2.0 component*/
 	org.scn.community.basics.MenuButton returnAsScnMenuButton (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Rapid MockUp component*/
+	org.scn.community.basics.MockUp returnAsScnMockUp (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Modal Browser 0.X component*/
 	org.scn.community.basics.ModalBrowser returnAsScnModalBrowser (Component inputComponent) {* return inputComponent; *}
 

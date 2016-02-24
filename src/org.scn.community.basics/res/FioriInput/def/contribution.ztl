@@ -1,3 +1,16 @@
-class org.scn.community.m.basics.Input extends org.scn.community.shared.Component {
+class org.scn.community.basics.FioriInput extends org.scn.community.shared.Component {
 	
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ String value){*
+		this.value = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValue() {*
+		return this.value;
+	*}
 }

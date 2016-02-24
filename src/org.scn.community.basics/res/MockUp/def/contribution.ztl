@@ -1,0 +1,23 @@
+/**
+ * Class for RapidPrototype 
+ */
+class org.scn.community.basics.MockUp extends org.scn.community.shared.Component {
+
+	/* Returns the current value */
+	String getHTML() {*
+		return this.HTML;
+	*}
+
+	/* Sets the value */
+	void setHTML(/* HTML */ String html) {*
+		this.HTML = html;
+	*}
+	
+	void setTerm( /* Placeholder Text */ String term, /* Index */ int index){*
+		this["term"+index] = term;
+	*}
+
+	void setReplacement( /* Placeholder Text */ String replacement, /* Index */ int index){*
+		this["replacement"+index] = replacement;
+	*}
+}
