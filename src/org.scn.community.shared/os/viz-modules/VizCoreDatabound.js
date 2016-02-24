@@ -22,7 +22,11 @@ define(["./VizCore","./../../modules/component.databound"], function(VizCore, or
 					swapAxes : this.swapAxes()
 				});
 				// Add event trigger logic - Mike Howles - 02/08/2016
-				if(this.onFlatten) this.onFlatten();
+				if(this.onFlatten) {
+					// Better way than throttling with setTimeout - Mike Howles 02/24/2016
+					if(this._sPriorFlatData != JSON.stringify(this.flatData)) this.onFlatten();
+				}
+				this._sPriorFlatData = JSON.stringify(this.flatData)
 			}catch(e){
 				// alert("Problem flattening data:\n\n"+e);
 			}
