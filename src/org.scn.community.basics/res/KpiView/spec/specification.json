@@ -477,9 +477,9 @@
 		"value" : "",
 		"visible": true,
 		"opts" : {
-			"desc" : "On Click",
+			"desc" : "On Link Click",
 			"cat" : "Events",
-			"tooltip" : "On Click",
+			"tooltip" : "On Link Click",
 			"apsControl" : "text",
 			"noAps" : true,
 			"noZtl" : true

@@ -267,10 +267,10 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Events",
-      "desc": "On Click",
+      "desc": "On Link Click",
       "noAps": true,
       "noZtl": true,
-      "tooltip": "On Click"
+      "tooltip": "On Link Click"
     },
     "template": "Event",
     "type": "ScriptText",
