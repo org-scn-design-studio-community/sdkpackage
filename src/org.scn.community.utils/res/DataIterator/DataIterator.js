@@ -40,7 +40,8 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 			'<br /><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Advanced Data Table</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">Mike Howles</span> is licensed under a <a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" target="_blank" href="http://github.com/org-scn-design-studio-community/sdkpackage/tree/master/src/org.scn.community.utils/res/DataIterator" rel="dct:source">sdkpackage repository on Github</a>.'
 		});
     	this.onFlatten2 = function(){
-    		this.flat(JSON.stringify(this.flatData));
+    		//this.flat(JSON.stringify(this.flatData));
+    		this.flat(JSON.stringify(this.data()));
     		this.firePropertiesChanged(["flat"]);
     		this.fireEvent("onDataChange");
     		/*
