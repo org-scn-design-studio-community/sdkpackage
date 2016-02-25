@@ -41,9 +41,14 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		});
     	this.onFlatten2 = function(){
     		//this.flat(JSON.stringify(this.flatData));
-    		this.flat(JSON.stringify(this.data()));
-    		this.firePropertiesChanged(["flat"]);
-    		this.fireEvent("onDataChange");
+    		var payload = JSON.stringify(this.data());
+    		if(payload.length<190000){
+    			this.flat(payload);
+        		this.firePropertiesChanged(["flat"]);
+        		this.fireEvent("onDataChange");    			
+    		}else{
+    			alert("Data Iterator Safety Belt triggered for your safety.  Data payload must be under 190KB.  Contact your BI Application developer, or use less data.");
+    		}
     		/*
     		if (this.interval_id !== undefined) {
                 clearInterval(this.interval_id);
