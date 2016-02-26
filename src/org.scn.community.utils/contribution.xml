@@ -384,6 +384,7 @@
 		title="Data Selection"
 		type="ResultSet"
 		group="DataBinding">
+		<option name="maxCells" value="1000000"/>
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 	</property>
@@ -391,8 +392,18 @@
 	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="true" group="DataBinding"/>
 	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="true" group="DataBinding"/>
 	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="true" group="DataBinding"/>
-	<property id="flat" type="String" title = "Flat Data for ZTL" visible="false" group="DataBinding"/>
+	<property id="flat" type="String" title = "Loopback data for ZTL" visible="false" group="DataBinding"/>
+	<property id="flatLength" type="int" title = "Length of Loopback data for ZTL" visible="false" group="DataBinding"/>
+	<property id="compressedLength" type="int" title = "Compressed Length of Loopback data for ZTL" visible="false" group="DataBinding"/>
+	<property id="compressionTime" type="float" title = "Compression Time (ms)" visible="false" group="DataBinding"/>
+	<property id="decompressionTime" type="float" title = "Decompression Time (ms)" visible="false" group="DataBinding"/>
+	<property id="encodedLength" type="int" title = "Encoded Length of Loopback data for ZTL" visible="false" group="DataBinding"/>
+	<property id="safetyBelt" type="int" title = "Maximum Size of Loopback data payload (Max = 200,000)" visible="true" group="DataBinding"/>
+	<property id="waitTime" type="int" title = "Wait time (ms) for loopback data change update" visible="true" group="DataBinding"/>
 	<property id="onDataChange" type="ScriptText" title="On Data Change" group="Events" />
+	<property id="onOverflow" type="ScriptText" title="On Overflow" group="Events" />
+	<property id="includeFormattedValues" type="boolean" title = "Include Formatted Values" visible="true" group="DataBinding"/>
+	
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
@@ -400,9 +411,12 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="WIDTH">50</defaultValue>
 		<defaultValue property="HEIGHT">50</defaultValue>
+		<defaultValue property="safetyBelt">190000</defaultValue>
+		<defaultValue property="waitTime">200</defaultValue>
 		<defaultValue property="flat">{}</defaultValue>
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
+		<defaultValue property="includeFormattedValues">false</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
 	</initialization>

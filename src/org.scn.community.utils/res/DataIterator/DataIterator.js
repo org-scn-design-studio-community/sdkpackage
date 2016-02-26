@@ -17,7 +17,8 @@
  * limitations under the License. 
  */
 define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
-        "sap/designstudio/sdk/component"], function(VizCoreDatabound,Component) {
+        "./../../../org.scn.community.shared/os/lz-string/lz-string",
+        "sap/designstudio/sdk/component"], function(VizCoreDatabound,LZString,Component) {
 	var ownComponentName = "org.scn.community.utils.DataIterator";
 	DataIterator.prototype = VizCoreDatabound;
 	function DataIterator() {
@@ -26,7 +27,49 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 				noAps : true,
 				opts : {
 					cat : "General",
-					desc : "Flattened Data for ZTL"
+					desc : "Loopback Data"
+				}
+			},flatLength : {
+				noAps : true,
+				opts : {
+					cat : "General",
+					desc : "Loopback Data Length"
+				}
+			},compressedLength : {
+				noAps : true,
+				opts : {
+					cat : "General",
+					desc : "Compressed Loopback Length"
+				}
+			},compressionTime : {
+				noAps : true,
+				opts : {
+					cat : "General",
+					desc : "Time (ms) it took to compress string"
+				}
+			},encodedLength : {
+				noAps : true,
+				opts : {
+					cat : "General",
+					desc : "URLEncoded Loopback Length"
+				}
+			},safetyBelt : {
+				opts : {
+					cat : "General",
+					desc : "Safety Belt size for Loopback Data (Max = 200,000)",
+					apsControl : "spinner"
+				}
+			},waitTime : {
+				opts : {
+					cat : "General",
+					desc : "Wait Time after Data Source change (ms)",
+					apsControl : "spinner"
+				}
+			},includeFormattedValues : {
+				opts : {
+					cat : "General",
+					desc : "Include Formatted Values",
+					apsControl : "checkbox"
 				}
 			}
 		});
@@ -41,13 +84,45 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
 		});
     	this.onFlatten2 = function(){
     		//this.flat(JSON.stringify(this.flatData));
-    		var payload = JSON.stringify(this.data());
+    		var safetyBelt = this.safetyBelt();
+    		var waitTime = this.waitTime();
+    		if(isNaN(safetyBelt)) safetyBelt = 190000;
+    		if(isNaN(waitTime)) waitTime = 100;
+    		if(waitTime <= 0) waitTime = 100;
+    		if(safetyBelt > 200000) safetyBelt = 200000;
+    		var start = Date.now();
+    		var d = JSON.parse(JSON.stringify(this.data()));
+    		if(this.includeFormattedValues()==false) {
+    			delete d.formattedData;
+    		}
+    		// delete d.axis_columns;
+    		// delete d.axis_rows;
+    		var stream = JSON.stringify(d);									// Raw String
+    		var encoded = encodeURIComponent(stream);						// URL Encoded bloat version
+    		var payload = LZString.compressToEncodedURIComponent(stream);	// LZString Compressed
+    		//var payload = LZString.compress(stream);						// LZString Compressed, will not URIEncode, can't use.
+    		
+    		var finish = Date.now();
+    		var compressionTime = finish - start;
+    		var cr = payload.length / stream.length;
+    		//alert(payload.length + "\n\n" + payload);
+    		//alert(compress.length + "\n\n" + compress);
     		if(payload.length<190000){
     			this.flat(payload);
-        		this.firePropertiesChanged(["flat"]);
+    			this.encodedLength(encoded.length);
+    			this.flatLength(stream.length);
+    			this.compressionTime(compressionTime);
+    			this.compressedLength(payload.length);
+        		this.firePropertiesChanged(["flat","flatLength","encodedLength","compressionTime","compressedLength"]);
         		this.fireEvent("onDataChange");    			
     		}else{
-    			alert("Data Iterator Safety Belt triggered for your safety.  Data payload must be under 190KB.  Contact your BI Application developer, or use less data.");
+    			this.flatLength(stream.length);
+    			this.encodedLength(encoded.length);
+    			this.compressedLength(payload.length);
+    			this.compressionTime(compressionTime);
+    			this.firePropertiesChanged(["flatLength","encodedLength","compressionTime","compressedLength"]);
+    			this.fireEvent("onOverflow");
+    			// alert("Data Iterator Safety Belt triggered for your safety.  Data payload must be under 190KB.  Contact your BI Application developer, or use less data.");
     		}
     		/*
     		if (this.interval_id !== undefined) {
@@ -60,7 +135,7 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizCoreDatabound",
                 clearInterval(that.interval_id);
             }
     		that.interval_id =*/ 
-   			setTimeout(function(){that.onFlatten2();},100);
+   			setTimeout(function(){that.onFlatten2();},this.waitTime());
     	};		
 	}
 	DataIterator.prototype.constructor = DataIterator;
