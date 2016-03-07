@@ -1,4 +1,6 @@
-define([],function(){
+define(["../../org.scn.community.shared/os/jszip/jszip",
+        "../../org.scn.community.shared/os/FileSaver/FileSaver"
+        ],function(JSZip, saveAs){
 	sap.ui.commons.Panel.extend("org.scn.community.aps.BYOData", {  
 		needsLabel : function() {
 			return false;
@@ -315,7 +317,7 @@ define([],function(){
 	    				["Dominica","60015","71076","75312","70926","69672","68000"],
 	    				["Dominican Republic","3308941","4511577","5794074","7194666","8591967","9927000"],
 	    				["Ecuador","4439206","5972464","7957811","10260587","12345023","14465000"],
-	    				["Egypt, Arab Rep.","27903093","35923283","44952497","56843275","67648419","81121000"],
+	    				["Egypt - Arab Rep.","27903093","35923283","44952497","56843275","67648419","81121000"],
 	    				["El Salvador","2773095","3736311","4656263","5332842","5940305","6193000"],
 	    				["Equatorial Guinea","252115","290907","220582","373887","520380","700000"],
 	    				["Eritrea","1423599","1847000","2468902","3158295","3667576","5254000"],
@@ -327,7 +329,7 @@ define([],function(){
 	    				["France","46613691","51919493","55111030","58183174","60762169","64895000"],
 	    				["French Polynesia","79335","110872","151098","195383","237638","271000"],
 	    				["Gabon","485732","529526","682641","929044","1235274","1505000"],
-	    				["Gambia, The","372625","458663","629786","966151","1297084","1729000"],
+	    				["Gambia","372625","458663","629786","966151","1297084","1729000"],
 	    				["Georgia","3645600","3967800","4467700","4802000","4418300","4452000"],
 	    				["Germany","72814900","78169289","78288576","79433029","82211508","81777000"],
 	    				["Ghana","6742107","8681818","10922708","14793415","19165490","24392000"],
@@ -342,12 +344,12 @@ define([],function(){
 	    				["Guyana","560184","720738","776856","724931","733101","755000"],
 	    				["Haiti","3867502","4709644","5687812","7124877","8645371","9993000"],
 	    				["Honduras","1999530","2688208","3627640","4889311","6218151","7600000"],
-	    				["Hong Kong SAR, China","3075605","3959000","5063100","5704500","6665000","7068000"],
+	    				["Hong Kong","3075605","3959000","5063100","5704500","6665000","7068000"],
 	    				["Hungary","9983967","10337910","10711122","10373988","10210971","10000000"],
 	    				["Iceland","175574","204438","228138","254826","281205","318000"],
 	    				["India","447844159","553873890","700058589","873785449","1053898107","1224615000"],
 	    				["Indonesia","91946612","118361740","150820044","184345939","213395411","239870000"],
-	    				["Iran, Islamic Rep.","21999103","28662011","38576541","54870583","65342319","73973000"],
+	    				["Iran","21999103","28662011","38576541","54870583","65342319","73973000"],
 	    				["Iraq","7379922","10021785","13774183","18194212.5","24313640.5","32031000"],
 	    				["Ireland","2828600","2957250","3412800","3513974","3805174","4475000"],
 	    				["Isle of Man","48445","56717","65112","70313","76803","82869"],
@@ -359,8 +361,8 @@ define([],function(){
 	    				["Kazakhstan","9995997","13109992","14898332.25","16348000","14883626","16323000"],
 	    				["Kenya","8105435","11252318","16267558","23447177","31253701","40513000"],
 	    				["Kiribati","40700","48900","58100","71845","84010","100000"],
-	    				["Korea, Dem. Rep.","10946479","14246772","17239340","20143212","22894095","24346000"],
-	    				["Korea, Rep.","25074152","31923000","38124000","42869000","47008000","48875000"],
+	    				["North Korea","10946479","14246772","17239340","20143212","22894095","24346000"],
+	    				["South Korea","25074152","31923000","38124000","42869000","47008000","48875000"],
 	    				["Kosovo","947000","1219000","1521000","1862000","1700000","1815000"],
 	    				["Kuwait","263718","753142","1376963","2087687","1940786","2736000"],
 	    				["Kyrgyz Republic","2172500","2964499","3632000","4391100","4898300","5448000"],
@@ -372,12 +374,9 @@ define([],function(){
 	    				["Libya","1349004","1994000","3063000","4334459","5231189","6355000"],
 	    				["Liechtenstein","16561","21358","25213","28986","32853","36032"],
 	    				["Lithuania","2778550","3139689","3413202","3697838","3499536","3287000"],
-	    				["Low & middle income","2296977146","2858854567","3536642688","4317705677","5068232226","5767157445"],
-	    				["Low income","237682528","306839766","388131379.5","505093768","643692522.5","796342000"],
-	    				["Lower middle income","886026454","1110285504","1412662003","1776482425","2146677647","2518690865"],
 	    				["Luxembourg","313970","339171","364150","381850","436300","507000"],
-	    				["Macao SAR, China","171450","250995","246230","359709","431867","544000"],
-	    				["Macedonia, FYR","1391996","1567968","1794830","1909353","2009091","2060000"],
+	    				["Macao","171450","250995","246230","359709","431867","544000"],
+	    				["Macedonia","1391996","1567968","1794830","1909353","2009091","2060000"],
 	    				["Madagascar","5103652","6548922","8608964","11280625","15364272","20714000"],
 	    				["Malawi","3525246","4531280","6239898","9380892","11228756","14901000"],
 	    				["Malaysia","8160113","10909353","13832586","18208562","23414909","28401000"],
@@ -389,8 +388,7 @@ define([],function(){
 	    				["Mauritius","659351","826000","966000","1058775","1186873","1281000"],
 	    				["Mayotte","24055","36755","55016","92413","148753","204000"],
 	    				["Mexico","38418829","51868335","68776411","84306602","99959594","113423000"],
-	    				["Micronesia, Fed. Sts.","44536","61431","72962","96319","107103","111000"],
-	    				["Middle income","2059294618","2552014801","3148511308","3812611909","4424539703","4970815445"],
+	    				["Micronesia","44536","61431","72962","96319","107103","111000"],
 	    				["Moldova","2544000","3045000","3397000","3696000","3639588","3562000"],
 	    				["Monaco","22135","23689","26078","30896","35126","35407"],
 	    				["Mongolia","957044","1281535","1693122","2192553","2411369","2756000"],
@@ -409,10 +407,7 @@ define([],function(){
 	    				["North America","198624409","226431000","251872000","277474500","312994242","343539600"],
 	    				["Northern Mariana Islands","10070","13203","17048","43973","68432","60917"],
 	    				["Norway","3581239","3875763","4085620","4241473","4490967","4889000"],
-	    				["OECD members","787321599","890498968","984592499","1065266608","1152790389","1236521688"],
 	    				["Oman","557492","731703","1181337","1868055","2264163","2783000"],
-	    				["Other small states","6067959","7397680","9547478","12565115","15539576.55","18293000"],
-	    				["Pacific island small states","1361955","1746814","1990783","2423701","2781946","3345337"],
 	    				["Pakistan","45920204","59382651","80492664","111844679","144522192","173593000"],
 	    				["Palau","9638","11481","12197","15089","19172","20472"],
 	    				["Panama","1128378","1509822","1953029","2415926","2956126","3517000"],
@@ -476,12 +471,11 @@ define([],function(){
 	    				["Uruguay","2538095","2809117","2914683","3109122","3300847.408","3357000"],
 	    				["Uzbekistan","8558503","11972994","15951899","20510000","24650500","28228000"],
 	    				["Vanuatu","63702","85393","115641","146636","185074","240000"],
-	    				["Venezuela, RB","7562108","10680678","15036273","19750000","24311000","28834000"],
+	    				["Venezuela","7562108","10680678","15036273","19750000","24311000","28834000"],
 	    				["Vietnam","34743000","42729000","53700000","66016700","77630900","86928000"],
 	    				["Virgin Islands (U.S.)","32000","63000","97000","103963","108639","110000"],
 	    				["West Bank and Gaza","","","","1978248.403","3004149.794","4152000"],
-	    				["World","3040343505","3691775367","4448322048","5296678361","6117805532","6894594844"],
-	    				["Yemen, Rep.","5116419","6144992","7945180","11948209","17723186","24053000"],
+	    				["Yemen","5116419","6144992","7945180","11948209","17723186","24053000"],
 	    				["Zambia","3044733","4138837","5775165","7860053","10201562","12927000"],
 	    				["Zimbabwe","3752373","5206229","7289463","10469202","12509477","12571000"]
 	    	    	]
@@ -509,6 +503,11 @@ define([],function(){
 			this.toggleItem = new sap.ui.commons.MenuItem({
 				text : "Switch to CSV View"
 			});
+			this.exportButton = new sap.ui.commons.Button({
+				text : "Generate for CSV Data Source...",
+				icon : "sap-icon://download"
+			});
+			this.exportButton.attachPress(this.exportCSVDS, this);
 			this.presetsItem = new sap.ui.commons.MenuItem({
 				text : "Presets",
 				submenu : this.presetsMenu
@@ -520,6 +519,7 @@ define([],function(){
 				text : "Options",
 				menu : this.mainMenu
 			}));
+			this.addButton(this.exportButton);
 			this._content = new sap.ui.commons.layout.VerticalLayout({
 				width : "100%"
 			});
@@ -891,6 +891,93 @@ define([],function(){
 				this.toggleItem.setText("Switch to Table View");
 				this._content.addContent(this.dataContents);
 			}
+		},
+		exportCSVDS : function(){
+			var s = this.getValue();
+			s = s.replace(/~\|~/g,"\n");
+			s = s.replace(/\r\n/g,"\n");
+			var a = s.split("\n");
+			var rows = [];
+			for(var i=0;i<a.length;i++){
+				rows.push(a[i].split(","));
+			}
+			var k = parseInt(propertyPage.kfIndex()); 
+			var headers = rows.splice(0,1)[0];
+			var dheader = [];
+			var csvRows = [];
+			var metadata = [
+			   '"<<BEGIN OF METADATA>>"',
+			   '"<<BEGIN OF PROPERTIES>>"',
+			   '"DESCRIPTION";"Bring Your Own Data"',
+			   '"VERSION";"1"',
+			   '"<<END OF PROPERTIES>>"',
+			   '"<<BEGIN OF ROLESUPPORT>>"',
+			   '"Role";"Name";"Description";"Field";"Referenced Characteristic";"Presentation";"Data Type";"Aggregation Mode"'
+			];
+			var rc = 0;
+			// CHAR
+			for(var i=0;i<k;i++){
+				var text, key;
+				if(headers.length>i){
+					dheader.push('"' + headers[i].toUpperCase() + '"');
+					dheader.push('"' + headers[i].toUpperCase() + '"');
+					key = '"CHARACTERISTIC";"' + headers[i].toUpperCase()+'";"' + headers[i]+'";"'+ ++rc + '";"";"KEY";"UPPER_CASE_STRING"'
+					text = '"CHARACTERISTIC";"' + headers[i].toUpperCase()+'";"' + headers[i]+'";"'+ ++rc + '";"";"TEXT";"STRING"'
+				}else{
+					dheader.push('"Error'+i+'"');
+					dheader.push('"0ERROR'+i+'"');
+					key = '"CHARACTERISTIC";"0ERROR'+i+'";"Error '+i+'";"'+ ++rc + '";"";"KEY";"UPPER_CASE_STRING"'
+					text = '"CHARACTERISTIC";"0ERROR'+i+'";"Error '+i+'";"'+ ++rc + '";"";"TEXT";"STRING"'
+				}
+				metadata.push(text);
+				metadata.push(key);
+			}
+			// KF
+			for(var i=k;i<headers.length;i++){
+				var value, uom;
+				dheader.push('"0MEASURE' + [i-k] + '"');
+				value = '"KEYFIGURE";' + '"0MEASURE' + [i-k] + '";"' + headers[i] + '";"'+ ++rc + '";"";"VALUE";"DOUBLE";"SUM"'	
+				//uom = '"KEYFIGURE";"0D9COST000000000000000007";"Costs (SAP Demo)";"'+ ++rc + '";"";"CURRENCY";"STRING"'
+				metadata.push(value);
+				//metadata.push(uom);
+			}
+			csvRows.push(dheader.join(";"));
+			metadata.push('"<<END OF ROLESUPPORT>>"');
+			metadata.push('"<<BEGIN OF FORMAT SETTINGS>>"');
+			metadata.push('"TYPE";"VALUE"');
+			metadata.push('"GROUP SEPARATOR";","');
+			metadata.push('"DECIMAL SEPARATOR";"."');
+			metadata.push('"DATE FORMAT";"M/d/yy"');
+			metadata.push('"DATE TIME FORMAT";"M/d/yy h:mm a"');
+			metadata.push('"STANDARD TIMEZONE";"America/Chicago"');
+			metadata.push('"<<END OF FORMAT SETTINGS>>"');
+			metadata.push('"<<END OF METADATA>>"');
+			metadata = metadata.join("\n");
+			for (var r = 0;r<rows.length;r++){
+				var srow = [];
+				var row = rows[r];
+				for(var c=0;c<k;c++){
+					if(row.length>c){
+						srow.push('"' + row[c].toUpperCase() + '"')
+						srow.push('"' + row[c] + '"'); 
+					}else{
+						srow.push('"Error '+r+"|"+c+'"');
+						srow.push('"0ERROR'+r+"|"+c+'"');
+					}
+				}
+				for(var c=k;c<row.length;c++){
+					srow.push('"' + row[c] + '"');
+				}
+				csvRows.push(srow.join(";"));
+			}
+			var csvData = csvRows.join("\n");
+			var zip = new JSZip();
+			zip.file("BYODATA.csv",csvData);
+			zip.file("BYODATA_metadata.csv",metadata);
+			var content = zip.generate({type:"blob"});
+			//alert(metadata);
+			//alert(csvData);
+			saveAs(content, "BYODATA.zip");
 		},
 		showRowMenu : function(oControlEvent){
 			alert("!");
