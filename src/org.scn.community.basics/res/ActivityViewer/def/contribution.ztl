@@ -1007,6 +1007,50 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 
 
+	/**
+	 * Clean All Activities from the Array.
+	 */	
+	void cleanAllActivities (){*
+		this.cleanAllActivities = true;
+
+		var elementsArray = [];
+		this.activities = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Activities from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllActivities (){*
+		this.cleanAllActivities = true;
+
+		var elementsArray = [];
+		this.activities = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Clean All Categories from the Array.
+	 */	
+	void cleanAllCategories (){*
+		this.cleanAllCategories = true;
+
+		var elementsArray = [];
+		this.categories = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Categories from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllCategories (){*
+		this.cleanAllCategories = true;
+
+		var elementsArray = [];
+		this.categories = JSON.stringify(elementsArray);
+	*}
+
 
 
 	/**

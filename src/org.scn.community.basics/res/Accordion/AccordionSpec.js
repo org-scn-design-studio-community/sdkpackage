@@ -39,7 +39,7 @@ function() {
       "desc": "Clean All Nodes",
       "noAps": true,
       "noZtl": false,
-      "refDesc": "Elements",
+      "refDesc": "Nodes",
       "refProperty": "elementsContent",
       "refValue": "[]",
       "tooltip": "Clean All Nodes",

@@ -38,13 +38,16 @@ define([
         };
 
         var rectTextName = function(d, i) { 
-			return d.taskName + " / " + d.taskDesc + " [ " + d.endDate + " - " + d.startDate + " ]"
+			return d.taskName + " / " + d.taskDesc + " [ " + d.startDate.toLocaleDateString() + " - " + d.endDate.toLocaleDateString() + " ]"
 		}
         var rectTextShort = function(d, i) { 
 			return d.taskDesc
 		}
         var rectTransform = function(d) {
-            return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
+        	return "translate(" + x(d.startDate) + "," + y(d.taskName) + ") rotate(-140)";
+        };
+        var rectTransformNoRotate = function(d) {
+        	return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
         };
 
         var x = d3.time.scale().domain([timeDomainStart, timeDomainEnd]).range([0, width]).clamp(true);
@@ -172,7 +175,14 @@ define([
           		.attr("class", "y axis")
             	.attr("transform", "translate("+ margin.left +", " + margin.top + ")")
             	.transition()
-            	.call(yAxis);
+            	.call(yAxis)
+            	.selectAll("text")  
+		            .style("text-anchor", "end")
+		            .attr("dx", "-.8em")
+		            .attr("dy", ".15em")
+		            .attr("transform", function(d) {
+		                return "rotate(-30)" 
+		              });
 		};
 
 		this.adjustRect = function (rect) {
@@ -185,7 +195,7 @@ define([
                     return taskStatus[d.status];
                 })
                 .attr("y", 0)
-                .attr("transform", rectTransform)
+                .attr("transform", rectTransformNoRotate)
             	.attr("height", function(d) {
                     return y.rangeBand();
                 })
@@ -197,20 +207,22 @@ define([
                 })
                 .append("svg:title")
             		.text(rectTextName)
+            		.attr("transform", "rotate(-30)")
 				.transition();
 		};
 
 		this.adjustText = function (text) {
 			text.attr("rx", 5)
                 .attr("ry", 2)
-                .attr("y", 4)
-                .attr("x", 10)
+                .attr("x", -20)
+                .attr("y", -4)
                 .attr("class", "text")
                 .attr("transform", rectTransform)
                 .attr("key", function(d) {
                     return d.key;
                 })
             	.text(rectTextShort)
+           		// .title(rectTextName)
 				.transition();
 		};
 

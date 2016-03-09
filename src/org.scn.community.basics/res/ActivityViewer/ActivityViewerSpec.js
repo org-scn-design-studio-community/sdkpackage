@@ -108,6 +108,42 @@ function() {
     "value": "[{\"parentKey\":\"ROOT\",\"key\":\"CAT1\",\"leaf\":false,\"text\":\"Good Products\"},{\"parentKey\":\"ROOT\",\"key\":\"CAT2\",\"leaf\":false,\"text\":\"Better Products\"}]",
     "visible": true
   },
+  "cleanAllActivities": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Activities",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Activities",
+      "refProperty": "activities",
+      "refValue": "[]",
+      "tooltip": "Clean All Activities",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
+  "cleanAllCategories": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Categories",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Categories",
+      "refProperty": "categories",
+      "refValue": "[]",
+      "tooltip": "Clean All Categories",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
   "onSelectionChanged": {
     "opts": {
       "cat": "Events",

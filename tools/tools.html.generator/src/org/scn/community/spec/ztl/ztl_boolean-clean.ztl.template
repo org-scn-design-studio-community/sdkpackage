@@ -1,7 +1,7 @@
 	/**
 	 * Clean All %PROPERTY_REF_DESC% from the Array.
 	 */	
-	void cleanAllElements (){*
+	void %PROPERTY_CAPITAL_CLEAN% (){*
 		this.%PROPERTY_CAPITAL% = true;
 
 		var elementsArray = %PROPERTY_REF_INIT%;
@@ -13,7 +13,7 @@
 	 * You can use also <code>cleanAllElements()</code>
 	 */	
 	@Visibility(deprecated)
-	void removeAllElements (){*
+	void %PROPERTY_CAPITAL_REMOVE% (){*
 		this.%PROPERTY_CAPITAL% = true;
 
 		var elementsArray = %PROPERTY_REF_INIT%;

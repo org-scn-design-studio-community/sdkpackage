@@ -486,7 +486,18 @@ public class ParamFullSpec {
 		 template = template.replace("%PROPERTY_CAPITAL_CUT%", nameCutCapital);
 		 template = template.replace("%PROPERTY_TYPE_CHOICE%", this.getChoiceType());
 		 template = template.replace("%PROPERTY_SMALL_CUT%", Helpers.makeFirstLower(nameCut));
+		 
 		 template = template.replace("%PROPERTY_CAPITAL%", this.parentProperty.getName());
+
+		 String Pname = this.parentProperty.getName();
+		 if(Pname.equals("cleanAll") || Pname.equals("DCleanAll")) {
+			 template = template.replace("%PROPERTY_CAPITAL_CLEAN%", "cleanAllElements");
+			 template = template.replace("%PROPERTY_CAPITAL_REMOVE%", "removeAllElements");
+		 } else {
+			 template = template.replace("%PROPERTY_CAPITAL_CLEAN%", this.parentProperty.getName());
+			 template = template.replace("%PROPERTY_CAPITAL_REMOVE%", this.parentProperty.getName().replace("clean", "remove"));
+		 }
+		 
 		 template = template.replace("%PROPERTY_TYPE%", this.getType(false));
 		 template = template.replace("%PROPERTY_TYPE_ZTL%", this.getType(true));
 		 template = template.replace("%PROPERTY_TYPE_OVERLOAD%", this.options.getPropertyValue("ztlType"));

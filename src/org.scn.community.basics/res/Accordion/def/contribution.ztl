@@ -7,7 +7,7 @@
 class org.scn.community.basics.Accordion extends org.scn.community.shared.Component {
 
 	/**
-	 * Clean All Elements from the Array.
+	 * Clean All Nodes from the Array.
 	 */	
 	void cleanAllElements (){*
 		this.cleanAll = true;
@@ -17,7 +17,7 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	*}
 
 	/**
-	 * Remove All Elements from the Array.
+	 * Remove All Nodes from the Array.
 	 * You can use also <code>cleanAllElements()</code>
 	 */	
 	@Visibility(deprecated)

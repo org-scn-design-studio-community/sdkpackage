@@ -148,7 +148,7 @@
 			"noAps":true,
 			"noZtl":false,
 	     	"refProperty":"elementsContent",
-		   	"refDesc":"Elements",
+		   	"refDesc":"Nodes",
 		   	"refValue":"[]",
 		}
 	},

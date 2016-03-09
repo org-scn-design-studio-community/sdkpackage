@@ -1,4 +1,42 @@
 {
+   "cleanAllActivities" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Activities",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Activities",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"activities",
+		   	"refDesc":"Activities",
+		   	"refValue":"[]",
+		}
+   },
+   "cleanAllCategories" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Categories",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Categories",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"categories",
+		   	"refDesc":"Categories",
+		   	"refValue":"[]",
+		}
+   },
    "activities":{
       "type":"String",
       "value":"[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Distribution\",\"category\":\"CAT1\",\"state\":\"FAILED\",\"startDate\":\"20130101\",\"endDate\":\"20130205\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"text\":\"Process\",\"category\":\"CAT1\",\"state\":\"RUNNING\",\"startDate\":\"20140102\",\"endDate\":\"20140605\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Buying\",\"category\":\"CAT2\",\"state\":\"STANDARD\",\"startDate\":\"20140905\",\"endDate\":\"20141216\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT3\",\"leaf\":false,\"text\":\"Work On\",\"state\":\"KILLED\",\"category\":\"CAT2\",\"startDate\":\"20141228\",\"endDate\":\"20150206\"}]",
