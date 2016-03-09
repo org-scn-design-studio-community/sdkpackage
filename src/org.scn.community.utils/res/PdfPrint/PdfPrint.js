@@ -150,11 +150,11 @@ PdfPrint = {
 	printElement: function (element) {
 		var that = this;
 		var options = {};
-		options.orientation = that.getOrientation();
+		options.pagesplit = true;
 
-		var pdf = new jsPDF(options,that.getUnit(),that.getFormat());
+		var pdf = new jsPDF(that.getOrientation(),that.getUnit(),that.getFormat());
 
-		pdf.addHTML(element, function() {
+		pdf.addHTML(element, options, function() {
 			if(that.getPdfMethod() == "Save"){
 				var name = that.getFileName();
 				var d = new Date();

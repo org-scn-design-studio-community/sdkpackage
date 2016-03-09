@@ -59,7 +59,7 @@ define(["./jspdf"], function() {
 			if(options.format)
 				format = options.format;
 
-			if(obj.height > H && options.pagesplit) {
+			if(obj.height > H*K && options.pagesplit) {
 				var crop = function() {
 					var cy = 0;
 					while(1) {
