@@ -810,12 +810,14 @@ jsPDF = (
 			// @TODO: Add different output options
 		});
 
+		var dpi = 600;
+		
 		switch (unit) {
 			case 'pt':  k = 1;          break;
-			case 'mm':  k = 72 / 25.4;  break;
-			case 'cm':  k = 72 / 2.54;  break;
-			case 'in':  k = 72;         break;
-			case 'px':  k = 96 / 72;    break;
+			case 'mm':  k = dpi / 25.4;  break;
+			case 'cm':  k = dpi / 2.54;  break;
+			case 'in':  k = dpi;         break;
+			case 'px':  k = 96 / dpi;    break;
 			case 'pc':  k = 12;         break;
 			case 'em':  k = 12;         break;
 			case 'ex':  k = 6;          break;

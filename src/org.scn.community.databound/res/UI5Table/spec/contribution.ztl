@@ -66,9 +66,12 @@
 	 * Return dimensions and corresponding members for the selection as array
 	 */
 	org.scn.community.shared.DimensionMemberArray getSelectionDimensionMembers() {*
-		var jsonObject = JSON.parse(this.DSelection);
-		
 		var tempA = [];
+		if(this.DSelection == undefined || this.DSelection == "") {
+			return tempA;
+		}
+
+		var jsonObject = JSON.parse(this.DSelection);
 		
 		for(var i=0;i<jsonObject.rowDimensions.length;i++){
 			var itemDef = { 

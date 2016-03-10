@@ -3,3 +3,7 @@ div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% 
 .scn-pack-UI5Table-Header .sapUiTableColHdrCnt {
 	background-color: #f6f6f6;
 }
+
+.scn-pack-UI5Table-Header .sapUiTableRowHdrScr {
+	z-index: auto;
+}
