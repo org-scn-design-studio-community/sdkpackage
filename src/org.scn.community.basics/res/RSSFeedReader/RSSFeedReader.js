@@ -82,6 +82,7 @@ RSSFeedReader = function () {
 		var that = owner;
 
 		var xslFile = that.getXslUrl();
+		var cssFile = that.getCssUrl();
 		var useBuildIn = that.getUseBuildInXsl();
 
 		var xslLocation = "";
@@ -100,12 +101,16 @@ RSSFeedReader = function () {
 //		urlEncodedFeed = urlEncodedFeed.replace("?", "%3F");
 //		urlEncodedFeed = urlEncodedFeed.replace("=", "%3D");
 
-		var urlEncodedFeed = encodeURIComponent(that.getFeedUrl());
-		var urlEncodedXsl = encodeURIComponent(xslLocation);
+		var urlFeedEncoded = encodeURIComponent(that.getFeedUrl());
+		var xslLocationEncoded = encodeURIComponent(xslLocation);
 		
 		var url_string = encodeURI(containerUrl) 
-				+ 'feed=' + urlEncodedFeed +"&"
-				+ 'xsl=' + urlEncodedXsl;
+				+ 'feed=' + urlFeedEncoded +"&"
+				+ 'xsl=' + xslLocationEncoded;
+		
+		if(cssFile !== ""){
+			url_string += encodeURIComponent('&css='+"../../../../../../"+cssFile);
+		}
 
 		var html = '<iframe src="'+url_string+'" width="auto" height="auto"></iframe>';
 

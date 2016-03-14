@@ -4774,10 +4774,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/RSSFeedReader/RSSFeedReader</requireJs>
+	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReader</requireJs>
 
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
@@ -4809,7 +4809,9 @@
 		visible="true">
 
 	</property>
-
+	<property type="Url" title="Custom CSS URL" id="cssUrl">
+		<option name="kind" value="CSS"/>
+	</property>
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>

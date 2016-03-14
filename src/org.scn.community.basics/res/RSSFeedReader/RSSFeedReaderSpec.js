@@ -79,7 +79,23 @@ function() {
     "type": "Url",
     "value": "",
     "visible": true
-  }
+  },
+  "cssUrl": {
+	    "opts": {
+	        "apsControl": "text",
+	        "cat": "Display-CSS",
+	        "desc": "Custom CSS URL",
+	        "noAps": false,
+	        "noZtl": false,
+	        "tooltip": "CSS URL",
+	        "ztlFunction": "",
+	        "ztlType": "String"
+	},
+	"template": "String",
+	"type": "Url",
+	"value": "",
+	"visible": true
+	}
 };
 
 	spec.specInclude = 
