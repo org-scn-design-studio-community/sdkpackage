@@ -2622,8 +2622,9 @@ __n__}
 	handlerType="sapui5"
 	group="ScnCommunityBasics"
 	databound="true"
-	modes="commons">
-	<requireJs modes="commons">res/MultiComboBox/MultiComboBox</requireJs>
+	modes="commons m">
+	<requireJs modes="m">res/MultiComboBox/MultiComboBox</requireJs>
+	<requireJs modes="commons">res/MultiComboBox/MultiComboBox_commons</requireJs>
 	<cssInclude>res/MultiComboBox/MultiComboBox.css</cssInclude>
 
 	<property

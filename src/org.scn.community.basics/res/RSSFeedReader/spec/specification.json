@@ -50,7 +50,22 @@
 			"noZtl" : false
 		}
 	},
-
+ 	"cssUrl" : {
+		"template" : "String",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "CSS URL",
+			"cat" : "Display-CSS",
+			"tooltip" : "CSS URL",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
 
 
 

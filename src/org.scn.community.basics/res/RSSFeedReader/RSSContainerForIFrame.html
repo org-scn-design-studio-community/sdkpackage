@@ -1,6 +1,7 @@
 <html>
 <head>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script type='text/javascript'>
 	google.load("feeds", "1");
 	
@@ -11,109 +12,183 @@
 	
 	function transformToAssocArray( prmstr ) {
 	  var params = {};
+	  prmstr = decodeURIComponent(prmstr);
 	  var prmarr = prmstr.split("&");
-	  for ( var i = 0; i < prmarr.length; i++) {
+	  for (var i = 0; i < prmarr.length; i++) {
 	      var tmparr = prmarr[i].split("=");
-	      params[tmparr[0]] = tmparr[1];
+	      var value = "";
+	      for(var j=1; j<tmparr.length;j++){
+	    	  if(j > 1){
+		    	  value += "="+tmparr[j];
+	    	  }else{
+		    	  value += tmparr[j];  
+	    	  }
+	      }
+	      params[tmparr[0]] = value;
 	  }
 	  return params;
 	}
+	
+	/**
+	 * detect IE
+	 * returns version of IE or false, if browser is not Internet Explorer
+	 */
+	function detectIE() {
+	  var ua = window.navigator.userAgent;
 
-	function loadXMLDoc(filename) {
-		if (window.ActiveXObject) {
-			xhttp = new ActiveXObject("Msxml2.XMLHTTP");
+	  // Test values; Uncomment to check result …
+
+	  // IE 10
+	  // ua = 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; Trident/6.0)';
+	  
+	  // IE 11
+	  // ua = 'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko';
+	  
+	  // IE 12 / Spartan
+	  // ua = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0';
+	  
+	  // Edge (IE 12+)
+	  // ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586';
+
+	  var msie = ua.indexOf('MSIE ');
+	  if (msie > 0) {
+	    // IE 10 or older => return version number
+	    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+	  }
+
+	  var trident = ua.indexOf('Trident/');
+	  if (trident > 0) {
+	    // IE 11 => return version number
+	    var rv = ua.indexOf('rv:');
+	    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+	  }
+
+	  var edge = ua.indexOf('Edge/');
+	  if (edge > 0) {
+	    // Edge (IE 12+) => return version number
+	    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+	  }
+
+	  // other browser
+	  return false;
+	}
+
+	function loadXMLDoc(filename, feedUrl, cssUrl) {
+		var isIE = detectIE();
+		if (window.ActiveXObject !== null && window.ActiveXObject !== undefined && isIE !== false) {
+			xhttp = new ActiveXObject("Msxml2.XMLHTTP.6.0");
 		} else {
 			xhttp = new XMLHttpRequest();
 		}
-		xhttp.open("GET", filename, false);
-		//@TODO fix this IE11 bug causing Design Studio to crash 14.11.14
-		//try {xhttp.responseType = "msxml-document";} catch (err) {alert(err);} // Helping IE11
+		xhttp.open("GET", filename, true);
+		xhttp.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;");
+		xhttp.onreadystatechange = function(response){
+			if (xhttp.readyState == 4){
+				if(xhttp.status == 200){
+					var xsl = "";
+					var xsl_string = "";
+					//handle IE ActiveXObj 
+					if(response === undefined){
+						xsl = xhttp;	
+					}else{
+						xsl = response.target;	
+					}
+					
+					if(xsl.responseXML !== null && xsl.responseXML !== undefined && xsl.responseXML !== "" && xsl.responseXML.xml !== ""){
+						xsl = xsl.responseXML;
+					}
+					else{
+						//create a XML node from xml string if http response didn't send content-type xml back
+						//This happens for NW at the moment
+						xsl_string = xsl.responseText;
+						xsl = $.parseXML(xsl.responseText);
+					}
+					
+					var feed = new google.feeds.Feed(feedUrl);
+				  	feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
+			      	feed.load(function(result) {
+				    	try {
+					      	if (!result.error) {
+								var xml = result.xmlDocument;
+							  	if (isIE !== false) {
+									if (typeof (xml.transformNode) != "undefined") {
+							  			var ex = xml.transformNode(xsl);
+										document.getElementById("feed").innerHTML = ex;	
+								  	}//IE11
+									else if(ActiveXObject !== null && window.ActiveXObject !== undefined){
+										var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+										var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+										if(xsl.xml === null || xsl.xml === undefined || xsl.xml === ""){
+											xslDoc.loadXML(xsl_string);
+										}else{
+											xslDoc.loadXML(xsl.xml);
+										}
+										xslt.stylesheet = xslDoc;
+										var xslProc = xslt.createProcessor();
+										xslProc.input = xml;
+										xslProc.transform();
+										document.getElementById("feed").innerHTML = xslProc.output;
+								  	}//IE10
+									else if(ActiveXObject){
+										var xslt = new ActiveXObject("Msxml2.XSLTemplate");
+										var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
+										if(xsl.xml === null || xsl.xml === undefined || xsl.xml === ""){
+											xslDoc.loadXML(xsl_string);
+										}else{
+											xslDoc.loadXML(xsl.xml);
+										}
+										xslt.stylesheet = xslDoc;
+										var xslProc = xslt.createProcessor();
+										xslProc.input = xml;
+										xslProc.transform();
+										document.getElementById("feed").innerHTML = xslProc.output;
+								  	}
+							  	}
+								// code for Chrome, Firefox, Opera, etc.
+								else if (document.implementation && document.implementation.createDocument) {
+									var xsltProcessor = new XSLTProcessor();
+									xsltProcessor.importStylesheet(xsl);
+									var resultDocument = xsltProcessor.transformToFragment(xml, document);
+									if(resultDocument !== null){
+										document.getElementById("feed").appendChild(resultDocument);	
+									}else{
+										document.getElementById("feed").innerHTML = "No valid RSS XSL file!Please check "+filename;
+									}
+								}
+							  	
+					        }else{
+					        	if(window.console)console.log("error loading rss feed! "+result.error.message);
+					        }
+					    }
+				        catch (e) {
+				            // 4
+				            document.getElementById("feed").innerHTML = "The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine. Or did you unintentionally keep the default value for Custom CSS URL?";
+							return null;
+				        }
+			      	});
+			      	//add link tag to reference custom css
+			      	if(cssUrl !== undefined){
+				      	var link = document.createElement('link');
+							link.rel = "stylesheet";
+							link.href = cssUrl;
+							link.type = "text/css";
+				      	document.head.appendChild(link);
+			      	}
+				}else{
+					if(window.console)console.log("error "+response.target.statusText);
+				}
+			}
+		}
 		xhttp.send();
-		return xhttp.responseXML;
 	}
 
 	function initialize() {
 		var params = getSearchParameters();
-
-	  	var feedUrl = params['feed'];
-		var decodeUri = decodeURIComponent (feedUrl);
-	  	
-		var xslUrl = params['xsl'];
-		var decodeXsl = decodeURIComponent (xslUrl);
-	  	var xsl = loadXMLDoc(decodeXsl);
-	  	var feed = new google.feeds.Feed(decodeUri);
-	  	feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
-      	feed.load(function(result) {
-	    try {
-	      	if (!result.error) {
-				var xml = result.xmlDocument;
-			  	if (xhttp.responseType == "msxml-document") {
-					if (typeof (xml.transformNode) != "undefined") {
-			  			var ex = xml.transformNode(xsl);
-						document.getElementById("feed").innerHTML = ex;
-				  	}
-					// IE11
-					if (window.ActiveXObject || window.ActiveXObject !== undefined) {
-						var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-						xmlDoc.async=false;
-						var xmlAsString = (new XMLSerializer()).serializeToString(xml);
-						xmlDoc.loadXML(xmlAsString);
-						
-						var xslDoc = new ActiveXObject("Microsoft.XMLDOM");
-						xslDoc.async=false;
-						var xslAsString = (new XMLSerializer()).serializeToString(xsl);
-						xslDoc.loadXML(xslAsString);
-						
-						var result = xmlDoc.transformNode(xslDoc);
-						document.getElementById("feed").innerHTML = result;
-			  		}
-					//IE10
-					else if(ActiveXObject){
-						var xslt = new ActiveXObject("Msxml2.XSLTemplate");
-						var xslDoc = new ActiveXObject("Msxml2.FreeThreadedDOMDocument");
-						xslDoc.loadXML(xsl.xml);
-						xslt.stylesheet = xslDoc;
-						var xslProc = xslt.createProcessor();
-						xslProc.input = xml;
-						xslProc.transform();
-						document.getElementById("feed").innerHTML = xslProc.output;
-				  	}
-			  	}
-				// code for Chrome, Firefox, Opera, etc. Also IE 11
-				else if (document.implementation && document.implementation.createDocument) {
-					//IE11
-					if (window.ActiveXObject || window.ActiveXObject !== undefined) {
-						var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-						xmlDoc.async=false;
-						var xmlAsString = (new XMLSerializer()).serializeToString(xml);
-						xmlDoc.loadXML(xmlAsString);
-						
-						var xslDoc = new ActiveXObject("Microsoft.XMLDOM");
-						xslDoc.async=false;
-						var xslAsString = (new XMLSerializer()).serializeToString(xsl);
-						xslDoc.loadXML(xslAsString);
-						
-						var result = xmlDoc.transformNode(xslDoc);
-						document.getElementById("feed").innerHTML = result;
-			  		}
-					// others
-					else {
-						var xsltProcessor = new XSLTProcessor();
-						xsltProcessor.importStylesheet(xsl);
-						var resultDocument = xsltProcessor.transformToFragment(xml, document);
-						document.getElementById("feed").appendChild(resultDocument);
-					}
-				}
-	        }
-	    }
-        catch (e) {
-            // 4
-            document.getElementById("feed").innerHTML = "The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.<br>" + e.toString();
-            // Browser alerts were painful.  :)
-            // alert("The type [XSLTProcessor] is not supported by this browser, can't transform XML document to HTML string! Probably Design Studios IE implementation is currently broken! Other browsers should be fine.");
-            return null;
-        }
-      	});
+		var myXsl = params['xsl'];
+		var myFeed = params['feed'];
+		var myCss = params['css'];
+		
+	  	loadXMLDoc(myXsl, myFeed, myCss);      
     }
     google.setOnLoadCallback(initialize);
 </script>
