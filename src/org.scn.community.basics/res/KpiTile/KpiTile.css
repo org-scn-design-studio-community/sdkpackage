@@ -10,6 +10,13 @@
 	color: rgb(95, 118, 138) !important;
 }
 
+.scn-pack-KpiTile-ValueSmall {
+	font-weight: bold !important;
+	font-size: 32px !important;
+	line-height: 32px !important;
+	color: rgb(95, 118, 138) !important;
+}
+
 .scn-pack-KpiTile-ValuePrefix, .scn-pack-KpiTile-ValueSuffix {
 	font-weight: bold !important;
 	font-size: 18px !important;
