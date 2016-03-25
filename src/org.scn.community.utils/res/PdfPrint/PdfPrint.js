@@ -150,7 +150,7 @@ PdfPrint = {
 	printElement: function (element) {
 		var that = this;
 		var options = {};
-		options.pagesplit = true;
+		options.pagesplit = that.getPageSplit();
 
 		var pdf = new jsPDF(that.getOrientation(),that.getUnit(),that.getFormat());
 

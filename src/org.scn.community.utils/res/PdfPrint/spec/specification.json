@@ -375,6 +375,21 @@
 		}
 	},
 
+	"pageSplit": {
+	  "type" : "boolean",
+	  "value" : true,
+	  "visible": true,
+	  "opts": {
+		    "apsControl": "checkbox",
+		    "cat": "Behavior",
+		    "desc": "Split on More Pages",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Split on More Pages",
+		    "ztlFunction": "",
+		    "ztlType": "boolean"
+		  }
+	}
 
 
 

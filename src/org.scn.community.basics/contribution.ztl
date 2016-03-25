@@ -636,6 +636,34 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
  */
 class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.Component {
 
+	/**
+	 * Sets Text Angle for X Legend Property
+	 */	
+	void setXLegendAngle( /**Text Angle for X Legend*/ int xLegendAngle){*
+		this.XLegendAngle = xLegendAngle;
+	*}
+
+	/**
+	 * Gets Text Angle for X Legend Property
+	 */	
+	int getXLegendAngle() {*
+		return this.XLegendAngle;
+	*}
+
+	/**
+	 * Sets Text Angle for Y Legend Property
+	 */	
+	void setYLegendAngle( /**Text Angle for Y Legend*/ int yLegendAngle){*
+		this.YLegendAngle = yLegendAngle;
+	*}
+
+	/**
+	 * Gets Text Angle for Y Legend Property
+	 */	
+	int getYLegendAngle() {*
+		return this.YLegendAngle;
+	*}
+
 	/** Adds a root element containing key [String], text [String], category [String], state [String], startDate [String], endDate [String].
 
  	<example>
@@ -1679,6 +1707,48 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 
 		var elementsArray = [];
 		this.categories = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Sets Text Angle for Element Property
+	 */	
+	void setElementTextAngle( /**Text Angle for Element*/ int elementTextAngle){*
+		this.elementTextAngle = elementTextAngle;
+	*}
+
+	/**
+	 * Gets Text Angle for Element Property
+	 */	
+	int getElementTextAngle() {*
+		return this.elementTextAngle;
+	*}
+
+	/**
+	 * Sets Text X Position for Element Property
+	 */	
+	void setElementTextXPos( /**Text X Position for Element*/ int elementTextXPos){*
+		this.elementTextXPos = elementTextXPos;
+	*}
+
+	/**
+	 * Gets Text X Position for Element Property
+	 */	
+	int getElementTextXPos() {*
+		return this.elementTextXPos;
+	*}
+
+	/**
+	 * Sets Text Y Position for Element Property
+	 */	
+	void setElementTextYPos( /**Text Y Position for Element*/ int elementTextYPos){*
+		this.elementTextYPos = elementTextYPos;
+	*}
+
+	/**
+	 * Gets Text Y Position for Element Property
+	 */	
+	int getElementTextYPos() {*
+		return this.elementTextYPos;
 	*}
 
 
@@ -13900,6 +13970,20 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
  */
 class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets CSS URL Property
+	 */	
+	void setCssUrl( /**CSS URL*/ String cssUrl){*
+		this.cssUrl = cssUrl;
+	*}
+
+	/**
+	 * Gets CSS URL Property
+	 */	
+	String getCssUrl() {*
+		return this.cssUrl;
+	*}
 
 	/**
 	 * Sets RSS Feed URL Property

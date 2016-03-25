@@ -17,6 +17,24 @@
 	
 	
 	<property
+		id="XLegendAngle"
+		type="int"
+		title="Text Angle for X Legend"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="YLegendAngle"
+		type="int"
+		title="Text Angle for Y Legend"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="activities"
 		type="String"
 		title="Activities"
@@ -50,6 +68,33 @@
 		group="Display"
 		bindable="true"
 		visible="false">
+
+	</property>
+	<property
+		id="elementTextAngle"
+		type="int"
+		title="Text Angle for Element"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="elementTextXPos"
+		type="int"
+		title="Text X Position for Element"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="elementTextYPos"
+		type="int"
+		title="Text Y Position for Element"
+		group="Display"
+		bindable="true"
+		visible="true">
 
 	</property>
 	<property
@@ -88,10 +133,15 @@
 		<defaultValue property="WIDTH">600</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="XLegendAngle"><![CDATA[-65]]></defaultValue>
+		<defaultValue property="YLegendAngle"><![CDATA[-30]]></defaultValue>
 		<defaultValue property="activities"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"text":"Distribution","category":"CAT1","state":"FAILED","startDate":"20130101","endDate":"20130205"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"text":"Process","category":"CAT1","state":"RUNNING","startDate":"20140102","endDate":"20140605"},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Buying","category":"CAT2","state":"STANDARD","startDate":"20140905","endDate":"20141216"},{"parentKey":"ROOT","key":"ELEMENT3","leaf":false,"text":"Work On","state":"KILLED","category":"CAT2","startDate":"20141228","endDate":"20150206"}]]]></defaultValue>
 		<defaultValue property="categories"><![CDATA[[{"parentKey":"ROOT","key":"CAT1","leaf":false,"text":"Good Products"},{"parentKey":"ROOT","key":"CAT2","leaf":false,"text":"Better Products"}]]]></defaultValue>
 		<defaultValue property="cleanAllActivities"><![CDATA[false]]></defaultValue>
 		<defaultValue property="cleanAllCategories"><![CDATA[false]]></defaultValue>
+		<defaultValue property="elementTextAngle"><![CDATA[0]]></defaultValue>
+		<defaultValue property="elementTextXPos"><![CDATA[10]]></defaultValue>
+		<defaultValue property="elementTextYPos"><![CDATA[10]]></defaultValue>
 		<defaultValue property="onSelectionChanged"><![CDATA[]]></defaultValue>
 		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="states"><![CDATA[[{"parentKey":"ROOT","key":"STANDARD","leaf":false,"style":"bar"},{"parentKey":"ROOT","key":"FAILED","leaf":false,"style":"bar-failed"},{"parentKey":"ROOT","key":"RUNNING","leaf":false,"style":"bar-running"},{"parentKey":"ROOT","key":"SUCCEEDED","leaf":false,"style":"bar-succeeded"},{"parentKey":"ROOT","key":"KILLED","leaf":false,"style":"killed"}]]]></defaultValue>

@@ -345,6 +345,10 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			};
 			this.componentSelected = function () {
 				if (this.dsPoll) window.clearTimeout(this.dsPoll);
+				if(this.reloadRequired == true) {
+					this.init();
+				}
+
 				this.updateDataInfo("Component Selected");
 				//alert(JSON.stringify(ds_getDataJSON()));
 				//alert(ds_getMetadataPropertiesAsJSON());
@@ -499,6 +503,12 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			};
 			var that = this;
 
+			if(this.metaProps == undefined) {
+				this.reloadRequired = true;
+				return;
+			}
+			
+			this.reloadRequired = false;
 			this.metaProps.sort(function (a, b) {
 				var res = that.getIndexForCategory(a.opts.cat) - that.getIndexForCategory(b.opts.cat);
 

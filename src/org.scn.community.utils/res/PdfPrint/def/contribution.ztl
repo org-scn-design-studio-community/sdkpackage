@@ -77,6 +77,20 @@ class org.scn.community.utils.PdfPrint extends org.scn.community.shared.Componen
 	*}
 
 	/**
+	 * Sets Split on More Pages Property
+	 */	
+	void setPageSplit( /**Split on More Pages*/ boolean pageSplit){*
+		this.pageSplit = pageSplit;
+	*}
+
+	/**
+	 * Gets Split on More Pages Property
+	 */	
+	boolean isPageSplit() {*
+		return this.pageSplit;
+	*}
+
+	/**
 	 * Sets PDF Export Type Property by String
 	 */	
 	void setPdfMethodByString( /**PDF Export Type*/ String pdfMethod){*

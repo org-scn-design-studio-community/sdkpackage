@@ -78,11 +78,19 @@ ActivityViewer = function () {
 		};
 		
 		org_scn_community_basics.determineOwnSize(that);
-		
+
+		var options = {};
+		options.xLegendAngle = that.getXLegendAngle();
+		options.yLegendAngle = that.getYLegendAngle();
+		options.elementTextAngle = that.getElementTextAngle();
+		options.elementTextXPosition = that.getElementTextXPos();
+		options.elementTextYPosition = that.getElementTextYPos();
+					
 		if(!that._gantt) {
-			that._gantt = new d3plug.gantt(that._containerWidth, that._containerHeight, that.margin);
+			that._gantt = new d3plug.gantt(that._containerWidth, that._containerHeight, that.margin, options);
 			that._gantt.clickListener = that;
 		} else {
+			that._gantt.options(options);
 			that._gantt.width(that._containerWidth-that.margin.left-that.margin.right-5);
 			that._gantt.height(that._containerHeight-that.margin.top-that.margin.bottom-5);
 		}

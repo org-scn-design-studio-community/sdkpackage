@@ -7,6 +7,20 @@
 class org.scn.community.basics.RSSFeedReader extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets CSS URL Property
+	 */	
+	void setCssUrl( /**CSS URL*/ String cssUrl){*
+		this.cssUrl = cssUrl;
+	*}
+
+	/**
+	 * Gets CSS URL Property
+	 */	
+	String getCssUrl() {*
+		return this.cssUrl;
+	*}
+
+	/**
 	 * Sets RSS Feed URL Property
 	 */	
 	void setFeedUrl( /**RSS Feed URL*/ String feedUrl){*

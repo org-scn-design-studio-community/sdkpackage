@@ -8,14 +8,23 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons m"
+	modes="commons"
 >
 	
-	<requireJs modes="commons m">res/RSSFeedReader/RSSFeedReader</requireJs>
+	<requireJs modes="commons">res/RSSFeedReader/RSSFeedReader</requireJs>
 
 	<cssInclude>res/RSSFeedReader/RSSFeedReader.css</cssInclude>
 	
 	
+	<property
+		id="cssUrl"
+		type="Url"
+		title="CSS URL"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 	<property
 		id="feedUrl"
 		type="Url"
@@ -43,9 +52,7 @@
 		visible="true">
 
 	</property>
-	<property type="Url" title="Custom CSS URL" id="cssUrl">
-		<option name="kind" value="CSS"/>
-	</property>
+
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -55,6 +62,7 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">200</defaultValue>
 		
+		<defaultValue property="cssUrl"><![CDATA[]]></defaultValue>
 		<defaultValue property="feedUrl"><![CDATA[http://cdn.eex.com/rss/de/market.rss]]></defaultValue>
 		<defaultValue property="useBuildInXsl"><![CDATA[true]]></defaultValue>
 		<defaultValue property="xslUrl"><![CDATA[]]></defaultValue>

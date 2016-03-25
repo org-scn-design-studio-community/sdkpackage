@@ -941,6 +941,15 @@
 
 	</property>
 	<property
+		id="pageSplit"
+		type="boolean"
+		title="Split on More Pages"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="pdfMethod"
 		type="String"
 		title="PDF Export Type"
@@ -998,6 +1007,7 @@
 		<defaultValue property="fileName"><![CDATA[PDF_$TIME]]></defaultValue>
 		<defaultValue property="format"><![CDATA[a4]]></defaultValue>
 		<defaultValue property="orientation"><![CDATA[portrait]]></defaultValue>
+		<defaultValue property="pageSplit"><![CDATA[true]]></defaultValue>
 		<defaultValue property="pdfMethod"><![CDATA[Save]]></defaultValue>
 		<defaultValue property="rootPanel"><![CDATA[]]></defaultValue>
 		<defaultValue property="svgMode"><![CDATA[DataUri]]></defaultValue>

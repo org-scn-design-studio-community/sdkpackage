@@ -14,7 +14,9 @@ define([
 
 (function() {
 
-    d3plug.gantt = function(oWidth, oHeight, margin) {
+    d3plug.gantt = function(oWidth, oHeight, margin, options) {
+    	this._options = options || {};
+
         var FIT_TIME_DOMAIN_MODE = "fit";
         var FIXED_TIME_DOMAIN_MODE = "fixed";
 
@@ -30,6 +32,24 @@ define([
         var ownId = "";
 
         var tickFormat = "%H:%M";
+        var that = this;
+        
+        that.getXLegendAngle = function () {
+        	return that._options.xLegendAngle != undefined ? that._options.xLegendAngle : "-30";
+        };
+        that.getYLegendAngle = function () {
+        	return that._options.yLegendAngle != undefined ? that._options.yLegendAngle : "-30";
+        };
+        that.getElementTextAngle = function () {
+        	return that._options.elementTextAngle != undefined ? that._options.elementTextAngle : "-140";
+        };
+        
+        that.getElementTextXPosition = function () {
+        	return that._options.elementTextXPosition != undefined ? that._options.elementTextXPosition : "-20";
+        };
+        that.getElementTextYPosition = function () {
+        	return that._options.elementTextYPosition != undefined ? that._options.elementTextYPosition : "-20";
+        };
 
         var keyFunction = function(d) {
         	if(d) {
@@ -44,7 +64,7 @@ define([
 			return d.taskDesc
 		}
         var rectTransform = function(d) {
-        	return "translate(" + x(d.startDate) + "," + y(d.taskName) + ") rotate(-140)";
+        	return "translate(" + x(d.startDate) + "," + y(d.taskName) + ") rotate("+that.getElementTextAngle()+")";
         };
         var rectTransformNoRotate = function(d) {
         	return "translate(" + x(d.startDate) + "," + y(d.taskName) + ")";
@@ -168,7 +188,7 @@ define([
 		            .attr("dx", "-.8em")
 		            .attr("dy", ".15em")
 		            .attr("transform", function(d) {
-		                return "rotate(-65)" 
+		                return "rotate("+that.getXLegendAngle()+")" 
 		              });
 	        	// http://www.d3noob.org/2013/01/how-to-rotate-text-labels-for-x-axis-of.html
           	ya.attr("id", ownId + "_y")
@@ -181,7 +201,7 @@ define([
 		            .attr("dx", "-.8em")
 		            .attr("dy", ".15em")
 		            .attr("transform", function(d) {
-		                return "rotate(-30)" 
+		                return "rotate("+that.getYLegendAngle()+")" 
 		              });
 		};
 
@@ -207,15 +227,14 @@ define([
                 })
                 .append("svg:title")
             		.text(rectTextName)
-            		.attr("transform", "rotate(-30)")
 				.transition();
 		};
 
 		this.adjustText = function (text) {
 			text.attr("rx", 5)
                 .attr("ry", 2)
-                .attr("x", -20)
-                .attr("y", -4)
+                .attr("x", this.getElementTextXPosition())
+                .attr("y", this.getElementTextYPosition())
                 .attr("class", "text")
                 .attr("transform", rectTransform)
                 .attr("key", function(d) {
@@ -299,6 +318,10 @@ define([
             return this;
         };
 
+        this.options = function(value) {
+        	this._options = value;
+        };
+        
         this.width = function(value) {
             if (!arguments.length)
                 return width;

@@ -32,6 +32,32 @@ function() {
 
 	spec.spec = 
 {
+  "XLegendAngle": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Texts",
+      "desc": "Text Angle for X Legend",
+      "tooltip": "Text Angle for X Legend",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": -65,
+    "visible": true
+  },
+  "YLegendAngle": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Texts",
+      "desc": "Text Angle for Y Legend",
+      "tooltip": "Text Angle for Y Legend",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": -30,
+    "visible": true
+  },
   "activities": {
     "opts": {
       "apsControl": "array",
@@ -143,6 +169,45 @@ function() {
     "type": "boolean",
     "value": false,
     "visible": false
+  },
+  "elementTextAngle": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Texts",
+      "desc": "Text Angle for Element",
+      "tooltip": "Text Angle for Element",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": 0,
+    "visible": true
+  },
+  "elementTextXPos": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Texts",
+      "desc": "Text X Position for Element",
+      "tooltip": "Text X Position for Element",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": 10,
+    "visible": true
+  },
+  "elementTextYPos": {
+    "opts": {
+      "apsControl": "spinner",
+      "cat": "Display-Texts",
+      "desc": "Text Y Position for Element",
+      "tooltip": "Text Y Position for Element",
+      "ztlFunction": "",
+      "ztlType": "int"
+    },
+    "type": "int",
+    "value": 10,
+    "visible": true
   },
   "onSelectionChanged": {
     "opts": {

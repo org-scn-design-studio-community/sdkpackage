@@ -258,6 +258,21 @@ function() {
     "value": "portrait",
     "visible": true
   },
+  "pageSplit": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Split on More Pages",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Split on More Pages",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": true,
+    "visible": true
+  },
   "pdfMethod": {
     "opts": {
       "apsControl": "combobox",
