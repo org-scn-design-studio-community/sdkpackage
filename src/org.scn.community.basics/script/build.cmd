@@ -18,6 +18,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\DateRangeScroller\def\contribution.xml ^
 ..\res\DateRangeSlider\def\contribution.xml ^
 ..\res\DragDropArea\def\contribution.xml ^
+..\res\Donut\def\contribution.xml ^
 ..\res\EmbeddedFrame\def\contribution.xml ^
 ..\res\EmbeddedMedia\def\contribution.xml ^
 ..\res\FallbackPicture\def\contribution.xml ^
@@ -85,6 +86,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\DateRangeScroller\def\contribution.ztl ^
 ..\res\DateRangeSlider\def\contribution.ztl ^
 ..\res\DragDropArea\def\contribution.ztl ^
+..\res\Donut\def\contribution.ztl ^
 ..\res\EmbeddedFrame\def\contribution.ztl ^
 ..\res\EmbeddedMedia\def\contribution.ztl ^
 ..\res\FallbackPicture\def\contribution.ztl ^

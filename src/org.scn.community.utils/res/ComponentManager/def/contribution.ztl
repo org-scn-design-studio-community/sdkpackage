@@ -696,6 +696,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Date Range Slider 2.0 component*/
 	org.scn.community.basics.DateRangeSlider returnAsScnDateRangeSlider (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Donut component*/
+	org.scn.community.basics.Donut returnAsScnDonut (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Drag Drop Area 2.0 component*/
 	org.scn.community.basics.DragDropArea returnAsScnDragDropArea (Component inputComponent) {* return inputComponent; *}
 

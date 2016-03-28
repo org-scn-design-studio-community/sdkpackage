@@ -1,0 +1,139 @@
+
+<component
+	id="Donut"
+	title="Donut"
+	tooltip="Donut"
+	icon="res/Donut/Donut.png"
+	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="commons"
+>
+	
+	<requireJs modes="commons">res/Donut/Donut</requireJs>
+
+	<cssInclude>res/Donut/Donut.css</cssInclude>
+	
+	
+	<property
+		id="activateOnOutEvent"
+		type="boolean"
+		title="Activate On Out Event"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="activateOnOverEvent"
+		type="boolean"
+		title="Activate On Over Event"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="arrowColor"
+		type="String"
+		title="Arrow Color"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="direction"
+		type="String"
+		title="Value Direction"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="donutColor"
+		type="String"
+		title="Donut Color"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="gapColor"
+		type="String"
+		title="Gap Color"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="numCurVal"
+		type="String"
+		title="Current Value As Float"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="numPrevVal"
+		type="String"
+		title="Previous Value As Float"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onClick"
+		type="ScriptText"
+		title="On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onMouseOut"
+		type="ScriptText"
+		title="On Mouse Out"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onMouseOver"
+		type="ScriptText"
+		title="On Mouse Over"
+		group="Events"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">150</defaultValue>
+		<defaultValue property="HEIGHT">150</defaultValue>
+		
+		<defaultValue property="activateOnOutEvent"><![CDATA[false]]></defaultValue>
+		<defaultValue property="activateOnOverEvent"><![CDATA[false]]></defaultValue>
+		<defaultValue property="arrowColor"><![CDATA[red]]></defaultValue>
+		<defaultValue property="direction"><![CDATA[Left]]></defaultValue>
+		<defaultValue property="donutColor"><![CDATA[blue]]></defaultValue>
+		<defaultValue property="gapColor"><![CDATA[green]]></defaultValue>
+		<defaultValue property="numCurVal"><![CDATA[40]]></defaultValue>
+		<defaultValue property="numPrevVal"><![CDATA[30]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="onMouseOut"><![CDATA[]]></defaultValue>
+		<defaultValue property="onMouseOver"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>

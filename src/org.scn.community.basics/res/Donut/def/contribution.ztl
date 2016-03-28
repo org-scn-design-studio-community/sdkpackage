@@ -1,0 +1,144 @@
+
+/**
+ * Generated ZTL Class for Donut
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.basics.Donut extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets Activate On Out Event Property
+	 */	
+	void setActivateOnOutEvent( /**Activate On Out Event*/ boolean activateOnOutEvent){*
+		this.activateOnOutEvent = activateOnOutEvent;
+	*}
+
+	/**
+	 * Gets Activate On Out Event Property
+	 */	
+	boolean isActivateOnOutEvent() {*
+		return this.activateOnOutEvent;
+	*}
+
+	/**
+	 * Sets Activate On Over Event Property
+	 */	
+	void setActivateOnOverEvent( /**Activate On Over Event*/ boolean activateOnOverEvent){*
+		this.activateOnOverEvent = activateOnOverEvent;
+	*}
+
+	/**
+	 * Gets Activate On Over Event Property
+	 */	
+	boolean isActivateOnOverEvent() {*
+		return this.activateOnOverEvent;
+	*}
+
+	/**
+	 * Sets Arrow Color Property
+	 */	
+	void setArrowColor( /**Arrow Color*/ String arrowColor){*
+		this.arrowColor = arrowColor;
+	*}
+
+	/**
+	 * Gets Arrow Color Property
+	 */	
+	String getArrowColor() {*
+		return this.arrowColor;
+	*}
+
+	/**
+	 * Sets Value Direction Property by String
+	 */	
+	void setDirectionByString( /**Value Direction*/ String direction){*
+		this.direction = direction;
+	*}
+
+	/**
+	 * Gets Value Direction Property as String
+	 */	
+	String getDirectionAsString() {*
+		return this.direction;
+	*}
+	
+	/**
+	 * Sets Value Direction Property by Choice Option
+	 */	
+	void setDirection( /**Value Direction*/ org_scn_community_shared_Enumfield direction){*
+		this.direction = direction;
+	*}
+	
+	/**
+	 * Gets Value Direction Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getDirection() {*
+		return this.direction;
+	*}
+
+	/**
+	 * Sets Donut Color Property
+	 */	
+	void setDonutColor( /**Donut Color*/ String donutColor){*
+		this.donutColor = donutColor;
+	*}
+
+	/**
+	 * Gets Donut Color Property
+	 */	
+	String getDonutColor() {*
+		return this.donutColor;
+	*}
+
+	/**
+	 * Sets Gap Color Property
+	 */	
+	void setGapColor( /**Gap Color*/ String gapColor){*
+		this.gapColor = gapColor;
+	*}
+
+	/**
+	 * Gets Gap Color Property
+	 */	
+	String getGapColor() {*
+		return this.gapColor;
+	*}
+
+	/**
+	 * Sets Current Value As Float Property
+	 */	
+	void setNumCurVal( /**Current Value As Float*/ String numCurVal){*
+		this.numCurVal = numCurVal;
+	*}
+
+	/**
+	 * Gets Current Value As Float Property
+	 */	
+	String getNumCurVal() {*
+		return this.numCurVal;
+	*}
+
+	/**
+	 * Sets Previous Value As Float Property
+	 */	
+	void setNumPrevVal( /**Previous Value As Float*/ String numPrevVal){*
+		this.numPrevVal = numPrevVal;
+	*}
+
+	/**
+	 * Gets Previous Value As Float Property
+	 */	
+	String getNumPrevVal() {*
+		return this.numPrevVal;
+	*}
+
+
+
+
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

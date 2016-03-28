@@ -1,0 +1,191 @@
+{
+	"donutColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "blue",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Donut Color",
+			"cat" : "Display",
+			"tooltip" : "Donut Color",
+			"apsControl" : "color",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	
+	"gapColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "green",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Gap Color",
+			"cat" : "Display",
+			"tooltip" : "Gap Color",
+			"apsControl" : "color",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	
+	"arrowColor" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "red",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Arrow Color",
+			"cat" : "Display",
+			"tooltip" : "Arrow Color",
+			"apsControl" : "color",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numCurVal" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : 40,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Current Value As Float",
+			"cat" : "Display-Value",
+			"tooltip" : "Current Value As Float",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"numPrevVal" : {
+		"template" : "default",
+		"type" : "String",
+		"value" : 30,
+		"visible": true,
+		"opts" : {
+			"ztlType": "float",
+			"ztlFunction": "",
+			"desc" : "Previous Value As Float",
+			"cat" : "Display-Value",
+			"tooltip" : "Previous Value As Float",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+    "activateOnOverEvent":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Activate On Over Event",
+	         "cat":"Interaction",
+	         "tooltip":"Activate On Over Event",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"activateOnOutEvent":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Activate On Out Event",
+	         "cat":"Interaction",
+	         "tooltip":"Activate On Out Event",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"direction" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Left",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "Value Direction",
+			"cat" : "Display-Value",
+			"tooltip" : "Value Direction",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Up",
+					"text" : "Up"
+				},
+				{
+					"key" : "Down",
+					"text" : "Down"
+				},
+				{
+					"key" : "Left",
+					"text" : "Left"
+				},
+				{
+					"key" : "Right",
+					"text" : "Right"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+	"onClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onMouseOver" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Mouse Over",
+			"cat" : "Events",
+			"tooltip" : "On Mouse Over",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onMouseOut" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Mouse Out",
+			"cat" : "Events",
+			"tooltip" : "On Mouse Out",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

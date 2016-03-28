@@ -1,0 +1,16 @@
+{
+	"title": "Donut",
+	"description": "Donut",
+	"icon": "Donut.png",
+	"topics": 
+	[
+		{
+			"title" : "Donut",
+			"content" : "Donut"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"id": "Donut",
+	"title": "Donut",
+	"tooltip": "Donut",
+	"handlerType": "div",
+	"parentControl": "sap.ui.commons",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "150",
+	"height": "150"
+}

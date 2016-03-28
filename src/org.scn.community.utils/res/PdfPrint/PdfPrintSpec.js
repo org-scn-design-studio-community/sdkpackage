@@ -261,7 +261,7 @@ function() {
   "pageSplit": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Behavior",
       "desc": "Split on More Pages",
       "noAps": false,
       "noZtl": false,
