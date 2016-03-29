@@ -1,0 +1,11 @@
+{
+	"title": "Google Candle Chart",
+	"description": "Google Candle Chart (Prototype)",
+	"topics": 
+	[
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component.  This means that you have control over cosmetic properties such as Legend, Margins, Plot positioning, zooming, among others."
+		}
+	]
+}

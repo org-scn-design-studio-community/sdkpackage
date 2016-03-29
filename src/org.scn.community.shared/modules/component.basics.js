@@ -115,7 +115,7 @@ define(["../os/numberformat/numberformatter"], function() {
 			// call resize handler
 			setTimeout(function() {
 				var myVar = parent;
-				myVar.$()[0].style.display = "block";
+				if(myVar.$()[0]) {myVar.$()[0].style.display = "block";}
 				myVar._oResize();
 			}, 100);
 	

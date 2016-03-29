@@ -2008,4 +2008,305 @@ class org.scn.community.prototypes.RapidPrototype extends org.scn.community.shar
 		this["replacement"+index] = replacement;
 	*}
 }
+
+/**
+ * Generated ZTL Class for GoogleCandle
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared.Component {
+
+	/** Adds a root element containing key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	GOOGLECANDLE.addButton(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	GOOGLECANDLE.addButton(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addButton (
+			/**Unique key of the candle*/String key, 
+			/**Text of the candle*/String text, 
+			/**Start 1 value*/float start1, 
+			/**Start 2 value*/float start2, 
+			/**End 1 value*/float end1, 
+			/**End 2 value*/float end2
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			start1:start1, 
+			start2:start2, 
+			end1:end1, 
+			end2:end2
+			};
+
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			this.candles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	GOOGLECANDLE.removeButton(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeButton (
+			String key
+			) {*
+
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			this.candles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	GOOGLECANDLE.insertButton(index [int], key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertButton (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**Unique key of the candle*/String key, 
+			/**Text of the candle*/String text, 
+			/**Start 1 value*/float start1, 
+			/**Start 2 value*/float start2, 
+			/**End 1 value*/float end1, 
+			/**End 2 value*/float end2
+			) {*
+
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			this.candles = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.candles);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			start1:start1, 
+			start2:start2, 
+			end1:end1, 
+			end2:end2
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.candles = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given Button<br/>
+	 */
+	void updateButton (
+			/**Unique key of the candle*/String key, 
+			/**Text of the candle*/String text, 
+			/**Start 1 value*/float start1, 
+			/**Start 2 value*/float start2, 
+			/**End 1 value*/float end1, 
+			/**End 2 value*/float end2
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			this.candles = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			text:text, 
+			start1:start1, 
+			start2:start2, 
+			end1:end1, 
+			end2:end2
+		};
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getButtonAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			this.candles = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets Buttons As JSON String
+	 */	
+	String getButtonsAsJSON() {*
+		var jsonObject = JSON.parse(this.candles);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+	
+	/**
+	 * Sets the Text for Button keys<br/>
+	 */
+	void setButtonTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Button Key<br/>
+	 */
+	void setButtonText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Button Key<br/>
+	 */
+	String getButtonText (
+			/**/ String key
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	// here is the place for other custom functions
+}
 /* ZTL END */

@@ -13,6 +13,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\BulletChartGen\def\contribution.xml ^
 ..\res\SapMList\def\contribution.xml ^
 ..\res\RapidPrototype\def\contribution.xml ^
+..\res\GoogleCandle\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
 ..\contribution.xml
 
@@ -29,6 +30,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\BulletChartGen\def\contribution.ztl ^
 ..\res\SapMList\def\contribution.ztl ^
 ..\res\RapidPrototype\def\contribution.ztl ^
+..\res\GoogleCandle\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^
 ..\contribution.ztl
 

@@ -219,7 +219,7 @@ public class SpecificationReader {
 					if(id.equals("validate")) {id = "../../../"+CONS_LINK+"basics/os/validate/validate";}
 					if(id.equals("ndd")) {id = "../../../"+CONS_LINK+"basics/os/ndd/jq-ndd";}
 
-					if(!idOld.equals(id)) {
+					if(!idOld.equals(id) || id.startsWith("http")) {
 						if(ind == null || ind.equals("1")) {
 							componentRequries.add("\""+id+"\"");
 						} else {

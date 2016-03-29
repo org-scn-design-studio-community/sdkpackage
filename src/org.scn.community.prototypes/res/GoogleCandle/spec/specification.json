@@ -1,0 +1,48 @@
+{
+   "candles":{
+      "type":"String",
+      "value":"[]",
+      "visible":true,
+      "opts":{
+         "ztlType":"SingleArray",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "candle":{
+               "type":"Array",
+               "sequence":"key,text,start1,start2,end1,end2",
+               "key":{
+                  "desc":"Unique key of the candle",
+                  "type":"String"
+               },
+               "text":{
+                  "desc":"Text of the candle",
+                  "type":"String"
+               },
+               "start1":{
+                  "desc":"Start 1 value",
+                  "type":"float"
+               },
+               "start2":{
+                  "desc":"Start 2 value",
+                  "type":"float"
+               },
+               "end1":{
+                  "desc":"End 1 value",
+                  "type":"float"
+               },
+               "end2":{
+                  "desc":"End 2 value",
+                  "type":"float"
+               },
+            }
+         },
+         
+         "desc":"Candles",
+         "cat":"Content-Candles",
+         "tooltip":"Array with Candles",
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   }
+}

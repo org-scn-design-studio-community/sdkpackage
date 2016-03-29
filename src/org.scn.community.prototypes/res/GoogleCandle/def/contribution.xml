@@ -1,0 +1,42 @@
+
+<component
+	id="GoogleCandle"
+	title="Google Candle Chart (Prototype)"
+	tooltip="Google Candle Chart"
+	icon="res/GoogleCandle/GoogleCandle.png"
+	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityPrototypes"
+	databound="false"
+	modes="commons"
+>
+	
+	<requireJs modes="commons">res/GoogleCandle/GoogleCandle</requireJs>
+
+	<cssInclude>res/GoogleCandle/GoogleCandle.css</cssInclude>
+	
+	
+	<property
+		id="candles"
+		type="String"
+		title="Candles"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">600</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="candles"><![CDATA[[]]]></defaultValue>
+
+	</initialization>
+
+</component>

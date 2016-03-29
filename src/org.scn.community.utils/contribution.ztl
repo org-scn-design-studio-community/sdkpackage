@@ -2602,6 +2602,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Bullet Chart (Gen Prototype) component*/
 	org.scn.community.prototypes.BulletChartGen returnAsScnBulletChartGen (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Google Candle Chart (Prototype) component*/
+	org.scn.community.prototypes.GoogleCandle returnAsScnGoogleCandle (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Horizon Chart component*/
 	org.scn.community.prototypes.horizonChart returnAsScnhorizonChart (Component inputComponent) {* return inputComponent; *}
 

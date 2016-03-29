@@ -1,0 +1,20 @@
+{
+	"id": "GoogleCandle",
+	"title": "Google Candle Chart (Prototype)",
+	"tooltip": "Google Candle Chart",
+	"handlerType": "div",
+	"group": "ScnCommunityPrototypes",
+	"package": "prototypes",
+	"extension": "Component",
+	"databound": false,
+	
+	"require": 
+	[
+		{
+			"id": "https://www.google.com/jsapi"
+		}
+	],
+	
+	"width": "600",
+	"height": "400"
+}
