@@ -2021,13 +2021,13 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
  	<example>
 	You want to add 2 root elements
 	<code>
-	GOOGLECANDLE.addButton(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
-	GOOGLECANDLE.addButton(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	GOOGLECANDLE.addCandle(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	GOOGLECANDLE.addCandle(key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void addButton (
+	void addCandle (
 			/**Unique key of the candle*/String key, 
 			/**Text of the candle*/String text, 
 			/**Start 1 value*/float start1, 
@@ -2073,12 +2073,12 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
  	<example>
 	You want to remove root element
 	<code>
-	GOOGLECANDLE.removeButton(String key);<br>
+	GOOGLECANDLE.removeCandle(String key);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void removeButton (
+	void removeCandle (
 			String key
 			) {*
 
@@ -2111,12 +2111,12 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
  	<example>
 	You want to insert a root element
 	<code>
-	GOOGLECANDLE.insertButton(index [int], key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
+	GOOGLECANDLE.insertCandle(index [int], key [String], text [String], start1 [float], start2 [float], end1 [float], end2 [float]);<br>
 	<br>
 	</code>
 	</example>
 	 */
-	void insertButton (
+	void insertCandle (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique key of the candle*/String key, 
 			/**Text of the candle*/String text, 
@@ -2155,9 +2155,9 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 	*}
 
 	/**
-	 * Updates given Button<br/>
+	 * Updates given Candle<br/>
 	 */
-	void updateButton (
+	void updateCandle (
 			/**Unique key of the candle*/String key, 
 			/**Text of the candle*/String text, 
 			/**Start 1 value*/float start1, 
@@ -2196,7 +2196,7 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 	/**
 	 * Returns Key at given Index<br/>
 	 */
-	String getButtonAtIndex (
+	String getCandleAtIndex (
 			/**Index to pick the key*/ int index0based
 			) 
 	{*
@@ -2216,17 +2216,17 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 	*}
 
 	/**
-	 * Gets Buttons As JSON String
+	 * Gets Candles As JSON String
 	 */	
-	String getButtonsAsJSON() {*
+	String getCandlesAsJSON() {*
 		var jsonObject = JSON.parse(this.candles);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
 	/**
-	 * Sets the Text for Button keys<br/>
+	 * Sets the Text for Candle keys<br/>
 	 */
-	void setButtonTexts (
+	void setCandleTexts (
 			/**/ String keys,
 			/**/ String separator,
 	        /* Text */ String text
@@ -2254,9 +2254,9 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 	*}
 
 	/**
-	 * Sets the Text for Button Key<br/>
+	 * Sets the Text for Candle Key<br/>
 	 */
-	void setButtonText (
+	void setCandleText (
 			/**/ String key,
 			/**/ String text
 			) 
@@ -2279,9 +2279,9 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 	*}
 	
 	/**
-	 * Returns value of Text for Button Key<br/>
+	 * Returns value of Text for Candle Key<br/>
 	 */
-	String getButtonText (
+	String getCandleText (
 			/**/ String key
 			) 
 	{*
