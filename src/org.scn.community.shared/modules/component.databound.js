@@ -790,6 +790,11 @@ define(["./component.basics"], function() {
 				retObj.rowLevels2D.push(rowLevel2D);
 			}
 			
+			if(options.swapAxes) {
+				// in case of swap, reset tupple to the current row as the steps must be by row length
+				tupleIndex = row;
+			}
+
 			for(var col=0;col<retObj.geometry.colLength;col++){
 				if(data.data && data.data.length > 0){
 					newValueRow.push(data.data[tupleIndex]);
@@ -801,7 +806,16 @@ define(["./component.basics"], function() {
 				} else {
 					newFormattedValueRow.push(""+data.data[tupleIndex]);
 				}
-				tupleIndex++;
+
+				// as the data array is column based 
+				// 1-2-3
+				// 4-5-6
+				// we need to jumb by rows when swap is active
+				if(options.swapAxes) {
+					tupleIndex += retObj.geometry.rowLength;	
+				} else {
+					tupleIndex++;
+				}
 			}
 	
 			if(newValueRow.length>0) retObj.values.push(newValueRow);
