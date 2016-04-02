@@ -90,11 +90,15 @@ function() {
             "type": "Url"
           }
         },
+        "height": {
+          "desc": "Section Height px (overwrites max)",
+          "type": "int,optional"
+        },
         "key": {
           "desc": "Unique Key",
           "type": "String"
         },
-        "sequence": "key,text,url,element",
+        "sequence": "key,text,url,height,element",
         "text": {
           "desc": "Given Text",
           "type": "String"

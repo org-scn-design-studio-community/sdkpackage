@@ -112,13 +112,13 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		this.elementsContent = JSON.stringify(elementsJson);
 	*}
 
-	/** Adds a root element containing key [String], text [String], url [String].
+	/** Adds a root element containing key [String], text [String], url [String], height [int].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	ACCORDION.addSection(key [String], text [String], url [String]);<br>
-	ACCORDION.addSection(key [String], text [String], url [String]);<br>
+	ACCORDION.addSection(key [String], text [String], url [String], height [int]);<br>
+	ACCORDION.addSection(key [String], text [String], url [String], height [int]);<br>
 	<br>
 	</code>
 	</example>
@@ -126,12 +126,14 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 	void addSection (
 			/**Unique Key*/String key, 
 			/**Given Text*/String text, 
-			/**Given Url*/String url
+			/**Given Url*/String url, 
+			/**Section Height px (overwrites max)*/optional int height
 			) {*		
 		
 		this.addElement("ROOT", key, 
 			text, 
-			url);
+			url, 
+			height);
 	*}
 	
 	/** removes an element by String key properties.
@@ -349,6 +351,85 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].url;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Height for Section keys<br/>
+	 */
+	void setSectionHeights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Height */ int height
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].height = height;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Height for Section Key<br/>
+	 */
+	void setSectionHeight (
+			/**/ String key,
+			/**/ int height
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].height = height;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Height for Section Key<br/>
+	 */
+	int getSectionHeight (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].height;
 				break;
 			}
 		}

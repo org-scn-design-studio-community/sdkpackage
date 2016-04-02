@@ -95,14 +95,19 @@ Accordion = {
 					
 					// new or the same?
 					if(that._oElementsTemp[element.key] == undefined) {
-						lNewElement = that._createElement(owner, i, element.key, element.text, element.url, element.parentKey, element.leaf);	
+						lNewElement = that._createElement(owner, i, element.key, element.text, element.url, element.parentKey, element.leaf, element.height);	
 					} else {
 						lNewElement = that._oElementsTemp[element.key];
 						if(lNewElement._oLabel) {
 							lNewElement._oLabel.setText(element.text);
 						} else {
 							lNewElement.setTitle(element.text);
-							lNewElement.setTooltip(element.text);	
+							lNewElement.setTooltip(element.text);
+							if(element.height != undefined) {
+								lNewElement.setMaxHeight(Math.max(element.height, that.getMaxSectionHeight()) + "px");	
+							} else {
+								lNewElement.setMaxHeight(that.getMaxSectionHeight() + "px");
+							}	
 						}
 						if(lNewElement._oImage) {
 							var withImage = that.getWithImage();
@@ -279,7 +284,7 @@ Accordion = {
 		that._lastExpanded = that.getExpandedKey();
 	},
 
-	_createElement: function (owner, index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf) {
+	_createElement: function (owner, index, iElementKey, iElementText, iImageUrl, iParentKey, isLeaf, iHeight) {
 		var that = owner;
 		
 		iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "Accordion.png");
@@ -299,7 +304,11 @@ Accordion = {
 					tooltip: iElementText,
 					collapsed: true});
 			
-			lElement.setMaxHeight(that.getMaxSectionHeight() + "px");
+			if(iHeight != undefined) {
+				lElement.setMaxHeight(Math.max(iHeight, that.getMaxSectionHeight()) + "px");	
+			} else {
+				lElement.setMaxHeight(that.getMaxSectionHeight() + "px");
+			}
 		}
 		
 		lElement._Key = iElementKey;

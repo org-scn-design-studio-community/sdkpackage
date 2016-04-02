@@ -164,7 +164,7 @@
 	        "arrayDefinition":{
 	            "section":{
 	               "type":"Array",
-	               "sequence":"key,text,url,element",
+	               "sequence":"key,text,url,height,element",
 	               "key":{
 	                  "desc":"Unique Key",
 	                  "type":"String"
@@ -176,6 +176,10 @@
 	               "url":{
 	                  "desc":"Given Url",
 	                  "type":"Url"
+	               },
+	               "height":{
+	                  "desc":"Section Height px (overwrites max)",
+	                  "type":"int,optional"
 	               },
 	               "element":{
 	                  "type":"Array",
