@@ -539,10 +539,6 @@ define(["../jshashtable/jshashtable"], function() {
         autoDetectPercentage: true      // will search if the format string ends with '%', if it does then the above option is implicitly set
     };
     
-    Number.prototype.toFixed = function(precision) {
-        return jQuery._roundNumber(this, precision);
-    };
-    
     jQuery._roundNumber = function(number, decimalPlaces) {
         var power = Math.pow(10, decimalPlaces || 0);
         var value = String(Math.round(number * power) / power);
