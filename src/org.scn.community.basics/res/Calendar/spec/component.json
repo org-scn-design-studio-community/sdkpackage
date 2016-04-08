@@ -7,7 +7,7 @@
 	"group": "ScnCommunityBasics",
 	"package": "basics",
 	"extension": "Component",
-	"databound": true,
+	"databound": false,
 
 	"require": 
 	[

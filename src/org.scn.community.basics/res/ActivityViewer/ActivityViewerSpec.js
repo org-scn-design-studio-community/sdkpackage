@@ -301,10 +301,7 @@ function() {
       "id": "basics/os/d3/d3",
       "space": "d3"
     },
-    {
-      "id": "basics/os/d3-plug/gantt-chart-d3v2",
-      "space": "d3"
-    },
+    {"id": "basics/os/d3-plug/gantt-chart-d3v2"},
     {
       "id": "dateformatter",
       "space": "known"
