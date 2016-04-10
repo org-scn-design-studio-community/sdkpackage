@@ -1,0 +1,99 @@
+{
+
+	"title" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Title",
+			"cat" : "Display",
+			"tooltip" : "Title of the appointment.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"text" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Text",
+			"cat" : "Display",
+			"tooltip" : "Text of the appointment.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"icon" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Url",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Icon of the Appointment. (e.g. picture of the person)URI of an image or an icon registered in sap.ui.core.IconPool.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"tentative" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Tentative",
+			"cat" : "Display",
+			"tooltip" : "Indicates if the icon is tentative.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"selected" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Selected",
+			"cat" : "Display",
+			"tooltip" : "Indicates if the icon is selected.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"key" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Key",
+			"cat" : "Display",
+			"tooltip" : "Can be used as identifier of the appointment",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

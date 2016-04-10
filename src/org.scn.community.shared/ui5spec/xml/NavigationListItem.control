@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+   <name>NavigationListItem</name>
+   <derived />
+   <author>SAP SE</author>
+   <documentation>The NavigationListItem control represents an action, which can be selected by the user.It can provide sub items.</documentation>
+   <since>1.34</since>
+   <baseType>sap.ui.core/Item</baseType>
+   <properties>
+      <property group="Misc" defaultValue="" type="sap.ui.core/URI" name="icon">
+         <documentation>Specifies the icon for the item.</documentation>
+      </property>
+      <property group="Misc" defaultValue="true" type="sap.ui.core/boolean" name="expanded">
+         <documentation>Specifies if the item is expanded.</documentation>
+      </property>
+      <property group="Misc" defaultValue="true" type="sap.ui.core/boolean" name="hasExpander">
+         <documentation>Specifies if the item has an expander.</documentation>
+      </property>
+   </properties>
+   <events>
+      <event allowPreventDefault="false" name="select">
+         <documentation>Fired when this item is selected.</documentation>
+         <parameters>
+            <parameter type="sap.ui.core/Item" name="item">
+               <documentation>The selected item.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+   </events>
+</control>

@@ -208,10 +208,20 @@ public class UI5Property extends UI5Reader {
 					}
 					
 					if(onlineSpec == null || onlineSpec.length() == 0) {
+						url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/tnt/"+originalType + "." +suffix;
+						onlineSpec = helper.sendGet(url);
+					}
+
+					if(onlineSpec == null || onlineSpec.length() == 0) {
 						url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/m/"+originalType + "." +suffix;
 						onlineSpec = helper.sendGet(url);
 					}
 
+					if(onlineSpec == null || onlineSpec.length() == 0) {
+						url = "https://sapui5.hana.ondemand.com/sdk/resources/sap/ui/unified/"+originalType + "." +suffix;
+						onlineSpec = helper.sendGet(url);
+					}
+				
 					if(onlineSpec == null || onlineSpec.length() == 0) {
 						throw new RuntimeException("UI5 Type/Control " + originalType + " is missing spec. Url " + url + " does not have spec.");	
 					}
@@ -290,7 +300,7 @@ public class UI5Property extends UI5Reader {
 						}
 					} else {
 						propDef = "\""+nameChild+"\": {\r\n" + tabs;
-						propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild) + (typeZtlChild.equals("StringArray")?" [Array]":"") + "\",\r\n" + tabs;
+						propDef = propDef + "  \"desc\": \""+Helpers.makeDescription(nameChild) + (typeZtlChild.equals("StringArray")?" [Array]":"") + (typeZtlChild.equals("IntArray")?" [Array]":"") + "\",\r\n" + tabs;
 						propDef = propDef + "  \"type\": \""+typeChild+"\"";
 						
 						if(typeZtlChild.equals("Choice")) {
@@ -401,6 +411,10 @@ public class UI5Property extends UI5Reader {
 			return "StringArray";
 		}
 		
+		if(type.endsWith("/int[]") || type.equals("int[]")) {
+			return "IntArray";
+		}
+
 		if(type.endsWith("/object[]") || type.equals("object[]")) {
 			return "StringArray";
 		}
@@ -483,7 +497,8 @@ public class UI5Property extends UI5Reader {
 		if(typeChild.equals("String") 
 				|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
 				|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
-				|| typeChild.equals("StringArray")) {
+				|| typeChild.equals("StringArray")
+				|| typeChild.equals("IntArray")) {
 			// those we accept in single array
 		} else {
 			return true;

@@ -21,7 +21,12 @@ var org_scn_community_unified = {
 	version : "3.0"
 };
 
-define(["./component.databound"], function() {
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+
+define(["./component.databound",
+        "../os/sapui5/sap_tnt_loader",
+    	"../../"+scn_pkg+"basics/os/date/DateFormat"
+       ], function() {
 
 	org_scn_community_unified.getObjectSingleContent= function (owner, name, options) {
 		var that = owner;
@@ -66,14 +71,16 @@ define(["./component.databound"], function() {
 	
 		if(propertyObject.isArraySingle) {
 			for (var jI in propertyObject.value) {
-				if(jI == "parentKey" || jI == "leaf") continue;
+				if(jI == "parentKey" || options.keepParent != true) continue;
+				if(jI == "leaf") continue;
 				if(jI == "__children") {
 					propertyObject.jsonTemplate[propertyObject.subArrayName] = [];
 					for (var pcI in propertyObject.value[jI]) {
 						var propChildO = propertyObject.value[jI][pcI];
 						var subPropO = {};
 						for (var pCpI in propChildO) {
-							if(pCpI == "parentKey" || pCpI == "leaf") continue;
+							if(pCpI == "parentKey" || options.keepParent != true) continue;
+							if(pCpI == "leaf") continue;
 							
 							var valueToSet = propChildO[pCpI];
 							valueToSet = org_scn_community_unified.fixArrayValue(valueToSet);
@@ -267,7 +274,26 @@ define(["./component.databound"], function() {
 			}
 		} else {
 			if(propertyObject.useManual) {
-				propertyObject.json = JSON.parse(JSON.stringify(propertyObject.jsonTemplate));
+				 var tempObject = JSON.parse(JSON.stringify(propertyObject.value));
+				 
+				 propertyObject.json = [];
+				 
+				 for(var tmI in tempObject) {
+					 var tmO = tempObject[tmI];
+					 tmO.items = [];
+					 
+					 if(tmO.parentKey == "ROOT") {
+						 propertyObject.json.push(tmO);
+						 
+						 for(var tm2I in tempObject) {
+							 var tm2O = tempObject[tm2I];
+							 
+							 if(tm2O.parentKey == tmO.key) {
+								 tmO.items.push(tm2O);
+							 }
+						 }
+					 }
+				 }
 			}
 		}
 		return propertyObject;
@@ -387,6 +413,38 @@ define(["./component.databound"], function() {
 	
 			propertyObject.origMappingChild = [];
 	
+		} else if(type == "Link") {
+			propertyObject.origMappingMain = [
+				 {"n":"title","s":["jsonTemplate", "<INDEX>", "title"]}
+			]; 
+	
+			propertyObject.origMappingChild = [];
+		} else if(type == "NavigationList") {
+			propertyObject.origMappingMain = [
+ 		         {"n":"expanded","s":["jsonTemplate","expanded"]}, 
+				 {"n":"text","s":["jsonTemplate","text"]}];
+ 	
+ 			propertyObject.origMappingChild = [
+ 		         {"n":"x","s":["<INDEX>"]},
+ 				 {"n":"y","s":["dataCellList","items", "<INDEX>", "0"]}];
+ 	
+		} else if(type == "NavigationListItem") {
+			propertyObject.origMappingMain = [
+ 		         {"n":"text","s":["jsonTemplate","text"]}]; 
+	      	
+			propertyObject.origMappingChild = [];
+ 	
+		} else if(type == "CalendarAppointment") {
+			propertyObject.origMappingMain = [
+ 		         {"n":"text","s":["jsonTemplate","text"]}]; 
+	      	
+			propertyObject.origMappingChild = [];
+ 	
+		} else if(type == "PlanningCalendarRow") {
+			propertyObject.origMappingMain = [
+ 		         {"n":"text","s":["jsonTemplate","text"]}]; 
+	      	
+			propertyObject.origMappingChild = [];
 		} else if(type == "ProcessFlowConnection") {
 		} else if(type == "ProcessFlowLaneHeader") {
 		} else if(type == "ProcessFlowNode") {
@@ -432,11 +490,23 @@ define(["./component.databound"], function() {
 		var parameterKeyNameCap = parameterKeyName.substring(0,1).toUpperCase() + parameterKeyName.substring(1);
 		
 		var changedParams = [];
-		
+
 		var key = undefined;
 		if(event.getParameters().data) {
 			key = event.getParameters().data("ownKey");
-	
+		} else if (event.getSource().data("ownKey")){
+			key = event.getSource().data("ownKey");
+		} else if (event.getParameters().appointment && event.getParameters().appointment.data("ownKey")){
+			key = event.getParameters().appointment.data("ownKey")
+		} else if (event.getParameters().rows){
+			var rows = event.getParameters().rows;
+			for(var rowI in rows) {
+				var rowO = rows[rowI];
+				if(rowO.getSelected()) {
+					key = rowO.data("ownKey");
+					break;
+				}
+			}
 		} else {
 			var param = event.getSource().data("parameter");
 			if(param != undefined) {
@@ -451,11 +521,55 @@ define(["./component.databound"], function() {
 			}
 		}
 	
+		if(eventName == "onViewChanged") {
+			parameterKeyNameCap = "ViewKey";
+			key = event.getSource().getViewKey();
+		}
+
 		if(that["set" + parameterKeyNameCap]) {
 			if(key == undefined) {key = "";}
 			that["set" + parameterKeyNameCap](key);
 			changedParams.push(parameterKeyName);
 		}
 		that.fireDesignStudioPropertiesChangedAndEvent(changedParams, eventName);
+	};
+	
+	org_scn_community_unified.adjustPlanningCalendarModel = function (model, that) {
+		var rows = model[0].rows;
+		var appointments = model[0].appointments;
+		var intervalHeaders = model[0].intervalHeaders;
+
+		model[0].startDate = org_scn_community_basics.getDateValue(model[0].startDate);
+
+		for(var rowI in rows) {
+			var rowO = rows[rowI];
+
+			rowO.appointments = [];
+			rowO.intervalHeaders = [];
+
+			for(var appI in appointments) {
+				var appO = appointments[appI];
+
+				if(appO.rowKey == rowO.key) {
+					appO.start = org_scn_community_basics.getDateValue(appO.start);
+					appO.end = org_scn_community_basics.getDateValue(appO.end);
+
+					rowO.appointments.push(appO);
+				}
+			}
+
+			for(var appI in intervalHeaders) {
+				var appO = intervalHeaders[appI];
+			
+				if(appO.rowKey == rowO.key) {
+					appO.start = org_scn_community_basics.getDateValue(appO.start);
+					appO.end = org_scn_community_basics.getDateValue(appO.end);
+
+					rowO.intervalHeaders.push(appO);
+				}
+			}
+		}
+		
+		return model;
 	};
 });

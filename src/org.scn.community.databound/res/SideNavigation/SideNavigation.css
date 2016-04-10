@@ -1,0 +1,10 @@
+.scn-pack-SideNavigation .sapTntSideNavigationVerticalScrolling {
+	overflow-y: hidden!important;
+}
+
+.scn-pack-SideNavigation .sapUiLayoutAbsPos,
+.scn-pack-SideNavigation .sapUiVlt.sapuiVlt,
+.scn-pack-SideNavigation .sapUiVltCell.sapuiVltCell,
+.scn-pack-SideNavigation .sapTntSideNavigation {
+	height: 100%;
+}

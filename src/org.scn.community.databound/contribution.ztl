@@ -28,6 +28,18 @@ class org.scn.community.databound.AdvancedDataTable extends org.scn.community.sh
 }
 
 /**
+ * Generated ZTL Class for Breadcrumbs
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Breadcrumbs extends org.scn.community.shared.ui5.Breadcrumbs {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Class for BulletChart
  */
 class org.scn.community.databound.BulletChart extends org.scn.community.shared.Component {
@@ -2549,6 +2561,18 @@ class org.scn.community.databound.Pictogram extends org.scn.community.shared.Com
 }
 
 /**
+ * Generated ZTL Class for PlanningCalendar
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.PlanningCalendar extends org.scn.community.shared.ui5.PlanningCalendar {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Generated ZTL Class for ProcessFlow
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
@@ -3202,6 +3226,18 @@ class org.scn.community.databound.ScatterPlot extends org.scn.community.shared.D
 	int getMaxX() {*
 		return this.maxX;
 	*}
+}
+
+/**
+ * Generated ZTL Class for SideNavigation
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.SideNavigation extends org.scn.community.shared.ui5.SideNavigation {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
 }
 
 /**

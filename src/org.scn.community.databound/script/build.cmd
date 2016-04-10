@@ -10,6 +10,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.xml.txt ^
 ..\templates\contribution.xml.groups.txt ^
 ..\res\AdvancedDataTable\def\contribution.xml ^
+..\res\Breadcrumbs\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
 ..\res\CalendarViz\def\contribution.xml ^
 ..\res\Choropleth\def\contribution.xml ^
@@ -28,6 +29,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\MultiLevelDropDown\def\contribution.xml ^
 ..\res\NiceChart\def\contribution.xml ^
 ..\res\Pictogram\def\contribution.xml ^
+..\res\PlanningCalendar\def\contribution.xml ^
 ..\res\ProcessFlow\def\contribution.xml ^
 ..\res\ProgressBarSet\def\contribution.xml ^
 ..\res\RadioButtonGroup\def\contribution.xml ^
@@ -35,6 +37,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\ResultSetInfo\def\contribution.xml ^
 ..\res\ResultSetMixer\def\contribution.xml ^
 ..\res\ScatterPlot\def\contribution.xml ^
+..\res\SideNavigation\def\contribution.xml ^
 ..\res\Slider\def\contribution.xml ^
 ..\res\Table\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
@@ -54,6 +57,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
 ..\res\AdvancedDataTable\def\contribution.ztl ^
+..\res\Breadcrumbs\def\contribution.ztl ^
 ..\res\BulletChart\def\contribution.ztl ^
 ..\res\CalendarViz\def\contribution.ztl ^
 ..\res\Choropleth\def\contribution.ztl ^
@@ -72,6 +76,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\MultiLevelDropDown\def\contribution.ztl ^
 ..\res\NiceChart\def\contribution.ztl ^
 ..\res\Pictogram\def\contribution.ztl ^
+..\res\PlanningCalendar\def\contribution.ztl ^
 ..\res\ProcessFlow\def\contribution.ztl ^
 ..\res\ProgressBarSet\def\contribution.ztl ^
 ..\res\RadioButtonGroup\def\contribution.ztl ^
@@ -79,6 +84,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\ResultSetInfo\def\contribution.ztl ^
 ..\res\ResultSetMixer\def\contribution.ztl ^
 ..\res\ScatterPlot\def\contribution.ztl ^
+..\res\SideNavigation\def\contribution.ztl ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\Table\def\contribution.ztl ^
 ..\res\TagCloud\def\contribution.ztl ^

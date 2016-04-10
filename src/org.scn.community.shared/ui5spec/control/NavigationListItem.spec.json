@@ -1,0 +1,51 @@
+{
+
+	"icon" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Url",
+			"ztlFunction": "",
+			"desc" : "Icon",
+			"cat" : "Display",
+			"tooltip" : "Specifies the icon for the item.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"expanded" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Expanded",
+			"cat" : "Display",
+			"tooltip" : "Specifies if the item is expanded.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"hasExpander" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Has Expander",
+			"cat" : "Display",
+			"tooltip" : "Specifies if the item has an expander.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

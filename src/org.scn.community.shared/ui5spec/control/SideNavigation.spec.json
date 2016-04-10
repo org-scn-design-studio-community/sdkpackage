@@ -1,0 +1,199 @@
+{
+
+	"expanded" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Expanded",
+			"cat" : "Display",
+			"tooltip" : "Specifies if the control is expanded.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"item" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"origType": "NavigationList";
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-unique",
+
+			"desc" : "Items",
+			"cat" : "Content-Item",
+			"tooltip" : "The bottom arrow, used for scrolling throw items when SideNavigation is collapsed.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"item": {
+					"type": "Array",
+			        "sequence": "key,text,icon,expanded,items",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					},
+					"expanded": {
+					  "desc": "Expanded",
+					  "type": "boolean"
+					},
+					"items":{
+						"type":"Array",
+						"sequence":"parentKey,key,expanded,hasExpander,icon",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"expanded":{
+						   "desc":"Expanded",
+							
+						   "type":"boolean"
+						},
+						"hasExpander":{
+						   "desc":"Has Expander",
+							
+						   "type":"boolean"
+						},
+						"icon":{
+						   "desc":"Icon",
+							
+						   "type":"String"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"fixedItem" : {
+		"template" : "ObjectSingle-double",
+		"type" : "String",
+		"origType": "NavigationList";
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "DoubleArray",
+			"ztlFunction": "-unique",
+
+			"desc" : "Fixed Items",
+			"cat" : "Content-Item",
+			"tooltip" : "The bottom arrow, used for scrolling throw items when SideNavigation is collapsed.",
+
+			"apsControl" : "array",
+			"arrayMode": "TwoLevelArray",
+			
+			"arrayDefinition": {
+				"fixedItem": {
+					"type": "Array",
+			        "sequence": "key,text,icon,expanded,items",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					},
+					"expanded": {
+					  "desc": "Expanded",
+					  "type": "boolean"
+					},
+					"items":{
+						"type":"Array",
+						"sequence":"parentKey,key,expanded,hasExpander,icon",
+						"parentKey":{
+			                "desc":"Parent Key",
+			                "type":"String",
+			              	"mode":"ztl"
+						},
+						"key":{
+						   "desc":"Unique Key",
+						   "type":"String"
+						},
+						"expanded":{
+						   "desc":"Expanded",
+							
+						   "type":"boolean"
+						},
+						"hasExpander":{
+						   "desc":"Has Expander",
+							
+						   "type":"boolean"
+						},
+						"icon":{
+						   "desc":"Icon",
+							
+						   "type":"String"
+						}
+
+	               }
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the component (CSS-size such as % or px). When it is set, this is the exact size. When left blank, the text defines the size.",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"contentHeight" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Height",
+			"cat" : "Display",
+			"tooltip" : "Height of the component (CSS-size such as % or px). When it is set, this is the exact size. When left blank, the text defines the size.",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	}
+}

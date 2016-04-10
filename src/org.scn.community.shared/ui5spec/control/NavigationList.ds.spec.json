@@ -1,0 +1,55 @@
+{
+
+	"useContentWidth":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Width'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Width' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useItems":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Items'",
+			"cat" : "Content-Items",
+			"tooltip" : "If checked, the property 'Items' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListItems":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Items Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Items Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

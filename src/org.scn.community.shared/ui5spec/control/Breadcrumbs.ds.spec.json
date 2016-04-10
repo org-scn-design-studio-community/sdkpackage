@@ -1,0 +1,55 @@
+{
+
+	"useContentWidth":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Width'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Width' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useLinks":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Links'",
+			"cat" : "Content-Links",
+			"tooltip" : "If checked, the property 'Links' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"dataCellListLinks":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Links Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Links Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

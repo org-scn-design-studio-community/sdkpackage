@@ -1,0 +1,16 @@
+{
+	"title": "Plannin Calendar",
+	"description": "PlanninCalendar",
+	"icon": "PlanninCalendar.png",
+	"topics": 
+	[
+		{
+			"title" : "Plannin Calendar",
+			"content" : "The PlanningCalendar can display rows with appointments for different persons. It is possible to define different views and switch between the views. You can add your own buttons or other controls to the toolbar."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

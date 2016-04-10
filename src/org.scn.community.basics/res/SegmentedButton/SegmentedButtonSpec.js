@@ -128,7 +128,7 @@ function() {
   "DImageSize": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Display-Image",
       "choiceType": "ImageSize",
       "desc": "Size Of The Image",
       "noAps": false,
@@ -203,7 +203,7 @@ function() {
   "DSelectionType": {
     "opts": {
       "apsControl": "combobox",
-      "cat": "Unsorted",
+      "cat": "Interaction",
       "choiceType": "SelectionType",
       "desc": "Selection Type",
       "noAps": false,
@@ -216,9 +216,13 @@ function() {
         {
           "key": "Multiple",
           "text": "Multiple"
+        },
+        {
+          "key": "SingleToggle",
+          "text": "Single Toggle"
         }
       ],
-      "tooltip": "Selection Type SINGLE | MULTIPLE",
+      "tooltip": "Selection Type Single | Multiple | Single Toggle",
       "ztlFunction": "",
       "ztlType": "Choice"
     },

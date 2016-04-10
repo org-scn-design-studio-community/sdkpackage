@@ -1,0 +1,210 @@
+/* NOTE: This file was generated as an optimized version of "library.source.less" for the Theme Designer. */
+
+/*!
+ * UI development toolkit for HTML5 (OpenUI5)
+ * (c) Copyright 2009-2016 SAP SE or an SAP affiliate company.
+ * Licensed under the Apache License, Version 2.0 - see LICENSE.txt.
+ */
+
+@import "../base/library.less";
+@import "../../../../../Base/baseLib/sap_bluecrystal/base.less"; /* ORIGINAL IMPORT PATH: "../../../../sap/ui/core/themes/sap_bluecrystal/base.less" */
+
+@import "../../../../sap/ui/core/themes/sap_bluecrystal/global.less";
+
+/* START "NavigationList.less" */
+/* ============================================== */
+/* CSS for control sap.tnt/NavigationList.control */
+/* ============================================== */
+
+.sapTntNavLIGroup {
+	background-color: @sapUiLightestBG;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLIGroup:not(.sapTntNavLIItemDisabled):hover {
+	background-color: @sapUiLightestBGHover;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLIGroup:not(.sapTntNavLIItemDisabled):active {
+	background-color: @sapUiHighlight;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiTextInverted;
+
+	& > .sapUiIcon {
+		color: @sapUiInvertedElement;
+	}
+}
+
+.sapTntNavLIItemSelected .sapTntNavLIGroup {
+	background-color: @sapUiActiveBG;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLIItemSelected .sapTntNavLIGroup:hover {
+	background-color: @sapUiActiveBGHover;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLIGroupItem {
+	background-color: lighten(@sapUiExtraLightBG, 3);
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+}
+
+.sapTntNavLIGroupItem:not(.sapTntNavLIItemDisabled):hover {
+	background-color: @sapUiLightestBGHover;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+}
+
+.sapTntNavLIGroupItem:not(.sapTntNavLIItemDisabled):active {
+	background-color: @sapUiHighlight;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiTextInverted;
+}
+
+.sapTntNavLIItemSelected.sapTntNavLIGroupItem {
+	background-color: @sapUiActiveBG;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLIItemSelected.sapTntNavLIGroupItem:hover {
+	background-color: @sapUiActiveBGHover;
+	border-bottom: 1px solid @sapUiExtraLightBorder;
+	color: @sapUiDarkText;
+
+	& > .sapUiIcon {
+		color: @sapUiElement;
+	}
+}
+
+.sapTntNavLI li:focus,
+.sapTntNavLIItem:focus {
+	outline: none;
+}
+
+.sapTntNavLI li:focus::before,
+.sapTntNavLIItem:focus::before {
+	border: 1px dotted @sapUiFocus;
+	position: absolute;
+	content: " ";
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	left: 1px;
+	z-index: 2;
+	pointer-events: none;
+}
+
+/* END "NavigationList.less" */
+
+/* START "ToolHeader.less" */
+/* ========================================== */
+/* CSS for control sap.tnt/ToolHeader.control */
+/* ========================================== */
+
+.sapTntToolHeader.sapMTB {
+	background-color: @sapUiExtraLightBG;
+}
+
+.sapTntToolHeader.sapMTB .sapMBtnContent,
+.sapTntToolHeader.sapMTB .sapMBtnIcon,
+.sapTntToolHeader.sapMTB .sapUiIcon,
+.sapTntToolHeader.sapMTB .sapMText,
+.sapTntToolHeaderPopover.sapMOTAPopover.sapMPopover .sapMBtnContent {
+	color: @sapUiElement;
+}
+
+.sapTntToolHeaderPopover.sapMOTAPopover.sapMPopover {
+	background-color: @sapUiLightestBG;
+}
+
+.sapTntToolHeader .sapMBtnActive .sapMBtnContent,
+.sapTntToolHeaderPopover.sapMOTAPopover.sapMPopover .sapMBtnActive .sapMBtnContent,
+.sapMToggleBtnPressed .sapMBtnIcon,
+.sapMToggleBtnPressed.sapMBtnTransparent > .sapMBtnIcon {
+	color: @sapUiTextInverted;
+}
+/* END "ToolHeader.less" */
+
+/* START "SideNavigation.less" */
+/* ==========================================================================
+   CSS for control sap.tnt.SideNavigation
+   ========================================================================== */
+
+.sapTntSideNavigation {
+  background: @sapUiLightestBG;
+}
+
+.sapTntSideNavigationSeparator {
+  background-color: @sapUiBrand;
+}
+
+/* Styles for layout with arrows
+   ========================================================================== */
+.sapTntSideNavigationScrollIconUp {
+  border-bottom: 1px solid @sapUiExtraLightBorder;
+}
+
+.sapTntSideNavigationScrollIconDown {
+  border-top: 1px solid @sapUiExtraLightBorder;
+}
+
+.sapTntSideNavigationScrollIcon {
+  color: @sapUiElement;
+}
+
+.sapTntSideNavigationScrollIcon:not(.sapTntSideNavigationScrollIconDisabled):hover {
+  background-color: @sapUiLightestBGHover;
+  color: @sapUiDarkText;
+
+  & > .sapUiIcon {
+    color: @sapUiElement;
+  }
+}
+
+.sapTntSideNavigationScrollIcon:not(.sapTntSideNavigationScrollIconDisabled):active {
+  background-color: @sapUiHighlight;
+  color: @sapUiTextInverted;
+
+  & > .sapUiIcon {
+    color: @sapUiInvertedElement;
+  }
+}
+
+/* END "SideNavigation.less" */
+
+/* START "ToolPage.less" */
+/* ==========================================================================
+   CSS for control sap.tnt.ToolPage
+   ========================================================================== */
+
+
+/* END "ToolPage.less" */
+

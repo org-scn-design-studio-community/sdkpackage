@@ -1,0 +1,107 @@
+{
+
+	"useContentWidth":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Width'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Width' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useContentHeight":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Height'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Height' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useFixedItem":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Item'",
+			"cat" : "Content-Item",
+			"tooltip" : "If checked, the property 'Item' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useItem":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual ' Fixed Item'",
+			"cat" : "Content-Item",
+			"tooltip" : "If checked, the property 'Item' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"dataCellListItem":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Item Data List",
+         "cat":"Data",
+         "tooltip":"Item Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+    "dataCellListFixedItem":{
+	  "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Item Data List",
+         "cat":"Data",
+         "tooltip":"Item Data List",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

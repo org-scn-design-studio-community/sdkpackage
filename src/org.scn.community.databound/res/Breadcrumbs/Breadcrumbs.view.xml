@@ -1,0 +1,41 @@
+<core:View
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.Breadcrumbs.Controller"
+  >
+  <l:VerticalLayout
+    width="100%" 
+    content="{/}">
+
+    <l:content
+      width="{width}"
+      >
+        <Breadcrumbs 
+        	currentLocationText="{currentLocationText}" 
+			links="{links}"
+			width="{width}"
+		>
+			<m:Link
+				press="onPressed" 
+				text="{text}"
+				contentWidth="{contentWidth}"
+				emphasized="{emphasized}"
+				href="{href}"
+				enabled="{enabled}"
+				subtle="{subtle}"
+				target="{target}"
+				textAlign="{textAlign}"
+				textDirection="{textDirection}"
+				wrapping="{wrapping}"
+				app:ownKey="{key}"
+			>
+			</m:Link>
+	    </Breadcrumbs>
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

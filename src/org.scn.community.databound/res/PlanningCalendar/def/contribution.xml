@@ -1,0 +1,277 @@
+
+<component
+	id="PlanningCalendar"
+	title="Planning Calendar"
+	tooltip="Planning Calendar - Component as Calendar"
+	icon="res/PlanningCalendar/PlanningCalendar.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="m"
+>
+	
+	<requireJs modes="m">res/PlanningCalendar/PlanningCalendar</requireJs>
+
+	<cssInclude>res/PlanningCalendar/PlanningCalendar.css</cssInclude>
+	
+	
+	<property
+		id="appointmentSelectedKey"
+		type="String"
+		title="Appointment Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="appointments"
+		type="String"
+		title="Appointments"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="intervalHeaders"
+		type="String"
+		title="Interval Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="intervalSelectedKey"
+		type="String"
+		title="Interval Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="noDataText"
+		type="String"
+		title="No Data Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onAppointmentSelected"
+		type="ScriptText"
+		title="On Appointment Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onIntervalSelected"
+		type="ScriptText"
+		title="On Interval Selected"
+		group="Events"
+		visible="false">
+
+	</property>
+	<property
+		id="onRowSelectionChanged"
+		type="ScriptText"
+		title="On Row Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onStartDateChanged"
+		type="ScriptText"
+		title="On Start Date Changed"
+		group="Events"
+		visible="false">
+
+	</property>
+	<property
+		id="onViewChanged"
+		type="ScriptText"
+		title="On View Changeed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="rowSelectionChangedKey"
+		type="String"
+		title="Row Selection Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="rows"
+		type="String"
+		title="Rows"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showIntervalHeaders"
+		type="boolean"
+		title="Show Interval Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showRowHeaders"
+		type="boolean"
+		title="Show Row Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="startDate"
+		type="String"
+		title="Start Date"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="startDateChangedKey"
+		type="String"
+		title="Start Date Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useAppointments"
+		type="boolean"
+		title="Use Manual 'Appointments'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentHeight"
+		type="boolean"
+		title="Use Manual 'Content Height'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useIntervalHeaders"
+		type="boolean"
+		title="Use Manual 'Interval Headers'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useRows"
+		type="boolean"
+		title="Use Manual 'Rows'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="viewChangedKey"
+		type="String"
+		title="View Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="viewKey"
+		type="String"
+		title="View Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="appointmentSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="appointments"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="contentHeight"><![CDATA[0]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="intervalHeaders"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="intervalSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="noDataText"><![CDATA[No Data]]></defaultValue>
+		<defaultValue property="onAppointmentSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onIntervalSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRowSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onStartDateChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onViewChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="rowSelectionChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="rows"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="showIntervalHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="showRowHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="startDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="startDateChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="useAppointments"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useIntervalHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useRows"><![CDATA[true]]></defaultValue>
+		<defaultValue property="viewChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="viewKey"><![CDATA[Day]]></defaultValue>
+
+	</initialization>
+
+</component>

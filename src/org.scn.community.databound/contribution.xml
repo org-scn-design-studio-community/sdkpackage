@@ -276,6 +276,107 @@
 		<!-- End of AdvancedDataTable Defaults -->
 	</initialization>
 </component>
+<component
+	id="Breadcrumbs"
+	title="Bread Crumbs"
+	tooltip="BreadCrumbs - Component for navigation with links."
+	icon="res/Breadcrumbs/Breadcrumbs.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="m"
+>
+	
+	<requireJs modes="m">res/Breadcrumbs/Breadcrumbs</requireJs>
+
+	<cssInclude>res/Breadcrumbs/Breadcrumbs.css</cssInclude>
+	
+	
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="currentLocationText"
+		type="String"
+		title="Current Location Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="links"
+		type="String"
+		title="Links"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onPressed"
+		type="ScriptText"
+		title="On Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="pressedKey"
+		type="String"
+		title="Pressed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useLinks"
+		type="boolean"
+		title="Use Manual 'Links'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="currentLocationText"><![CDATA[]]></defaultValue>
+		<defaultValue property="links"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useLinks"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>
+
 	<component
 		id="BulletChart"
 		title="Bullet Chart 2.0"
@@ -3134,6 +3235,283 @@ __n__}
 	</initialization>
 </component>
 <component
+	id="PlanningCalendar"
+	title="Planning Calendar"
+	tooltip="Planning Calendar - Component as Calendar"
+	icon="res/PlanningCalendar/PlanningCalendar.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="m"
+>
+	
+	<requireJs modes="m">res/PlanningCalendar/PlanningCalendar</requireJs>
+
+	<cssInclude>res/PlanningCalendar/PlanningCalendar.css</cssInclude>
+	
+	
+	<property
+		id="appointmentSelectedKey"
+		type="String"
+		title="Appointment Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="appointments"
+		type="String"
+		title="Appointments"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="intervalHeaders"
+		type="String"
+		title="Interval Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="intervalSelectedKey"
+		type="String"
+		title="Interval Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="noDataText"
+		type="String"
+		title="No Data Text"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onAppointmentSelected"
+		type="ScriptText"
+		title="On Appointment Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onIntervalSelected"
+		type="ScriptText"
+		title="On Interval Selected"
+		group="Events"
+		visible="false">
+
+	</property>
+	<property
+		id="onRowSelectionChanged"
+		type="ScriptText"
+		title="On Row Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onStartDateChanged"
+		type="ScriptText"
+		title="On Start Date Changed"
+		group="Events"
+		visible="false">
+
+	</property>
+	<property
+		id="onViewChanged"
+		type="ScriptText"
+		title="On View Changeed"
+		group="Events"
+		visible="false">
+
+	</property>
+	<property
+		id="rowSelectionChangedKey"
+		type="String"
+		title="Row Selection Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="rows"
+		type="String"
+		title="Rows"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showIntervalHeaders"
+		type="boolean"
+		title="Show Interval Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="showRowHeaders"
+		type="boolean"
+		title="Show Row Headers"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="startDate"
+		type="String"
+		title="Start Date"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="startDateChangedKey"
+		type="String"
+		title="Start Date Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useAppointments"
+		type="boolean"
+		title="Use Manual 'Appointments'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentHeight"
+		type="boolean"
+		title="Use Manual 'Content Height'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useIntervalHeaders"
+		type="boolean"
+		title="Use Manual 'Interval Headers'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useRows"
+		type="boolean"
+		title="Use Manual 'Rows'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="viewChangedKey"
+		type="String"
+		title="View Changed Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="viewKey"
+		type="String"
+		title="View Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="appointmentSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="appointments"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="contentHeight"><![CDATA[0]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="intervalHeaders"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="intervalSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="noDataText"><![CDATA[No Data]]></defaultValue>
+		<defaultValue property="onAppointmentSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onIntervalSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onRowSelectionChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onStartDateChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="onViewChanged"><![CDATA[]]></defaultValue>
+		<defaultValue property="rowSelectionChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="rows"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="showIntervalHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="showRowHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="startDate"><![CDATA[]]></defaultValue>
+		<defaultValue property="startDateChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="useAppointments"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useIntervalHeaders"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useRows"><![CDATA[true]]></defaultValue>
+		<defaultValue property="viewChangedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="viewKey"><![CDATA[Day]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
 	id="ProcessFlow"
 	title="Process Flow 2.0"
 	tooltip="ProcessFlow - Component for visualization of processes."
@@ -4108,6 +4486,156 @@ __n__}
 		<!-- End of ScatterPlot Defaults -->
 	</initialization>
 </component>
+<component
+	id="SideNavigation"
+	title="Side Navigation"
+	tooltip="Side Navigation - Component for navigation on the side"
+	icon="res/SideNavigation/SideNavigation.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="m"
+>
+	
+	<requireJs modes="m">res/SideNavigation/SideNavigation</requireJs>
+
+	<cssInclude>res/SideNavigation/SideNavigation.css</cssInclude>
+	
+	
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="expanded"
+		type="boolean"
+		title="Expanded"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="fixedItem"
+		type="String"
+		title="Fixed Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="item"
+		type="String"
+		title="Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="itemSelectedKey"
+		type="String"
+		title="Item Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onFixedItemSelected"
+		type="ScriptText"
+		title="On Fixed Item Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onItemSelected"
+		type="ScriptText"
+		title="On Item Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentHeight"
+		type="boolean"
+		title="Use Manual 'Content Height'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useFixedItem"
+		type="boolean"
+		title="Use Manual 'Item'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useItem"
+		type="boolean"
+		title="Use Manual ' Fixed Item'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="contentHeight"><![CDATA[0]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="expanded"><![CDATA[true]]></defaultValue>
+		<defaultValue property="fixedItem"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="item"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="itemSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="onFixedItemSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onItemSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useFixedItem"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useItem"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>
+
 <component
 	id="Slider"
 	title="Data Slider 2.0"
