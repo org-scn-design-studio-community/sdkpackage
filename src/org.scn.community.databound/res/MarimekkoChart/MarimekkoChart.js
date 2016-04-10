@@ -33,6 +33,16 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizAxisChart",
 					noAps : true
 				}
 			},
+			borderSpace : {
+				value : 0,
+				opts : {
+					desc : "Border Space",
+					cat : "Cosmetics",
+					tooltip : "Border Space",
+					apsControl : "spinner",
+					noAps : false
+				}
+			},
 			selectedRow : {
 				value : 0.0,
 				opts : {
@@ -242,6 +252,8 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizAxisChart",
 
 			lbls.exit().remove();
 
+			var space = that.borderSpace();
+			
 			columns.select(".labelLayer").selectAll("text")
 			.text(function (d) {
 				return that.formatter(d.value);
@@ -260,10 +272,10 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizAxisChart",
 				return that.yScale((d.offset + (d.value / 2)) / d.parent.sum);
 			})
 			.attr("x", function (d) {
-				return that.xScale((d.parent.sum / 2) / sum)
+				return that.xScale((d.parent.sum / 2) / sum) + space;
 			})
 			.attr("width", function (d) {
-				return that.xScale(d.parent.sum / sum);
+				return that.xScale(d.parent.sum / sum) - 2*space;
 			});
 			//.call(this.wrap);
 
@@ -277,7 +289,7 @@ define(["./../../../org.scn.community.shared/os/viz-modules/VizAxisChart",
 				return that.yScale((d.parent.sum - d.value) / d.parent.sum);
 			})
 			.attr("width", function (d) {
-				return that.xScale(d.parent.sum / sum);
+				return that.xScale(d.parent.sum / sum) - 2*space;
 			})
 			.style("fill", function (d) {
 				if (d && d.row == that.selectedRow() && d.col == that.selectedColumn()) {

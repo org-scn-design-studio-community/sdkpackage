@@ -32,6 +32,22 @@ function() {
 
 	spec.spec = 
 {
+  "allowExpanding": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Allow Expanding Nodes",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Allow Expanding Nodes",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": true,
+    "visible": false
+  },
   "cleanAll": {
     "opts": {
       "apsControl": "checkbox",
@@ -64,6 +80,22 @@ function() {
     "template": "Url",
     "type": "Url",
     "value": "",
+    "visible": true
+  },
+  "expandNodes": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Expand Nodes",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Expand Nodes",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "template": "boolean",
+    "type": "boolean",
+    "value": false,
     "visible": true
   },
   "expandedKey": {

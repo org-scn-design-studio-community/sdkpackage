@@ -82,7 +82,7 @@
 
 	<!-- End of Base Viz Properties -->
 	<!-- Begin of Marimekko Chart Properties -->
-
+<property id="borderSpace" title="Border Space" type="int" visible="false" />
 	<!-- End of Marimekko Chart Properties -->
 	<initialization>
 		<!-- Databound Defaults -->
@@ -147,6 +147,7 @@ __n__}
 		</defaultValue>
 		<defaultValue property="xAxisTickFormat">%</defaultValue>
 		<defaultValue property="yAxisTickFormat">%</defaultValue>
+		<defaultValue property="borderSpace">0</defaultValue>
 		
 		<!-- End of Marimekko Chart Defaults -->
 	</initialization>

@@ -28,7 +28,7 @@
 			"ztlFunction": "-unique",
 
 			"desc" : "Items",
-			"cat" : "Content-Item",
+			"cat" : "Content-Items",
 			"tooltip" : "The bottom arrow, used for scrolling throw items when SideNavigation is collapsed.",
 
 			"apsControl" : "array",
@@ -37,7 +37,7 @@
 			"arrayDefinition": {
 				"item": {
 					"type": "Array",
-			        "sequence": "key,text,icon,expanded,items",
+			        "sequence": "key,text,icon,expanded,hasExpander,items",
 			        
 			        "key": {
 			          "desc": "Unique Property Key",
@@ -49,15 +49,21 @@
 					},
 					"icon": {
 					  "desc": "Icon",
-					  "type": "String"
+					  "type": "String,optional"
 					},
 					"expanded": {
 					  "desc": "Expanded",
-					  "type": "boolean"
+					  "type": "boolean,optional",
+					  "apsControl": "checkbox"
+					},
+					"hasExpander":{
+					   "desc":"Has Expander",
+					   "type":"boolean,optional",
+					   "apsControl": "checkbox"
 					},
 					"items":{
 						"type":"Array",
-						"sequence":"parentKey,key,expanded,hasExpander,icon",
+						"sequence":"parentKey,key,text,icon",
 						"parentKey":{
 			                "desc":"Parent Key",
 			                "type":"String",
@@ -67,22 +73,15 @@
 						   "desc":"Unique Key",
 						   "type":"String"
 						},
-						"expanded":{
-						   "desc":"Expanded",
-							
-						   "type":"boolean"
-						},
-						"hasExpander":{
-						   "desc":"Has Expander",
-							
-						   "type":"boolean"
+						"text": {
+						  "desc": "Text",
+						  "type": "String"
 						},
 						"icon":{
 						   "desc":"Icon",
 							
-						   "type":"String"
+						   "type":"String,optional"
 						}
-
 	               }
 		      	}
 	      	},
@@ -102,7 +101,7 @@
 			"ztlFunction": "-unique",
 
 			"desc" : "Fixed Items",
-			"cat" : "Content-Item",
+			"cat" : "Content-Fixed Items",
 			"tooltip" : "The bottom arrow, used for scrolling throw items when SideNavigation is collapsed.",
 
 			"apsControl" : "array",
@@ -111,7 +110,7 @@
 			"arrayDefinition": {
 				"fixedItem": {
 					"type": "Array",
-			        "sequence": "key,text,icon,expanded,items",
+			        "sequence": "key,text,icon,expanded,hasExpander,items",
 			        
 			        "key": {
 			          "desc": "Unique Property Key",
@@ -123,15 +122,21 @@
 					},
 					"icon": {
 					  "desc": "Icon",
-					  "type": "String"
+					  "type": "String,optional"
 					},
 					"expanded": {
 					  "desc": "Expanded",
-					  "type": "boolean"
+					  "type": "boolean,optional",
+					  "apsControl": "checkbox"
+					},
+					"hasExpander":{
+					   "desc":"Has Expander",
+					   "type":"boolean,optional",
+					   "apsControl": "checkbox"
 					},
 					"items":{
 						"type":"Array",
-						"sequence":"parentKey,key,expanded,hasExpander,icon",
+						"sequence":"parentKey,key,text,icon",
 						"parentKey":{
 			                "desc":"Parent Key",
 			                "type":"String",
@@ -141,20 +146,14 @@
 						   "desc":"Unique Key",
 						   "type":"String"
 						},
-						"expanded":{
-						   "desc":"Expanded",
-							
-						   "type":"boolean"
-						},
-						"hasExpander":{
-						   "desc":"Has Expander",
-							
-						   "type":"boolean"
+						"text": {
+						  "desc": "Text",
+						  "type": "String"
 						},
 						"icon":{
 						   "desc":"Icon",
 							
-						   "type":"String"
+						   "type":"String,optional"
 						}
 
 	               }

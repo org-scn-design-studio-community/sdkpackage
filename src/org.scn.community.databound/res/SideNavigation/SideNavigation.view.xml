@@ -31,6 +31,8 @@
                   <NavigationListItem 
                   	text="{text}"
                   	icon="{icon}"
+                  	expanded="{expanded}"
+                  	hasExander="{hasExander}"
                   	items="{items}"
                   	select="onItemSelected"
                   	app:ownKey="{key}"
@@ -38,6 +40,7 @@
                   	  <NavigationListItem
 	                  	text="{text}"
 	                  	icon="{icon}"
+	                  	hasExander="false"
 	                  	select="onItemSelected"
 	                  	app:ownKey="{key}"
 	                  >
@@ -53,6 +56,8 @@
                   	text="{text}"
                   	icon="{icon}"
                   	items="{items}"
+                  	expanded="{expanded}"
+                  	hasExander="{hasExander}"
                   	select="onFixedItemSelected"
                   	app:ownKey="{key}"
                   >
@@ -60,6 +65,7 @@
 	                  	text="{text}"
 	                  	icon="{icon}"
 	                  	select="onFixedItemSelected"
+	                  	hasExpander="false"
 	                  	app:ownKey="{key}"
 	                  >
 	                  </NavigationListItem>

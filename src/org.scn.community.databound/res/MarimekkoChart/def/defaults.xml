@@ -15,5 +15,6 @@ __n__}
 		</defaultValue>
 		<defaultValue property="xAxisTickFormat">%</defaultValue>
 		<defaultValue property="yAxisTickFormat">%</defaultValue>
+		<defaultValue property="borderSpace">0</defaultValue>
 		
 		<!-- End of Marimekko Chart Defaults -->

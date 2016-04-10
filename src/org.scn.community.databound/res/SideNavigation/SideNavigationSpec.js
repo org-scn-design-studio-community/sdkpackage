@@ -128,25 +128,23 @@ function() {
       "apsControl": "array",
       "arrayDefinition": {"fixedItem": {
         "expanded": {
+          "apsControl": "checkbox",
           "desc": "Expanded",
-          "type": "boolean"
+          "type": "boolean,optional"
+        },
+        "hasExpander": {
+          "apsControl": "checkbox",
+          "desc": "Has Expander",
+          "type": "boolean,optional"
         },
         "icon": {
           "desc": "Icon",
-          "type": "String"
+          "type": "String,optional"
         },
         "items": {
-          "expanded": {
-            "desc": "Expanded",
-            "type": "boolean"
-          },
-          "hasExpander": {
-            "desc": "Has Expander",
-            "type": "boolean"
-          },
           "icon": {
             "desc": "Icon",
-            "type": "String"
+            "type": "String,optional"
           },
           "key": {
             "desc": "Unique Key",
@@ -157,14 +155,18 @@ function() {
             "mode": "ztl",
             "type": "String"
           },
-          "sequence": "parentKey,key,expanded,hasExpander,icon",
+          "sequence": "parentKey,key,text,icon",
+          "text": {
+            "desc": "Text",
+            "type": "String"
+          },
           "type": "Array"
         },
         "key": {
           "desc": "Unique Property Key",
           "type": "String"
         },
-        "sequence": "key,text,icon,expanded,items",
+        "sequence": "key,text,icon,expanded,hasExpander,items",
         "text": {
           "desc": "Text",
           "type": "String"
@@ -172,7 +174,7 @@ function() {
         "type": "Array"
       }},
       "arrayMode": "TwoLevelArray",
-      "cat": "Content-Item",
+      "cat": "Content-Fixed Items",
       "desc": "Fixed Items",
       "noAps": false,
       "noZtl": false,
@@ -191,25 +193,23 @@ function() {
       "apsControl": "array",
       "arrayDefinition": {"item": {
         "expanded": {
+          "apsControl": "checkbox",
           "desc": "Expanded",
-          "type": "boolean"
+          "type": "boolean,optional"
+        },
+        "hasExpander": {
+          "apsControl": "checkbox",
+          "desc": "Has Expander",
+          "type": "boolean,optional"
         },
         "icon": {
           "desc": "Icon",
-          "type": "String"
+          "type": "String,optional"
         },
         "items": {
-          "expanded": {
-            "desc": "Expanded",
-            "type": "boolean"
-          },
-          "hasExpander": {
-            "desc": "Has Expander",
-            "type": "boolean"
-          },
           "icon": {
             "desc": "Icon",
-            "type": "String"
+            "type": "String,optional"
           },
           "key": {
             "desc": "Unique Key",
@@ -220,14 +220,18 @@ function() {
             "mode": "ztl",
             "type": "String"
           },
-          "sequence": "parentKey,key,expanded,hasExpander,icon",
+          "sequence": "parentKey,key,text,icon",
+          "text": {
+            "desc": "Text",
+            "type": "String"
+          },
           "type": "Array"
         },
         "key": {
           "desc": "Unique Property Key",
           "type": "String"
         },
-        "sequence": "key,text,icon,expanded,items",
+        "sequence": "key,text,icon,expanded,hasExpander,items",
         "text": {
           "desc": "Text",
           "type": "String"
@@ -235,7 +239,7 @@ function() {
         "type": "Array"
       }},
       "arrayMode": "TwoLevelArray",
-      "cat": "Content-Item",
+      "cat": "Content-Items",
       "desc": "Items",
       "noAps": false,
       "noZtl": false,

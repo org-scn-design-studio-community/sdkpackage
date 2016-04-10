@@ -1,4 +1,4 @@
 
 	<!-- Begin of Marimekko Chart Properties -->
-
+<property id="borderSpace" title="Border Space" type="int" visible="false" />
 	<!-- End of Marimekko Chart Properties -->
