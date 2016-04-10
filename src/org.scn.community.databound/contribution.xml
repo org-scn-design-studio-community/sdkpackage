@@ -3351,7 +3351,7 @@ __n__}
 		type="ScriptText"
 		title="On View Changeed"
 		group="Events"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
