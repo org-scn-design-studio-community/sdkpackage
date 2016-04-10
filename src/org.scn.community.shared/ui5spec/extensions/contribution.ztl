@@ -16413,34 +16413,33 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		return this.expanded;
 	*}
 
-	/** Adds an element containing parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String] properties.
+	/** Adds an element containing parentKey [String], key [String], text [String], icon [String] properties.
 	 * You need to specify a unique and existing parent element.
 
  	<example>
 	You want to add 2 elements
 	<code>
-	SIDENAVIGATION.addItems(parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String]);<br>
-	SIDENAVIGATION.addItems(parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String]);
+	SIDENAVIGATION.addItems(parentKey [String], key [String], text [String], icon [String]);<br>
+	SIDENAVIGATION.addItems(parentKey [String], key [String], text [String], icon [String]);
 	</code>
 	</example>
 	 */
 	void addItems (
 			/**Parent Key*/String parentKey, 
 			/**Unique Key*/String key, 
-			/**Expanded*/boolean expanded, 
-			/**Has Expander*/boolean hasExpander, 
-			/**Icon*/String icon
+			/**Text*/String text, 
+			/**Icon*/optional String icon
 			) {*		
 		
 		var leaf = (parentKey != "ROOT");
 		
+		if(icon == undefined) { icon = "";}
 		
 		var itemDef = {
 			leaf:leaf,
 			parentKey:parentKey, 
 			key:key, 
-			expanded:expanded, 
-			hasExpander:hasExpander, 
+			text:text, 
 			icon:icon 
 			};
 	
@@ -16465,13 +16464,13 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		this.fixedItem = JSON.stringify(elementsJson);
 	*}
 
-	/** Adds a root element containing key [String], text [String], icon [String], expanded [boolean].
+	/** Adds a root element containing key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	SIDENAVIGATION.addFixedItem(key [String], text [String], icon [String], expanded [boolean]);<br>
-	SIDENAVIGATION.addFixedItem(key [String], text [String], icon [String], expanded [boolean]);<br>
+	SIDENAVIGATION.addFixedItem(key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean]);<br>
+	SIDENAVIGATION.addFixedItem(key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -16479,10 +16478,14 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	void addFixedItem (
 			/**Unique Property Key*/String key, 
 			/**Text*/String text, 
-			/**Icon*/String icon, 
-			/**Expanded*/boolean expanded
+			/**Icon*/optional String icon, 
+			/**Expanded*/optional boolean expanded, 
+			/**Has Expander*/optional boolean hasExpander
 			) {*		
 		
+		if(icon == undefined) { icon = "";}
+		if(expanded == undefined) { expanded = false;}
+		if(hasExpander == undefined) { hasExpander = false;}
 		
 		var itemDef = {
 			leaf:false,
@@ -16490,7 +16493,8 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 			key:key, 
 			text:text, 
 			icon:icon, 
-			expanded:expanded 
+			expanded:expanded, 
+			hasExpander:hasExpander 
 			};
 	
 		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
@@ -16861,134 +16865,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		return newElementsJson;
 	*}
 	/**
-	 * Sets the Expanded for Items keys<br/>
+	 * Sets the HasExpander for FixedItem keys<br/>
 	 */
-	void setItemsExpandeds (
-			/**/ String keys,
-			/**/ String separator
-			) 
-	{*
-		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.fixedItem);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].expanded = false;
-			
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].expanded = true;
-					break;
-				}
-			}
-		}
-		
-		this.fixedItem = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Expanded for Items Key<br/>
-	 */
-	void setItemsExpanded (
-			/**/ String key,
-			/**/ boolean expanded
-			) 
-	{*
-		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.fixedItem);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].expanded = expanded;
-				break;
-			}
-		}
-
-		this.fixedItem = JSON.stringify(elementsJson);
-	*}
-
-		
-	/**
-	 * Clean all Expanded of Items keys<br/>
-	 */
-	void cleanAllItemsExpandeds (
-			) 
-	{*
-		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
-			return;
-		}
-	
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].expanded = false;
-		}
-		
-		this.fixedItem = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Expanded for Items Key<br/>
-	 */
-	String getItemsExpanded (
-			/**/ String key
-			) 
-	{*
-		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.fixedItem);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].expanded;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-
-	/**
-	 * Returns the Expanded keys<br/>
-	 */
-	org.scn.community.shared.KeyArray getItemsExpandedKeysArray (
-			) 
-	{*
-		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.fixedItem);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].expanded == true) {
-				newElementsJson.push({"key": elementsJson[i].key});
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	/**
-	 * Sets the HasExpander for Items keys<br/>
-	 */
-	void setItemsHasExpanders (
+	void setFixedItemHasExpanders (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -17018,9 +16897,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	*}
 
 	/**
-	 * Sets the HasExpander for Items Key<br/>
+	 * Sets the HasExpander for FixedItem Key<br/>
 	 */
-	void setItemsHasExpander (
+	void setFixedItemHasExpander (
 			/**/ String key,
 			/**/ boolean hasExpander
 			) 
@@ -17044,9 +16923,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 
 		
 	/**
-	 * Clean all HasExpander of Items keys<br/>
+	 * Clean all HasExpander of FixedItem keys<br/>
 	 */
-	void cleanAllItemsHasExpanders (
+	void cleanAllFixedItemHasExpanders (
 			) 
 	{*
 		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
@@ -17063,9 +16942,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Returns value of HasExpander for Items Key<br/>
+	 * Returns value of HasExpander for FixedItem Key<br/>
 	 */
-	String getItemsHasExpander (
+	String getFixedItemHasExpander (
 			/**/ String key
 			) 
 	{*
@@ -17090,7 +16969,7 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	/**
 	 * Returns the HasExpander keys<br/>
 	 */
-	org.scn.community.shared.KeyArray getItemsHasExpanderKeysArray (
+	org.scn.community.shared.KeyArray getFixedItemHasExpanderKeysArray (
 			) 
 	{*
 		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
@@ -17109,6 +16988,85 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		}
 		
 		return newElementsJson;
+	*}
+	/**
+	 * Sets the Text for Items keys<br/>
+	 */
+	void setItemsTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.fixedItem);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.fixedItem = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Items Key<br/>
+	 */
+	void setItemsText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.fixedItem);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.fixedItem = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Items Key<br/>
+	 */
+	String getItemsText (
+			/**/ String key
+			) 
+	{*
+		if (this.fixedItem === undefined || this.fixedItem === "" || this.fixedItem === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.fixedItem);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
 	*}
 	/**
 	 * Sets the Icon for Items keys<br/>
@@ -17191,34 +17149,40 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	*}
 
 
-	/** Adds an element containing parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String] properties.
+	/**
+	 * Gets Fixed Item Selected Key Property
+	 */	
+	String getFixedItemSelectedKey() {*
+		return this.fixedItemSelectedKey;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], text [String], icon [String] properties.
 	 * You need to specify a unique and existing parent element.
 
  	<example>
 	You want to add 2 elements
 	<code>
-	SIDENAVIGATION.addItems(parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String]);<br>
-	SIDENAVIGATION.addItems(parentKey [String], key [String], expanded [boolean], hasExpander [boolean], icon [String]);
+	SIDENAVIGATION.addItems(parentKey [String], key [String], text [String], icon [String]);<br>
+	SIDENAVIGATION.addItems(parentKey [String], key [String], text [String], icon [String]);
 	</code>
 	</example>
 	 */
 	void addItems (
 			/**Parent Key*/String parentKey, 
 			/**Unique Key*/String key, 
-			/**Expanded*/boolean expanded, 
-			/**Has Expander*/boolean hasExpander, 
-			/**Icon*/String icon
+			/**Text*/String text, 
+			/**Icon*/optional String icon
 			) {*		
 		
 		var leaf = (parentKey != "ROOT");
 		
+		if(icon == undefined) { icon = "";}
 		
 		var itemDef = {
 			leaf:leaf,
 			parentKey:parentKey, 
 			key:key, 
-			expanded:expanded, 
-			hasExpander:hasExpander, 
+			text:text, 
 			icon:icon 
 			};
 	
@@ -17243,13 +17207,13 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		this.item = JSON.stringify(elementsJson);
 	*}
 
-	/** Adds a root element containing key [String], text [String], icon [String], expanded [boolean].
+	/** Adds a root element containing key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	SIDENAVIGATION.addItem(key [String], text [String], icon [String], expanded [boolean]);<br>
-	SIDENAVIGATION.addItem(key [String], text [String], icon [String], expanded [boolean]);<br>
+	SIDENAVIGATION.addItem(key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean]);<br>
+	SIDENAVIGATION.addItem(key [String], text [String], icon [String], expanded [boolean], hasExpander [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -17257,10 +17221,14 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	void addItem (
 			/**Unique Property Key*/String key, 
 			/**Text*/String text, 
-			/**Icon*/String icon, 
-			/**Expanded*/boolean expanded
+			/**Icon*/optional String icon, 
+			/**Expanded*/optional boolean expanded, 
+			/**Has Expander*/optional boolean hasExpander
 			) {*		
 		
+		if(icon == undefined) { icon = "";}
+		if(expanded == undefined) { expanded = false;}
+		if(hasExpander == undefined) { hasExpander = false;}
 		
 		var itemDef = {
 			leaf:false,
@@ -17268,7 +17236,8 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 			key:key, 
 			text:text, 
 			icon:icon, 
-			expanded:expanded 
+			expanded:expanded, 
+			hasExpander:hasExpander 
 			};
 	
 		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
@@ -17639,134 +17608,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		return newElementsJson;
 	*}
 	/**
-	 * Sets the Expanded for Items keys<br/>
+	 * Sets the HasExpander for Item keys<br/>
 	 */
-	void setItemsExpandeds (
-			/**/ String keys,
-			/**/ String separator
-			) 
-	{*
-		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.item);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].expanded = false;
-			
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].expanded = true;
-					break;
-				}
-			}
-		}
-		
-		this.item = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Expanded for Items Key<br/>
-	 */
-	void setItemsExpanded (
-			/**/ String key,
-			/**/ boolean expanded
-			) 
-	{*
-		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.item);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].expanded = expanded;
-				break;
-			}
-		}
-
-		this.item = JSON.stringify(elementsJson);
-	*}
-
-		
-	/**
-	 * Clean all Expanded of Items keys<br/>
-	 */
-	void cleanAllItemsExpandeds (
-			) 
-	{*
-		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
-			return;
-		}
-	
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].expanded = false;
-		}
-		
-		this.item = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Expanded for Items Key<br/>
-	 */
-	String getItemsExpanded (
-			/**/ String key
-			) 
-	{*
-		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.item);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].expanded;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-
-	/**
-	 * Returns the Expanded keys<br/>
-	 */
-	org.scn.community.shared.KeyArray getItemsExpandedKeysArray (
-			) 
-	{*
-		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.item);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].expanded == true) {
-				newElementsJson.push({"key": elementsJson[i].key});
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	/**
-	 * Sets the HasExpander for Items keys<br/>
-	 */
-	void setItemsHasExpanders (
+	void setItemHasExpanders (
 			/**/ String keys,
 			/**/ String separator
 			) 
@@ -17796,9 +17640,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	*}
 
 	/**
-	 * Sets the HasExpander for Items Key<br/>
+	 * Sets the HasExpander for Item Key<br/>
 	 */
-	void setItemsHasExpander (
+	void setItemHasExpander (
 			/**/ String key,
 			/**/ boolean hasExpander
 			) 
@@ -17822,9 +17666,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 
 		
 	/**
-	 * Clean all HasExpander of Items keys<br/>
+	 * Clean all HasExpander of Item keys<br/>
 	 */
-	void cleanAllItemsHasExpanders (
+	void cleanAllItemHasExpanders (
 			) 
 	{*
 		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
@@ -17841,9 +17685,9 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	*}
 	
 	/**
-	 * Returns value of HasExpander for Items Key<br/>
+	 * Returns value of HasExpander for Item Key<br/>
 	 */
-	String getItemsHasExpander (
+	String getItemHasExpander (
 			/**/ String key
 			) 
 	{*
@@ -17868,7 +17712,7 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 	/**
 	 * Returns the HasExpander keys<br/>
 	 */
-	org.scn.community.shared.KeyArray getItemsHasExpanderKeysArray (
+	org.scn.community.shared.KeyArray getItemHasExpanderKeysArray (
 			) 
 	{*
 		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
@@ -17887,6 +17731,85 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		}
 		
 		return newElementsJson;
+	*}
+	/**
+	 * Sets the Text for Items keys<br/>
+	 */
+	void setItemsTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.item);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.item = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Items Key<br/>
+	 */
+	void setItemsText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.item);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.item = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Items Key<br/>
+	 */
+	String getItemsText (
+			/**/ String key
+			) 
+	{*
+		if (this.item === undefined || this.item === "" || this.item === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.item);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
 	*}
 	/**
 	 * Sets the Icon for Items keys<br/>

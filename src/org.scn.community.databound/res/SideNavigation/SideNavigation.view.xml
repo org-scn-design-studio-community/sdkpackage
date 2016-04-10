@@ -32,7 +32,7 @@
                   	text="{text}"
                   	icon="{icon}"
                   	expanded="{expanded}"
-                  	hasExander="{hasExander}"
+                  	hasExpander="{hasExpander}"
                   	items="{items}"
                   	select="onItemSelected"
                   	app:ownKey="{key}"
@@ -40,7 +40,7 @@
                   	  <NavigationListItem
 	                  	text="{text}"
 	                  	icon="{icon}"
-	                  	hasExander="false"
+	                  	hasExpander="false"
 	                  	select="onItemSelected"
 	                  	app:ownKey="{key}"
 	                  >
@@ -57,7 +57,7 @@
                   	icon="{icon}"
                   	items="{items}"
                   	expanded="{expanded}"
-                  	hasExander="{hasExander}"
+                  	hasExpander="{hasExpander}"
                   	select="onFixedItemSelected"
                   	app:ownKey="{key}"
                   >

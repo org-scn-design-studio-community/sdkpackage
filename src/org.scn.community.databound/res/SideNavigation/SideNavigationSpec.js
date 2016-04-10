@@ -188,6 +188,23 @@ function() {
     "value": "[]",
     "visible": true
   },
+  "fixedItemSelectedKey": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Internal",
+      "desc": "Fixed Item Selected Key",
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Fixed ItemSelected Key",
+      "ztlFunction": "-get",
+      "ztlType": "String"
+    },
+    "origType": "EventKey",
+    "template": "EventKey",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
   "item": {
     "opts": {
       "apsControl": "array",
@@ -392,7 +409,7 @@ function() {
   "handlerType": "sapui5",
   "height": "32",
   "id": "SideNavigation",
-  "modes": "m",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{

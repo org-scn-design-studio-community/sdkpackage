@@ -12,7 +12,7 @@
 	"extends2Control": "SideNavigation",
 	"extends3ControlEvents": "SideNavigation.events",
 	"generatedJsFile":"true",
-	"modes":"m",
+	"modes":"commons m",
 
 	"databound": false,
 	"dataType": "DataCellList",

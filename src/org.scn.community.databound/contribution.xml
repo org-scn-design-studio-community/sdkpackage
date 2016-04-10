@@ -4496,10 +4496,10 @@ __n__}
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="m"
+	modes="commons m"
 >
 	
-	<requireJs modes="m">res/SideNavigation/SideNavigation</requireJs>
+	<requireJs modes="commons m">res/SideNavigation/SideNavigation</requireJs>
 
 	<cssInclude>res/SideNavigation/SideNavigation.css</cssInclude>
 	
@@ -4538,6 +4538,15 @@ __n__}
 		group="Display"
 		bindable="true"
 		visible="true">
+
+	</property>
+	<property
+		id="fixedItemSelectedKey"
+		type="String"
+		title="Fixed Item Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
 
 	</property>
 	<property
@@ -4624,6 +4633,7 @@ __n__}
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="expanded"><![CDATA[true]]></defaultValue>
 		<defaultValue property="fixedItem"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="fixedItemSelectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="item"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="itemSelectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="onFixedItemSelected"><![CDATA[]]></defaultValue>
