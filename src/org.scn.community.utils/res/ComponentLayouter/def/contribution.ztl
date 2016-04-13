@@ -190,19 +190,26 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		var global = this.getGlobal();
 		var a = [];
 		for (var key in global) {
+			if(key == "CONTEXT_MENU" || key == "TEXT_POOL" || key.indexOf("GLOBAL_SCRIPT") == 0) {
+				continue;
+			}
 			var component = global[key];
-			if(component.getOwner && component.getTopMargin && key != "me") {
-				var owner = component.getOwner();
-				var type = "Unknown";
-				if(owner.getItemType) {
-					type = owner.getItemType();
+			try{
+				if(component.getOwner && component.getTopMargin && key != "me") {
+					var owner = component.getOwner();
+					var type = "Unknown";
+					if(owner.getItemType) {
+						type = owner.getItemType();
+					}
+					if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
+						a.push({
+							key : key,
+							type : type
+						});				
+					} 
 				}
-				if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
-					a.push({
-						key : key,
-						type : type
-					});				
-				} 
+			}catch(e){
+				APPLICATION.log("Error trapped: " + e);
 			}
 		}
 		return JSON.stringify(a);
@@ -216,10 +223,13 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		};
 		var global = this.getGlobal();
 		for (var key in global) {
+			if(key == "CONTEXT_MENU" || key == "TEXT_POOL" || key.indexOf("GLOBAL_SCRIPT") == 0) {
+				continue;
+			}
 			var component = global[key];
 			APPLICATION.log("Examining " + key);
-			if(component.getOwner && component.getTopMargin && key != "me") {
-				try{
+			try{
+				if(component.getOwner && component.getTopMargin && key != "me") {
 					var visible = false;
 					if(component.isVisible) visible = component.isVisible();
 					// Eh, save for a rainy day.
@@ -248,9 +258,9 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						//owner : global[key].getOwner(),
 						//properties : global[key]
 					});
-				}catch(e){
-					APPLICATION.log("Error trapped: " + e);
 				}
+			}catch(e){
+				APPLICATION.log("Error trapped: " + e);
 			}
 		}
 		return JSON.stringify(payload);

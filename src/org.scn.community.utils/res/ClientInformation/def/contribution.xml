@@ -1,7 +1,7 @@
 
 <component
 	id="ClientInformation"
-	title="Client Information 0.X"
+	title="Client Information"
 	tooltip="Returns on first roundtrip some information from web client (browser)"
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"

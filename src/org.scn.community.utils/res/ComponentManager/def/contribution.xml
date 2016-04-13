@@ -1,7 +1,7 @@
 
 <component
 	id="ComponentManager"
-	title="Component Manager 0.X"
+	title="Component Manager"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
 	handlerType="div"

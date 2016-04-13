@@ -1,7 +1,7 @@
 
 	<component
 		id="SimpleDate"
-		title="Simple Date 0.X"
+		title="Simple Date"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
 		group="TECHNICAL_COMPONENTS"

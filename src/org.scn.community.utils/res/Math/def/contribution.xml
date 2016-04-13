@@ -1,7 +1,7 @@
 
 <component
 	id="Math"
-	title="Math Utility 0.X"
+	title="Math Utility"
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"

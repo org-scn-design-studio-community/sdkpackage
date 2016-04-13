@@ -16,12 +16,46 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
+ 
+//%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		core,
+		basics
+	) {
+//%DEFINE-END%
 
-sap.designstudio.sdk.Component.subclass("org.scn.community.utils.Collection", function() {
+var myComponentData = {};
+myComponentData.fullComponentName = "org.scn.community.utils.Collection";
+
+CollectionObj = function () {
 
 	var that = this;
-
-	this.afterUpdate = function() {
+	
+	that.init = function() {
+		// define root component
 	};
+	
+	that.initAsync = function (owner) {
+		var that = owner;
+	};
+
+	that.afterUpdate = function() {
+		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
+
+	};
+	
+	return that;
+};
+
+myComponentData.instance = CollectionObj;
+Component.subclass(myComponentData.fullComponentName, myComponentData.instance);
 
 });
