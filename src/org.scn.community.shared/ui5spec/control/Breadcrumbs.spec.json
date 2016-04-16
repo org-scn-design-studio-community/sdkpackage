@@ -1,0 +1,112 @@
+{
+
+	"currentLocationText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Current Location Text",
+			"cat" : "Display",
+			"tooltip" : "Determines the text of current/last element in the Breadcrumbs path.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"links" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "Link",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Links",
+			"cat" : "Content-Links",
+			"tooltip" : "Private aggregations",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"links": {
+					"type": "Array",
+			        "sequence": "key,contentWidth,emphasized,enabled,href,subtle,target,text,textAlign,textDirection,wrapping",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"contentWidth": {
+					  "desc": "Content Width",
+					  "type": "int"
+					},
+					"emphasized": {
+					  "desc": "Emphasized",
+					  "type": "boolean"
+					},
+					"enabled": {
+					  "desc": "Enabled",
+					  "type": "boolean"
+					},
+					"href": {
+					  "desc": "Href",
+					  "type": "String"
+					},
+					"subtle": {
+					  "desc": "Subtle",
+					  "type": "boolean"
+					},
+					"target": {
+					  "desc": "Target",
+					  "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"textAlign": {
+					  "desc": "Text Align",
+					  "type": "String",
+					  "options": [{"key":"Begin","text":"Locale-specific positioning at the beginning of the line"},{"key":"End","text":"Locale-specific positioning at the end of the line"},{"key":"Left","text":"Hard option for left alignment"},{"key":"Right","text":"Hard option for right alignment"},{"key":"Center","text":"Centered text alignment"},{"key":"Initial","text":"Sets no text align, so the browser default is used"}],
+					  "apsControl": "combobox"
+					},
+					"textDirection": {
+					  "desc": "Text Direction",
+					  "type": "String",
+					  "options": [{"key":"LTR","text":"Specifies left-to-right text direction"},{"key":"RTL","text":"Specifies right-to-left text direction"},{"key":"Inherit","text":"Inherits the direction from its parent control/container"}],
+					  "apsControl": "combobox"
+					},
+					"wrapping": {
+					  "desc": "Wrapping",
+					  "type": "boolean"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the component (CSS-size such as % or px). When it is set, this is the exact size. When left blank, the text defines the size.",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	}
+}

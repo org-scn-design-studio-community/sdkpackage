@@ -1,0 +1,153 @@
+{
+
+   "appointmentSelectedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Appointment Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "AppointmentSelected Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onAppointmentSelected": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Appointment Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on If set, the appointment was selected using multiple selection (e.g. Shift + single mouse click),meaning more than the current appointment could be selected.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "intervalSelectedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Interval Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "IntervalSelected Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":true
+		}
+	},
+	"onIntervalSelected": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": false,
+        "opts": {
+            "desc": "On Interval Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on Start date of the selected interval, as JavaScript date object.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "rowSelectionChangedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Row Selection Changed Key",
+			"cat" : "Internal",
+			"tooltip" : "RowSelectionChangeed Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onRowSelectionChanged": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Row Selection Changed",
+            "cat": "Events",
+            "tooltip": "Event triggered on Array of rows whose selection has changed.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "startDateChangedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Start Date Changed Key",
+			"cat" : "Internal",
+			"tooltip" : "StartDateChanged Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":true
+		}
+	},
+	"onStartDateChanged": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": false,
+        "opts": {
+            "desc": "On Start Date Changed",
+            "cat": "Events",
+            "tooltip": "Event triggered on <",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "viewChangedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "View Changed Key",
+			"cat" : "Internal",
+			"tooltip" : "ViewChanged Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":true
+		}
+	},
+	"onViewChanged": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On View Changeed",
+            "cat": "Events",
+            "tooltip": "Event triggered on <",
+            "noAps":true,
+            "noZtl":true
+        }
+    }
+}

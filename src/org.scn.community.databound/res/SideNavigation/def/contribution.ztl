@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for SideNavigation
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.SideNavigation extends org.scn.community.shared.ui5.SideNavigation {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

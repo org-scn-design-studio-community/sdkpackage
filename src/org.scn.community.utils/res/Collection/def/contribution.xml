@@ -1,7 +1,7 @@
 
 <component
 	id="Collection"
-	title="Collection Utility 0.X"
+	title="Collection Utility"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"

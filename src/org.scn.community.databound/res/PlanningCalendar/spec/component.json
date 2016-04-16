@@ -1,0 +1,34 @@
+{
+	"id": "PlanningCalendar",
+	"title": "Planning Calendar",
+	"tooltip": "Planning Calendar - Component as Calendar",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "databound",
+	"ui5package": "sap.m",
+	"extension": "ui5.PlanningCalendar",
+	"extends1ControlDs": "PlanningCalendar.ds",
+	"extends2Control": "PlanningCalendar",
+	"extends3ControlEvents": "PlanningCalendar.events",
+	"generatedJsFile":"true",
+	"modes":"m",
+
+	"databound": false,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "date",
+			"id" : "basics/os/date/DateFormat",
+		}
+	],
+	
+	"width": "300",
+	"height": "32"
+}

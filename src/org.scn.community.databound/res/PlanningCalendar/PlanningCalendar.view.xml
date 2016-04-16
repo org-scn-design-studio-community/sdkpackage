@@ -1,0 +1,82 @@
+<core:View
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:unified="sap.ui.unified"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.PlanningCalendar.Controller"
+  
+  width="100%"
+  height="100%"
+  >
+  <l:VerticalLayout
+    content="{/}"
+    width="{/0/width}"
+    >
+    
+
+    <l:content
+      >
+        
+    <PlanningCalendar
+			startDate="{path: 'startDate'}"
+			rows="{path: 'rows'}"
+			viewKey="{viewKey}"
+			singleSelection="true"
+			showIntervalHeaders="{showIntervalHeaders}"
+			showRowHeaders="{showRowHeaders}"
+			noDataText="{noDataText}"
+			
+			appointmentSelect="onAppointmentSelected"
+			intervalSelect="-onIntervalSelected"
+			rowSelectionChange="onRowSelectionChanged"
+			startDateChange="-onStartDateChanged"
+			viewChange="onViewChanged"
+
+			>
+			<toolbarContent>
+				<Title text="{text}" titleStyle="H4"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+					icon="{icon}"
+					title="{title}"
+					text="{text}"
+					app:ownKey="{key}"
+					
+					appointments="{appointments}"
+					intervalHeaders="{intervalHeaders}">
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{icon}"
+							title="{title}"
+							text="{text}"
+							type="{type}"
+							tentative="{tentative}"
+							app:ownKey="{key}"
+							>
+						</unified:CalendarAppointment>
+					</appointments>
+					<intervalHeaders>
+						<unified:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{icon}"
+							text="{text}"
+							title="{title}"
+							type="{type}"
+							app:ownKey="{key}"
+							>
+						</unified:CalendarAppointment>
+					</intervalHeaders>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

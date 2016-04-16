@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+   <name>PlanningCalendar</name>
+   <derived />
+   <documentation>The &lt;code&gt;PlanningCalendar&lt;/code&gt; can display rows with appointments for different persons.It is possible to define different views and switch between the views.You can add your own buttons or other controls to the toolbar.&lt;b&gt;Note:&lt;/b&gt; The &lt;code&gt;PlanningCalendar&lt;/code&gt; uses parts of the &lt;code&gt;sap.ui.unified&lt;/code&gt; library.If the &lt;code&gt;sap.ui.unified&lt;/code&gt; library is not loaded before the &lt;code&gt;PlanningCalendar&lt;/code&gt; is loaded,it will be loaded after the &lt;code&gt;PlanningCalendar&lt;/code&gt; is loaded.This could lead to a waiting time before a &lt;code&gt;PlanningCalendar&lt;/code&gt; is used for the first time.To prevent this, applications using the &lt;code&gt;PlanningCalendar&lt;/code&gt; should also load the &lt;code&gt;sap.ui.unified&lt;/code&gt; library.</documentation>
+   <since>1.34.0</since>
+   <baseType>sap.ui.core/Control</baseType>
+   <properties>
+      <property group="Data" type="sap.ui.core/object" name="startDate">
+         <documentation>Start date of the row, as JavaScript date object. As a default the current date is used.</documentation>
+      </property>
+      <property group="Appearance" defaultValue="sap.ui.unified.CalendarIntervalType.Hour" type="sap.ui.core/string" name="viewKey">
+         <documentation>Key of the &lt;code&gt;PlanningCalendarView&lt;/code&gt; used for the output. The default value uses a default view.If you are using own views, the keys of these views must be used instead.</documentation>
+      </property>
+      <property group="Misc" defaultValue="true" type="sap.ui.core/boolean" name="singleSelection">
+         <documentation>If set, only a single row can be selected</documentation>
+      </property>
+      <property group="Dimension" type="sap.ui.core/CSSSize" name="width">
+         <documentation>Width of the &lt;code&gt;PlanningCalendar&lt;/code&gt;</documentation>
+      </property>
+      <property group="Dimension" type="sap.ui.core/CSSSize" name="height">
+         <documentation>Height of the &lt;code&gt;PlanningCalendar&lt;/code&gt;</documentation>
+      </property>
+      <property group="Appearance" defaultValue="true" type="sap.ui.core/boolean" name="showIntervalHeaders">
+         <documentation>If set, interval headers are shown even if no &lt;code&gt;intervalHeaders&lt;/code&gt; are assigned to the row in the visible time frame.If not set, no interval headers are shown even if &lt;code&gt;intervalHeaders&lt;/code&gt; are assigned to the row.</documentation>
+      </property>
+      <property group="Appearance" defaultValue="true" type="sap.ui.core/boolean" name="showRowHeaders">
+         <documentation>If set, headers of the &lt;code&gt;PlanningCalendarRows&lt;/code&gt; are shown. This means the column with the headers is shown.If not set, the header column is not shown at all, even if header information is provided.</documentation>
+      </property>
+      <property group="Misc" type="sap.ui.core/string" name="noDataText">
+         <documentation>This text is displayed when no rows are assigned.</documentation>
+      </property>
+   </properties>
+   <events>
+      <event allowPreventDefault="false" name="appointmentSelect">
+         <documentation>Fired if an appointment was selected</documentation>
+         <parameters>
+            <parameter type="sap.ui.unified/CalendarAppointment" name="appointment">
+               <documentation>Selected appointment</documentation>
+            </parameter>
+            <parameter type="sap.ui.unified/CalendarAppointment[]" name="appointments">
+               <documentation>Selected appointments in case a group appointment is selected</documentation>
+            </parameter>
+            <parameter type="sap.ui.core/boolean" name="multiSelect">
+               <documentation>If set, the appointment was selected using multiple selection (e.g. Shift + single mouse click),meaning more than the current appointment could be selected.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+      <event allowPreventDefault="false" name="intervalSelect">
+         <documentation>Fired if an interval was selected in the header calendar</documentation>
+         <parameters>
+            <parameter type="sap.ui.core/object" name="startDate">
+               <documentation>Start date of the selected interval, as JavaScript date object.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+      <event allowPreventDefault="false" name="rowSelectionChange">
+         <documentation>Fires when row selection is changed</documentation>
+         <parameters>
+            <parameter type="sap.m/PlanningCalendarRow[]" name="rows">
+               <documentation>Array of rows whose selection has changed.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+      <event allowPreventDefault="false" name="startDateChange">
+         <documentation>&lt;code&gt;startDate&lt;/code&gt; was changed while navigating in &lt;code&gt;PlanningCalendar&lt;/code&gt;</documentation>
+      </event>
+      <event allowPreventDefault="false" name="viewChange">
+         <documentation>&lt;code&gt;viewKey&lt;/code&gt; was changed by user interaction</documentation>
+      </event>
+   </events>
+   <aggregations>
+      <aggregation cardinality="0..n" type="sap.m/PlanningCalendarRow" name="rows">
+         <documentation>rows of the &lt;code&gt;PlanningCalendar&lt;/code&gt;</documentation>
+      </aggregation>
+      <aggregation cardinality="0..n" type="sap.m/PlanningCalendarView" name="views">
+         <documentation>Views of the &lt;code&gt;PlanningCalendar&lt;/code&gt;.If not set, three default views are used to allow you to switch between hour, day and month granularity.The default views have the keys defined in &lt;/code&gt;sap.ui.unified.CalendarIntervalType&lt;/code&gt;</documentation>
+      </aggregation>
+      <aggregation cardinality="0..n" type="sap.ui.unified/DateTypeRange" name="specialDates">
+         <documentation>Date range along with a type to visualize special days in the header calendar.If one day is assigned to more than one type, only the first one will be used.</documentation>
+      </aggregation>
+      <aggregation cardinality="0..n" type="sap.ui.core/Control" name="toolbarContent">
+         <documentation>The content of the toolbar.</documentation>
+      </aggregation>
+      <aggregation visibility="hidden" cardinality="0..1" type="sap.m/Table" name="table">
+         <documentation>Hidden, for internal use only.</documentation>
+      </aggregation>
+   </aggregations>
+   <methods>
+      <method type="sap.m/PlanningCalendarRow[]" name="getSelectedRows">
+         <documentation>Returns an array containing the selected rows. If no row is selected, an empty array is returned.</documentation>
+      </method>
+      <method type="sap.m/PlanningCalendar" name="selectAllRows">
+         <documentation>Selects or deselects all &lt;code&gt;PlanningCalendarRows&lt;/code&gt;.&lt;b&gt;Note:&lt;/b&gt; Selection only works if &lt;code&gt;singleSelection&lt;/code&gt; is not set</documentation>
+         <parameters>
+            <parameter type="sap.ui.core/boolean" name="select">
+               <documentation>Indicator showing whether &lt;code&gt;PlanningCalendarRows&lt;/code&gt; should be selected or deselected</documentation>
+            </parameter>
+         </parameters>
+      </method>
+   </methods>
+</control>

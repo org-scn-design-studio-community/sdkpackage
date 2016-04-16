@@ -1,0 +1,12 @@
+
+/**
+ * Generated ZTL Class for PlanningCalendar
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.PlanningCalendar extends org.scn.community.shared.ui5.PlanningCalendar {
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}

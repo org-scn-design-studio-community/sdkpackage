@@ -391,7 +391,7 @@ public class Property {
 		String parametersList = "";
 		
 		String parameterMode = spec.getParameter("opts").getPropertyValue("arrayMode");
-		if(!parameterMode.equals("StringArray")) {
+		if(!parameterMode.equals("StringArray") && !parameterMode.equals("IntArray")) {
 			ParamFullSpec parameter = spec.getParameter("opts").getParameter("arrayDefinition").getParameter(0);
 			String sequence = parameter.getPropertyValue("sequence");
 			

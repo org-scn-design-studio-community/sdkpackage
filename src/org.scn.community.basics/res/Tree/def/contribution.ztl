@@ -7,6 +7,20 @@
 class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 
 	/**
+	 * Sets Allow Expanding Nodes Property
+	 */	
+	void setAllowExpanding( /**Allow Expanding Nodes*/ boolean allowExpanding){*
+		this.allowExpanding = allowExpanding;
+	*}
+
+	/**
+	 * Gets Allow Expanding Nodes Property
+	 */	
+	boolean isAllowExpanding() {*
+		return this.allowExpanding;
+	*}
+
+	/**
 	 * Clean All Nodes from the Array.
 	 */	
 	void cleanAllElements (){*
@@ -40,6 +54,20 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 	 */	
 	String getDefaultImage() {*
 		return this.defaultImage;
+	*}
+
+	/**
+	 * Sets Expand Nodes Property
+	 */	
+	void setExpandNodes( /**Expand Nodes*/ boolean expandNodes){*
+		this.expandNodes = expandNodes;
+	*}
+
+	/**
+	 * Gets Expand Nodes Property
+	 */	
+	boolean isExpandNodes() {*
+		return this.expandNodes;
 	*}
 
 	/**

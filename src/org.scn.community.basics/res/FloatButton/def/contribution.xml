@@ -1,0 +1,149 @@
+
+<component
+	id="FloatButton"
+	title="Float Button"
+	tooltip="Float Button"
+	icon="res/FloatButton/FloatButton.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="commons"
+>
+	
+	<requireJs modes="commons">res/FloatButton/FloatButton</requireJs>
+
+	<cssInclude>res/FloatButton/FloatButton.css</cssInclude>
+	
+	
+	<property
+		id="DCleanAll"
+		type="boolean"
+		title="Clean All Nodes"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DDefaultImage"
+		type="Url"
+		title="Url For Default Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DElementsContent"
+		type="String"
+		title="Buttons"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DImageSize"
+		type="String"
+		title="Size Of The Image"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DPressedButtonKey"
+		type="String"
+		title="Technical Property For Pressed Button Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DPressedItemKey"
+		type="String"
+		title="Technical Property For Pressed Item Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DSelectedKeys"
+		type="String"
+		title="Technical Property For Selected Keys"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="DSelectionType"
+		type="String"
+		title="Selection Type"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DWithImages"
+		type="boolean"
+		title="Use Images"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="onButtonPressed"
+		type="ScriptText"
+		title="Event For On Button Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onItemPressed"
+		type="ScriptText"
+		title="Event For On Item Pressed"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelected"
+		type="ScriptText"
+		title="Event For On Selection Changed"
+		group="Events"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">80</defaultValue>
+		<defaultValue property="HEIGHT">66</defaultValue>
+		
+		<defaultValue property="DCleanAll"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DDefaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="DElementsContent"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DImageSize"><![CDATA[Size_16px]]></defaultValue>
+		<defaultValue property="DPressedButtonKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DPressedItemKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectedKeys"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="DSelectionType"><![CDATA[Single]]></defaultValue>
+		<defaultValue property="DWithImages"><![CDATA[]]></defaultValue>
+		<defaultValue property="onButtonPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onItemPressed"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelected"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>

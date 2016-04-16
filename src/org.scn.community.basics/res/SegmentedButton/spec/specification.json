@@ -160,7 +160,7 @@
 			"choiceType": "ImageSize",
 			"ztlFunction": "",
 			"desc" : "Size Of The Image",
-			"cat" : "Unsorted",
+			"cat" : "Display-Image",
 			"tooltip" : "Size Of The Image",
 			"apsControl" : "combobox",
 			"options":[
@@ -188,8 +188,8 @@
 			"choiceType": "SelectionType",
 			"ztlFunction": "",
 			"desc" : "Selection Type",
-			"cat" : "Unsorted",
-			"tooltip" : "Selection Type SINGLE | MULTIPLE",
+			"cat" : "Interaction",
+			"tooltip" : "Selection Type Single | Multiple | Single Toggle",
 			"apsControl" : "combobox",
 			"options":[
 				{
@@ -199,8 +199,11 @@
 				{
 					"key" : "Multiple",
 					"text" : "Multiple"
+				},
+				{
+					"key" : "SingleToggle",
+					"text" : "Single Toggle"
 				}
-				
             ],
 			"noAps" : false,
 			"noZtl" : false

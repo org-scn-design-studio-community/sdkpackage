@@ -1,0 +1,16 @@
+{
+	"title": "Float Button",
+	"description": "Float Button",
+	"icon": "FloatButton.png",
+	"topics": 
+	[
+		{
+			"title" : "Float Button",
+			"content" : "Float Button is displaying defined buttons in a float layout, can be used for quick filter"
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

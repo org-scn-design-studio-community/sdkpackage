@@ -132,7 +132,7 @@ public class ParamFullSpec {
 			options = getParameter("opts");
 		}
 		String ztlType = options.getPropertyValue("ztlType");
-		if(ztlType != null && ztlType.contains("Array") && !ztlType.equals("StringArray")) {
+		if(ztlType != null && ztlType.contains("Array") && !ztlType.equals("StringArray") && !ztlType.equals("IntArray")) {
 			return true;
 		}
 		
@@ -603,7 +603,7 @@ public class ParamFullSpec {
 		
 		
 		template = template.replace("%PROPERTY_NAME%", this.getName());
-		template = template.replace("%PROPERTY_DESCRIPTION%", this.getPropertyValue("desc") + (typeZtlChild.equals("StringArray")?" [Array]":""));
+		template = template.replace("%PROPERTY_DESCRIPTION%", this.getPropertyValue("desc") + (typeZtlChild.equals("StringArray")?" [Array]":"") + (typeZtlChild.equals("IntArray")?" [Array]":""));
 		return template;
 	}
 
@@ -658,7 +658,8 @@ public class ParamFullSpec {
 		if(typeChild.equals("String") 
 				|| typeChild.equals("boolean") || typeChild.equals("int") || typeChild.equals("float") 
 				|| typeChild.equals("Url") || typeChild.equals("Color") || typeChild.equals("Choice") 
-				|| typeChild.equals("StringArray")) {
+				|| typeChild.equals("StringArray")
+				|| typeChild.equals("IntArray")) {
 			// those we accept in single array
 		} else {
 			return true;

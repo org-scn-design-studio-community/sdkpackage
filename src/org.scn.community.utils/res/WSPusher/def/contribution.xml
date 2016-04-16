@@ -1,7 +1,7 @@
 
 <component
 	id="WSPusher"
-	title="WebSocket Implementation 0.X"
+	title="WebSocket Implementation"
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"

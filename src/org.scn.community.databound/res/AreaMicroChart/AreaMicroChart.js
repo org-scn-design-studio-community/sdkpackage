@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
+//%DEFINE-START%
 var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
 define([
 	"sap/designstudio/sdk/component",
@@ -33,7 +33,7 @@ define([
 		core,
 		basics
 	) {
-
+//%DEFINE-END%
 var myComponentData = spec;
 
 AreaMicroChart = {
@@ -121,11 +121,17 @@ AreaMicroChart = {
 
 		that._specialDataModel = [];
 
+		options.keepParent = true;
 		var l_Chart = org_scn_community_unified.getObjectArrayContent(that, "chart", options);
+		options.keepParent = true;
 		var l_InnerMaxThreshold = org_scn_community_unified.getObjectArrayContent(that, "innerMaxThreshold", options);
+		options.keepParent = true;
 		var l_InnerMinThreshold = org_scn_community_unified.getObjectArrayContent(that, "innerMinThreshold", options);
+		options.keepParent = true;
 		var l_MaxThreshold = org_scn_community_unified.getObjectArrayContent(that, "maxThreshold", options);
+		options.keepParent = true;
 		var l_MinThreshold = org_scn_community_unified.getObjectArrayContent(that, "minThreshold", options);
+		options.keepParent = true;
 		var l_Target = org_scn_community_unified.getObjectArrayContent(that, "target", options);
 
 		var l_FirstXLabel = org_scn_community_unified.getObjectSingleContent(that, "firstXLabel", options);
@@ -212,6 +218,9 @@ AreaMicroChart = {
 			that._specialDataModel.push(customData);
 		}
 
+		if(org_scn_community_unified.adjustAreaMicroChartModel) {
+			that._specialDataModel = org_scn_community_unified.adjustAreaMicroChartModel(that._specialDataModel, that);
+		}
 		that._oModel.setData(that._specialDataModel);
 
 		if(that._oResize) {that._oResize(true, true);}

@@ -1,0 +1,80 @@
+{
+
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Specifies the width of the control.",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"expanded" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Expanded",
+			"cat" : "Display",
+			"tooltip" : "Specifies if the control is in expanded or collapsed mode.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"items" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "NavigationListItem";
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Items",
+			"cat" : "Content-Items",
+			"tooltip" : "Association to controls / IDs, which label this control (see WAI-ARIA attribute aria-labelledby).",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"items": {
+					"type": "Array",
+			        "sequence": "key,expanded,hasExpander,icon",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"expanded": {
+					  "desc": "Expanded",
+					  "type": "boolean"
+					},
+					"hasExpander": {
+					  "desc": "Has Expander",
+					  "type": "boolean"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

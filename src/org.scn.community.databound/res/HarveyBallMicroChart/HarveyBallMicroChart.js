@@ -16,7 +16,7 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-
+//%DEFINE-START%
 var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
 define([
 	"sap/designstudio/sdk/component",
@@ -33,7 +33,7 @@ define([
 		core,
 		basics
 	) {
-
+//%DEFINE-END%
 var myComponentData = spec;
 
 HarveyBallMicroChart = {
@@ -184,6 +184,9 @@ HarveyBallMicroChart = {
 			that._specialDataModel.push(customData);
 		}
 
+		if(org_scn_community_unified.adjustHarveyBallMicroChartModel) {
+			that._specialDataModel = org_scn_community_unified.adjustHarveyBallMicroChartModel(that._specialDataModel, that);
+		}
 		that._oModel.setData(that._specialDataModel);
 
 		if(that._oResize) {that._oResize(true, true);}

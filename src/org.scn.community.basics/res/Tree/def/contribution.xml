@@ -17,6 +17,15 @@
 	
 	
 	<property
+		id="allowExpanding"
+		type="boolean"
+		title="Allow Expanding Nodes"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="cleanAll"
 		type="boolean"
 		title="Clean All Nodes"
@@ -29,6 +38,15 @@
 		id="defaultImage"
 		type="Url"
 		title="Url For Default Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="expandNodes"
+		type="boolean"
+		title="Expand Nodes"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -96,8 +114,10 @@
 		<defaultValue property="WIDTH">230</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="allowExpanding"><![CDATA[true]]></defaultValue>
 		<defaultValue property="cleanAll"><![CDATA[false]]></defaultValue>
 		<defaultValue property="defaultImage"><![CDATA[]]></defaultValue>
+		<defaultValue property="expandNodes"><![CDATA[false]]></defaultValue>
 		<defaultValue property="expandedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="nodesContent"><![CDATA[[]]]></defaultValue>
 		<defaultValue property="onFirstExpand"><![CDATA[]]></defaultValue>

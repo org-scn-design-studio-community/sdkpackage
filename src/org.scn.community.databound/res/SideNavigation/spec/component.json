@@ -1,0 +1,30 @@
+{
+	"id": "SideNavigation",
+	"title": "Side Navigation",
+	"tooltip": "Side Navigation - Component for navigation on the side",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "databound",
+	"ui5package": "sap.tnt",
+	"extension": "ui5.SideNavigation",
+	"extends1ControlDs": "SideNavigation.ds",
+	"extends2Control": "SideNavigation",
+	"extends3ControlEvents": "SideNavigation.events",
+	"generatedJsFile":"true",
+	"modes":"commons m",
+
+	"databound": false,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "32"
+}

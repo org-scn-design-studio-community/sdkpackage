@@ -358,7 +358,7 @@ define(["../os/numberformat/numberformatter"], function() {
 	 * Returns date object based on techncial date string, format YYYYMMDD
 	 */
 	org_scn_community_basics.getDateValue = function (inputDate) {
-		if(inputDate == undefined || inputDate.length != 8) {
+		if(inputDate == undefined || (inputDate.length != 8 && inputDate.length != 12)) {
 			inputDate = new Date();
 			inputDate = inputDate.format(dateFormat.masks.technical);
 		}
@@ -372,9 +372,26 @@ define(["../os/numberformat/numberformatter"], function() {
 		if(day.indexOf(0) == "0") {
 			day = day.substring(1);
 		}
-		
+
 		var date = new Date(year, month - 1, day);
+		if(inputDate.length == 12) {
+			var hour = inputDate.substring(8,10);
+			if(hour.indexOf(0) == "0") {
+				hour = hour.substring(1);
+			}
+			var minute = inputDate.substring(10,12);
+			if(minute.indexOf(0) == "0") {
+				minute = minute.substring(1);
+			}
+			
+			date = new Date(year, month - 1, day, hour, minute);
+		} else {
+			date = new Date(year, month - 1, day);
+		}
+		
+		
 		date.formatted = date.format(dateFormat.masks.technical);
+		date.timestamp = date.format(dateFormat.masks.timestamp);
 		
 		return date;
 	};

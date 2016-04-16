@@ -1,0 +1,63 @@
+{
+
+   "itemSelectedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Item Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "ItemSelected Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+	"onItemSelected": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Item Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on The selected item.",
+            "noAps":true,
+            "noZtl":true
+        }
+    },
+   "fixedItemSelectedKey" : {
+   		"template": "EventKey",
+		"type" : "String",
+		"origType": "EventKey",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Fixed Item Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "Fixed ItemSelected Key",
+			"apsControl" : "text",
+			"noAps":true,	
+			"noZtl":false
+		}
+	},
+   	"onFixedItemSelected": {
+		"template": "ScriptText",
+        "type": "ScriptText",
+        "value": "",
+        "visible": true,
+        "opts": {
+            "desc": "On Fixed Item Selected",
+            "cat": "Events",
+            "tooltip": "Event triggered on The selected fixed item.",
+            "noAps":true,
+            "noZtl":true
+        }
+    }
+}

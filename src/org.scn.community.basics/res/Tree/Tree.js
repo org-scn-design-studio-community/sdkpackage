@@ -87,6 +87,9 @@ Tree = {
 			that._oNodes = {};
 			that._oNodesArray = [];
 			
+			that._oldExpandNodes = undefined;
+			that._oldAllExp = undefined;
+			
 			that.setCleanAll(false);
 			that.fireDesignStudioPropertiesChanged(["cleanAll"]);
 		}
@@ -108,6 +111,9 @@ Tree = {
 			}
 		}
 		
+		var expandNodes = that.getExpandNodes();
+		var allExp = that.getAllowExpanding();
+
 		for (lNodeInd in that._oNodesArray) {
 			var lNode = that._oNodesArray[lNodeInd];
 			if(lNode._Placed != true) {
@@ -124,14 +130,31 @@ Tree = {
 				
 				lNode._Placed = true;
 			} else {
-				// need to code update?
+				
+			}
+			
+			if(that._oldExpandNodes != expandNodes) {
+				if(lNode._isLeaf == false) {
+					lNode.setExpanded(expandNodes);	
+				}
+
+				if(expandNodes && lNode._isLeaf == false) {
+					lNode._childrenRequested = true;
+				}
+			}
+			
+			if(that._oldAllExp != allExp && lNode._isLeaf == false) {
+				lNode.setHasExpander(allExp);
 			}
 		}
+
+		that._oldExpandNodes = expandNodes;
+		that._oldAllExp = allExp;
 		
 		// clean up "loading" node
 		for (lNodeInd in that._oNodesArray) {
 			var lNode = that._oNodesArray[lNodeInd];
-			if(lNode._childrenRequested) {
+			if(lNode._childrenRequested && lNode._childrenRequestedFinished == undefined) {
 				var nodes = lNode.getNodes();
 				lNode.removeNode(nodes[0]);
 				nodes[0].destroy();
@@ -166,11 +189,17 @@ Tree = {
 				iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getDefaultImage(), iImageUrl, "TreeFolder.gif");
 			}
 		}
-
+		
+		var expandNodes = that.getExpandNodes();
+		
+		if(iNodeText == undefined || iNodeText.length == 0) {
+			iNodeText = iNodeKey;
+		}
+		
 		var lNode = new sap.ui.commons.TreeNode( 
 				{text: iNodeText, 
 				icon: iImageUrl, 
-				expanded: false});
+				expanded: expandNodes});
 		
 		lNode._Key = iNodeKey;
 		lNode._ParentKey = iParentKey;
@@ -183,6 +212,12 @@ Tree = {
 			lNode.addNode(oLoadingNode);
 
 			lNode.attachToggleOpenState(function(event) {
+				if(that.getAllowExpanding() == false) {
+	                event.cancelBubble();
+	                event.preventDefault();
+
+					return;
+				}
 				if(lNode._childrenRequested == undefined) {
 					that.setExpandedKey(lNode._Key);
 					that.setRoundtrip(that.getRoundtrip() + 1);
@@ -192,7 +227,14 @@ Tree = {
 					that.fireDesignStudioPropertiesChangedAndEvent(["roundtrip", "expandedKey"], "onFirstExpand");
 				}
 			});
+			
+			lNode._isLeaf = false;
 		} else {
+			lNode.setHasExpander(false);
+			lNode._isLeaf = true;
+		}
+		
+		if(that.getAllowExpanding() == false) {
 			lNode.setHasExpander(false);
 		}
 		

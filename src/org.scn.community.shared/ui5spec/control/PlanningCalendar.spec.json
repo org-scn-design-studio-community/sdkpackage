@@ -1,0 +1,310 @@
+{
+
+	"startDate" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Start Date",
+			"cat" : "Display",
+			"tooltip" : "Start date of the row, as JavaScript date object. As a default the current date is used.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"viewKey" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Day",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "-",
+			"ztlFunction": "",
+			"desc" : "View Type",
+			"cat" : "Display",
+			"tooltip" : "View Type",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Hour",
+					"text" : "Hour"
+				},
+				{
+					"key" : "Day",
+					"text" : "Day"
+				},
+				{
+					"key" : "Month",
+					"text" : "Month"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"contentWidth" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Width",
+			"cat" : "Display",
+			"tooltip" : "Width of the ",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"contentHeight" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 0,
+		"visible": false,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Height",
+			"cat" : "Display",
+			"tooltip" : "Height of the ",
+			"apsControl" : "spinner",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"showIntervalHeaders" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Interval Headers",
+			"cat" : "Display",
+			"tooltip" : "If set, interval headers are shown even if no ",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"showRowHeaders" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Show Row Headers",
+			"cat" : "Display",
+			"tooltip" : "If set, headers of the ",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"noDataText" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "No Data",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "No Data Text",
+			"cat" : "Display",
+			"tooltip" : "This text is displayed when no rows are assigned.",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"rows" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "PlanningCalendarRow",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Rows",
+			"cat" : "Content-Rows",
+			"tooltip" : "Rows to be displayed",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"rows": {
+					"type": "Array",
+			        "sequence": "key,icon,selected,text,title",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					},
+					"selected": {
+					  "desc": "Selected",
+					  "type": "boolean"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"title": {
+					  "desc": "Title",
+					  "type": "String"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"appointments" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "CalendarAppointment",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Appointments",
+			"cat" : "Content-Appointments",
+			"tooltip" : "Appointments to be displayed in the top of the intervals. The ",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"appointments": {
+					"type": "Array",
+			        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"rowKey": {
+			          "desc": "Unique Row Key",
+			          "type": "String"
+					},
+					"start": {
+					  "desc": "Start Date",
+					  "type": "String"
+					},
+					"end": {
+					  "desc": "End Date",
+					  "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"title": {
+					  "desc": "Title",
+					  "type": "String"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					},
+					"selected": {
+					  "desc": "Selected",
+					  "type": "boolean"
+					},
+					"tentative": {
+					  "desc": "Tentative",
+					  "type": "boolean"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"intervalHeaders" : {
+		"template" : "ObjectArray",
+		"type" : "String",
+		"origType": "CalendarAppointment",
+		"value" : "[]",
+		"visible": true,
+
+		"opts" : {
+			"ztlType": "SingleArray",
+			"ztlFunction": "",
+
+			"desc" : "Interval Headers",
+			"cat" : "Content-Interval Headers",
+			"tooltip" : "Interval Headers to be displayed in the top of the intervals. The ",
+
+			"apsControl" : "array",
+			"arrayMode": "OneLevelArray",
+			
+			"arrayDefinition": {
+				"intervalHeaders": {
+					"type": "Array",
+			        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
+			        
+			        "key": {
+			          "desc": "Unique Property Key",
+			          "type": "String"
+					},
+					"rowKey": {
+			          "desc": "Unique Row Key",
+			          "type": "String"
+					},
+					"start": {
+					  "desc": "Start Date",
+					  "type": "String"
+					},
+					"end": {
+					  "desc": "End Date",
+					  "type": "String"
+					},
+					"text": {
+					  "desc": "Text",
+					  "type": "String"
+					},
+					"title": {
+					  "desc": "Title",
+					  "type": "String"
+					},
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String"
+					},
+					"selected": {
+					  "desc": "Selected",
+					  "type": "boolean"
+					},
+					"tentative": {
+					  "desc": "Tentative",
+					  "type": "boolean"
+					}
+		      	}
+	      	},
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

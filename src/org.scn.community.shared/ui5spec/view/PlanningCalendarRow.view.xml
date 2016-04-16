@@ -1,0 +1,42 @@
+<core:View
+  xmlns="sap.package"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.%COMP-package%.%COMP-id%.Controller"
+  >
+  
+  <l:VerticalLayout
+    width="100%" content="{/}">
+    <l:content
+		width="{width}"
+	>
+		<PlanningCalendarRow
+				appointments="{appointments}"
+				icon="{icon}"
+				key="{key}"
+				nonWorkingDays="{nonWorkingDays}"
+				nonWorkingHours="{nonWorkingHours}"
+				selected="{selected}"
+				text="{text}"
+				title="{title}"
+		
+		>
+	     	
+			
+		
+		
+		
+		
+		
+		
+		
+		
+
+		</PlanningCalendarRow>
+	</l:content>
+  </l:VerticalLayout> 
+</core:View>

@@ -1,0 +1,22 @@
+{
+	"id": "FloatButton",
+	"title": "Float Button",
+	"tooltip": "Float Button",
+	"handlerType": "sapui5",
+	"parentControl": "sap.ui.layout.ResponsiveFlowLayout",
+	"group": "ScnCommunityBasics",
+	"package": "basics",
+	"extension": "Component",
+	"databound": false,
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "80",
+	"height": "66"
+}

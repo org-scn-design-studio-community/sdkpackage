@@ -16,8 +16,26 @@
  * See the License for the specific language governing permissions and 
  * limitations under the License. 
  */
-jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
-sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.WSPusher", {
+ 
+ //%DEFINE-START%
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+define([
+	"sap/designstudio/sdk/component",
+	"../../../"+scn_pkg+"shared/modules/component.core",
+	"../../../"+scn_pkg+"shared/modules/component.basics"
+	
+	],
+	function(
+		Component,
+		core,
+		basics
+	) {
+//%DEFINE-END%
+
+var myComponentData = {};
+myComponentData.fullComponentName = "org.scn.community.utils.WSPusher";
+
+WSPusher = {
 
 	metadata: {
         properties: {
@@ -28,11 +46,11 @@ sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.WSPusher"
         }
 	},
 
+	renderer: {},
+	
 	initDesignStudio: function() {
 		var that = this;
 	},
-	
-	renderer: {},
 	
 	afterDesignStudioUpdate : function() {
 		var that = this;
@@ -70,5 +88,11 @@ sap.zen.commons.layout.AbsoluteLayout.extend ("org.scn.community.utils.WSPusher"
 			that.fireDesignStudioPropertiesChanged(["send"]);
 		}
 	}
+	/* COMPONENT SPECIFIC CODE - END METHODS*/
+};
 
+//%INIT-START%
+myComponentData.instance = WSPusher;
+jQuery.sap.require("sap.zen.commons.layout.AbsoluteLayout");
+sap.zen.commons.layout.AbsoluteLayout.extend(myComponentData.fullComponentName, myComponentData.instance);
 });

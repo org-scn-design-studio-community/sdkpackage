@@ -21,6 +21,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Donut\def\contribution.xml ^
 ..\res\EmbeddedFrame\def\contribution.xml ^
 ..\res\EmbeddedMedia\def\contribution.xml ^
+..\res\FloatButton\def\contribution.xml ^
 ..\res\FallbackPicture\def\contribution.xml ^
 ..\res\FioriAppHeader\def\contribution.xml ^
 ..\res\FioriBar\def\contribution.xml ^
@@ -89,6 +90,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Donut\def\contribution.ztl ^
 ..\res\EmbeddedFrame\def\contribution.ztl ^
 ..\res\EmbeddedMedia\def\contribution.ztl ^
+..\res\FloatButton\def\contribution.ztl ^
 ..\res\FallbackPicture\def\contribution.ztl ^
 ..\res\FioriAppHeader\def\contribution.ztl ^
 ..\res\FioriBar\def\contribution.ztl ^

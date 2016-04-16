@@ -79,7 +79,13 @@ DateRangeScroller = {
 				that.setDStartDate(startDate);
 				that.setDEndDate(endDate);
 				
-				that.fireDesignStudioPropertiesChangedAndEvent(["DStartDate", "DEndDate"], "onChange");
+				if(that._onlyDateUpdate) {
+					that.fireDesignStudioPropertiesChanged(["DStartDate", "DEndDate"]);
+				} else {
+					that.fireDesignStudioPropertiesChangedAndEvent(["DStartDate", "DEndDate"], "onChange");	
+				}
+				
+				that._onlyDateUpdate = false;
 			}
 		});
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
@@ -172,6 +178,9 @@ DateRangeScroller = {
 					that.setDateRangeCustom(initDate, specialDuration);
 				}
 			}
+			
+			that._onlyDateUpdate = true;
+			that.fireChange();
 		}
 	},
 	

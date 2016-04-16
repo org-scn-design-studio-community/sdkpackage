@@ -323,7 +323,7 @@ SegmentedButton = {
 							tooltip: iElementText,
 							icon: iImageUrl
 						});	
-					} else if (lDSelectionType == "Multiple") {
+					} else if (lDSelectionType == "Multiple" || lDSelectionType == "SingleToggle") {
 						// toggle button for multiple selection
 						lElement = new sap.ui.commons.ToggleButton({
 							id: that.getId() + "-m-" +  iElementKey,
@@ -343,6 +343,19 @@ SegmentedButton = {
 
 				var lDSelectionType = that.getDSelectionType();
 				if(lDSelectionType == "Single") {
+					that.setDPressedButtonKey(lElementId);
+
+					that.fireDesignStudioPropertiesChangedAndEvent(["DPressedButtonKey"], "onButtonPressed");
+				} else if (lDSelectionType == "SingleToggle") {
+					var buttons = that._oFloatButton.getContent();
+					for(var butI in buttons) {
+						var butO = buttons[butI];
+						
+						if(lElementId != butO._Key) {
+							butO.setPressed(false);
+						}
+					}
+
 					that.setDPressedButtonKey(lElementId);
 
 					that.fireDesignStudioPropertiesChangedAndEvent(["DPressedButtonKey"], "onButtonPressed");

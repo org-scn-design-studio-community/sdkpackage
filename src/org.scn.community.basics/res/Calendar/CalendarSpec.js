@@ -364,7 +364,7 @@ function() {
 
 	spec.specComp = 
 {
-  "databound": true,
+  "databound": false,
   "extension": "Component",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",

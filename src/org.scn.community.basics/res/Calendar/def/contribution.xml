@@ -7,7 +7,7 @@
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
-	databound="true"
+	databound="false"
 	modes="commons"
 >
 	

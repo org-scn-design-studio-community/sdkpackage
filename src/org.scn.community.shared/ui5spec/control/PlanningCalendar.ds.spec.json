@@ -1,0 +1,143 @@
+{
+
+	"useContentWidth":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Width'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Width' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useContentHeight":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Content Height'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Content Height' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useRows":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Rows'",
+			"cat" : "Content-Rows",
+			"tooltip" : "If checked, the property 'Rows' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useAppointments":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Appointments'",
+			"cat" : "Content-Rows",
+			"tooltip" : "If checked, the property 'Appointments' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"useIntervalHeaders":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Interval Headers'",
+			"cat" : "Content-Rows",
+			"tooltip" : "If checked, the property 'Interval Headers' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"dataCellListRows":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Rows Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Rows Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"dataCellListAppointments":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Appointments Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Appointments Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    },
+	"dataCellListIntervalHeaders":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Interval Headers Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Interval Headers Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }    
+}

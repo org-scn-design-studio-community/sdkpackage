@@ -1,0 +1,16 @@
+{
+	"title": "Side Navigation",
+	"description": "Side Navigation",
+	"icon": "SideNavigation.png",
+	"topics": 
+	[
+		{
+			"title" : "Side Navigation",
+			"content" : "The SideNavigation control is a container, which consists of flexible and fixed parts on top of each other. The flexible part adapts its size to the fixed one. The flexible part has a scrollbar when the content is larger than the available space. Whenever the height of the whole control is less than 256 pixels, the scrollbar becomes joint for the two parts."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

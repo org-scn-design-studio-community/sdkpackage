@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<control xmlns="http://www.sap.com/sap.ui.library.xsd">
+   <name>SideNavigation</name>
+   <derived />
+   <author>SAP SE</author>
+   <documentation>The SideNavigation control is a container, which consists of flexible and fixed parts on top of each other. The flexible part adapts its size to the fixed one.The flexible part has a scrollbar when the content is larger than the available space.Whenever the height of the whole control is less than 256 pixels, the scrollbar becomes joint for the two parts.&lt;b&gt;Note:&lt;/b&gt; In order for the SideNavigation to stretch properly, its parent layout control should only be the sap.tnt.ToolLayout.</documentation>
+   <since>1.34</since>
+   <baseType>sap.ui.core/Control</baseType>
+   <properties>
+      <property group="Misc" defaultValue="true" type="sap.ui.core/boolean" name="expanded">
+         <documentation>Specifies if the control is expanded.</documentation>
+      </property>
+   </properties>
+   <events>
+      <event allowPreventDefault="false" name="itemSelect">
+         <documentation>Fired when an item is selected.</documentation>
+         <parameters>
+            <parameter type="sap.ui.core/Item" name="item">
+               <documentation>The selected item.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+      <event allowPreventDefault="false" name="fixedItemSelect">
+         <documentation>Fired when a fixed item is selected.</documentation>
+         <parameters>
+            <parameter type="sap.ui.core/Item" name="fixedItem">
+               <documentation>The selected fixed item.</documentation>
+            </parameter>
+         </parameters>
+      </event>
+   </events>
+   <aggregations default="item">
+      <aggregation bindable="bindable" cardinality="0..1" type="sap.tnt/NavigationList" name="item">
+         <documentation>Defines the content inside the flexible part.</documentation>
+      </aggregation>
+      <aggregation cardinality="0..1" type="sap.tnt/NavigationList" name="fixedItem">
+         <documentation>Defines the content inside the fixed part.</documentation>
+      </aggregation>
+      <aggregation cardinality="0..1" type="sap.tnt/NavigationList" name="footer">
+         <documentation>Defines the content inside the footer.</documentation>
+      </aggregation>
+      <aggregation visibility="hidden" cardinality="0..1" type="sap.ui.core/Icon" name="_topArrowControl">
+         <documentation>The top arrow, used for scrolling throw items when SideNavigation is collapsed.</documentation>
+      </aggregation>
+      <aggregation visibility="hidden" cardinality="0..1" type="sap.ui.core/Icon" name="_bottomArrowControl">
+         <documentation>The bottom arrow, used for scrolling throw items when SideNavigation is collapsed.</documentation>
+      </aggregation>
+   </aggregations>
+</control>

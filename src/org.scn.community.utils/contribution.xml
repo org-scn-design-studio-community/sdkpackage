@@ -193,7 +193,7 @@
 
 <component
 	id="Array"
-	title="Array Utility 0.X"
+	title="Array Utility"
 	icon="res/Array/Array.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
@@ -224,7 +224,7 @@
 
 <component
 	id="ClientInformation"
-	title="Client Information 0.X"
+	title="Client Information"
 	tooltip="Returns on first roundtrip some information from web client (browser)"
 	icon="res/ClientInformation/ClientInformation.png"
 	handlerType="sapui5"
@@ -337,7 +337,7 @@
 </component>
 <component
 	id="Collection"
-	title="Collection Utility 0.X"
+	title="Collection Utility"
 	icon="res/Collection/Collection.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
@@ -603,7 +603,7 @@
 </component>
 <component
 	id="ComponentManager"
-	title="Component Manager 0.X"
+	title="Component Manager"
 	tooltip="Allows managing and listing of components"
 	icon="res/ComponentManager/ComponentManager.png"
 	handlerType="div"
@@ -633,7 +633,7 @@
 </component>
 <component
 	id="CustomCssCollector"
-	title="Custom Css Collector 0.X"
+	title="Custom Css Collector"
 	tooltip="Allows to add Custom Css Files Dynamically"
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"
@@ -755,7 +755,7 @@
 
 <component
 	id="Math"
-	title="Math Utility 0.X"
+	title="Math Utility"
 	icon="res/Math/Math.png"
 	handlerType="div"
 	group="TECHNICAL_COMPONENTS"
@@ -1251,7 +1251,7 @@
 
 	<component
 		id="RealDate"
-		title="Real Date 0.X"
+		title="Real Date"
 		icon="res/RealDate/RealDate.png"
 		handlerType="div"
 		group="TECHNICAL_COMPONENTS"
@@ -1287,7 +1287,7 @@
 
 	<component
 		id="SimpleDate"
-		title="Simple Date 0.X"
+		title="Simple Date"
 		icon="res/SimpleDate/SimpleDate.png"
 		handlerType="div"
 		group="TECHNICAL_COMPONENTS"
@@ -1323,7 +1323,7 @@
 
 <component
 	id="WSPusher"
-	title="WebSocket Implementation 0.X"
+	title="WebSocket Implementation"
 	tooltip="Opens a WebSocket connection to a specified web server"
 	icon="res/WSPusher/WSPusher.png"
 	handlerType="sapui5"

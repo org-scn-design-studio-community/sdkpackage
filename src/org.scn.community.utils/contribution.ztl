@@ -1552,19 +1552,26 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		var global = this.getGlobal();
 		var a = [];
 		for (var key in global) {
+			if(key == "CONTEXT_MENU" || key == "TEXT_POOL" || key.indexOf("GLOBAL_SCRIPT") == 0) {
+				continue;
+			}
 			var component = global[key];
-			if(component.getOwner && component.getTopMargin && key != "me") {
-				var owner = component.getOwner();
-				var type = "Unknown";
-				if(owner.getItemType) {
-					type = owner.getItemType();
+			try{
+				if(component.getOwner && component.getTopMargin && key != "me") {
+					var owner = component.getOwner();
+					var type = "Unknown";
+					if(owner.getItemType) {
+						type = owner.getItemType();
+					}
+					if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
+						a.push({
+							key : key,
+							type : type
+						});				
+					} 
 				}
-				if(type != "CONTEXT_MENU_COMPONENT" && type != "org_scn_community_utils_ComponentLayouter"){
-					a.push({
-						key : key,
-						type : type
-					});				
-				} 
+			}catch(e){
+				APPLICATION.log("Error trapped: " + e);
 			}
 		}
 		return JSON.stringify(a);
@@ -1578,10 +1585,13 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 		};
 		var global = this.getGlobal();
 		for (var key in global) {
+			if(key == "CONTEXT_MENU" || key == "TEXT_POOL" || key.indexOf("GLOBAL_SCRIPT") == 0) {
+				continue;
+			}
 			var component = global[key];
 			APPLICATION.log("Examining " + key);
-			if(component.getOwner && component.getTopMargin && key != "me") {
-				try{
+			try{
+				if(component.getOwner && component.getTopMargin && key != "me") {
 					var visible = false;
 					if(component.isVisible) visible = component.isVisible();
 					// Eh, save for a rainy day.
@@ -1610,9 +1620,9 @@ class org.scn.community.utils.ComponentLayouter extends org.scn.community.shared
 						//owner : global[key].getOwner(),
 						//properties : global[key]
 					});
-				}catch(e){
-					APPLICATION.log("Error trapped: " + e);
 				}
+			}catch(e){
+				APPLICATION.log("Error trapped: " + e);
 			}
 		}
 		return JSON.stringify(payload);
@@ -2359,6 +2369,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Fish Eye 2.0 component*/
 	org.scn.community.basics.FishEye returnAsScnFishEye (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Float Button component*/
+	org.scn.community.basics.FloatButton returnAsScnFloatButton (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Gauge (Speedometer) 2.0 component*/
 	org.scn.community.basics.Gauge returnAsScnGauge (Component inputComponent) {* return inputComponent; *}
 
@@ -2470,6 +2483,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Area Micro Chart 2.0 component*/
 	org.scn.community.databound.AreaMicroChart returnAsScnAreaMicroChart (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Bread Crumbs component*/
+	org.scn.community.databound.Breadcrumbs returnAsScnBreadcrumbs (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Bullet Chart 2.0 component*/
 	org.scn.community.databound.BulletChart returnAsScnBulletChart (Component inputComponent) {* return inputComponent; *}
 
@@ -2530,6 +2546,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Pictogram component*/
 	org.scn.community.databound.Pictogram returnAsScnPictogram (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Planning Calendar component*/
+	org.scn.community.databound.PlanningCalendar returnAsScnPlanningCalendar (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Process Flow 2.0 component*/
 	org.scn.community.databound.ProcessFlow returnAsScnProcessFlow (Component inputComponent) {* return inputComponent; *}
 
@@ -2553,6 +2572,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Scatter Plot Chart 2.0 component*/
 	org.scn.community.databound.ScatterPlot returnAsScnScatterPlot (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Side Navigation component*/
+	org.scn.community.databound.SideNavigation returnAsScnSideNavigation (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Slider 2.0 component*/
 	org.scn.community.databound.Slider returnAsScnSlider (Component inputComponent) {* return inputComponent; *}
@@ -2617,22 +2639,22 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to (PROTOTYPE!) Sap M List component*/
 	org.scn.community.prototypes.SapMList returnAsScnSapMList (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Array Utility 0.X component*/
+	/**Cast to Array Utility component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Client Information 0.X component*/
+	/**Cast to Client Information component*/
 	org.scn.community.utils.ClientInformation returnAsScnClientInformation (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Collection Utility 0.X component*/
+	/**Cast to Collection Utility component*/
 	org.scn.community.utils.Collection returnAsScnCollection (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Component Layouter component*/
 	org.scn.community.utils.ComponentLayouter returnAsScnComponentLayouter (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Component Manager 0.X component*/
+	/**Cast to Component Manager component*/
 	org.scn.community.utils.ComponentManager returnAsScnComponentManager (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Custom Css Collector 0.X component*/
+	/**Cast to Custom Css Collector component*/
 	org.scn.community.utils.CustomCssCollector returnAsScnCustomCssCollector (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Iterator component*/
@@ -2650,7 +2672,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Json Object component*/
 	org.scn.community.utils.JsonObject returnAsScnJsonObject (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Math Utility 0.X component*/
+	/**Cast to Math Utility component*/
 	org.scn.community.utils.Math returnAsScnMath (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Open Url Inplace 0.X component*/
@@ -2665,13 +2687,13 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Post Response Parser 2.0 component*/
 	org.scn.community.utils.PostResponseParser returnAsScnPostResponseParser (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Real Date 0.X component*/
+	/**Cast to Real Date component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Simple Date 0.X component*/
+	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to WebSocket Implementation 0.X component*/
+	/**Cast to WebSocket Implementation component*/
 	org.scn.community.utils.WSPusher returnAsScnWSPusher (Component inputComponent) {* return inputComponent; *}
 
 
@@ -6758,13 +6780,17 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		var year = parseInt(internalDate.substring(0,4));
 		
 		var monthString = internalDate.substring(4,6);
-//		monthString = monthString.replace("0", "");
+		if(monthString.indexOf("0") == 0) {
+			monthString = monthString.substring(1);
+		}
 		var month = parseInt(monthString);
 		
 		var dayString = internalDate.substring(6,8);
-//		dayString = dayString.replace("0", "");
+		if(dayString.indexOf("0") == 0) {
+			dayString = dayString.substring(1);
+		}
 		var day = parseInt(dayString);
-		APPLICATION.createInfoMessage("Init: " + year + "," + month + ", " + day);
+//		APPLICATION.createInfoMessage("Init: " + year + "," + month + ", " + day);
 		this.initialize(year, month, day);
 	*}
 	

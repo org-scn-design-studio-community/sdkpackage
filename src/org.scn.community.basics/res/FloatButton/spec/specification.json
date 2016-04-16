@@ -1,0 +1,278 @@
+{
+	"DCleanAll" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Nodes",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Nodes",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"DElementsContent",
+		   	"refDesc":"Nodes",
+		   	"refValue":"[]",
+		}
+	},
+	"DElementsContent" : {
+		"type":"String",
+		"value":"[]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"DoubleArray",
+	        "ztlFunction":"-unique",
+	         
+	        "arrayDefinition":{
+	            "button":{
+	               "type":"Array",
+	               "sequence":"key,text,image,width,selected,item",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "text":{
+	                  "desc":"Given Text",
+	                  "type":"String"
+	               },
+	               "image":{
+	                  "desc":"Image",
+	                  "type":"Url"
+	               },
+	               "width":{
+	                  "desc":"Width",
+	                  "type":"int"
+	               },
+	               "selected":{
+	                  "desc":"Selected",
+	                  "type":"boolean"
+	               },
+	               "item":{
+	                  "type":"Array",
+	                  "sequence":"parentKey,key,text,image,selected",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
+	                  "key":{
+	                     "desc":"Unique Key",
+	                     "type":"String"
+	                  },
+	                  "text":{
+	                     "desc":"Given Text",
+	                     "type":"String"
+	                  },
+	                  "image":{
+		                  "desc":"Image",
+		                  "type":"Url"
+		              },
+		              "selected":{
+		                 "desc":"Selected",
+		                 "type":"boolean"
+		              }
+	               }
+	            }
+	        },
+ 
+			"desc":"Buttons",
+			"cat":"Content",
+			"tooltip":"List Of Buttons With Sub-Items",
+
+			"apsControl":"array",
+			"arrayMode":"TwoLevelArray"
+		}
+	},
+	"DPressedButtonKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Pressed Button Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Pressed Button Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DPressedItemKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Pressed Item Key",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Pressed Item Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"DSelectedKeys" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "[]",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Technical Property For Selected Keys",
+			"cat" : "Display",
+			"tooltip" : "Technical Property For Selected Keys",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"DDefaultImage" : {
+		"template" : "Url",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Default Image",
+			"cat" : "Display",
+			"tooltip" : "Url For Default Image Which Should Be Shown In Case No Other Is Specified",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DImageSize" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Size_16px",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "ImageSize",
+			"ztlFunction": "",
+			"desc" : "Size Of The Image",
+			"cat" : "Display-Image",
+			"tooltip" : "Size Of The Image",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Size_16px",
+					"text" : "16px"
+				},
+				{
+					"key" : "Size_32px",
+					"text" : "32px"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DSelectionType" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Single",
+		"visible": true,
+		"opts" : {
+			"ztlType": "Choice",
+			"choiceType": "SelectionType",
+			"ztlFunction": "",
+			"desc" : "Selection Type",
+			"cat" : "Interaction",
+			"tooltip" : "Selection Type SINGLE | MULTIPLE",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Single",
+					"text" : "Single"
+				},
+				{
+					"key" : "Multiple",
+					"text" : "Multiple"
+				},
+				{
+					"key" : "SingleToggle",
+					"text" : "Single Toggle"
+				}
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"DWithImages" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Images",
+			"cat" : "Display",
+			"tooltip" : "Use Images",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+
+
+
+	"onButtonPressed" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Button Pressed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Button Pressed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onItemPressed" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Item Pressed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Item Pressed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onSelected" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "Event For On Selection Changed",
+			"cat" : "Events",
+			"tooltip" : "Event For On Selection Changed",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+
+}

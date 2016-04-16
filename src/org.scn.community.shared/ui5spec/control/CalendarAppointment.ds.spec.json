@@ -1,0 +1,19 @@
+{
+
+	"useIcon":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Icon'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Icon' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	}
+}

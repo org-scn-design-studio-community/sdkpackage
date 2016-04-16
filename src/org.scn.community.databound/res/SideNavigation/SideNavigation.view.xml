@@ -1,0 +1,78 @@
+<core:View
+  xmlns="sap.tnt"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"
+  xmlns:m="sap.m"
+  
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  
+  controllerName="org.scn.community.databound.SideNavigation.Controller"
+  
+  width="100%"
+  height="100%"
+  >
+  <l:VerticalLayout
+    content="{/}"
+    width="{/0/width}"
+    >
+    
+
+    <l:content
+      >
+        
+    <SideNavigation
+    	expanded="{expanded}"
+    	height="{height}"
+    >
+    	<item>
+	   		<NavigationList
+	   			items="{item}"
+	   		>
+                  <NavigationListItem 
+                  	text="{text}"
+                  	icon="{icon}"
+                  	expanded="{expanded}"
+                  	hasExpander="{hasExpander}"
+                  	items="{items}"
+                  	select="onItemSelected"
+                  	app:ownKey="{key}"
+                  >
+                  	  <NavigationListItem
+	                  	text="{text}"
+	                  	icon="{icon}"
+	                  	hasExpander="false"
+	                  	select="onItemSelected"
+	                  	app:ownKey="{key}"
+	                  >
+	                  </NavigationListItem>
+                  </NavigationListItem>
+	   		</NavigationList>
+    	</item>
+        <fixedItem>
+       		<NavigationList
+	   			items="{fixedItem}"
+	   		>
+                  <NavigationListItem 
+                  	text="{text}"
+                  	icon="{icon}"
+                  	items="{items}"
+                  	expanded="{expanded}"
+                  	hasExpander="{hasExpander}"
+                  	select="onFixedItemSelected"
+                  	app:ownKey="{key}"
+                  >
+                  	  <NavigationListItem
+	                  	text="{text}"
+	                  	icon="{icon}"
+	                  	select="onFixedItemSelected"
+	                  	hasExpander="false"
+	                  	app:ownKey="{key}"
+	                  >
+	                  </NavigationListItem>
+                  </NavigationListItem>
+	   		</NavigationList>
+        </fixedItem>
+    </SideNavigation>
+    </l:content>
+  </l:VerticalLayout> 
+</core:View>

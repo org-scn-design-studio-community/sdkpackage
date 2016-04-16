@@ -1,0 +1,16 @@
+{
+	"title": "Breadcrumbs",
+	"description": "Breadcrumbs - Navigation Links",
+	"icon": "Breadcrumbs.png",
+	"topics": 
+	[
+		{
+			"title" : "Breadcrumbs",
+			"content" : "Enables users to navigate between items by providing a list of links to previous steps in the user's navigation path. The last three steps can be accessed as links directly The remaining links prior to them are available in a drop-down menu."
+		},
+		{
+			"title" : "Visualization",
+			"content" : "This component is a visualization component. It requires specific space in the application canvas."
+		},
+	]
+}

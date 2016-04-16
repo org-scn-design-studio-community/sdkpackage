@@ -1,7 +1,7 @@
 
 <component
 	id="CustomCssCollector"
-	title="Custom Css Collector 0.X"
+	title="Custom Css Collector"
 	tooltip="Allows to add Custom Css Files Dynamically"
 	icon="res/CustomCssCollector/CustomCssCollector.png"
 	handlerType="div"

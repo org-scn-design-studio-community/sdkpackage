@@ -1,0 +1,87 @@
+{
+
+	"useIcon":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Icon'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Icon' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useNonWorkingDays":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Non Working Days'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Non Working Days' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useNonWorkingHours":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Non Working Hours'",
+			"cat" : "Display",
+			"tooltip" : "If checked, the property 'Non Working Hours' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"useAppointments":{
+		"template" : "ds-boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Use Manual 'Appointments'",
+			"cat" : "Content-Appointments",
+			"tooltip" : "If checked, the property 'Appointments' will be used.",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"dataCellListAppointments":{
+      "template": "ds-DataCellList",
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Appointments Data List [Multiple]",
+         "cat":"Data",
+         "tooltip":"Appointments Data List [Multiple]",
+         "value":"null",
+         "noAps":true,
+         "noZtl":true
+      }
+    }
+}

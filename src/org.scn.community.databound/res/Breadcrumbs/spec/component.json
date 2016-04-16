@@ -1,0 +1,30 @@
+{
+	"id": "Breadcrumbs",
+	"title": "Bread Crumbs",
+	"tooltip": "BreadCrumbs - Component for navigation with links.",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityBasics",
+	"package": "databound",
+	"ui5package": "sap.m",
+	"extension": "ui5.Breadcrumbs",
+	"extends1ControlDs": "Breadcrumbs.ds",
+	"extends2Control": "Breadcrumbs",
+	"extends3ControlEvents": "Breadcrumbs.events",
+	"generatedJsFile":"true",
+	"modes":"m",
+
+	"databound": false,
+	"dataType": "DataCellList",
+	
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		}
+	],
+	
+	"width": "300",
+	"height": "32"
+}

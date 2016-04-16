@@ -1,0 +1,160 @@
+
+<component
+	id="SideNavigation"
+	title="Side Navigation"
+	tooltip="Side Navigation - Component for navigation on the side"
+	icon="res/SideNavigation/SideNavigation.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityBasics"
+	databound="false"
+	modes="commons m"
+>
+	
+	<requireJs modes="commons m">res/SideNavigation/SideNavigation</requireJs>
+
+	<cssInclude>res/SideNavigation/SideNavigation.css</cssInclude>
+	
+	
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="contentWidth"
+		type="int"
+		title="Content Width"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="expanded"
+		type="boolean"
+		title="Expanded"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="fixedItem"
+		type="String"
+		title="Fixed Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="fixedItemSelectedKey"
+		type="String"
+		title="Fixed Item Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="item"
+		type="String"
+		title="Items"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="itemSelectedKey"
+		type="String"
+		title="Item Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onFixedItemSelected"
+		type="ScriptText"
+		title="On Fixed Item Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onItemSelected"
+		type="ScriptText"
+		title="On Item Selected"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="useContentHeight"
+		type="boolean"
+		title="Use Manual 'Content Height'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useContentWidth"
+		type="boolean"
+		title="Use Manual 'Content Width'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useFixedItem"
+		type="boolean"
+		title="Use Manual 'Item'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="useItem"
+		type="boolean"
+		title="Use Manual ' Fixed Item'"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">300</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="contentHeight"><![CDATA[0]]></defaultValue>
+		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
+		<defaultValue property="expanded"><![CDATA[true]]></defaultValue>
+		<defaultValue property="fixedItem"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="fixedItemSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="item"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="itemSelectedKey"><![CDATA[]]></defaultValue>
+		<defaultValue property="onFixedItemSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="onItemSelected"><![CDATA[]]></defaultValue>
+		<defaultValue property="useContentHeight"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useFixedItem"><![CDATA[true]]></defaultValue>
+		<defaultValue property="useItem"><![CDATA[true]]></defaultValue>
+
+	</initialization>
+
+</component>

@@ -123,8 +123,38 @@
 			"noZtl" : false
 		}
 	},
-
-
+	"expandNodes" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Expand Nodes",
+			"cat" : "Display",
+			"tooltip" : "Expand Nodes",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	"allowExpanding" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : true,
+		"visible": false,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Allow Expanding Nodes",
+			"cat" : "Display",
+			"tooltip" : "Allow Expanding Nodes",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
 
 	"defaultImage" : {
 		"template" : "Url",

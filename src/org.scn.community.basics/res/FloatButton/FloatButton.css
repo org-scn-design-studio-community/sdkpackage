@@ -1,0 +1,7 @@
+.scn-pack-FloatButton .sapUiPanelHdr {
+	display: none!important;
+}
+
+.scn-pack-FloatButton .sapUiPanelHeightSet>.sapUiPanelCont {
+	top: 0px!important;
+}
