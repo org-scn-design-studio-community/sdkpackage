@@ -5756,6 +5756,51 @@ class org.scn.community.basics.FioriInput extends org.scn.community.shared.Compo
 		}		
 		itemConfig = o;
 	*}
+	/** Get selected key
+ 	<example>
+	Retrieve key of clicked button item
+	<code>
+	SEGMENTEDBUTTON_1.getSelectedKey();<br>
+	</code>
+	</example>
+	 */
+	String getSelectedKey (){*
+		return this.selectedKey;
+	*}
+	
+	/** Set selected key
+ 	<example>
+	Set key of clicked button item
+	<code>
+	SEGMENTEDBUTTON_1.setSelectedKey("some_key");<br>
+	</code>
+	</example>
+	 */
+	String setSelectedKey (String key){*
+		this.selectedKey = key;
+	*}
+	
+	/** Set button enabled/disabled
+ 	<example>
+	<code>
+	SEGMENTEDBUTTON_1.setEnabled(false);<br>
+	</code>
+	</example>
+	 */
+	void setEnabled (boolean enable){*
+		this.enabled = enable;
+	*}
+	
+	/** Is button enabled/disabled ?
+ 	<example>
+	<code>
+	var enabled = SEGMENTEDBUTTON_1.isEnabled();<br>
+	</code>
+	</example>
+	 */
+	boolean isEnabled (){*
+		return this.enabled;
+	*}
 }class org.scn.community.basics.FioriSlider extends org.scn.community.shared.Component {
 
 	/**
