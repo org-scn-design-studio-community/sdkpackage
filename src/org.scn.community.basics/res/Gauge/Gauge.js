@@ -423,7 +423,7 @@ Gauge = function () {
 		    ctx.restore();
 
 
-		    if (currentIndicator >= (that.getIndicatorValue() * 240 / (that.getEndValue() - that.getStartValue()))) {
+		    if (currentIndicator >= ((that.getIndicatorValue() - that.getStartValue()) * 240 / (that.getEndValue() - that.getStartValue()))) {
 		        myStopFunction();
 		    }
 		    currentIndicator += 0.5;

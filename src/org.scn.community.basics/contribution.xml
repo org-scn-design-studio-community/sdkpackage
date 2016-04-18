@@ -2564,10 +2564,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityVisualizations"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/Gauge/Gauge</requireJs>
+	<requireJs modes="commons m">res/Gauge/Gauge</requireJs>
 
 	<cssInclude>res/Gauge/Gauge.css</cssInclude>
 	

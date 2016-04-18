@@ -350,6 +350,7 @@ function() {
   "handlerType": "div",
   "height": "300",
   "id": "Gauge",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [{
