@@ -23,8 +23,10 @@
  * Original by Donnie Burhan: http://scn.sap.com/community/businessobjects-design-studio/blog/2015/06/16/design-studio-sdk--line-with-arrow
  */
 
+var scn_pkg="org.scn.community.";if(sap.firefly!=undefined){scn_pkg=scn_pkg.replace(".","_");}
+
 define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
-        "sap/designstudio/sdk/component"], function(SDKCore,Component) {
+        "sap/designstudio/sdk/component", "../../../"+scn_pkg+"shared/modules/component.basics"], function(SDKCore,Component) {
 	var ownComponentName = "org.scn.community.basics.ArrowedLine";
 	ArrowedLine.prototype = SDKCore;
 	function ArrowedLine() {
@@ -99,6 +101,13 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
     		this.$().addClass("ArrowedLine");
     		this.tagCanvas = document.createElement("canvas");
     		this.$().append($(this.tagCanvas));
+    		
+    		if(!this._oContentPlaced) {
+    			var dummy = {};
+    			dummy.dummy = true;
+    			
+    			org_scn_community_basics.resizeContentAbsoluteLayout(this, dummy, this.onResize);
+    		}
     	};
     	/**
 		 * After Update
@@ -108,6 +117,11 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 			parentAfterUpdate.call(this);
 			this.line();
 		};
+		
+		this.onResize = function (width, height, parent) {
+			parent.line();
+		};
+		
 		this.line = function() {
 
 			var w = that.$().width();
