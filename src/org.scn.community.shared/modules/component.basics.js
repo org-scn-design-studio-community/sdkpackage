@@ -312,6 +312,9 @@ define(["../os/numberformat/numberformatter"], function() {
 		if(number.indexOf(".") == 0) {
 			number = "0" + number;
 		}
+		if(number.indexOf("-.") == 0) {
+			number = number.replace("-.", "-0.");
+		}
 	
 		number = number.toLocaleString(numberOfDecimal);
 		
