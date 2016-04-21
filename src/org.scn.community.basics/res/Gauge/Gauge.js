@@ -211,9 +211,10 @@ Gauge = function () {
 		//START DISEGNO COLORI
 		if (!that.getGradientColor()) {
 		    ctx.beginPath();
-		    //RUOTO 30� A SINISTRA
+		    //RUOTO 30? A SINISTRA
 		    //TRACCIO CERCHIO
-		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), 150 * DEG2RAD, (150 + that.getStartSecondColor() * 240 / 100) * DEG2RAD, false);
+		    var firstColorPercentage = (that.getStartSecondColor() - that.getStartValue()) / (that.getEndValue() - that.getStartValue()) * 100;
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), 150 * DEG2RAD, (150 + firstColorPercentage * 240 / 100) * DEG2RAD, false);
 
 		    //SCELGO LARGHEZZA BORDO
 		    ctx.lineWidth = bodyWidth;
@@ -227,9 +228,11 @@ Gauge = function () {
 		    ctx.stroke();
 
 		    ctx.beginPath();
-		    //RUOTO 30� A SINISTRA
+		    //RUOTO 30? A SINISTRA
 		    //TRACCIO CERCHIO
-		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + that.getStartSecondColor() * 240 / 100) * DEG2RAD, (150 + that.getStartThirdColor() * 240 / 100) * DEG2RAD, false);
+		    var secondColorPercentage = (that.getStartSecondColor() - that.getStartValue()) / (that.getEndValue() - that.getStartValue()) * 100;
+		    var thirdColorPercentage = (that.getStartThirdColor() - that.getStartValue()) / (that.getEndValue() - that.getStartValue()) * 100;
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + secondColorPercentage * 240 / 100) * DEG2RAD, (150 + thirdColorPercentage * 240 / 100) * DEG2RAD, false);
 
 		    //SCELGO LARGHEZZA BORDO
 		    ctx.lineWidth = bodyWidth;
@@ -243,9 +246,9 @@ Gauge = function () {
 		    ctx.stroke();
 
 		    ctx.beginPath();
-		    //RUOTO 30� A SINISTRA
+		    //RUOTO 30? A SINISTRA
 		    //TRACCIO CERCHIO
-		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + that.getStartThirdColor() * 240 / 100) * DEG2RAD, 390 * DEG2RAD, false);
+		    ctx.arc(centerX, centerY, (radius - bodyWidth * 2), (150 + thirdColorPercentage * 240 / 100) * DEG2RAD, 390 * DEG2RAD, false);
 
 		    //SCELGO LARGHEZZA BORDO
 		    ctx.lineWidth = bodyWidth;
@@ -261,7 +264,7 @@ Gauge = function () {
 		} else {
 		    ctx.beginPath();
 
-		    //RUOTO 30� A SINISTRA
+		    //RUOTO 30? A SINISTRA
 		    //TRACCIO CERCHIO
 		    //alert(centerX);
 		    sx = centerX + Math.cos(210 * DEG2RAD) * (radius - bodyWidth * 2);
@@ -374,11 +377,15 @@ Gauge = function () {
 		    clearInterval(that._myVar);
 		}
 
-		var currentIndicator = 0.5;
-
 		var ctx = that.sCanvas.getContext("2d");
 		ctx.translate(centerX, centerY);
 
+		var currentIndicator = 0.5;
+		var rotationAngle = 0.5;
+		if(that.getIndicatorValue() < that.getStartValue()) {
+			currentIndicator = 0;
+			rotationAngle = -2;
+		} 
 		ctx.rotate(150 * DEG2RAD);
 
 		function drawIndicator() {
@@ -392,7 +399,7 @@ Gauge = function () {
 		    ctx.shadowBlur = shadowOffsetBlur;
 		    ctx.shadowColor = shadowColor;
 
-		    ctx.rotate(0.5 * DEG2RAD);
+		    ctx.rotate(rotationAngle * DEG2RAD);
 		    ctx.strokeStyle = that.getNeedleColor();
 		    ctx.lineWidth = secondHandWidth;
 		    ctx.beginPath();
@@ -423,7 +430,7 @@ Gauge = function () {
 		    ctx.restore();
 
 
-		    if (currentIndicator >= ((that.getIndicatorValue() - that.getStartValue()) * 240 / (that.getEndValue() - that.getStartValue()))) {
+		    if (currentIndicator > 242 || currentIndicator >= ((that.getIndicatorValue() - that.getStartValue()) * 240 / (that.getEndValue() - that.getStartValue()))) {
 		        myStopFunction();
 		    }
 		    currentIndicator += 0.5;
