@@ -1980,7 +1980,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		this.internal_assureGlobalAccess();
 	
 		for (var key in this.getGlobal()) {
-			var something = eval(key);
+			var something = undefined;try{something = eval(key);} catch(e) {continue;}
 			
 			if(something == undefined) {
 				continue;
@@ -2043,7 +2043,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		this.internal_assureGlobalAccess();
 	
 		for (var key in this.getGlobal()) {
-			var something = eval(key);
+			var something = undefined;try{something = eval(key);} catch(e) {continue;}
 			
 			if(something == undefined) {
 				continue;
@@ -2137,8 +2137,8 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 		this.internal_assureGlobalAccess();
 
 		for (var key in this.getGlobal()) {
-			var something = eval(key);
-			
+			var something = undefined;try{something = eval(key);} catch(e) {continue;}
+
 			if(something == undefined) {
 				continue;
 			}
