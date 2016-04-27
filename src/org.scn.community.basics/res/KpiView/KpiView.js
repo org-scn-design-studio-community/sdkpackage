@@ -210,11 +210,12 @@ KpiView = {
 		
     	// value processing
     	var lValue = "";
+    	var lValue_unformatted = "";
     	var lDecimals = that.getValueDecimalPlaces().replace("D", "");
     	
 		if (that.getData() && that.getData().data.length > 0) {
-			lValue = that.getData().data[0];
-			lValue = org_scn_community_basics.getFormattedValue (lValue, metaData.locale, lDecimals);
+			lValue_unformatted = that.getData().data[0];
+			lValue = org_scn_community_basics.getFormattedValue (lValue_unformatted, metaData.locale, lDecimals);
 		}
 
 		if (lValue == "" && that.getValueText() !== "") {
@@ -226,6 +227,11 @@ KpiView = {
     		// value as float number given directly is formatted
         	lValue = org_scn_community_basics.getFormattedValue (that.getValueFloat(), undefined, lDecimals);
     	}
+
+		if(that.getValueFloat() !== lValue_unformatted  && that.isFloat(lValue_unformatted) === true && lValue_unformatted !== ""){
+			that.setValueFloat(lValue_unformatted);
+			that.fireDesignStudioPropertiesChanged(["valueFloat"]);	
+		}
 		
 		that._lValue = lValue;
 
@@ -248,14 +254,29 @@ KpiView = {
     	if(cssClasss != "") {
     		that._lTextTitle.addStyleClass(cssClasss);
     	}
+    	
+    	that._lTextValue.setText (that.getValueText());
+		var cssClasss = that.getValueCssClass();
+    	if(cssClasss != "") {
+			that._lTextValue.addStyleClass(cssClasss);
+    	}
 		
 		that._lTextValuePrefix.setText (that.getValuePrefixText());
 		var cssClasss = that.getValuePrefixCssClass();
     	if(cssClasss != "") {
-    		that._lTextValuePrefix.addStyleClass(cssClasss);
+    		if(that.valuePrefixCssClass !== cssClasss){
+    			that._lTextValuePrefix.removeStyleClass(that.valuePrefixCssClass);
+        		that._lTextValuePrefix.addStyleClass(cssClasss);
+    			that.valuePrefixCssClass = cssClasss;
+        		that.fireDesignStudioPropertiesChanged(["valuePrefixCssClass"]);
+    		}   
     	}
     	
 		that._lTextValue.setText (that._lValue);
+		if(that.getValueText() !== that._lValue){
+			that.setValueText(that._lValue);
+			that.fireDesignStudioPropertiesChanged(["valueText"]);	
+		}
 
 		var lValueTextAlign = sap.ui.core.TextAlign.Left;
 		var positionAlignValue = {left: "10px", bottom: "30px"};
@@ -327,7 +348,12 @@ KpiView = {
 		that._lTextValueSuffix.setText (that.getValueSuffixText());
 		var cssClasss = that.getValueSuffixCssClass();
     	if(cssClasss != "") {
-    		that._lTextValueSuffix.addStyleClass(cssClasss);
+    		if(that.valueSuffixCssClass !== cssClasss){
+    			that._lTextValueSuffix.removeStyleClass(that.valueSuffixCssClass);
+    			that._lTextValueSuffix.addStyleClass(cssClasss);
+    			that.valueSuffixCssClass = cssClasss;
+        		that.fireDesignStudioPropertiesChanged(["valueSuffixCssClass"]);
+    		}   
     	}
 
 		that._lTextFooter.setText (that.getFooterText());
@@ -353,6 +379,7 @@ KpiView = {
 	onResize: function(width, height, parent) {
 		// in case special resize code is required
 	},
+	isFloat : function(n) { return parseFloat(n) === n },
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 

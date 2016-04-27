@@ -1987,6 +1987,13 @@ class org.scn.community.prototypes.BulletChartGen extends org.scn.community.shar
 class org.scn.community.prototypes.SapMList extends org.scn.community.shared.Component {
 	
 }
+
+/**
+ * Class for TileContainer
+ */
+class org.scn.community.prototypes.MyTileContainer extends org.scn.community.shared.Component {
+	
+}
 /**
  * Class for RapidPrototype 
  */
