@@ -309,8 +309,16 @@ define(["../os/numberformat/numberformatter"], function() {
 	
 		var number = jQuery.formatNumber(value, {format:formatString, locale:locale});
 		// in case format starts with ".", the 0 needs to be placed (manually) at the beginning
-		if(number.indexOf(".") == 0) {
+		if(number.indexOf(".") == 0 || number.indexOf(".") == 0) {
 			number = "0" + number;
+		}
+		
+		// in case format starts with "-.", the 0 needs to be placed (manually) at the beginning
+		if(number.indexOf("-.") == 0) {
+			number = number.replace("-.", "-0.");
+		}
+		if(number.indexOf("-,") == 0) {
+			number = number.replace("-,", "-0,");
 		}
 	
 		number = number.toLocaleString(numberOfDecimal);
