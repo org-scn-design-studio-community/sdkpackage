@@ -243,6 +243,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 	*/
 	String formatWithMask(String mask, optional boolean utc) {*
 		this.internal_initializeNow();
+	
+		this.date.recalculate();
 
 		return this.date.format(mask, utc);
 	*}
@@ -355,8 +357,10 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		var that = this;
 		
 		// create a recalculate function which calculates information not available in JS date
-		if (!Date.prototype.recalculate) {
-		    Date.prototype.recalculate = function() {
+		//if (!Date.prototype.recalculate) {
+		//	Date.prototype.recalculate = function() {
+	if (!this.date.recalculate) {
+		this.date.recalculate = function() {
 	
 		        // exit if date did not changed
 		        var currentDate = that.date.toUTCString();
@@ -496,8 +500,10 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		 * The mask defaults to dateFormat.masks.default.
 		 */
 	
-		if (!Date.prototype.format) {
-		    Date.prototype.format = function() {
+		//if (!Date.prototype.format) {
+		//    Date.prototype.format = function() {
+		if (!this.date.format) {
+			this.date.format = function() {
 		        var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
 		            timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
 		            timezoneClip = /[^-+\dA-Z]/g,
