@@ -1,0 +1,31 @@
+{
+	"id": "CustomMap",
+	"title": "Custom Map 0.0",
+	"tooltip": "Custom Map",
+	"handlerType": "div",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityVisualizations",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+
+	"require": 
+	[
+		{
+	    "id": "common_basics",
+	    "space": "known"
+	  },
+	  {
+	    "id" : "databound/os/jquery.imagemapster/jquery.imagemapster"
+	  },
+	  {
+	    "id" : "databound/os/d3v3/d3.min"
+	  },
+	  {
+	    "id" : "shared/os/jsrender/jsrender"
+	  }
+	],
+	
+	"width": "400",
+	"height": "400"
+}

@@ -1,0 +1,77 @@
+INTER CO 
+Commande - 10032894 
+Livraison - 80149504 
+
+INTRA CO 
+Commande - 10033684 
+Livraison - 80153717 
+
+{ "fillColor": "F4FA58",
+"fillOpacity": "0.1",
+"areas":  [{
+               "key": "A", 
+               "toolTip": "Don't mess with Texas",
+			   "selected":"true"
+            },
+			{
+               "key": "B", 
+               "toolTip": "Pouet",
+			   "selected":"true"
+            }
+    ]
+}
+
+
+
+
+<area shape="rect" data-key="A" coords="288,118,446,260" href="#" />
+<area shape="rect" data-key="B" coords="150,38,261,152"  href="#" />
+
+    
+  "selectedKeys": {
+    "template": "default",
+    "type":"String",
+    "value": "",
+    "visible": false,
+    "opts": {
+      "noAps": true,
+      "noZtl": false,
+      "tooltip": "Selected Keys",
+      "ztlFunction": "-get",
+      "ztlType":"SingleArray"
+    }
+  },
+  
+  "key": "8050139", 
+      "selected":"true"
+   },
+   "key": "8050117", 
+      "selected":"true"
+   },
+   "key": "8050118", 
+      "selected":"true"
+   },
+   "key": "8050119", 
+      "selected":"true"
+   },
+   "key": "8050120", 
+      "selected":"true"
+   },
+   "key": "8050155", 
+      "selected":"true"
+   },
+   "key": "8050209", 
+      "selected":"true"
+   },
+   "key": "8050224", 
+      "selected":"true"
+   }
+
+    <area alt="" title=""  data-key="8050139" href="#" shape="poly" coords="284,118,451,120,450,353,284,349" />
+    <area alt="" title=""  data-key="8050117" href="#" shape="poly" coords="135,160,268,161,270,260,137,258" />
+    <area alt="" title=""  data-key="8050118" href="#" shape="poly" coords="284,363,282,512,389,512,392,361" />
+    <area alt="" title=""  data-key="8050119" href="#" shape="poly" coords="564,200,563,300,458,298,459,200" />
+    <area alt="" title=""  data-key="8050120" href="#" shape="poly" coords="688,91,831,95,834,327,690,320" />
+    <area alt="" title=""  data-key="8050155" href="#" shape="poly" coords="573,245,574,317,684,318,684,248" />
+    <area alt="" title=""  data-key="8050209" href="#" shape="poly" coords="399,107,401,62,445,57,448,38,494,38,678,35,680,126,458,127,459,95,444,92,444,106" />
+    <area alt="" title=""  data-key="8050224" href="#" shape="poly" coords="266,4,266,151,137,152,138,5" />

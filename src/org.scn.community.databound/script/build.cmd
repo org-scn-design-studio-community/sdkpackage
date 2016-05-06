@@ -13,6 +13,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Breadcrumbs\def\contribution.xml ^
 ..\res\BulletChart\def\contribution.xml ^
 ..\res\CalendarViz\def\contribution.xml ^
+..\res\CustomMap\def\contribution.xml ^
 ..\res\Choropleth\def\contribution.xml ^
 ..\res\DropDown\def\contribution.xml ^
 ..\res\FacetFilter\def\contribution.xml ^
@@ -61,6 +62,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\BulletChart\def\contribution.ztl ^
 ..\res\CalendarViz\def\contribution.ztl ^
 ..\res\Choropleth\def\contribution.ztl ^
+..\res\CustomMap\def\contribution.ztl ^
 ..\res\DropDown\def\contribution.ztl ^
 ..\res\Hierarchy\def\contribution.ztl ^
 ..\res\FacetFilter\def\contribution.ztl ^

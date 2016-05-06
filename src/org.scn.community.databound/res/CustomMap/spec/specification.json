@@ -1,0 +1,308 @@
+{
+   "image": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "1 - Image url of Base 64",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Image",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
+  "dataCellList":{
+      "type":"ResultCellList",
+      "value":"null",
+      "visible":true,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Reference Measure Selection",
+         "cat":"Data",
+         "tooltip":"Reference Measure Selection",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+  "map": {
+    "opts": {
+      "apsControl": "codemirror",
+      "cat": "Display",
+      "desc": "2 - Associated map, same scaling as base image",
+      "tooltip": "Map",
+      "ztlFunction": "",
+      "ztlType": "String" ,
+      "apsConfig" : {
+			"lineNumbers": "true",
+			"mode": "text/html",
+			"theme": "eclipse",
+			"matchBrackets": "true"
+			}
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
+  "mapsterpropjson": {
+    "opts": {
+      "apsControl" : "codemirror",
+      "cat": "Mapster Properties",
+      "desc": "2 - Mapster properties",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "apsConfig" : {
+			"lineNumbers": true,
+			"mode": "application/ld+json",
+			"theme": "eclipse",
+			"matchBrackets": true
+			}
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": true
+    },
+    "data" : {
+		"template" : "default",
+		"type" : "ResultSet",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "ResultSet",
+			"ztlFunction": "",
+			"desc" : "Data List",
+			"cat" : "DataBinding",
+			"tooltip" : "Data List",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+    
+  "selectedZones": {
+    "opts": {
+      "apsControl" : "text",
+      "cat": "",
+      "desc": "",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : true,
+	  "noZtl" : false
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+    },
+    
+  "hoveredZone": {
+    "opts": {
+      "apsControl" : "text",
+      "cat": "",
+      "desc": "",
+	  "ztlFunction": "-get",
+      "ztlType": "String",
+      "noAps" : true,
+	  "noZtl" : false
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+    },
+    
+  "resizeDuration": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Mapster Properties",
+      "desc": "1 - Resize Duration (ms)",
+	  "ztlFunction": "",
+      "ztlType": "int",
+      "noAps" : false,
+	  "noZtl" : false
+    },
+    "template": "int",
+    "type": "int",
+    "value": "500",
+    "visible": true
+    },
+    
+  "onClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onMouseOver" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "onMouseOver",
+			"cat" : "Events",
+			"tooltip" : "onMouseOver",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onMouseOut" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "onMouseOut",
+			"cat" : "Events",
+			"tooltip" : "onMouseOut",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	
+	"onShowTooltip" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Show Tooltip",
+			"cat" : "Events",
+			"tooltip" : "On Show Tooltip",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onUpdate" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Update",
+			"cat" : "Events",
+			"tooltip" : "On Update",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	
+	"tooltipMode" : {
+		"template" : "Choice",
+		"type" : "String",
+		"value" : "Default",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "1 - Tooltip override mode",
+			"cat" : "Tooltip",
+			"tooltip" : "Tooltip override mode",
+			"apsControl" : "combobox",
+			"options":[
+				{
+					"key" : "Default",
+					"text" : "Keep as defined"
+				},
+				{
+					"key" : "keep+template",
+					"text" : "Keep, Evaluate as Template"
+				},
+				{
+					"key" : "override",
+					"text" : "Override with Below Template"
+				}
+				
+            ],
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+	
+	"contentTooltip": {
+	    "opts": {
+	      "apsControl": "codemirror",
+	      "cat": "Tooltip",
+	      "desc": "2 - Tooltip template (html + Mustache)",
+	      "tooltip": "new Tooltip (using Mustache template)",
+	      "ztlFunction": "",
+	      "ztlType": "String",
+	      "apsConfig" : {
+				"lineNumbers": "true",
+				"mode": "text/html",
+				"theme": "eclipse",
+				"matchBrackets": "true"
+				}
+	    },
+	    "template": "String",
+	    "type": "String",
+	    "value": "",
+	    "visible": true
+	  },
+	  
+	"applyColors":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"1 - Override Mapster Colors with",
+	         "cat":"Colors",
+	         "tooltip":"1 - Override Mapster Colors with",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"staticDisplay":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"0 - Display all areas by default",
+	         "cat":"Display",
+	         "tooltip":"0 - Display all areas by default",
+	         "apsControl":"checkbox"
+	    }
+	},
+	  
+	"colorPalette": {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "2 - Color Palette",
+			"cat" : "Colors",
+			"tooltip" : "Color palette to apply",
+			"apsControl" : "palette",
+			"noAps": false,
+	      	"noZtl": false,
+		}
+	  }
+  }
