@@ -5946,6 +5946,15 @@ __n__}
 
 	</property>
 	<property
+		id="DShowKeys"
+		type="boolean"
+		title="Show Keys instead of Texts"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DSortMode"
 		type="String"
 		title="Sort Mode"
@@ -6020,6 +6029,7 @@ __n__}
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DSortMode"><![CDATA[KeyValue]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>
 		<defaultValue property="data"><![CDATA[null]]></defaultValue>

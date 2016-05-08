@@ -5361,6 +5361,20 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 
 	/**
+	 * Sets Show Keys instead of Texts Property
+	 */	
+	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*
+		this.DShowKeys = showKeys;
+	*}
+
+	/**
+	 * Gets Show Keys instead of Texts Property
+	 */	
+	boolean isShowKeys() {*
+		return this.DShowKeys;
+	*}
+
+	/**
 	 * Sets Sort Mode Property by String
 	 */	
 	void setSortModeByString( /**Sort Mode*/ String sortMode){*

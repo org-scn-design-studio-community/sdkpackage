@@ -366,7 +366,7 @@ define(["../os/numberformat/numberformatter"], function() {
 	 * Returns date object based on techncial date string, format YYYYMMDD
 	 */
 	org_scn_community_basics.getDateValue = function (inputDate) {
-		if(inputDate == undefined || (inputDate.length != 8 && inputDate.length != 12)) {
+		if(inputDate == undefined || (inputDate.length != 8 && inputDate.length != 12 && inputDate.length != 14)) {
 			inputDate = new Date();
 			inputDate = inputDate.format(dateFormat.masks.technical);
 		}
@@ -382,7 +382,7 @@ define(["../os/numberformat/numberformatter"], function() {
 		}
 
 		var date = new Date(year, month - 1, day);
-		if(inputDate.length == 12) {
+		if(inputDate.length == 12 || inputDate.length == 14) {
 			var hour = inputDate.substring(8,10);
 			if(hour.indexOf(0) == "0") {
 				hour = hour.substring(1);
@@ -392,7 +392,16 @@ define(["../os/numberformat/numberformatter"], function() {
 				minute = minute.substring(1);
 			}
 			
-			date = new Date(year, month - 1, day, hour, minute);
+			var second = 0;
+			if(inputDate.length == 14) {
+				second = inputDate.substring(12,14);
+				if(second.indexOf(0) == "0") {
+					second = second.substring(1);
+				}
+				
+				
+			}
+			date = new Date(year, month - 1, day, hour, minute, second);
 		} else {
 			date = new Date(year, month - 1, day);
 		}
@@ -400,7 +409,9 @@ define(["../os/numberformat/numberformatter"], function() {
 		
 		date.formatted = date.format(dateFormat.masks.technical);
 		date.timestamp = date.format(dateFormat.masks.timestamp);
-		
+		date.stamporg = inputDate;
+		date.stampwithtime = inputDate.length != 8;
+
 		return date;
 	};
 	

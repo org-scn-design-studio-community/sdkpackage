@@ -31,9 +31,9 @@
 			noDataText="{noDataText}"
 			
 			appointmentSelect="onAppointmentSelected"
-			intervalSelect="-onIntervalSelected"
+			intervalSelect="onIntervalSelected"
 			rowSelectionChange="onRowSelectionChanged"
-			startDateChange="-onStartDateChanged"
+			startDateChange="onStartDateChanged"
 			viewChange="onViewChanged"
 
 			>

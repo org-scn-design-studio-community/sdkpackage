@@ -42,7 +42,7 @@ function() {
       "ztlType": "int"
     },
     "type": "int",
-    "value": -65,
+    "value": -40,
     "visible": true
   },
   "YLegendAngle": {
@@ -187,8 +187,8 @@ function() {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display-Texts",
-      "desc": "Text X Position for Element",
-      "tooltip": "Text X Position for Element",
+      "desc": "Text Y Position for Element",
+      "tooltip": "Text Y Position for Element",
       "ztlFunction": "",
       "ztlType": "int"
     },
@@ -200,8 +200,8 @@ function() {
     "opts": {
       "apsControl": "spinner",
       "cat": "Display-Texts",
-      "desc": "Text Y Position for Element",
-      "tooltip": "Text Y Position for Element",
+      "desc": "Text X Position for Element",
+      "tooltip": "Text X Position for Element",
       "ztlFunction": "",
       "ztlType": "int"
     },
@@ -262,6 +262,34 @@ function() {
     },
     "type": "String",
     "value": "[{\"parentKey\":\"ROOT\",\"key\":\"STANDARD\",\"leaf\":false,\"style\":\"bar\"},{\"parentKey\":\"ROOT\",\"key\":\"FAILED\",\"leaf\":false,\"style\":\"bar-failed\"},{\"parentKey\":\"ROOT\",\"key\":\"RUNNING\",\"leaf\":false,\"style\":\"bar-running\"},{\"parentKey\":\"ROOT\",\"key\":\"SUCCEEDED\",\"leaf\":false,\"style\":\"bar-succeeded\"},{\"parentKey\":\"ROOT\",\"key\":\"KILLED\",\"leaf\":false,\"style\":\"killed\"}]",
+    "visible": true
+  },
+  "timeFormat": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display-Time Axis",
+      "choiceType": "-",
+      "desc": "Time Format in Time Axis",
+      "options": [
+        {
+          "key": "Days",
+          "text": "Days"
+        },
+        {
+          "key": "Hours",
+          "text": "Hours"
+        },
+        {
+          "key": "Seconds",
+          "text": "Seconds"
+        }
+      ],
+      "tooltip": "Time Format in Time Axis",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "Days",
     "visible": true
   }
 };

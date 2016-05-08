@@ -440,6 +440,19 @@ function() {
     "value": "",
     "visible": false
   },
+  "DShowKeys": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Data",
+      "desc": "Show Keys instead of Texts",
+      "tooltip": "Show Keys instead of Texts",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": true
+  },
   "DSortMode": {
     "opts": {
       "apsControl": "combobox",

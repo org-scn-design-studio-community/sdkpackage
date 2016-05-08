@@ -521,9 +521,17 @@ define(["./component.databound",
 			}
 		}
 	
-		if(eventName == "onViewChanged") {
-			parameterKeyNameCap = "ViewKey";
-			key = event.getSource().getViewKey();
+		if(owner.specComp.id == "PlanningCalendar") {
+			if(eventName == "onViewChanged") {
+				parameterKeyNameCap = "ViewKey";
+				key = event.getSource().getViewKey();
+
+				owner.spec._viewKey = event.getSource().getViewKey();
+			}
+
+			if(eventName == "onStartDateChanged") {
+				owner.spec._startDate = event.getSource().getStartDate();
+			}
 		}
 
 		if(that["set" + parameterKeyNameCap]) {
@@ -568,6 +576,14 @@ define(["./component.databound",
 					rowO.intervalHeaders.push(appO);
 				}
 			}
+		}
+
+		if(that.spec._startDate != undefined) {
+			model["0"].startDate = that.spec._startDate;
+		}
+
+		if(that.spec._viewKey != undefined) {
+			model["0"].viewKey = that.spec._viewKey;
 		}
 		
 		return model;

@@ -64,7 +64,26 @@ ActivityViewer = function () {
 		};
 		
 		this.taskNames = [ "D Job", "P Job", "A Job", "N Job", "T Job" ];    // this array determines the order of the tasks
-		this.timeFormat = "%d.%m.%y";                         // Label format at the x-axis
+		
+		var temDate = org_scn_community_basics.getDateValue ("20091112161718");
+		var locDateString = temDate.toLocaleDateString();
+		locDateString = locDateString.replace("2009", "%Y");
+		locDateString = locDateString.replace("11", "%m");
+		that.locDateString = locDateString.replace("12", "%d");
+
+		var locTimeString = temDate.toLocaleTimeString();
+
+		if(locTimeString.indexOf("4") > -1) {
+			locTimeString = locTimeString.replace("4", "%I");
+			locTimeString = locTimeString.replace("PM", "%p");
+		} else {
+			locTimeString = locTimeString.replace("16", "%H");
+			locTimeString = locTimeString.replace("PM", "");
+			locTimeString = locTimeString.replace(" ", "");
+		}
+
+		locTimeString = locTimeString.replace("17", "%M");
+		that.locTimeString = locTimeString.replace("18", "%S");
 	};
 
 	this.afterUpdate = function() {
@@ -97,9 +116,20 @@ ActivityViewer = function () {
 
 		this.readRealData();
 		
+		var timeF = "";
+		if(that.getTimeFormat() == "Days"){
+			timeF = that.locDateString;
+		}
+		if(that.getTimeFormat() == "Hours"){
+			timeF = that.locDateString + " " + that.locTimeString.replace(":%S", "");
+		}
+		if(that.getTimeFormat() == "Seconds"){
+			timeF = that.locDateString + " " + that.locTimeString;
+		}
+
 		that._gantt.taskTypes(that.taskNames);
 		that._gantt.taskStatus(that.taskStatus);
-		that._gantt.tickFormat(that.timeFormat);
+		that._gantt.tickFormat(timeF);
 		
 		that._gantt.margin(that.margin);
 		
