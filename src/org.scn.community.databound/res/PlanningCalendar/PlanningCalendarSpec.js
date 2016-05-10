@@ -57,33 +57,78 @@ function() {
       "apsControl": "array",
       "arrayDefinition": {"appointments": {
         "end": {
-          "desc": "End Date",
+          "desc": "End Date/Time",
           "type": "String"
         },
         "icon": {
           "desc": "Icon",
-          "type": "String"
+          "type": "String,optional"
         },
         "key": {
-          "desc": "Unique Property Key",
+          "desc": "Unique Appointment Key",
           "type": "String"
+        },
+        "ntype": {
+          "apsControl": "combobox",
+          "desc": "Type",
+          "options": [
+            {
+              "key": "Type01",
+              "text": "Type01"
+            },
+            {
+              "key": "Type02",
+              "text": "Type02"
+            },
+            {
+              "key": "Type03",
+              "text": "Type03"
+            },
+            {
+              "key": "Type04",
+              "text": "Type04"
+            },
+            {
+              "key": "Type05",
+              "text": "Type05"
+            },
+            {
+              "key": "Type06",
+              "text": "Type06"
+            },
+            {
+              "key": "Type07",
+              "text": "Type07"
+            },
+            {
+              "key": "Type08",
+              "text": "Type08"
+            },
+            {
+              "key": "Type09",
+              "text": "Type09"
+            }
+          ],
+          "type": "String,optional"
         },
         "rowKey": {
           "desc": "Unique Row Key",
           "type": "String"
         },
         "selected": {
+          "apsControl": "checkbox",
           "desc": "Selected",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
-        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
+        "sequence": "key,rowKey,start,end,text,title,ntype,icon,selected,tentative",
         "start": {
-          "desc": "Start Date",
+          "desc": "Start Date/Time",
           "type": "String"
         },
         "tentative": {
+          "apsControl": "checkbox",
           "desc": "Tentative",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
         "text": {
           "desc": "Text",
@@ -107,7 +152,7 @@ function() {
     "origType": "CalendarAppointment",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Short Event\",\"rowKey\":\"PLANNING_EVENTS\",\"start\":\"201604091234\",\"end\":\"201604091634\",\"title\":\"This event is only for 4 hours\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"title\":\"Long Running Event\",\"text\":\"this events runs over 2 months\",\"tentative\":true,\"start\":\"20160409\",\"end\":\"20160611\",\"rowKey\":\"PLANNING_EVENTS\",\"ntype\":\"Type02\"},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENT1\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"start\":\"20100101\",\"text\":\"First Event in the past\",\"title\":\"Past Event 1 / Tentative\",\"icon\":\"sap-icon://accept\",\"tentative\":true,\"ntype\":\"Type06\",\"selected\":false}]",
     "visible": true
   },
   "contentHeight": {
@@ -207,33 +252,78 @@ function() {
       "apsControl": "array",
       "arrayDefinition": {"intervalHeaders": {
         "end": {
-          "desc": "End Date",
+          "desc": "End Date/Time",
           "type": "String"
         },
         "icon": {
           "desc": "Icon",
-          "type": "String"
+          "type": "String,optional"
         },
         "key": {
-          "desc": "Unique Property Key",
+          "desc": "Unique Header Key",
           "type": "String"
+        },
+        "ntype": {
+          "apsControl": "combobox",
+          "desc": "Type",
+          "options": [
+            {
+              "key": "Type01",
+              "text": "Type01"
+            },
+            {
+              "key": "Type02",
+              "text": "Type02"
+            },
+            {
+              "key": "Type03",
+              "text": "Type03"
+            },
+            {
+              "key": "Type04",
+              "text": "Type04"
+            },
+            {
+              "key": "Type05",
+              "text": "Type05"
+            },
+            {
+              "key": "Type06",
+              "text": "Type06"
+            },
+            {
+              "key": "Type07",
+              "text": "Type07"
+            },
+            {
+              "key": "Type08",
+              "text": "Type08"
+            },
+            {
+              "key": "Type09",
+              "text": "Type09"
+            }
+          ],
+          "type": "String,optional"
         },
         "rowKey": {
           "desc": "Unique Row Key",
           "type": "String"
         },
         "selected": {
+          "apsControl": "checkbox",
           "desc": "Selected",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
-        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
+        "sequence": "key,rowKey,start,end,text,title,ntype,icon,selected,tentative",
         "start": {
-          "desc": "Start Date",
+          "desc": "Start Date/Time",
           "type": "String"
         },
         "tentative": {
+          "apsControl": "checkbox",
           "desc": "Tentative",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
         "text": {
           "desc": "Text",
@@ -257,7 +347,7 @@ function() {
     "origType": "CalendarAppointment",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENTS\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"text\":\"Interval Header\",\"title\":\"Header\",\"start\":\"20160401\",\"end\":\"20161010\",\"icon\":\"sap-con://warning\",\"selected\":false,\"tentative\":false}]",
     "visible": true
   },
   "intervalSelectedKey": {
@@ -381,17 +471,18 @@ function() {
       "arrayDefinition": {"rows": {
         "icon": {
           "desc": "Icon",
-          "type": "String"
+          "type": "String,optional"
         },
         "key": {
           "desc": "Unique Property Key",
           "type": "String"
         },
         "selected": {
+          "apsControl": "checkbox",
           "desc": "Selected",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
-        "sequence": "key,icon,selected,text,title",
+        "sequence": "key,text,title,icon,selected",
         "text": {
           "desc": "Text",
           "type": "String"
@@ -414,7 +505,7 @@ function() {
     "origType": "PlanningCalendarRow",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"PLANNING_EVENTS\",\"leaf\":false,\"text\":\"Events Example in Planning\",\"title\":\"Main Events\",\"icon\":\"sap-icon://accept\",\"selected\":false},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENTS\",\"leaf\":false,\"text\":\"Events in the past\",\"title\":\"Past Events\",\"icon\":\"sap-icon://error\"}]",
     "visible": true
   },
   "showIntervalHeaders": {
@@ -616,7 +707,7 @@ function() {
 {
   "description": "PlanninCalendar",
   "icon": "PlanninCalendar.png",
-  "title": "Plannin Calendar",
+  "title": "Planning Calendar",
   "topics": [
     {
       "content": "The PlanningCalendar can display rows with appointments for different persons. It is possible to define different views and switch between the views. You can add your own buttons or other controls to the toolbar.",
@@ -640,7 +731,7 @@ function() {
   "generatedJsFile": "true",
   "group": "ScnCommunityBasics",
   "handlerType": "sapui5",
-  "height": "32",
+  "height": "400",
   "id": "PlanningCalendar",
   "modes": "m",
   "package": "databound",
@@ -658,7 +749,7 @@ function() {
   "title": "Planning Calendar",
   "tooltip": "Planning Calendar - Component as Calendar",
   "ui5package": "sap.m",
-  "width": "300"
+  "width": "900"
 };
 
 	return spec;

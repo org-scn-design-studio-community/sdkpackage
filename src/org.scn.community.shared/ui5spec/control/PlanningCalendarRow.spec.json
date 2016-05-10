@@ -116,7 +116,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "CalendarAppointment",
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Short Event\",\"rowKey\":\"PLANNING_EVENTS\",\"start\":\"201604091234\",\"end\":\"201604091634\",\"title\":\"This event is only for 4 hours\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"title\":\"Long Running Event\",\"text\":\"this events runs over 2 months\",\"tentative\":true,\"start\":\"20160409\",\"end\":\"20160611\",\"rowKey\":\"PLANNING_EVENTS\",\"ntype\":\"Type02\"},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENT1\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"start\":\"20100101\",\"text\":\"First Event in the past\",\"title\":\"Past Event 1 / Tentative\",\"icon\":\"sap-icon://accept\",\"tentative\":true,\"ntype\":\"Type06\",\"selected\":false}]",
 		"visible": true,
 
 		"opts" : {
@@ -133,23 +133,22 @@
 			"arrayDefinition": {
 				"appointments": {
 					"type": "Array",
-			        "sequence": "key,icon,selected,tentative,text,title",
-			        
+			        "sequence": "key,text,title,ntype,icon,selected,tentative",
 			        "key": {
-			          "desc": "Unique Property Key",
+			          "desc": "Unique Appointment Key",
 			          "type": "String"
 					},
-					"icon": {
-					  "desc": "Icon",
+					"rowKey": {
+			          "desc": "Unique Row Key",
+			          "type": "String"
+					},
+					"start": {
+					  "desc": "Start Date/Time",
 					  "type": "String"
 					},
-					"selected": {
-					  "desc": "Selected",
-					  "type": "boolean"
-					},
-					"tentative": {
-					  "desc": "Tentative",
-					  "type": "boolean"
+					"end": {
+					  "desc": "End Date/Time",
+					  "type": "String"
 					},
 					"text": {
 					  "desc": "Text",
@@ -158,6 +157,63 @@
 					"title": {
 					  "desc": "Title",
 					  "type": "String"
+					},
+					"ntype": {
+			          "apsControl": "combobox",
+			          "desc": "Type",
+			          "options": [
+			            {
+			              "key": "Type01",
+			              "text": "Type01"
+			            },
+			            {
+			              "key": "Type02",
+			              "text": "Type02"
+			            },
+			            {
+			              "key": "Type03",
+			              "text": "Type03"
+			            },
+			            {
+			              "key": "Type04",
+			              "text": "Type04"
+			            },
+			            {
+			              "key": "Type05",
+			              "text": "Type05"
+			            },
+			            {
+			              "key": "Type06",
+			              "text": "Type06"
+			            },
+			            {
+			              "key": "Type07",
+			              "text": "Type07"
+			            },
+			            {
+			              "key": "Type08",
+			              "text": "Type08"
+			            },
+			            {
+			              "key": "Type09",
+			              "text": "Type09"
+			            }
+			          ],
+			          "type": "String,optional"
+			        },
+					"icon": {
+					  "desc": "Icon",
+					  "type": "String,optional"
+					},
+					"tentative": {
+					  "apsControl": "checkbox",
+					  "desc": "Tentative",
+					  "type": "boolean,optional"
+					},
+					"selected": {
+					  "apsControl": "checkbox",
+					  "desc": "Selected",
+					  "type": "boolean,optional"
 					}
 		      	}
 	      	},

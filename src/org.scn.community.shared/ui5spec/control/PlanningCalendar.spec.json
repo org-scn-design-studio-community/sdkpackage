@@ -132,7 +132,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "PlanningCalendarRow",
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"PLANNING_EVENTS\",\"leaf\":false,\"text\":\"Events Example in Planning\",\"title\":\"Main Events\",\"icon\":\"sap-icon://accept\",\"selected\":false},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENTS\",\"leaf\":false,\"text\":\"Events in the past\",\"title\":\"Past Events\",\"icon\":\"sap-icon://error\"}]",
 		"visible": true,
 
 		"opts" : {
@@ -149,7 +149,7 @@
 			"arrayDefinition": {
 				"rows": {
 					"type": "Array",
-			        "sequence": "key,icon,selected,text,title",
+			        "sequence": "key,text,title,icon,selected",
 			        
 			        "key": {
 			          "desc": "Unique Property Key",
@@ -157,11 +157,12 @@
 					},
 					"icon": {
 					  "desc": "Icon",
-					  "type": "String"
+					  "type": "String,optional"
 					},
 					"selected": {
+					  "apsControl": "checkbox",
 					  "desc": "Selected",
-					  "type": "boolean"
+					  "type": "boolean,optional"
 					},
 					"text": {
 					  "desc": "Text",
@@ -181,7 +182,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "CalendarAppointment",
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Short Event\",\"rowKey\":\"PLANNING_EVENTS\",\"start\":\"201604091234\",\"end\":\"201604091634\",\"title\":\"This event is only for 4 hours\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"title\":\"Long Running Event\",\"text\":\"this events runs over 2 months\",\"tentative\":true,\"start\":\"20160409\",\"end\":\"20160611\",\"rowKey\":\"PLANNING_EVENTS\",\"ntype\":\"Type02\"},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENT1\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"start\":\"20100101\",\"text\":\"First Event in the past\",\"title\":\"Past Event 1 / Tentative\",\"icon\":\"sap-icon://accept\",\"tentative\":true,\"ntype\":\"Type06\",\"selected\":false}]",
 		"visible": true,
 
 		"opts" : {
@@ -198,10 +199,9 @@
 			"arrayDefinition": {
 				"appointments": {
 					"type": "Array",
-			        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
-			        
+			        "sequence": "key,rowKey,start,end,text,title,ntype,icon,selected,tentative",
 			        "key": {
-			          "desc": "Unique Property Key",
+			          "desc": "Unique Appointment Key",
 			          "type": "String"
 					},
 					"rowKey": {
@@ -209,11 +209,11 @@
 			          "type": "String"
 					},
 					"start": {
-					  "desc": "Start Date",
+					  "desc": "Start Date/Time",
 					  "type": "String"
 					},
 					"end": {
-					  "desc": "End Date",
+					  "desc": "End Date/Time",
 					  "type": "String"
 					},
 					"text": {
@@ -224,17 +224,62 @@
 					  "desc": "Title",
 					  "type": "String"
 					},
+					"ntype": {
+			          "apsControl": "combobox",
+			          "desc": "Type",
+			          "options": [
+			            {
+			              "key": "Type01",
+			              "text": "Type01"
+			            },
+			            {
+			              "key": "Type02",
+			              "text": "Type02"
+			            },
+			            {
+			              "key": "Type03",
+			              "text": "Type03"
+			            },
+			            {
+			              "key": "Type04",
+			              "text": "Type04"
+			            },
+			            {
+			              "key": "Type05",
+			              "text": "Type05"
+			            },
+			            {
+			              "key": "Type06",
+			              "text": "Type06"
+			            },
+			            {
+			              "key": "Type07",
+			              "text": "Type07"
+			            },
+			            {
+			              "key": "Type08",
+			              "text": "Type08"
+			            },
+			            {
+			              "key": "Type09",
+			              "text": "Type09"
+			            }
+			          ],
+			          "type": "String,optional"
+			        },
 					"icon": {
 					  "desc": "Icon",
-					  "type": "String"
-					},
-					"selected": {
-					  "desc": "Selected",
-					  "type": "boolean"
+					  "type": "String,optional"
 					},
 					"tentative": {
+					  "apsControl": "checkbox",
 					  "desc": "Tentative",
-					  "type": "boolean"
+					  "type": "boolean,optional"
+					},
+					"selected": {
+					  "apsControl": "checkbox",
+					  "desc": "Selected",
+					  "type": "boolean,optional"
 					}
 		      	}
 	      	},
@@ -246,7 +291,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "CalendarAppointment",
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENTS\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"text\":\"Interval Header\",\"title\":\"Header\",\"start\":\"20160401\",\"end\":\"20161010\",\"icon\":\"sap-con://warning\",\"selected\":false,\"tentative\":false}]",
 		"visible": true,
 
 		"opts" : {
@@ -263,10 +308,9 @@
 			"arrayDefinition": {
 				"intervalHeaders": {
 					"type": "Array",
-			        "sequence": "key,rowKey,start,end,text,title,icon,selected,tentative",
-			        
+			        "sequence": "key,rowKey,start,end,text,title,ntype,icon,selected,tentative",
 			        "key": {
-			          "desc": "Unique Property Key",
+			          "desc": "Unique Header Key",
 			          "type": "String"
 					},
 					"rowKey": {
@@ -274,11 +318,11 @@
 			          "type": "String"
 					},
 					"start": {
-					  "desc": "Start Date",
+					  "desc": "Start Date/Time",
 					  "type": "String"
 					},
 					"end": {
-					  "desc": "End Date",
+					  "desc": "End Date/Time",
 					  "type": "String"
 					},
 					"text": {
@@ -289,17 +333,62 @@
 					  "desc": "Title",
 					  "type": "String"
 					},
+					"ntype": {
+			          "apsControl": "combobox",
+			          "desc": "Type",
+			          "options": [
+			            {
+			              "key": "Type01",
+			              "text": "Type01"
+			            },
+			            {
+			              "key": "Type02",
+			              "text": "Type02"
+			            },
+			            {
+			              "key": "Type03",
+			              "text": "Type03"
+			            },
+			            {
+			              "key": "Type04",
+			              "text": "Type04"
+			            },
+			            {
+			              "key": "Type05",
+			              "text": "Type05"
+			            },
+			            {
+			              "key": "Type06",
+			              "text": "Type06"
+			            },
+			            {
+			              "key": "Type07",
+			              "text": "Type07"
+			            },
+			            {
+			              "key": "Type08",
+			              "text": "Type08"
+			            },
+			            {
+			              "key": "Type09",
+			              "text": "Type09"
+			            }
+			          ],
+			          "type": "String,optional"
+			        },
 					"icon": {
 					  "desc": "Icon",
-					  "type": "String"
-					},
-					"selected": {
-					  "desc": "Selected",
-					  "type": "boolean"
+					  "type": "String,optional"
 					},
 					"tentative": {
+					  "apsControl": "checkbox",
 					  "desc": "Tentative",
-					  "type": "boolean"
+					  "type": "boolean,optional"
+					},
+					"selected": {
+					  "apsControl": "checkbox",
+					  "desc": "Selected",
+					  "type": "boolean,optional"
 					}
 		      	}
 	      	},

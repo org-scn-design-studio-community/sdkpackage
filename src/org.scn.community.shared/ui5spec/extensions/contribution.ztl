@@ -8299,38 +8299,38 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return this.appointmentSelectedKey;
 	*}
 
-	/** Adds a root element containing key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean].
+	/** Adds a root element containing key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDAR.addAppointment(key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
-	PLANNINGCALENDAR.addAppointment(key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addAppointment (
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
+		if(ntype == undefined) { ntype = "";}
+		if(icon == undefined) { icon = "";}
+		if(selected == undefined) { selected = false;}
+		if(tentative == undefined) { tentative = false;}
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -8400,22 +8400,20 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDAR.insertAppointment(index [int], key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.insertAppointment(index [int], key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void insertAppointment (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
 		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
@@ -8428,11 +8426,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -8453,15 +8449,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	 * Updates given Appointment<br/>
 	 */
 	void updateAppointment (
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) 
 	{*
 		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
@@ -8471,11 +8465,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -8524,243 +8516,6 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
-	/**
-	 * Sets the RowKey for Appointment keys<br/>
-	 */
-	void setAppointmentRowKeys (
-			/**/ String keys,
-			/**/ String separator,
-	        /* RowKey */ String rowKey
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].rowKey = rowKey;
-					break;
-				}
-			}
-		}
-		
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the RowKey for Appointment Key<br/>
-	 */
-	void setAppointmentRowKey (
-			/**/ String key,
-			/**/ String rowKey
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].rowKey = rowKey;
-				break;
-			}
-		}
-
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of RowKey for Appointment Key<br/>
-	 */
-	String getAppointmentRowKey (
-			/**/ String key
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].rowKey;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Start for Appointment keys<br/>
-	 */
-	void setAppointmentStarts (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Start */ String start
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].start = start;
-					break;
-				}
-			}
-		}
-		
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Start for Appointment Key<br/>
-	 */
-	void setAppointmentStart (
-			/**/ String key,
-			/**/ String start
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].start = start;
-				break;
-			}
-		}
-
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Start for Appointment Key<br/>
-	 */
-	String getAppointmentStart (
-			/**/ String key
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].start;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the End for Appointment keys<br/>
-	 */
-	void setAppointmentEnds (
-			/**/ String keys,
-			/**/ String separator,
-	        /* End */ String end
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].end = end;
-					break;
-				}
-			}
-		}
-		
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the End for Appointment Key<br/>
-	 */
-	void setAppointmentEnd (
-			/**/ String key,
-			/**/ String end
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].end = end;
-				break;
-			}
-		}
-
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of End for Appointment Key<br/>
-	 */
-	String getAppointmentEnd (
-			/**/ String key
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].end;
-				break;
-			}
-		}
-		
-		return value;
-	*}
 	/**
 	 * Sets the Text for Appointment keys<br/>
 	 */
@@ -8913,6 +8668,85 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Ntype for Appointment keys<br/>
+	 */
+	void setAppointmentNtypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Ntype */ String ntype
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].ntype = ntype;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Ntype for Appointment Key<br/>
+	 */
+	void setAppointmentNtype (
+			/**/ String key,
+			/**/ String ntype
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].ntype = ntype;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Ntype for Appointment Key<br/>
+	 */
+	String getAppointmentNtype (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].ntype;
 				break;
 			}
 		}
@@ -9261,38 +9095,38 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 
 
 
-	/** Adds a root element containing key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean].
+	/** Adds a root element containing key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDAR.addIntervalHeader(key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
-	PLANNINGCALENDAR.addIntervalHeader(key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addIntervalHeader(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addIntervalHeader(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addIntervalHeader (
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Header Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
+		if(ntype == undefined) { ntype = "";}
+		if(icon == undefined) { icon = "";}
+		if(selected == undefined) { selected = false;}
+		if(tentative == undefined) { tentative = false;}
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -9362,22 +9196,20 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDAR.insertIntervalHeader(index [int], key [String], rowKey [String], start [String], end [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.insertIntervalHeader(index [int], key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void insertIntervalHeader (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Header Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
 		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
@@ -9390,11 +9222,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -9415,15 +9245,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	 * Updates given IntervalHeader<br/>
 	 */
 	void updateIntervalHeader (
-			/**Unique Property Key*/String key, 
-			/**Unique Row Key*/String rowKey, 
-			/**Start Date*/String start, 
-			/**End Date*/String end, 
+			/**Unique Header Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative
+			/**Type*/optional String ntype, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) 
 	{*
 		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
@@ -9433,11 +9261,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			rowKey:rowKey, 
-			start:start, 
-			end:end, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -9486,243 +9312,6 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
-	/**
-	 * Sets the RowKey for IntervalHeader keys<br/>
-	 */
-	void setIntervalHeaderRowKeys (
-			/**/ String keys,
-			/**/ String separator,
-	        /* RowKey */ String rowKey
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].rowKey = rowKey;
-					break;
-				}
-			}
-		}
-		
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the RowKey for IntervalHeader Key<br/>
-	 */
-	void setIntervalHeaderRowKey (
-			/**/ String key,
-			/**/ String rowKey
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].rowKey = rowKey;
-				break;
-			}
-		}
-
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of RowKey for IntervalHeader Key<br/>
-	 */
-	String getIntervalHeaderRowKey (
-			/**/ String key
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].rowKey;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Start for IntervalHeader keys<br/>
-	 */
-	void setIntervalHeaderStarts (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Start */ String start
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].start = start;
-					break;
-				}
-			}
-		}
-		
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Start for IntervalHeader Key<br/>
-	 */
-	void setIntervalHeaderStart (
-			/**/ String key,
-			/**/ String start
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].start = start;
-				break;
-			}
-		}
-
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Start for IntervalHeader Key<br/>
-	 */
-	String getIntervalHeaderStart (
-			/**/ String key
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].start;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the End for IntervalHeader keys<br/>
-	 */
-	void setIntervalHeaderEnds (
-			/**/ String keys,
-			/**/ String separator,
-	        /* End */ String end
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].end = end;
-					break;
-				}
-			}
-		}
-		
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the End for IntervalHeader Key<br/>
-	 */
-	void setIntervalHeaderEnd (
-			/**/ String key,
-			/**/ String end
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].end = end;
-				break;
-			}
-		}
-
-		this.intervalHeaders = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of End for IntervalHeader Key<br/>
-	 */
-	String getIntervalHeaderEnd (
-			/**/ String key
-			) 
-	{*
-		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.intervalHeaders);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].end;
-				break;
-			}
-		}
-		
-		return value;
-	*}
 	/**
 	 * Sets the Text for IntervalHeader keys<br/>
 	 */
@@ -9875,6 +9464,85 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Ntype for IntervalHeader keys<br/>
+	 */
+	void setIntervalHeaderNtypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Ntype */ String ntype
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].ntype = ntype;
+					break;
+				}
+			}
+		}
+		
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Ntype for IntervalHeader Key<br/>
+	 */
+	void setIntervalHeaderNtype (
+			/**/ String key,
+			/**/ String ntype
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].ntype = ntype;
+				break;
+			}
+		}
+
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Ntype for IntervalHeader Key<br/>
+	 */
+	String getIntervalHeaderNtype (
+			/**/ String key
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].ntype;
 				break;
 			}
 		}
@@ -10246,33 +9914,35 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return this.rowSelectionChangedKey;
 	*}
 
-	/** Adds a root element containing key [String], icon [String], selected [boolean], text [String], title [String].
+	/** Adds a root element containing key [String], text [String], title [String], icon [String], selected [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDAR.addRow(key [String], icon [String], selected [boolean], text [String], title [String]);<br>
-	PLANNINGCALENDAR.addRow(key [String], icon [String], selected [boolean], text [String], title [String]);<br>
+	PLANNINGCALENDAR.addRow(key [String], text [String], title [String], icon [String], selected [boolean]);<br>
+	PLANNINGCALENDAR.addRow(key [String], text [String], title [String], icon [String], selected [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addRow (
 			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected
 			) {*
 
+		if(icon == undefined) { icon = "";}
+		if(selected == undefined) { selected = false;}
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			icon:icon, 
-			selected:selected, 
 			text:text, 
-			title:title
+			title:title, 
+			icon:icon, 
+			selected:selected
 			};
 
 		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
@@ -10339,7 +10009,7 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDAR.insertRow(index [int], key [String], icon [String], selected [boolean], text [String], title [String]);<br>
+	PLANNINGCALENDAR.insertRow(index [int], key [String], text [String], title [String], icon [String], selected [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -10347,10 +10017,10 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	void insertRow (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected
 			) {*
 
 		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
@@ -10363,10 +10033,10 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			icon:icon, 
-			selected:selected, 
 			text:text, 
-			title:title
+			title:title, 
+			icon:icon, 
+			selected:selected
 		};
 
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -10385,10 +10055,10 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	 */
 	void updateRow (
 			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected
 			) 
 	{*
 		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
@@ -10398,10 +10068,10 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			icon:icon, 
-			selected:selected, 
 			text:text, 
-			title:title
+			title:title, 
+			icon:icon, 
+			selected:selected
 		};
 
 		var elementsJson = JSON.parse(this.rows);
@@ -10447,6 +10117,164 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Row keys<br/>
+	 */
+	void setRowTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.rows);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.rows = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Row Key<br/>
+	 */
+	void setRowText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.rows);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.rows = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Row Key<br/>
+	 */
+	String getRowText (
+			/**/ String key
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.rows);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Title for Row keys<br/>
+	 */
+	void setRowTitles (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Title */ String title
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.rows);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].title = title;
+					break;
+				}
+			}
+		}
+		
+		this.rows = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Title for Row Key<br/>
+	 */
+	void setRowTitle (
+			/**/ String key,
+			/**/ String title
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.rows);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].title = title;
+				break;
+			}
+		}
+
+		this.rows = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Title for Row Key<br/>
+	 */
+	String getRowTitle (
+			/**/ String key
+			) 
+	{*
+		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.rows);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 	/**
 	 * Sets the Icon for Row keys<br/>
 	 */
@@ -10651,164 +10479,6 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		
 		return newElementsJson;
 	*}
-	/**
-	 * Sets the Text for Row keys<br/>
-	 */
-	void setRowTexts (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Text */ String text
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.rows);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].text = text;
-					break;
-				}
-			}
-		}
-		
-		this.rows = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Text for Row Key<br/>
-	 */
-	void setRowText (
-			/**/ String key,
-			/**/ String text
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.rows);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].text = text;
-				break;
-			}
-		}
-
-		this.rows = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Text for Row Key<br/>
-	 */
-	String getRowText (
-			/**/ String key
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.rows);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].text;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Title for Row keys<br/>
-	 */
-	void setRowTitles (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Title */ String title
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.rows);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].title = title;
-					break;
-				}
-			}
-		}
-		
-		this.rows = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Title for Row Key<br/>
-	 */
-	void setRowTitle (
-			/**/ String key,
-			/**/ String title
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.rows);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].title = title;
-				break;
-			}
-		}
-
-		this.rows = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Title for Row Key<br/>
-	 */
-	String getRowTitle (
-			/**/ String key
-			) 
-	{*
-		if (this.rows === undefined || this.rows === "" || this.rows === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.rows);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].title;
-				break;
-			}
-		}
-		
-		return value;
-	*}
 
 
 
@@ -10909,35 +10579,38 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  */
 class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community.shared.DataComponent {
 
-	/** Adds a root element containing key [String], icon [String], selected [boolean], tentative [boolean], text [String], title [String].
+	/** Adds a root element containing key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDARROW.addAppointment(key [String], icon [String], selected [boolean], tentative [boolean], text [String], title [String]);<br>
-	PLANNINGCALENDARROW.addAppointment(key [String], icon [String], selected [boolean], tentative [boolean], text [String], title [String]);<br>
+	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addAppointment (
-			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
+		if(icon == undefined) { icon = "";}
+		if(selected == undefined) { selected = false;}
+		if(tentative == undefined) { tentative = false;}
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			text:text, 
+			title:title, 
 			icon:icon, 
 			selected:selected, 
-			tentative:tentative, 
-			text:text, 
-			title:title
+			tentative:tentative
 			};
 
 		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
@@ -11004,19 +10677,19 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDARROW.insertAppointment(index [int], key [String], icon [String], selected [boolean], tentative [boolean], text [String], title [String]);<br>
+	PLANNINGCALENDARROW.insertAppointment(index [int], key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void insertAppointment (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
-			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) {*
 
 		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
@@ -11029,11 +10702,11 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			text:text, 
+			title:title, 
 			icon:icon, 
 			selected:selected, 
-			tentative:tentative, 
-			text:text, 
-			title:title
+			tentative:tentative
 		};
 
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -11051,12 +10724,12 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 	 * Updates given Appointment<br/>
 	 */
 	void updateAppointment (
-			/**Unique Property Key*/String key, 
-			/**Icon*/String icon, 
-			/**Selected*/boolean selected, 
-			/**Tentative*/boolean tentative, 
+			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
-			/**Title*/String title
+			/**Title*/String title, 
+			/**Icon*/optional String icon, 
+			/**Selected*/optional boolean selected, 
+			/**Tentative*/optional boolean tentative
 			) 
 	{*
 		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
@@ -11066,11 +10739,11 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			text:text, 
+			title:title, 
 			icon:icon, 
 			selected:selected, 
-			tentative:tentative, 
-			text:text, 
-			title:title
+			tentative:tentative
 		};
 
 		var elementsJson = JSON.parse(this.appointments);
@@ -11116,6 +10789,164 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the Text for Appointment keys<br/>
+	 */
+	void setAppointmentTexts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Text */ String text
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].text = text;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Text for Appointment Key<br/>
+	 */
+	void setAppointmentText (
+			/**/ String key,
+			/**/ String text
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].text = text;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Text for Appointment Key<br/>
+	 */
+	String getAppointmentText (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Title for Appointment keys<br/>
+	 */
+	void setAppointmentTitles (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Title */ String title
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].title = title;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Title for Appointment Key<br/>
+	 */
+	void setAppointmentTitle (
+			/**/ String key,
+			/**/ String title
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].title = title;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Title for Appointment Key<br/>
+	 */
+	String getAppointmentTitle (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 	/**
 	 * Sets the Icon for Appointment keys<br/>
 	 */
@@ -11444,164 +11275,6 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 		}
 		
 		return newElementsJson;
-	*}
-	/**
-	 * Sets the Text for Appointment keys<br/>
-	 */
-	void setAppointmentTexts (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Text */ String text
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].text = text;
-					break;
-				}
-			}
-		}
-		
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Text for Appointment Key<br/>
-	 */
-	void setAppointmentText (
-			/**/ String key,
-			/**/ String text
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].text = text;
-				break;
-			}
-		}
-
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Text for Appointment Key<br/>
-	 */
-	String getAppointmentText (
-			/**/ String key
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].text;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Title for Appointment keys<br/>
-	 */
-	void setAppointmentTitles (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Title */ String title
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].title = title;
-					break;
-				}
-			}
-		}
-		
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Title for Appointment Key<br/>
-	 */
-	void setAppointmentTitle (
-			/**/ String key,
-			/**/ String title
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].title = title;
-				break;
-			}
-		}
-
-		this.appointments = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Title for Appointment Key<br/>
-	 */
-	String getAppointmentTitle (
-			/**/ String key
-			) 
-	{*
-		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.appointments);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].title;
-				break;
-			}
-		}
-		
-		return value;
 	*}
 
 
