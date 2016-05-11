@@ -155,6 +155,60 @@ function() {
     "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT\",\"leaf\":false,\"text\":\"Short Event\",\"rowKey\":\"PLANNING_EVENTS\",\"start\":\"201604091234\",\"end\":\"201604091634\",\"title\":\"This event is only for 4 hours\"},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT1\",\"leaf\":false,\"title\":\"Long Running Event\",\"text\":\"this events runs over 2 months\",\"tentative\":true,\"start\":\"20160409\",\"end\":\"20160611\",\"rowKey\":\"PLANNING_EVENTS\",\"ntype\":\"Type02\"},{\"parentKey\":\"ROOT\",\"key\":\"PAST_EVENT1\",\"leaf\":false,\"rowKey\":\"PAST_EVENTS\",\"start\":\"20100101\",\"text\":\"First Event in the past\",\"title\":\"Past Event 1 / Tentative\",\"icon\":\"sap-icon://accept\",\"tentative\":true,\"ntype\":\"Type06\",\"selected\":false}]",
     "visible": true
   },
+  "cleanAllAppointments": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Appointments",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Appointments",
+      "refProperty": "appointments",
+      "refValue": "[]",
+      "tooltip": "Clean All Appointments",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
+  "cleanAllIntervalHeaders": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Interval Headers",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Interval Headers",
+      "refProperty": "intervalHeaders",
+      "refValue": "[]",
+      "tooltip": "Clean All Interval Headers",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
+  "cleanAllRows": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Rows",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Rows",
+      "refProperty": "rows",
+      "refValue": "[]",
+      "tooltip": "Clean All Rows",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
   "contentHeight": {
     "opts": {
       "apsControl": "spinner",

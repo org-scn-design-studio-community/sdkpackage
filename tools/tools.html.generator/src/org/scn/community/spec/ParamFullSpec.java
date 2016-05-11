@@ -109,6 +109,10 @@ public class ParamFullSpec {
 		return type;
 	}
 	
+	public String defaultValue() {
+		return properties.get("defaultValue");
+	}
+	
 	public String getChoiceType() {
 		if(options.getPropertyValue("ztlType").equals("Choice")) {
 			String choiceType = options.getPropertyValue("choiceType");
@@ -336,7 +340,11 @@ public class ParamFullSpec {
 											boolean optional = paramGenChild2.isOptional();
 											
 											boolean isBoolean = paramGenChild2.getType(true).equals("boolean");
-											String initValue = isBoolean?"false":"\"\"";
+											String defaultValueArray = paramGenChild2.defaultValue();
+											if(defaultValueArray == null) {
+												defaultValueArray = isBoolean?"false":"\"\"";
+											}
+											String initValue = defaultValueArray;
 											
 											if(optional) {
 												ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + nameChild + " == undefined) { " + nameChild + " = "+initValue+";}" + "\r\n\t\t";; 
@@ -381,7 +389,11 @@ public class ParamFullSpec {
 								boolean optional = paramGenChild.isOptional();
 								
 								boolean isBoolean = paramGenChild.getType(true).equals("boolean");
-								String initValue = isBoolean?"false":"\"\"";
+								String defaultValueArray = paramGenChild.defaultValue();
+								if(defaultValueArray == null) {
+									defaultValueArray = isBoolean?"false":"\"\"";
+								}
+								String initValue = defaultValueArray;
 	
 								if(optional) {
 									ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + nameRoot + " == undefined) { " + nameRoot + " = "+initValue+";}" + "\r\n\t\t";; 

@@ -7,6 +7,28 @@
  */
 class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.DataComponent {
 
+	/**
+	 * Clean All Links from the Array.
+	 */	
+	void cleanAllLinks (){*
+		this.cleanAllLinks = true;
+
+		var elementsArray = [];
+		this.links = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Links from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllLinks (){*
+		this.cleanAllLinks = true;
+
+		var elementsArray = [];
+		this.links = JSON.stringify(elementsArray);
+	*}
+
 
 
 	/**
@@ -25,45 +47,51 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 
 
 
-	/** Adds a root element containing key [String], contentWidth [int], emphasized [boolean], enabled [boolean], href [String], subtle [boolean], target [String], text [String], textAlign [String], textDirection [String], wrapping [boolean].
+	/** Adds a root element containing key [String], text [String], textAlign [String], textDirection [String], wrapping [boolean], emphasized [boolean], enabled [boolean], subtle [boolean], href [String], target [String].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	BREADCRUMBS.addLink(key [String], contentWidth [int], emphasized [boolean], enabled [boolean], href [String], subtle [boolean], target [String], text [String], textAlign [String], textDirection [String], wrapping [boolean]);<br>
-	BREADCRUMBS.addLink(key [String], contentWidth [int], emphasized [boolean], enabled [boolean], href [String], subtle [boolean], target [String], text [String], textAlign [String], textDirection [String], wrapping [boolean]);<br>
+	BREADCRUMBS.addLink(key [String], text [String], textAlign [String], textDirection [String], wrapping [boolean], emphasized [boolean], enabled [boolean], subtle [boolean], href [String], target [String]);<br>
+	BREADCRUMBS.addLink(key [String], text [String], textAlign [String], textDirection [String], wrapping [boolean], emphasized [boolean], enabled [boolean], subtle [boolean], href [String], target [String]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addLink (
 			/**Unique Property Key*/String key, 
-			/**Content Width*/int contentWidth, 
-			/**Emphasized*/boolean emphasized, 
-			/**Enabled*/boolean enabled, 
-			/**Href*/String href, 
-			/**Subtle*/boolean subtle, 
-			/**Target*/String target, 
 			/**Text*/String text, 
-			/**Text Align*/String textAlign, 
-			/**Text Direction*/String textDirection, 
-			/**Wrapping*/boolean wrapping
+			/**Text Align*/optional String textAlign, 
+			/**Text Direction*/optional String textDirection, 
+			/**Wrapping*/optional boolean wrapping, 
+			/**Emphasized*/optional boolean emphasized, 
+			/**Enabled*/optional boolean enabled, 
+			/**Subtle*/optional boolean subtle, 
+			/**Href*/optional String href, 
+			/**Target*/optional String target
 			) {*
 
+		if(textAlign == undefined) { textAlign = "";}
+		if(textDirection == undefined) { textDirection = "";}
+		if(wrapping == undefined) { wrapping = false;}
+		if(emphasized == undefined) { emphasized = false;}
+		if(enabled == undefined) { enabled = true;}
+		if(subtle == undefined) { subtle = false;}
+		if(href == undefined) { href = "";}
+		if(target == undefined) { target = "";}
 		
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			contentWidth:contentWidth, 
-			emphasized:emphasized, 
-			enabled:enabled, 
-			href:href, 
-			subtle:subtle, 
-			target:target, 
 			text:text, 
 			textAlign:textAlign, 
 			textDirection:textDirection, 
-			wrapping:wrapping
+			wrapping:wrapping, 
+			emphasized:emphasized, 
+			enabled:enabled, 
+			subtle:subtle, 
+			href:href, 
+			target:target
 			};
 
 		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
@@ -130,7 +158,7 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
  	<example>
 	You want to insert a root element
 	<code>
-	BREADCRUMBS.insertLink(index [int], key [String], contentWidth [int], emphasized [boolean], enabled [boolean], href [String], subtle [boolean], target [String], text [String], textAlign [String], textDirection [String], wrapping [boolean]);<br>
+	BREADCRUMBS.insertLink(index [int], key [String], text [String], textAlign [String], textDirection [String], wrapping [boolean], emphasized [boolean], enabled [boolean], subtle [boolean], href [String], target [String]);<br>
 	<br>
 	</code>
 	</example>
@@ -138,16 +166,15 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 	void insertLink (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Property Key*/String key, 
-			/**Content Width*/int contentWidth, 
-			/**Emphasized*/boolean emphasized, 
-			/**Enabled*/boolean enabled, 
-			/**Href*/String href, 
-			/**Subtle*/boolean subtle, 
-			/**Target*/String target, 
 			/**Text*/String text, 
-			/**Text Align*/String textAlign, 
-			/**Text Direction*/String textDirection, 
-			/**Wrapping*/boolean wrapping
+			/**Text Align*/optional String textAlign, 
+			/**Text Direction*/optional String textDirection, 
+			/**Wrapping*/optional boolean wrapping, 
+			/**Emphasized*/optional boolean emphasized, 
+			/**Enabled*/optional boolean enabled, 
+			/**Subtle*/optional boolean subtle, 
+			/**Href*/optional String href, 
+			/**Target*/optional String target
 			) {*
 
 		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
@@ -160,16 +187,15 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			contentWidth:contentWidth, 
-			emphasized:emphasized, 
-			enabled:enabled, 
-			href:href, 
-			subtle:subtle, 
-			target:target, 
 			text:text, 
 			textAlign:textAlign, 
 			textDirection:textDirection, 
-			wrapping:wrapping
+			wrapping:wrapping, 
+			emphasized:emphasized, 
+			enabled:enabled, 
+			subtle:subtle, 
+			href:href, 
+			target:target
 		};
 
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -188,16 +214,15 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 	 */
 	void updateLink (
 			/**Unique Property Key*/String key, 
-			/**Content Width*/int contentWidth, 
-			/**Emphasized*/boolean emphasized, 
-			/**Enabled*/boolean enabled, 
-			/**Href*/String href, 
-			/**Subtle*/boolean subtle, 
-			/**Target*/String target, 
 			/**Text*/String text, 
-			/**Text Align*/String textAlign, 
-			/**Text Direction*/String textDirection, 
-			/**Wrapping*/boolean wrapping
+			/**Text Align*/optional String textAlign, 
+			/**Text Direction*/optional String textDirection, 
+			/**Wrapping*/optional boolean wrapping, 
+			/**Emphasized*/optional boolean emphasized, 
+			/**Enabled*/optional boolean enabled, 
+			/**Subtle*/optional boolean subtle, 
+			/**Href*/optional String href, 
+			/**Target*/optional String target
 			) 
 	{*
 		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
@@ -207,16 +232,15 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 		var itemDef = {
 			leaf:true,
 			key:key, 
-			contentWidth:contentWidth, 
-			emphasized:emphasized, 
-			enabled:enabled, 
-			href:href, 
-			subtle:subtle, 
-			target:target, 
 			text:text, 
 			textAlign:textAlign, 
 			textDirection:textDirection, 
-			wrapping:wrapping
+			wrapping:wrapping, 
+			emphasized:emphasized, 
+			enabled:enabled, 
+			subtle:subtle, 
+			href:href, 
+			target:target
 		};
 
 		var elementsJson = JSON.parse(this.links);
@@ -262,618 +286,6 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
-	/**
-	 * Sets the ContentWidth for Link keys<br/>
-	 */
-	void setLinkContentWidths (
-			/**/ String keys,
-			/**/ String separator,
-	        /* ContentWidth */ int contentWidth
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].contentWidth = contentWidth;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the ContentWidth for Link Key<br/>
-	 */
-	void setLinkContentWidth (
-			/**/ String key,
-			/**/ int contentWidth
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].contentWidth = contentWidth;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of ContentWidth for Link Key<br/>
-	 */
-	int getLinkContentWidth (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].contentWidth;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Emphasized for Link keys<br/>
-	 */
-	void setLinkEmphasizeds (
-			/**/ String keys,
-			/**/ String separator
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].emphasized = false;
-			
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].emphasized = true;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Emphasized for Link Key<br/>
-	 */
-	void setLinkEmphasized (
-			/**/ String key,
-			/**/ boolean emphasized
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].emphasized = emphasized;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-		
-	/**
-	 * Clean all Emphasized of Link keys<br/>
-	 */
-	void cleanAllLinkEmphasizeds (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].emphasized = false;
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Emphasized for Link Key<br/>
-	 */
-	String getLinkEmphasized (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].emphasized;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-
-	/**
-	 * Returns the Emphasized keys<br/>
-	 */
-	org.scn.community.shared.KeyArray getLinkEmphasizedKeysArray (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.links);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].emphasized == true) {
-				newElementsJson.push({"key": elementsJson[i].key});
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	/**
-	 * Sets the Enabled for Link keys<br/>
-	 */
-	void setLinkEnableds (
-			/**/ String keys,
-			/**/ String separator
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].enabled = false;
-			
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].enabled = true;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Enabled for Link Key<br/>
-	 */
-	void setLinkEnabled (
-			/**/ String key,
-			/**/ boolean enabled
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].enabled = enabled;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-		
-	/**
-	 * Clean all Enabled of Link keys<br/>
-	 */
-	void cleanAllLinkEnableds (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].enabled = false;
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Enabled for Link Key<br/>
-	 */
-	String getLinkEnabled (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].enabled;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-
-	/**
-	 * Returns the Enabled keys<br/>
-	 */
-	org.scn.community.shared.KeyArray getLinkEnabledKeysArray (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.links);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].enabled == true) {
-				newElementsJson.push({"key": elementsJson[i].key});
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	/**
-	 * Sets the Href for Link keys<br/>
-	 */
-	void setLinkHrefs (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Href */ String href
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].href = href;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Href for Link Key<br/>
-	 */
-	void setLinkHref (
-			/**/ String key,
-			/**/ String href
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].href = href;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Href for Link Key<br/>
-	 */
-	String getLinkHref (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].href;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-	/**
-	 * Sets the Subtle for Link keys<br/>
-	 */
-	void setLinkSubtles (
-			/**/ String keys,
-			/**/ String separator
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].subtle = false;
-			
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].subtle = true;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Subtle for Link Key<br/>
-	 */
-	void setLinkSubtle (
-			/**/ String key,
-			/**/ boolean subtle
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].subtle = subtle;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-		
-	/**
-	 * Clean all Subtle of Link keys<br/>
-	 */
-	void cleanAllLinkSubtles (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			// clean all
-			elementsJson[i].subtle = false;
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Subtle for Link Key<br/>
-	 */
-	String getLinkSubtle (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = undefined;
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].subtle;
-				break;
-			}
-		}
-		
-		return value;
-	*}
-
-	/**
-	 * Returns the Subtle keys<br/>
-	 */
-	org.scn.community.shared.KeyArray getLinkSubtleKeysArray (
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return [];
-		}
-		
-		var elementsJson = JSON.parse(this.links);
-		
-		var newElementsJson = [];
-		
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].subtle == true) {
-				newElementsJson.push({"key": elementsJson[i].key});
-			}
-		}
-		
-		return newElementsJson;
-	*}
-	/**
-	 * Sets the Target for Link keys<br/>
-	 */
-	void setLinkTargets (
-			/**/ String keys,
-			/**/ String separator,
-	        /* Target */ String target
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-	
-		var changeKeys = keys.split(separator);	
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and change
-		for (var i = 0; i < elementsJson.length ; i++){
-			for (var j = 0; j < changeKeys.length ; j++){
-				if (elementsJson[i].key == changeKeys[j]) {
-					elementsJson[i].target = target;
-					break;
-				}
-			}
-		}
-		
-		this.links = JSON.stringify(elementsJson);
-	*}
-
-	/**
-	 * Sets the Target for Link Key<br/>
-	 */
-	void setLinkTarget (
-			/**/ String key,
-			/**/ String target
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				elementsJson[i].target = target;
-				break;
-			}
-		}
-
-		this.links = JSON.stringify(elementsJson);
-	*}
-	
-	/**
-	 * Returns value of Target for Link Key<br/>
-	 */
-	String getLinkTarget (
-			/**/ String key
-			) 
-	{*
-		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
-			return;
-		}
-
-		var elementsJson = JSON.parse(this.links);
-
-		var value = "";
-		// loop and find and update
-		for (var i = 0; i < elementsJson.length ; i++){
-			if (elementsJson[i].key == key) {
-				value = elementsJson[i].target;
-				break;
-			}
-		}
-		
-		return value;
-	*}
 	/**
 	 * Sets the Text for Link keys<br/>
 	 */
@@ -1235,6 +647,539 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 		}
 		
 		return newElementsJson;
+	*}
+	/**
+	 * Sets the Emphasized for Link keys<br/>
+	 */
+	void setLinkEmphasizeds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].emphasized = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].emphasized = true;
+					break;
+				}
+			}
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Emphasized for Link Key<br/>
+	 */
+	void setLinkEmphasized (
+			/**/ String key,
+			/**/ boolean emphasized
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].emphasized = emphasized;
+				break;
+			}
+		}
+
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Emphasized of Link keys<br/>
+	 */
+	void cleanAllLinkEmphasizeds (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].emphasized = false;
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Emphasized for Link Key<br/>
+	 */
+	String getLinkEmphasized (
+			/**/ String key
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].emphasized;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Emphasized keys<br/>
+	 */
+	org.scn.community.shared.KeyArray getLinkEmphasizedKeysArray (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.links);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].emphasized == true) {
+				newElementsJson.push({"key": elementsJson[i].key});
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Enabled for Link keys<br/>
+	 */
+	void setLinkEnableds (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].enabled = true;
+					break;
+				}
+			}
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Enabled for Link Key<br/>
+	 */
+	void setLinkEnabled (
+			/**/ String key,
+			/**/ boolean enabled
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].enabled = enabled;
+				break;
+			}
+		}
+
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Enabled of Link keys<br/>
+	 */
+	void cleanAllLinkEnableds (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].enabled = false;
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Enabled for Link Key<br/>
+	 */
+	String getLinkEnabled (
+			/**/ String key
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].enabled;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Enabled keys<br/>
+	 */
+	org.scn.community.shared.KeyArray getLinkEnabledKeysArray (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.links);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].enabled == true) {
+				newElementsJson.push({"key": elementsJson[i].key});
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Subtle for Link keys<br/>
+	 */
+	void setLinkSubtles (
+			/**/ String keys,
+			/**/ String separator
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].subtle = false;
+			
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].subtle = true;
+					break;
+				}
+			}
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Subtle for Link Key<br/>
+	 */
+	void setLinkSubtle (
+			/**/ String key,
+			/**/ boolean subtle
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].subtle = subtle;
+				break;
+			}
+		}
+
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+		
+	/**
+	 * Clean all Subtle of Link keys<br/>
+	 */
+	void cleanAllLinkSubtles (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			// clean all
+			elementsJson[i].subtle = false;
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Subtle for Link Key<br/>
+	 */
+	String getLinkSubtle (
+			/**/ String key
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].subtle;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+	/**
+	 * Returns the Subtle keys<br/>
+	 */
+	org.scn.community.shared.KeyArray getLinkSubtleKeysArray (
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return [];
+		}
+		
+		var elementsJson = JSON.parse(this.links);
+		
+		var newElementsJson = [];
+		
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].subtle == true) {
+				newElementsJson.push({"key": elementsJson[i].key});
+			}
+		}
+		
+		return newElementsJson;
+	*}
+	/**
+	 * Sets the Href for Link keys<br/>
+	 */
+	void setLinkHrefs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Href */ String href
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].href = href;
+					break;
+				}
+			}
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Href for Link Key<br/>
+	 */
+	void setLinkHref (
+			/**/ String key,
+			/**/ String href
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].href = href;
+				break;
+			}
+		}
+
+		this.links = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Href for Link Key<br/>
+	 */
+	String getLinkHref (
+			/**/ String key
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].href;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Target for Link keys<br/>
+	 */
+	void setLinkTargets (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Target */ String target
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].target = target;
+					break;
+				}
+			}
+		}
+		
+		this.links = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Target for Link Key<br/>
+	 */
+	void setLinkTarget (
+			/**/ String key,
+			/**/ String target
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].target = target;
+				break;
+			}
+		}
+
+		this.links = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Target for Link Key<br/>
+	 */
+	String getLinkTarget (
+			/**/ String key
+			) 
+	{*
+		if (this.links === undefined || this.links === "" || this.links === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.links);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].target;
+				break;
+			}
+		}
+		
+		return value;
 	*}
 
 
@@ -8299,19 +8244,22 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return this.appointmentSelectedKey;
 	*}
 
-	/** Adds a root element containing key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
+	/** Adds a root element containing key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDAR.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
-	PLANNINGCALENDAR.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addAppointment(key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addAppointment(key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addAppointment (
 			/**Unique Appointment Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -8328,6 +8276,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -8400,7 +8351,7 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDAR.insertAppointment(index [int], key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.insertAppointment(index [int], key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -8408,6 +8359,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	void insertAppointment (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Appointment Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -8426,6 +8380,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -8450,6 +8407,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	 */
 	void updateAppointment (
 			/**Unique Appointment Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -8465,6 +8425,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -8516,6 +8479,243 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the RowKey for Appointment keys<br/>
+	 */
+	void setAppointmentRowKeys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* RowKey */ String rowKey
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].rowKey = rowKey;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the RowKey for Appointment Key<br/>
+	 */
+	void setAppointmentRowKey (
+			/**/ String key,
+			/**/ String rowKey
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].rowKey = rowKey;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of RowKey for Appointment Key<br/>
+	 */
+	String getAppointmentRowKey (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].rowKey;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Start for Appointment keys<br/>
+	 */
+	void setAppointmentStarts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Start */ String start
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].start = start;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Start for Appointment Key<br/>
+	 */
+	void setAppointmentStart (
+			/**/ String key,
+			/**/ String start
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].start = start;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Start for Appointment Key<br/>
+	 */
+	String getAppointmentStart (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].start;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the End for Appointment keys<br/>
+	 */
+	void setAppointmentEnds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* End */ String end
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].end = end;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the End for Appointment Key<br/>
+	 */
+	void setAppointmentEnd (
+			/**/ String key,
+			/**/ String end
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].end = end;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of End for Appointment Key<br/>
+	 */
+	String getAppointmentEnd (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].end;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 	/**
 	 * Sets the Text for Appointment keys<br/>
 	 */
@@ -9085,6 +9285,71 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 
 
 
+	/**
+	 * Clean All Appointments from the Array.
+	 */	
+	void cleanAllAppointments (){*
+		this.cleanAllAppointments = true;
+
+		var elementsArray = [];
+		this.appointments = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Appointments from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllAppointments (){*
+		this.cleanAllAppointments = true;
+
+		var elementsArray = [];
+		this.appointments = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Clean All Interval Headers from the Array.
+	 */	
+	void cleanAllIntervalHeaders (){*
+		this.cleanAllIntervalHeaders = true;
+
+		var elementsArray = [];
+		this.intervalHeaders = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Interval Headers from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllIntervalHeaders (){*
+		this.cleanAllIntervalHeaders = true;
+
+		var elementsArray = [];
+		this.intervalHeaders = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Clean All Rows from the Array.
+	 */	
+	void cleanAllRows (){*
+		this.cleanAllRows = true;
+
+		var elementsArray = [];
+		this.rows = JSON.stringify(elementsArray);
+	*}
+
+	/**
+	 * Remove All Rows from the Array.
+	 * You can use also <code>cleanAllElements()</code>
+	 */	
+	@Visibility(deprecated)
+	void removeAllRows (){*
+		this.cleanAllRows = true;
+
+		var elementsArray = [];
+		this.rows = JSON.stringify(elementsArray);
+	*}
 
 
 
@@ -9095,19 +9360,23 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 
 
 
-	/** Adds a root element containing key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
+
+	/** Adds a root element containing key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDAR.addIntervalHeader(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
-	PLANNINGCALENDAR.addIntervalHeader(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addIntervalHeader(key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.addIntervalHeader(key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
 	 */
 	void addIntervalHeader (
 			/**Unique Header Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -9124,6 +9393,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -9196,7 +9468,7 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDAR.insertIntervalHeader(index [int], key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDAR.insertIntervalHeader(index [int], key [String], rowKey [String], start [String], end [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -9204,6 +9476,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	void insertIntervalHeader (
 			/**Index to Insert (0-based)*/int insertionIndex0based,
 			/**Unique Header Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -9222,6 +9497,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -9246,6 +9524,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	 */
 	void updateIntervalHeader (
 			/**Unique Header Key*/String key, 
+			/**Unique Row Key*/String rowKey, 
+			/**Start Date/Time*/String start, 
+			/**End Date/Time*/String end, 
 			/**Text*/String text, 
 			/**Title*/String title, 
 			/**Type*/optional String ntype, 
@@ -9261,6 +9542,9 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var itemDef = {
 			leaf:true,
 			key:key, 
+			rowKey:rowKey, 
+			start:start, 
+			end:end, 
 			text:text, 
 			title:title, 
 			ntype:ntype, 
@@ -9312,6 +9596,243 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		return JSON.stringify(jsonObject, null, 4);
 	*}
 	
+	/**
+	 * Sets the RowKey for IntervalHeader keys<br/>
+	 */
+	void setIntervalHeaderRowKeys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* RowKey */ String rowKey
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].rowKey = rowKey;
+					break;
+				}
+			}
+		}
+		
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the RowKey for IntervalHeader Key<br/>
+	 */
+	void setIntervalHeaderRowKey (
+			/**/ String key,
+			/**/ String rowKey
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].rowKey = rowKey;
+				break;
+			}
+		}
+
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of RowKey for IntervalHeader Key<br/>
+	 */
+	String getIntervalHeaderRowKey (
+			/**/ String key
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].rowKey;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Start for IntervalHeader keys<br/>
+	 */
+	void setIntervalHeaderStarts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Start */ String start
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].start = start;
+					break;
+				}
+			}
+		}
+		
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Start for IntervalHeader Key<br/>
+	 */
+	void setIntervalHeaderStart (
+			/**/ String key,
+			/**/ String start
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].start = start;
+				break;
+			}
+		}
+
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Start for IntervalHeader Key<br/>
+	 */
+	String getIntervalHeaderStart (
+			/**/ String key
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].start;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the End for IntervalHeader keys<br/>
+	 */
+	void setIntervalHeaderEnds (
+			/**/ String keys,
+			/**/ String separator,
+	        /* End */ String end
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].end = end;
+					break;
+				}
+			}
+		}
+		
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the End for IntervalHeader Key<br/>
+	 */
+	void setIntervalHeaderEnd (
+			/**/ String key,
+			/**/ String end
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].end = end;
+				break;
+			}
+		}
+
+		this.intervalHeaders = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of End for IntervalHeader Key<br/>
+	 */
+	String getIntervalHeaderEnd (
+			/**/ String key
+			) 
+	{*
+		if (this.intervalHeaders === undefined || this.intervalHeaders === "" || this.intervalHeaders === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.intervalHeaders);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].end;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 	/**
 	 * Sets the Text for IntervalHeader keys<br/>
 	 */
@@ -10579,13 +11100,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
  */
 class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community.shared.DataComponent {
 
-	/** Adds a root element containing key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean].
+	/** Adds a root element containing key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
-	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDARROW.addAppointment(key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -10594,11 +11115,13 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
+			/**Type*/optional String ntype, 
 			/**Icon*/optional String icon, 
 			/**Selected*/optional boolean selected, 
 			/**Tentative*/optional boolean tentative
 			) {*
 
+		if(ntype == undefined) { ntype = "";}
 		if(icon == undefined) { icon = "";}
 		if(selected == undefined) { selected = false;}
 		if(tentative == undefined) { tentative = false;}
@@ -10608,6 +11131,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			key:key, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -10677,7 +11201,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
  	<example>
 	You want to insert a root element
 	<code>
-	PLANNINGCALENDARROW.insertAppointment(index [int], key [String], text [String], title [String], icon [String], selected [boolean], tentative [boolean]);<br>
+	PLANNINGCALENDARROW.insertAppointment(index [int], key [String], text [String], title [String], ntype [String], icon [String], selected [boolean], tentative [boolean]);<br>
 	<br>
 	</code>
 	</example>
@@ -10687,6 +11211,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
+			/**Type*/optional String ntype, 
 			/**Icon*/optional String icon, 
 			/**Selected*/optional boolean selected, 
 			/**Tentative*/optional boolean tentative
@@ -10704,6 +11229,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			key:key, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -10727,6 +11253,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			/**Unique Appointment Key*/String key, 
 			/**Text*/String text, 
 			/**Title*/String title, 
+			/**Type*/optional String ntype, 
 			/**Icon*/optional String icon, 
 			/**Selected*/optional boolean selected, 
 			/**Tentative*/optional boolean tentative
@@ -10741,6 +11268,7 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 			key:key, 
 			text:text, 
 			title:title, 
+			ntype:ntype, 
 			icon:icon, 
 			selected:selected, 
 			tentative:tentative
@@ -10941,6 +11469,85 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].title;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Ntype for Appointment keys<br/>
+	 */
+	void setAppointmentNtypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Ntype */ String ntype
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].ntype = ntype;
+					break;
+				}
+			}
+		}
+		
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Ntype for Appointment Key<br/>
+	 */
+	void setAppointmentNtype (
+			/**/ String key,
+			/**/ String ntype
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].ntype = ntype;
+				break;
+			}
+		}
+
+		this.appointments = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Ntype for Appointment Key<br/>
+	 */
+	String getAppointmentNtype (
+			/**/ String key
+			) 
+	{*
+		if (this.appointments === undefined || this.appointments === "" || this.appointments === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.appointments);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].ntype;
 				break;
 			}
 		}

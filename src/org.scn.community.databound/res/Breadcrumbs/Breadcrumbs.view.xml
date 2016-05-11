@@ -10,7 +10,8 @@
   >
   <l:VerticalLayout
     width="100%" 
-    content="{/}">
+    content="{/}"
+    class="scn-pack-FullSizeChildren">
 
     <l:content
       width="{width}"
@@ -23,7 +24,6 @@
 			<m:Link
 				press="onPressed" 
 				text="{text}"
-				contentWidth="{contentWidth}"
 				emphasized="{emphasized}"
 				href="{href}"
 				enabled="{enabled}"

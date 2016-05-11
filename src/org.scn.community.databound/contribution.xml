@@ -294,6 +294,15 @@
 	
 	
 	<property
+		id="cleanAllLinks"
+		type="boolean"
+		title="Clean All Links"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="contentWidth"
 		type="int"
 		title="Content Width"
@@ -365,9 +374,10 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">32</defaultValue>
 		
+		<defaultValue property="cleanAllLinks"><![CDATA[false]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
-		<defaultValue property="currentLocationText"><![CDATA[]]></defaultValue>
-		<defaultValue property="links"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="currentLocationText"><![CDATA[Home]]></defaultValue>
+		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
 		<defaultValue property="onPressed"><![CDATA[]]></defaultValue>
 		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
@@ -3484,6 +3494,33 @@ __n__}
 
 	</property>
 	<property
+		id="cleanAllAppointments"
+		type="boolean"
+		title="Clean All Appointments"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="cleanAllIntervalHeaders"
+		type="boolean"
+		title="Clean All Interval Headers"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="cleanAllRows"
+		type="boolean"
+		title="Clean All Rows"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="contentHeight"
 		type="int"
 		title="Content Height"
@@ -3697,6 +3734,9 @@ __n__}
 		
 		<defaultValue property="appointmentSelectedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="appointments"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT","leaf":false,"text":"Short Event","rowKey":"PLANNING_EVENTS","start":"201604091234","end":"201604091634","title":"This event is only for 4 hours"},{"parentKey":"ROOT","key":"ELEMENT1","leaf":false,"title":"Long Running Event","text":"this events runs over 2 months","tentative":true,"start":"20160409","end":"20160611","rowKey":"PLANNING_EVENTS","ntype":"Type02"},{"parentKey":"ROOT","key":"PAST_EVENT1","leaf":false,"rowKey":"PAST_EVENTS","start":"20100101","text":"First Event in the past","title":"Past Event 1 / Tentative","icon":"sap-icon://accept","tentative":true,"ntype":"Type06","selected":false}]]]></defaultValue>
+		<defaultValue property="cleanAllAppointments"><![CDATA[false]]></defaultValue>
+		<defaultValue property="cleanAllIntervalHeaders"><![CDATA[false]]></defaultValue>
+		<defaultValue property="cleanAllRows"><![CDATA[false]]></defaultValue>
 		<defaultValue property="contentHeight"><![CDATA[0]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="intervalHeaders"><![CDATA[[{"parentKey":"ROOT","key":"PAST_EVENTS","leaf":false,"rowKey":"PAST_EVENTS","text":"Interval Header","title":"Header","start":"20160401","end":"20161010","icon":"sap-con://warning","selected":false,"tentative":false}]]]></defaultValue>

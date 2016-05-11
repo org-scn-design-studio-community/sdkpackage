@@ -51,5 +51,24 @@
          "noAps":true,
          "noZtl":true
       }
-    }
+    },
+    "cleanAllLinks" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Links",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Links",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"links",
+		   	"refDesc":"Links",
+		   	"refValue":"[]",
+		}
+	}
 }

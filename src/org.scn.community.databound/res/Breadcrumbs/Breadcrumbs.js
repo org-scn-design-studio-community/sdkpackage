@@ -130,6 +130,7 @@ Breadcrumbs = {
 
 		var l_Links = org_scn_community_unified.getObjectArrayContent(that, "links", options);
 
+		var l_CleanAllLinks = that.getCleanAllLinks();
 		var l_ContentWidth = that.getContentWidth();
 		var l_CurrentLocationText = that.getCurrentLocationText();
 
@@ -154,6 +155,7 @@ Breadcrumbs = {
 
 			var customData = {};
 			
+			customData.cleanAllLinks = l_CleanAllLinks;
 			customData.contentWidth = l_ContentWidth;
 			customData.currentLocationText = l_CurrentLocationText;
 

@@ -35,6 +35,24 @@ function() {
 
 	spec.specInclude = 
 {
+  "cleanAllLinks": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Internal",
+      "desc": "Clean All Links",
+      "noAps": true,
+      "noZtl": false,
+      "refDesc": "Links",
+      "refProperty": "links",
+      "refValue": "[]",
+      "tooltip": "Clean All Links",
+      "ztlFunction": "-clean",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": false
+  },
   "contentWidth": {
     "opts": {
       "apsControl": "spinner",
@@ -64,7 +82,7 @@ function() {
     },
     "template": "String",
     "type": "String",
-    "value": "",
+    "value": "Home",
     "visible": true
   },
   "dataCellListLinks": {
@@ -91,34 +109,34 @@ function() {
     "opts": {
       "apsControl": "array",
       "arrayDefinition": {"links": {
-        "contentWidth": {
-          "desc": "Content Width",
-          "type": "int"
-        },
         "emphasized": {
+          "apsControl": "checkbox",
           "desc": "Emphasized",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
         "enabled": {
+          "apsControl": "checkbox",
+          "defaultValue": "true",
           "desc": "Enabled",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
         "href": {
           "desc": "Href",
-          "type": "String"
+          "type": "String,optional"
         },
         "key": {
           "desc": "Unique Property Key",
           "type": "String"
         },
-        "sequence": "key,contentWidth,emphasized,enabled,href,subtle,target,text,textAlign,textDirection,wrapping",
+        "sequence": "key,text,textAlign,textDirection,wrapping,emphasized,enabled,subtle,href,target",
         "subtle": {
+          "apsControl": "checkbox",
           "desc": "Subtle",
-          "type": "boolean"
+          "type": "boolean,optional"
         },
         "target": {
           "desc": "Target",
-          "type": "String"
+          "type": "String,optional"
         },
         "text": {
           "desc": "Text",
@@ -153,7 +171,7 @@ function() {
               "text": "Sets no text align, so the browser default is used"
             }
           ],
-          "type": "String"
+          "type": "String,optional"
         },
         "textDirection": {
           "apsControl": "combobox",
@@ -172,12 +190,13 @@ function() {
               "text": "Inherits the direction from its parent control/container"
             }
           ],
-          "type": "String"
+          "type": "String,optional"
         },
         "type": "Array",
         "wrapping": {
+          "apsControl": "checkbox",
           "desc": "Wrapping",
-          "type": "boolean"
+          "type": "boolean,optional"
         }
       }},
       "arrayMode": "OneLevelArray",
@@ -192,7 +211,7 @@ function() {
     "origType": "Link",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT_1\",\"leaf\":false,\"text\":\"First Level\",\"contentWidth\":\"400px\",\"subtle\":false,\"textAlign\":\"Begin\",\"textDirection\":\"LTR\",\"wrapping\":false},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Second Level\",\"href\":\"\",\"emphasized\":false,\"enabled\":true}]",
     "visible": true
   },
   "onPressed": {

@@ -135,6 +135,18 @@ define([
                     }
                     that.interval_id = setInterval(function () {
                         that.fireTimeOutEvent();
+
+                        if (that.counter_id != undefined) {
+							clearInterval(that.counter_id);
+						}
+
+						that.counter_id = setInterval(function () {
+							that.counterValue = that.counterValue - 1000;
+							var timeLeft = Math.floor(that.counterValue / 1000);
+
+							var display = that.getCounter(timeLeft);
+							that.$div.innerHTML = display;
+						}, 1000);
                     }, timout);
                 } else {
                     //clean up setTimeout before starting new one when still active

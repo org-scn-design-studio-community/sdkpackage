@@ -17,6 +17,15 @@
 	
 	
 	<property
+		id="cleanAllLinks"
+		type="boolean"
+		title="Clean All Links"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="contentWidth"
 		type="int"
 		title="Content Width"
@@ -88,9 +97,10 @@
 		<defaultValue property="WIDTH">300</defaultValue>
 		<defaultValue property="HEIGHT">32</defaultValue>
 		
+		<defaultValue property="cleanAllLinks"><![CDATA[false]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
-		<defaultValue property="currentLocationText"><![CDATA[]]></defaultValue>
-		<defaultValue property="links"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="currentLocationText"><![CDATA[Home]]></defaultValue>
+		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
 		<defaultValue property="onPressed"><![CDATA[]]></defaultValue>
 		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>

@@ -144,6 +144,9 @@ PlanningCalendar = {
 		var l_IntervalHeaders = org_scn_community_unified.getObjectArrayContent(that, "intervalHeaders", options);
 		var l_Rows = org_scn_community_unified.getObjectArrayContent(that, "rows", options);
 
+		var l_CleanAllAppointments = that.getCleanAllAppointments();
+		var l_CleanAllIntervalHeaders = that.getCleanAllIntervalHeaders();
+		var l_CleanAllRows = that.getCleanAllRows();
 		var l_ContentHeight = that.getContentHeight();
 		var l_ContentWidth = that.getContentWidth();
 		var l_NoDataText = that.getNoDataText();
@@ -179,6 +182,9 @@ PlanningCalendar = {
 
 			var customData = {};
 			
+			customData.cleanAllAppointments = l_CleanAllAppointments;
+			customData.cleanAllIntervalHeaders = l_CleanAllIntervalHeaders;
+			customData.cleanAllRows = l_CleanAllRows;
 			customData.contentHeight = l_ContentHeight;
 			customData.contentWidth = l_ContentWidth;
 			customData.noDataText = l_NoDataText;
