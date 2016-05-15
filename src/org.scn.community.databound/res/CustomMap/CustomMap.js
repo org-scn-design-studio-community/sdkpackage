@@ -44,28 +44,27 @@ var CSS_CLASS_IMG = "scn-sdk-CustomMap-Image";
 
 CustomMap = function () {
 
-	var that = this;
+	var that 					= this;
 	
-	var _redrawStatus = false;
-	var _firstRun	 = true;
+	var _redrawStatus 			= false;
+	var _firstRun	 			= true;
 	
-	var _mapsterCurrW = 0;
-	var _mapsterCurrH = 0;
+	var _mapsterCurrW 			= 0;
+	var _mapsterCurrH 			= 0;
 	
-	var _imageRatio 	= 0;
+	var _attributeBeforeUpdate 	= {};
 	
-	var _attributeBeforeUpdate = {};
-	
-	var _selectedZonesArray = [];
-	var _selectedZonesString = "";
-	var _hoveredZone = "";
+	var _selectedZonesArray 	= [];
+	var _selectedZonesString 	= "";
+	var _hoveredZone 			= "";
 	
 	var _dataUpdated 			= false;
 	var _referenceKFUpdated 	= false;
+	var _processData			= false;
 	
-	var _mapsterJson = {};
+	var _mapsterJson 			= {};
 	
-	var dataForTmpl = [];
+	var dataForTmpl 			= [];
 		
 	that.init = function() {
 		// define root component
@@ -96,6 +95,8 @@ CustomMap = function () {
 			if (typeof value != "undefined")
 				that._referenceKFUpdated = true;
 		}
+		
+		//zen/mimes/CM5/
 	};
 	
 	that.initAsync = function (owner) {
@@ -130,19 +131,21 @@ CustomMap = function () {
 	};
 	
 	that.handleMouseMovement = function(data, action) {
-		var changedProp = [];
+		var changedProp = ["hoveredZone"];
+		
 		switch(action) {
+			case "onMouseOut": {
+				that._hoveredZone = ""
+					break;
+			}
 			case "onMouseOver":
-			case "onMouseOut":
 			case "onShowTooltip":
-				changedProp = ["hoveredZone"];
-				_hoveredZone = data.key;
-				that.setHoveredZone(_hoveredZone);
+				that._hoveredZone = data.key;
 				break;
 			default:
 				return;
 		}
-		
+		that.setHoveredZone(that._hoveredZone);
 		that.firePropertiesChangedAndEvent(changedProp, action);
 	};
 	
@@ -173,47 +176,211 @@ CustomMap = function () {
 		that.handleMouseMovement(data, "onMouseOut" );
 	};
 	
+	that.splitText = function(dimensionKeyText) {
+		var dimkeySplit = dimensionKeyText.split(" | ");
+		var result = {
+				key: "",
+				text:""
+		};
+		
+		if (dimkeySplit.length > 1) {
+			result.key 		= dimkeySplit[0];
+			result.text 	= dimkeySplit[1];
+		} else {
+			result.key 		= dimensionKeyText;
+		}
+		
+		return result;
+	};
+	
 	that.processData = function (flatData, afterPrepare, owner) {
 		var that = owner;
 		
 		if(flatData == undefined) {
 			var options = org_scn_community_databound.initializeOptions();
-			options.ignoreResults = true;
+			options.ignoreResults = false;
 
 			flatData = org_scn_community_databound.flatten(that.getData(),options);
+			org_scn_community_databound.toRowTable(flatData, options);
 		}
+		
 		//.key or .text
-		var rowMeta = flatData.dimensionRows[0];
-		
-		//columnHeaders contains text of KF
-		//columnHeadersKeys contains keys of KF
-		
-		that.dataForTmpl = {};
-		for (var i_line in flatData.formattedValues) {
-			that.dataForTmpl[flatData.rowHeadersKeys[i_line]] = {};
+		if (flatData.dimensionRows.length > 0) {
 			
-			var curLine = that.dataForTmpl[flatData.rowHeadersKeys[i_line]];
+			//Main dimension, the first one. The others will be added as a table
+			var rowMeta = flatData.dimensionRows[0];
 			
-			curLine["DIM_" + rowMeta.key + "_KEY"] = flatData.rowHeaders[i_line];
-			curLine["DIM_" + rowMeta.key + "_TEXT"] = flatData.rowHeaders[i_line];
-			for (var kf_index in flatData.formattedValues[i_line]) {
-				//Loop at each KF
-				curLine["MES_" + flatData.columnHeadersKeys[kf_index] + "_FORMATED"] = flatData.formattedValues[i_line][kf_index];
-				curLine["MES_" + flatData.columnHeadersKeys[kf_index] + "_RAW"] = flatData.values[i_line][kf_index];
+			//columnHeaders contains text of KF
+			//columnHeadersKeys contains keys of KF
+			
+			that.dataForTmpl = {};
+			
+			var lastDimKey = "";
+			var dimAttributes = {};
+			
+			//Populate attributes tables with internal key as table key
+			for(var iDim in flatData.dimensionRows) {
+				var dim = flatData.dimensionRows[iDim];
+				
+				if (dim.dimension.hasOwnProperty("attributes")) {
+					//Loop at each member to find the correct dim
+					
+					//Name of the IO
+					dimAttributes[dim.key] = {};
+					for (var index_dim in dim.dimension.members) {
+
+						//Ignore totals
+						if (dim.dimension.members[index_dim].key == "SUMME") {
+							continue;
+						}
+						
+						var attributes = dim.dimension.members[index_dim].attributeMembers;
+						
+						dimAttributes[dim.key][dim.dimension.members[index_dim].key] = {};
+						var attrContent = dimAttributes[dim.key][dim.dimension.members[index_dim].key];
+						
+						console.log(dim.key + " / " + dim.dimension.members[index_dim].key);
+						
+						for(var iAttr in attributes) { 
+							attrContent[dim.dimension.attributes[iAttr].key + "_KEY"] 	= attributes[iAttr].key;
+							attrContent[dim.dimension.attributes[iAttr].key + "_TEXT"] 	= attributes[iAttr].text;
+						}
+					}
+				}
+			}
+			
+			//Loop at data2D and build template data
+			var data2DStructure 		= {};
+			data2DStructure.total 		= [];
+			//var data2DCopy 		= flatData.data2D.slice();
+			
+			sap.common.globalization.NumericFormatManager.setPVL(that.data.locale);
+			
+			for (var i in rowMeta.dimension.members) {
+				//loop at each members of the first Dim, and populate its data
+				var member 						= rowMeta.dimension.members[i];
+				
+				var tableKey 					= member.key;
+				data2DStructure[tableKey] 		= {};
+				
+				//Build corresponding detailed lines
+				data2DStructure[tableKey].lines = [];
+				data2DStructure[tableKey].total = [];
+				
+				data2DStructure[tableKey].attributes				= dimAttributes[rowMeta.key][member.key];
+				
+				var dimKeyText = that.splitText(member.text);
+				
+				data2DStructure[tableKey]["DIM_" + rowMeta.key + "_INTERNAL_KEY"] 	= member.key;
+				data2DStructure[tableKey]["DIM_" + rowMeta.key + "_KEY"] 			= dimKeyText.key;
+				data2DStructure[tableKey]["DIM_" + rowMeta.key + "_TEXT"] 			= dimKeyText.text; //empty if only key or text
+				
+				var hasSum = false;
+				
+				for(var j in flatData.data2D) {
+					
+					if (member.key != flatData.data2D[j].raw[0]) {
+						continue;
+					}
+					//data2DStructure[tableKey].lines[j] 				= {};
+					//data2DStructure[tableKey].lines[j].raw 			= flatData.data2D[j].raw;
+					//data2DStructure[tableKey].lines[j].values 		= flatData.data2D[j].values;
+					
+					var lineID = data2DStructure[tableKey].lines.length;
+					data2DStructure[tableKey].lines[lineID] = {};
+					
+					that.transformDataToTemplate(j, data2DStructure[tableKey].lines[lineID], flatData, true, true);
+					
+					//keep track of the total
+					if (data2DStructure[tableKey].total.length == 0) {
+						data2DStructure[tableKey].total 			=  flatData.values[j].slice();
+					} else {
+						for (var k in data2DStructure[tableKey].total) {
+							data2DStructure[tableKey].total[k] 		+= flatData.values[j][k];
+						}
+					}
+					
+					if (flatData.dimensionRows.length > 1 && flatData.data2D[j].raw[1] == "SUMME") {
+						//data2DStructure[tableKey].total 			= {};
+						//data2DStructure[tableKey].total.raw 		= flatData.data2D[j].raw;
+						//data2DStructure[tableKey].total.values 		= flatData.data2D[j].values;
+						
+						that.transformDataToTemplate(j, data2DStructure[tableKey], flatData, false, true);
+						hasSum = true;
+						
+						that.transformDataToTemplate(j, data2DStructure[tableKey].total, flatData, false, true);
+						
+						//Take sum from data
+						//for (var k in flatData.columnHeadersKeys) {
+						//	data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] = flatData.formattedValues[j][k];
+						//	data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] = flatData.values[j][k];
+						//}
+					}
+					
+					//grand total
+					if (data2DStructure.total.length == 0)  {
+						data2DStructure.total 			=  flatData.values[j].slice();
+					} else {
+						for (var k in data2DStructure.total)
+							data2DStructure.total[k]    = flatData.values[j][k];
+					}
+				}
+				
+				if (!hasSum) {
+					//Local totals. Note % will be wrong ... but can be calculated with MES_***_TOTAL_RAW
+					for (var k in data2DStructure[tableKey].total) {
+						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] 			= data2DStructure[tableKey][k];
+						
+						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
+																												data2DStructure[tableKey].total[k],
+																												flatData.dimensionCols[0].dimension.members[k].formatString);
+					}
+				}
+			}
+			
+			data2DStructure.totalStruc = {};
+			//Grand total
+			for (var k in data2DStructure.total) {
+				data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_RAW"] 			= data2DStructure.total[k];
+				
+				if (flatData.dimensionCols[0].dimension.members[k].hasOwnProperty("formatString"))
+					data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
+																										data2DStructure.total[k],
+																										flatData.dimensionCols[0].dimension.members[k].formatString);
+			}
+			
+			that.dataForTmpl = data2DStructure;
+		}
+	};
+	
+	that.transformDataToTemplate = function(pIndex, pResult, pFlatData, pGenDim, pGenKF) {
+		//Dimensions
+		if (pGenDim) {
+			for(var i in pFlatData.rowHeadersKeys2D[pIndex]) {
+				pResult["DIM_" + pFlatData.dimensionHeadersKeys[i] + "_INTERNAL_KEY"] 	= pFlatData.rowHeadersKeys2D[pIndex][i];
+				var keyText = that.splitText(pFlatData.rowHeaders2D[pIndex][i]);
+				pResult["DIM_" + pFlatData.dimensionHeadersKeys[i] + "_KEY"] 			= keyText.key;
+				pResult["DIM_" + pFlatData.dimensionHeadersKeys[i] + "_TEXT"] 			= keyText.text;
 			}
 		}
 		
 		
-	};
+		//Keys figures
+		if (pGenKF) {
+			for(var i in pFlatData.columnHeadersKeys) {
+				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_RAW"] 				= pFlatData.values[pIndex][i];
+				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_FORMATED"] 		= pFlatData.formattedValues[pIndex][i];
+			}
+		}
+		
+		//data2DStructure[tableKey]["DIM_" + rowMeta.key + "_KEY"] 
+		//["MES_" + flatData.columnHeadersKeys[k] + "_RAW"]
+	}
 	
 	that.beforeUpdate = function() {
 		that._redrawStatus = false;
 		
-		that.saveProperties();
-//		
-//		that._attributeBeforeUpdate;
-//			
-//			
+		that.saveProperties();		
 	};
 	
 	that.saveProperties = function () {
@@ -224,12 +391,14 @@ CustomMap = function () {
 		
 		that._dataUpdated 			= false;
 		that._referenceKFUpdated 	= false;
+		that._processData 			= false;
 	};
 	
 	that.checkNeedRedraw = function() {	
 		
 		if(that._firstRun) {
 			that._firstRun = false;
+			that._processData = true;
 			return true;
 		}
 		
@@ -242,6 +411,7 @@ CustomMap = function () {
 				case "contentTooltip":
 				case "mapsterpropjson":
 				case "staticDisplay":
+				case "activateOnMouseOverOut":	
 				case "tooltipMode":
 					that._redrawStatus = that.props[i].actualValue != that._attributeBeforeUpdate[i];
 			}
@@ -249,8 +419,11 @@ CustomMap = function () {
 			if (that._redrawStatus)
 				break;
 		}
-		if (!that._redrawStatus)
+		if (!that._redrawStatus) {
 			that._redrawStatus = that._dataUpdated || that._referenceKFUpdated;
+			that._processData = that._redrawStatus;
+		}
+			
 		
 		return that._redrawStatus;
 	};
@@ -266,15 +439,14 @@ CustomMap = function () {
 		console.log("after update");
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
-		if(org_scn_community_databound.hasData(that.getData())) {
-			org_scn_community_basics.fillDummyData(that, that.processData, function() {});
-		} else {
-			org_scn_community_basics.fillDummyData(that, that.processData, function() {});
-		}
 
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		
-		if (that.checkNeedRedraw()) {
+		if (that.checkNeedRedraw()) {			
+			if (that._processData && org_scn_community_databound.hasData(that.getData())) {
+				org_scn_community_basics.fillDummyData(that, that.processData, function() {});
+			}
+				
 			that.redraw();
 			that.fireEvent("onUpdate");
 		}
@@ -285,7 +457,8 @@ CustomMap = function () {
 		org_scn_community_basics.resizeContentAbsoluteLayout(that, that.$()[0], that.onResize);
 		
 		//call resize
-		that.onResize(this.$().width(), this.$().height(), "");
+		if (that.getAutoResize())
+			that.onResize(this.$().width(), this.$().height(), "");
 	};
 	
 	that.compareForPalette = function(a,b) {
@@ -304,20 +477,30 @@ CustomMap = function () {
 		//Destroy old tooltips not linked to the new Maspter context
 		var tooltips = $(".mapster_tooltip").remove();
 		
+		//if (that.getAutoResize()) {
+		//	that.$().removeClass();
+		//} else 
+		//	that.$().addClass(CSS_CLASS_DIV);
+		
+		//Build image
+		var image = that.getImage();
+		if(image === "undefined" || image == "") {
+			that.$().append($("<p>Please select an image</p>"));
+			return;
+		}
+		
+		that._image = $("<image id=\"myimage\" src=\"" + image + "\" usemap=\"#scn-CustomMap\"/>");
+		var tmpImage = that._image[0];
+		that.$().append(that._image);
+		
 		var map = that.getMap();
 		that._map = $("<map name=\"scn-CustomMap\">" + map + "<map/>");
 		that._map.children().each(function(index) {
 			//loop at each area and add / Modify href
 			$( this ).attr("href", "#");
 		});
+		
 		that.$().append(that._map);
-		
-		var image = that.getImage();
-		that._image = $("<image id=\"myimage\" src=\"" + image + "\" usemap=\"#scn-CustomMap\"/>");
-		var tmpImage = that._image[0];
-		that.$().append(that._image);
-		
-		that._imageRatio = that._image.height() / that._image.width();
 		
 		var mapsterProp = that.getMapsterpropjson();
 		that._mapsterJson = JSON.parse(mapsterProp);
@@ -326,13 +509,15 @@ CustomMap = function () {
 			that.zoneSelected(e);
 		};
 		
-//		that._mapsterJson.onMouseover = function (data) {
-//			that.maspterMouseOver(data);
-//		};
-//		
-//		that._mapsterJson.onMouseout = function (data) {
-//			that.maspterMouseOut(data);
-//		};
+		if (that.getActivateOnMouseOverOut()) {
+			that._mapsterJson.onMouseover = function (data) {
+				that.maspterMouseOver(data);
+			};
+			
+			that._mapsterJson.onMouseout = function (data) {
+				that.maspterMouseOut(data);
+			};
+		}		
 		
 		that._mapsterJson.onShowToolTip = that.onShowTooltip;
 		
@@ -342,14 +527,10 @@ CustomMap = function () {
 		that.updateTooltips();
 		that.applyPalette();
 		that.applyStaticDisplay();
-		
+
 		that._image.mapster(that._mapsterJson)
-				  .mapster('set',true,that._selectedZonesString)
-				  //.mapster('toolTipClose',['area-mouseout'])
-				  //.mapster('tooltip');
-				  ;
-		
-		//that._mapsterResize();
+		  .mapster('set',true,that._selectedZonesString)
+		  ;
 	};
 	
 	that.applyStaticDisplay = function() {
@@ -413,15 +594,29 @@ CustomMap = function () {
 				
 				var dataSelection = {};
 				if (that.dataForTmpl.hasOwnProperty(area.key)) {
-					dataSelection.line = [that.dataForTmpl[area.key]];
+					dataSelection = that.dataForTmpl[area.key];
+					if (that.dataForTmpl.hasOwnProperty("SUMME")) {
+						dataSelection.total = that.dataForTmpl["SUMME"];
+					} else 
+						dataSelection.total = that.dataForTmpl.totalStruc;
 				}
+				//if (that.dataForTmpl.hasOwnProperty(area.key)) {
+				//	dataSelection.line = [that.dataForTmpl[area.key]];
+				//}
 				
 				area.toolTip = tmpl.render(dataSelection);
 			}
 		}
 	}
 
-	that.onResize = function (width, height, parent) {		
+	that.onResize = function (width, height, parent) {
+		if (!that.getAutoResize())
+			return;
+		
+		if (!that.getImage()) {
+			return;
+		}
+		
 		var ratio = Math.min(width / that._image.width(), height / that._image.height());
 
 		that._mapsterCurrW = that._image.width()*ratio;

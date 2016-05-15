@@ -32,6 +32,19 @@ function() {
 
 	spec.spec = 
 {
+  "activateOnMouseOverOut": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "0 - Activate onMouseOver/Out",
+      "tooltip": "0 - Activate onMouseOver/Out",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": false,
+    "visible": true
+  },
   "applyColors": {
     "opts": {
       "apsControl": "checkbox",
@@ -44,6 +57,19 @@ function() {
     "type": "boolean",
     "value": false,
     "visible": true
+  },
+  "autoResize": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "0 - Auto resize",
+      "tooltip": "0 - Auto resize",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": true,
+    "visible": false
   },
   "colorPalette": {
     "opts": {
@@ -141,8 +167,8 @@ function() {
       "ztlFunction": "",
       "ztlType": "String"
     },
-    "template": "String",
-    "type": "String",
+    "template": "Url",
+    "type": "Url",
     "value": "",
     "visible": true
   },
@@ -164,7 +190,7 @@ function() {
     "template": "String",
     "type": "String",
     "value": "",
-    "visible": true
+    "visible": false
   },
   "mapsterpropjson": {
     "opts": {
@@ -183,7 +209,7 @@ function() {
     "template": "String",
     "type": "String",
     "value": "",
-    "visible": true
+    "visible": false
   },
   "onClick": {
     "opts": {
@@ -268,7 +294,7 @@ function() {
     "template": "int",
     "type": "int",
     "value": "500",
-    "visible": true
+    "visible": false
   },
   "selectedZones": {
     "opts": {

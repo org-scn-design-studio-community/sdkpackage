@@ -10,8 +10,8 @@
       "ztlFunction": "",
       "ztlType": "String"
     },
-    "template": "String",
-    "type": "String",
+    "template": "Url",
+    "type": "Url",
     "value": "",
     "visible": true
   },
@@ -52,7 +52,7 @@
     "template": "String",
     "type": "String",
     "value": "",
-    "visible": true
+    "visible": false
   },
   "mapsterpropjson": {
     "opts": {
@@ -71,7 +71,7 @@
     "template": "String",
     "type": "String",
     "value": "",
-    "visible": true
+    "visible": false
     },
     "data" : {
 		"template" : "default",
@@ -135,7 +135,7 @@
     "template": "int",
     "type": "int",
     "value": "500",
-    "visible": true
+    "visible": false
     },
     
   "onClick" : {
@@ -286,6 +286,33 @@
 	         "desc":"0 - Display all areas by default",
 	         "cat":"Display",
 	         "tooltip":"0 - Display all areas by default",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"activateOnMouseOverOut":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"0 - Activate onMouseOver/Out",
+	         "cat":"Display",
+	         "tooltip":"0 - Activate onMouseOver/Out",
+	         "apsControl":"checkbox"
+	    }
+	},
+	
+	"autoResize":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":false,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"0 - Auto resize",
+	         "cat":"Display",
+	         "tooltip":"0 - Auto resize",
 	         "apsControl":"checkbox"
 	    }
 	},

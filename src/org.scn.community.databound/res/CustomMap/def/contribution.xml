@@ -17,12 +17,30 @@
 	
 	
 	<property
+		id="activateOnMouseOverOut"
+		type="boolean"
+		title="0 - Activate onMouseOver/Out"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="applyColors"
 		type="boolean"
 		title="1 - Override Mapster Colors with"
 		group="Display"
 		bindable="true"
 		visible="true">
+
+	</property>
+	<property
+		id="autoResize"
+		type="boolean"
+		title="0 - Auto resize"
+		group="Display"
+		bindable="true"
+		visible="false">
 
 	</property>
 	<property
@@ -54,6 +72,7 @@
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
+		<option name="includeAttributes" value="true"/>
 	</property>
 	<property
 		id="dataCellList"
@@ -78,7 +97,7 @@
 	</property>
 	<property
 		id="image"
-		type="String"
+		type="Url"
 		title="1 - Image url of Base 64"
 		group="Display"
 		bindable="true"
@@ -91,7 +110,7 @@
 		title="2 - Associated map, same scaling as base image"
 		group="Display"
 		bindable="true"
-		visible="true">
+		visible="false">
 
 	</property>
 	<property
@@ -100,7 +119,7 @@
 		title="2 - Mapster properties"
 		group="Display"
 		bindable="true"
-		visible="true">
+		visible="false">
 
 	</property>
 	<property
@@ -149,7 +168,7 @@
 		title="1 - Resize Duration (ms)"
 		group="Display"
 		bindable="true"
-		visible="true">
+		visible="false">
 
 	</property>
 	<property
@@ -189,7 +208,9 @@
 		<defaultValue property="WIDTH">400</defaultValue>
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
+		<defaultValue property="activateOnMouseOverOut"><![CDATA[false]]></defaultValue>
 		<defaultValue property="applyColors"><![CDATA[false]]></defaultValue>
+		<defaultValue property="autoResize"><![CDATA[true]]></defaultValue>
 		<defaultValue property="colorPalette"><![CDATA[]]></defaultValue>
 		<defaultValue property="contentTooltip"><![CDATA[]]></defaultValue>
 		<defaultValue property="data"><![CDATA[]]></defaultValue>
