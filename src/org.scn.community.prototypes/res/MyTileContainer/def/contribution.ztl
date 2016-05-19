@@ -1,7 +1,0 @@
-
-/**
- * Class for TileContainer
- */
-class org.scn.community.prototypes.MyTileContainer extends org.scn.community.shared.Component {
-	
-}

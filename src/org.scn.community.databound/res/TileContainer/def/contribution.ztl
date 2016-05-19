@@ -1,0 +1,69 @@
+
+/**
+ * Class for TileContainer
+ */
+class org.scn.community.databound.TileContainer extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Set the used tile type 
+	 * <example>
+	 * 	<code>
+	 * 		TC.setTileType("Standard");
+	 * 	</code><br>
+	 * </example>
+	 * Possible values are "Standard" and "Custom"
+	 */
+	void setTileType(String type){*
+		this.DTileType = type;
+	*}
+	/**
+	 * Get current tile type of tilecontainer
+	 */
+	String getTileType(){*
+		return this.DTileType;
+	*}
+	/**
+	 * Get current tile header
+	 */
+	String getCurrentHeader(){*
+		return this.DCurrentHeader;
+	*}
+	/**
+	 * Get current tile footer
+	 */
+	String getCurrentFooter(){*
+		return this.DCurrentFooter;
+	*}
+	/**
+	 * Get current tile value
+	 */
+	float getCurrentValue(){*
+		return this.DCurrentValue;
+	*}
+	/**
+	 * Get current tile value
+	 */
+	String getCurrentValueText(){*
+		return this.DCurrentValueText;
+	*}
+	/**
+	 * Get current tile unit
+	 */
+	String getCurrentUnit(){*
+		return this.DCurrentUnit;
+	*}
+	/**
+	 * Get current tile icon string
+	 */
+	String getCurrentIconString(){*
+		return this.DCurrentIconString;
+	*}
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers
+	 */
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}

@@ -1,0 +1,60 @@
+
+<component
+	id="TileContainer"
+	title="TileContainer 1.0"
+	icon="res/TileContainer/TileContainer.png"
+	handlerType="sapui5"
+	group="ScnCommunityBasics"
+	databound="true"
+	modes="commons m">
+	<requireJs modes="m">res/TileContainer/TileContainer</requireJs>
+	<requireJs modes="commons">res/TileContainer/TileContainer_commons</requireJs>
+	<cssInclude>res/TileContainer/TileContainer.css</cssInclude>
+
+	<property id="data" type="ResultSet" title="Dimension" visible="false">
+		<option name="includeFormattedData" value="true"/>
+	</property>
+	<property id="DTargetDim" type="String" title="Tile Creation Dimension" visible="true"/>
+	<property id="DMeasureDim" type="String" title="Target Measure Dimension" visible="true"/>
+	<property id="DComparisonDim" type="String" title="Comparison Dimension" visible="true"/>
+	<property id="DComparisonTolerance" type="int" title="Compare Tolerance (%)" visible="true"/>
+	<property id="DTileType" type="String" title="Tile Type" visible="true">
+		<possibleValue>Standard</possibleValue>
+		<possibleValue>Custom</possibleValue>
+	</property>
+	<property id="DHeaderDim" type="String" title="Header Dimensions" visible="true"/>
+	<property id="DSubHeaderDim" type="String" title="Sub Header Dimensions" visible="true"/>
+	<property id="DFooterDim" type="String" title="Footer Dimensions" visible="true"/>
+	<property id="DNumeralString" type="String" title="NumberFormat String (Numeral)" visible="true"/>
+	
+	<property id="DIconMapping" type="Array" title="Icon Mapping" visible="true">
+		<property id="DIconMappingEntries" type="Object" title="Icon Mapping Entries">
+			<property id="DDimValue" type="String" title="Value"></property>
+			<property id="DIconString" type="String" title="SAP Icon String"></property>
+		</property>
+	</property>
+	
+	<property id="DCurrentHeader" type="String" title="Current Header Text" visible="false"/>
+	<property id="DCurrentSubHeader" type="String" title="Current SubHeader Text" visible="false"/>
+	<property id="DCurrentFooter" type="String" title="Current Footer Text" visible="false"/>
+	<property id="DCurrentValue" type="float" title="Current Value" visible="false"/>
+	<property id="DCurrentValueText" type="String" title="Current Value Text" visible="false"/>
+	<property id="DCurrentUnit" type="String" title="Current Unit" visible="false"/>
+	<property id="DCurrentIconString" type="String" title="Current Icon String" visible="false"/>
+	
+	<property id="onTilePress" type="ScriptText" title="Tile Press Event" visible="true" group="Events"/>
+	<property id="onTileMove" type="ScriptText" title="Tile Move Event" visible="true" group="Events"/>
+	<property id="onTileAdd" type="ScriptText" title="Tile Add Event" visible="true" group="Events"/>
+	<property id="onTileDelete" type="ScriptText" title="Tile Delete Event" visible="true" group="Events"/>
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+      	<defaultValue property="WIDTH">500</defaultValue>
+     	<defaultValue property="HEIGHT">300</defaultValue>
+     	<defaultValue property="DTileType">Standard</defaultValue>
+     	<defaultValue property="DNumeralString">0a</defaultValue>
+     	<defaultValue property="DComparisonTolerance">5</defaultValue>
+	</initialization>
+</component>

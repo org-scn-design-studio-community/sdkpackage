@@ -1,0 +1,163 @@
+.ccHeaderText{
+    font-size: 1rem!important;
+    font-weight: 500;
+    color: black!important;
+    line-height: 1.2rem!important;
+    vertical-align: top!important;
+    text-align: left!important;
+    width: 100%!important;
+    overflow: hidden;
+    max-height: 40px!important;
+}
+
+.ccSubHeaderText{
+	font-size: 0.8rem!important;
+	color: #666666!important;
+	vertical-align: top!important;
+    text-align: left!important;
+    width: 100%!important;
+    overflow: hidden!important;
+    word-break: break-all!important;
+   	max-height:16px!important;
+   	margin-top:2px;
+}
+
+.ccValueText{
+    font-stretch: condensed;
+    color: #666666;
+    font-size: 65px!important;
+    position: absolute!important;
+    right: 45px!important;
+    bottom: 31px
+}
+
+.ccUnitText{
+	font-size: 1rem!important;
+	font-family: 'Arial Narrow',HelveticaNeue-CondensedBold,Arial,sans-serif;
+    font-stretch: condensed;
+    color: #666666;
+}
+
+.ccFooterText {
+	font-size: 0.8rem!important;
+	color: #AFAFAF!important;
+	vertical-align: top!important;
+    text-align: left!important;
+    width: 85%!important;
+    overflow: hidden!important;
+    word-break: break-word!important;
+    max-height: 16px!important;
+    white-space: nowrap!important;
+    position: absolute!important;
+    bottom: 13px!important;
+}
+
+.ccRowLayoutHeader{
+	padding-top: 10px!important;
+    padding-right: 40px!important;
+    padding-left: 13px!important;
+    /* padding-bottom: 1rem!important; */
+    display: block!important;
+}
+
+.ccRowLayoutValue{
+   	padding-top: 3rem!important;
+    padding-right: 1rem!important;
+    padding-left: 1rem!important;
+    padding-bottom: 1rem!important;
+    display: block!important;
+}
+
+.ccRowLayoutFooter{
+	padding-top: 1rem!important;
+	padding-right: 1rem!important;
+	padding-left: 1rem!important;
+	padding-bottom: 1rem!important;
+	display: block!important;
+}
+
+.ccUnitLayout{
+    position: absolute;
+    right: 6px;
+    bottom: 43px;
+    margin-left: 5px;
+}
+
+.ccIconText{
+	position:absolute;
+	right: 10px;
+	font-size: 20px!important;
+}
+
+.ccTileLayout{
+	height: 100%;
+	width: 100%;
+}
+
+.ccTileLayout:hover {
+	cursor: pointer;
+    cursor: hand;
+    box-shadow: 0rem 0rem 0rem 0.125rem #ffffff!important;
+    border: 1px solid #1084C4!important;
+}
+
+.cc-Tile-clicked{
+	border: 2px solid #1084C4!important;
+}
+
+.cc-Tile-clicked:hover{
+	border: 2px solid #1084C4!important;
+	border-color: #1084C4!important;
+}
+
+.cc-arrow-down {
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 10px solid #D02E19;
+}
+
+.cc-arrow-up {
+	width: 0; 
+	height: 0; 
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #3F7833;
+}
+
+.cc-arrow-left {
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent; 
+	border-right:10px solid #666666; 
+}
+
+.cc-arrow-right {
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid #666666;
+}
+
+.cc-good {
+	color: #3F7833;
+}
+
+.cc-bad {
+	color:#D02E19;
+}
+
+.cc-warning {
+	color: yellow;
+}
+
+.cc-normal {
+	color: #666666;
+}
+
+div[id*="TILECONTAINER_"] > div[class*="sapMTile"]{
+	border-radius:5px!important;
+}

@@ -869,25 +869,6 @@
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 	
 	</initialization>	
-</component>
-<component
-	id="MyTileContainer"
-	title="(PROTOTYPE!) MyTileContainer"
-	icon="res/MyTileContainer/MyTileContainer.png"
-	handlerType="sapui5"
-	databound="false" group="ScnCommunityPrototypes"
-	modes="m">
-
-	<requireJs modes="m">res/MyTileContainer/MyTileContainer</requireJs>
-			
-	<initialization>
-		<defaultValue property="TOP_MARGIN">0</defaultValue>
-		<defaultValue property="LEFT_MARGIN">0</defaultValue>
-		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
-		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
-		<defaultValue property="WIDTH">650</defaultValue>
-		<defaultValue property="HEIGHT">400</defaultValue>
-	</initialization>
 </component><component id="RapidPrototype"
 		title="Rapid Prototyping"
 		tooltip="Not recommended for production use!"

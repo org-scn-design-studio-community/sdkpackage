@@ -42,6 +42,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Table\def\contribution.xml ^
 ..\res\Table2D\def\contribution.xml ^
 ..\res\TagCloud\def\contribution.xml ^
+..\res\TileContainer\def\contribution.xml ^
 ..\res\TopFlop\def\contribution.xml ^
 ..\res\TopFlopChart\def\contribution.xml ^
 ..\res\UI5Table\def\contribution.xml ^
@@ -88,6 +89,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\Slider\def\contribution.ztl ^
 ..\res\Table\def\contribution.ztl ^
 ..\res\TagCloud\def\contribution.ztl ^
+..\res\TileContainer\def\contribution.ztl ^
 ..\res\TopFlop\def\contribution.ztl ^
 ..\res\TopFlopChart\def\contribution.ztl ^
 ..\res\UI5Table\def\contribution.ztl ^
