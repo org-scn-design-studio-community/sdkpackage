@@ -122,6 +122,207 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 	*}
 }
 /**
+ * Generated ZTL Class for CustomMap
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.CustomMap extends org.scn.community.shared.Component {
+
+	/**
+	 * Sets 0 - Activate onMouseOver/Out Property
+	 */	
+	void setActivateOnMouseOverOut( /**0 - Activate onMouseOver/Out*/ boolean activateOnMouseOverOut){*
+		this.activateOnMouseOverOut = activateOnMouseOverOut;
+	*}
+
+	/**
+	 * Gets 0 - Activate onMouseOver/Out Property
+	 */	
+	boolean isActivateOnMouseOverOut() {*
+		return this.activateOnMouseOverOut;
+	*}
+
+	/**
+	 * Sets 1 - Override Mapster Colors with Property
+	 */	
+	void setApplyColors( /**1 - Override Mapster Colors with*/ boolean applyColors){*
+		this.applyColors = applyColors;
+	*}
+
+	/**
+	 * Gets 1 - Override Mapster Colors with Property
+	 */	
+	boolean isApplyColors() {*
+		return this.applyColors;
+	*}
+
+	/**
+	 * Sets 0 - Auto resize Property
+	 */	
+	void setAutoResize( /**0 - Auto resize*/ boolean autoResize){*
+		this.autoResize = autoResize;
+	*}
+
+	/**
+	 * Gets 0 - Auto resize Property
+	 */	
+	boolean isAutoResize() {*
+		return this.autoResize;
+	*}
+
+	/**
+	 * Sets 2 - Color Palette Property
+	 */	
+	void setColorPalette( /**2 - Color Palette*/ String colorPalette){*
+		this.colorPalette = colorPalette;
+	*}
+
+	/**
+	 * Gets 2 - Color Palette Property
+	 */	
+	String getColorPalette() {*
+		return this.colorPalette;
+	*}
+
+	/**
+	 * Sets 2 - Tooltip template (html + Mustache) Property
+	 */	
+	void setContentTooltip( /**2 - Tooltip template (html + Mustache)*/ String contentTooltip){*
+		this.contentTooltip = contentTooltip;
+	*}
+
+	/**
+	 * Gets 2 - Tooltip template (html + Mustache) Property
+	 */	
+	String getContentTooltip() {*
+		return this.contentTooltip;
+	*}
+
+
+
+
+
+	/**
+	 * Gets  Property
+	 */	
+	String getHoveredZone() {*
+		return this.hoveredZone;
+	*}
+
+	/**
+	 * Sets 1 - Image url of Base 64 Property
+	 */	
+	void setImage( /**1 - Image url of Base 64*/ String image){*
+		this.image = image;
+	*}
+
+	/**
+	 * Gets 1 - Image url of Base 64 Property
+	 */	
+	String getImage() {*
+		return this.image;
+	*}
+
+	/**
+	 * Sets 2 - Associated map, same scaling as base image Property
+	 */	
+	void setMap( /**2 - Associated map, same scaling as base image*/ String map){*
+		this.map = map;
+	*}
+
+	/**
+	 * Gets 2 - Associated map, same scaling as base image Property
+	 */	
+	String getMap() {*
+		return this.map;
+	*}
+
+	/**
+	 * Sets 2 - Mapster properties Property
+	 */	
+	void setMapsterpropjson( /**2 - Mapster properties*/ String mapsterpropjson){*
+		this.mapsterpropjson = mapsterpropjson;
+	*}
+
+	/**
+	 * Gets 2 - Mapster properties Property
+	 */	
+	String getMapsterpropjson() {*
+		return this.mapsterpropjson;
+	*}
+
+
+
+
+
+
+
+
+
+
+
+	/**
+	 * Sets 1 - Resize Duration (ms) Property
+	 */	
+	void setResizeDuration( /**1 - Resize Duration (ms)*/ int resizeDuration){*
+		this.resizeDuration = resizeDuration;
+	*}
+
+	/**
+	 * Gets 1 - Resize Duration (ms) Property
+	 */	
+	int getResizeDuration() {*
+		return this.resizeDuration;
+	*}
+
+	/**
+	 * Sets  Property
+	 */	
+	void setSelectedZones( /***/ String selectedZones){*
+		this.selectedZones = selectedZones;
+	*}
+
+	/**
+	 * Gets  Property
+	 */	
+	String getSelectedZones() {*
+		return this.selectedZones;
+	*}
+
+	/**
+	 * Sets 0 - Display all areas by default Property
+	 */	
+	void setStaticDisplay( /**0 - Display all areas by default*/ boolean staticDisplay){*
+		this.staticDisplay = staticDisplay;
+	*}
+
+	/**
+	 * Gets 0 - Display all areas by default Property
+	 */	
+	boolean isStaticDisplay() {*
+		return this.staticDisplay;
+	*}
+
+	/**
+	 * Sets 1 - Tooltip override mode Property
+	 */	
+	void setTooltipMode( /**1 - Tooltip override mode*/ String tooltipMode){*
+		this.tooltipMode = tooltipMode;
+	*}
+
+	/**
+	 * Gets 1 - Tooltip override mode Property
+	 */	
+	String getTooltipMode() {*
+		return this.tooltipMode;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Generated ZTL Class for DropDown
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
@@ -5255,6 +5456,20 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 
+
+	/**
+	 * Sets Show Keys instead of Texts Property
+	 */	
+	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*
+		this.DShowKeys = showKeys;
+	*}
+
+	/**
+	 * Gets Show Keys instead of Texts Property
+	 */	
+	boolean isShowKeys() {*
+		return this.DShowKeys;
+	*}
 
 	/**
 	 * Sets Sort Mode Property by String

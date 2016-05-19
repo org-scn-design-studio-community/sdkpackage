@@ -265,10 +265,15 @@ UI5Table = {
 				colWidth = that.getDHeaderColWidth()+"px";
 			}
 
+			var readArray = "dimensionHeaders";
+			if(that.getDShowKeys()) {
+				readArray = "dimensionHeadersKeys";
+			}
+			
 			var lColumn = new sap.ui.table.Column({
 				label: new correctLabelPackage.Label(
 				{
-					text: that._flatData.dimensionHeaders[colI],
+					text: that._flatData[readArray][colI],
 					design: correctLabelPackage.LabelDesign.Bold,
 				}),
 				template: oItemTemplate,
@@ -301,8 +306,12 @@ UI5Table = {
 					colWidth = allColWidth || "";
 				}
 
+				var readArray = "columnHeaders";
+				if(that.getDShowKeys()) {
+					readArray = "columnHeadersKeys";
+				}
 				var lColumn = new sap.ui.table.Column({
-					label: new correctLabelPackage.Label({text: that._flatData.columnHeaders[dataColI]}),
+					label: new correctLabelPackage.Label({text: that._flatData[readArray][dataColI]}),
 					template: oItemTemplate,
 					sortProperty: ""+ lPathSortPrefix+colI,
 					filterProperty: ""+ lPathPrefix+colI,

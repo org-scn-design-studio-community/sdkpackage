@@ -2498,6 +2498,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Custom Map 0.0 component*/
+	org.scn.community.databound.CustomMap returnAsScnCustomMap (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Drop Down 2.0 component*/
 	org.scn.community.databound.DropDown returnAsScnDropDown (Component inputComponent) {* return inputComponent; *}
 
@@ -2629,6 +2632,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Horizon Chart component*/
 	org.scn.community.prototypes.horizonChart returnAsScnhorizonChart (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to (PROTOTYPE!) MyTileContainer component*/
+	org.scn.community.prototypes.MyTileContainer returnAsScnMyTileContainer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
@@ -7013,6 +7019,8 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 	*/
 	String formatWithMask(String mask, optional boolean utc) {*
 		this.internal_initializeNow();
+	
+		this.date.recalculate();
 
 		return this.date.format(mask, utc);
 	*}
@@ -7125,8 +7133,10 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		var that = this;
 		
 		// create a recalculate function which calculates information not available in JS date
-		if (!Date.prototype.recalculate) {
-		    Date.prototype.recalculate = function() {
+		//if (!Date.prototype.recalculate) {
+		//	Date.prototype.recalculate = function() {
+	if (!this.date.recalculate) {
+		this.date.recalculate = function() {
 	
 		        // exit if date did not changed
 		        var currentDate = that.date.toUTCString();
@@ -7266,8 +7276,10 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		 * The mask defaults to dateFormat.masks.default.
 		 */
 	
-		if (!Date.prototype.format) {
-		    Date.prototype.format = function() {
+		//if (!Date.prototype.format) {
+		//    Date.prototype.format = function() {
+		if (!this.date.format) {
+			this.date.format = function() {
 		        var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZ]|"[^"]*"|'[^']*'/g,
 		            timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
 		            timezoneClip = /[^-+\dA-Z]/g,

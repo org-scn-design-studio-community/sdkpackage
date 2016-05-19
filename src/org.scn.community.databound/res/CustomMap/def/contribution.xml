@@ -1,0 +1,234 @@
+
+<component
+	id="CustomMap"
+	title="Custom Map 0.0"
+	tooltip="Custom Map"
+	icon="res/CustomMap/CustomMap.png"
+	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityVisualizations"
+	databound="true"
+	modes="commons"
+>
+	
+	<requireJs modes="commons">res/CustomMap/CustomMap</requireJs>
+
+	<cssInclude>res/CustomMap/CustomMap.css</cssInclude>
+	
+	
+	<property
+		id="activateOnMouseOverOut"
+		type="boolean"
+		title="0 - Activate onMouseOver/Out"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="applyColors"
+		type="boolean"
+		title="1 - Override Mapster Colors with"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="autoResize"
+		type="boolean"
+		title="0 - Auto resize"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="colorPalette"
+		type="String"
+		title="2 - Color Palette"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentTooltip"
+		type="String"
+		title="2 - Tooltip template (html + Mustache)"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data List"
+		group="DataBinding"
+		visible="true">
+
+		<option name="maxCells" value="100000" />
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
+		<option name="includeAttributes" value="true"/>
+	</property>
+	<property
+		id="dataCellList"
+		type="ResultCellList"
+		title="Reference Measure Selection"
+		group="DataBinding"
+		visible="true"
+		bindable="true">
+
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="includeMetadata" value="true"/>
+	</property>
+	<property
+		id="hoveredZone"
+		type="String"
+		title=""
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="image"
+		type="Url"
+		title="1 - Image url of Base 64"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="map"
+		type="String"
+		title="2 - Associated map, same scaling as base image"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="mapsterpropjson"
+		type="String"
+		title="2 - Mapster properties"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onClick"
+		type="ScriptText"
+		title="On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onMouseOut"
+		type="ScriptText"
+		title="onMouseOut"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onMouseOver"
+		type="ScriptText"
+		title="onMouseOver"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onShowTooltip"
+		type="ScriptText"
+		title="On Show Tooltip"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onUpdate"
+		type="ScriptText"
+		title="On Update"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="resizeDuration"
+		type="int"
+		title="1 - Resize Duration (ms)"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="selectedZones"
+		type="String"
+		title=""
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="staticDisplay"
+		type="boolean"
+		title="0 - Display all areas by default"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="tooltipMode"
+		type="String"
+		title="1 - Tooltip override mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">400</defaultValue>
+		<defaultValue property="HEIGHT">400</defaultValue>
+		
+		<defaultValue property="activateOnMouseOverOut"><![CDATA[false]]></defaultValue>
+		<defaultValue property="applyColors"><![CDATA[false]]></defaultValue>
+		<defaultValue property="autoResize"><![CDATA[true]]></defaultValue>
+		<defaultValue property="colorPalette"><![CDATA[]]></defaultValue>
+		<defaultValue property="contentTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
+		<defaultValue property="hoveredZone"><![CDATA[]]></defaultValue>
+		<defaultValue property="image"><![CDATA[]]></defaultValue>
+		<defaultValue property="map"><![CDATA[]]></defaultValue>
+		<defaultValue property="mapsterpropjson"><![CDATA[]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="onMouseOut"><![CDATA[]]></defaultValue>
+		<defaultValue property="onMouseOver"><![CDATA[]]></defaultValue>
+		<defaultValue property="onShowTooltip"><![CDATA[]]></defaultValue>
+		<defaultValue property="onUpdate"><![CDATA[]]></defaultValue>
+		<defaultValue property="resizeDuration"><![CDATA[500]]></defaultValue>
+		<defaultValue property="selectedZones"><![CDATA[]]></defaultValue>
+		<defaultValue property="staticDisplay"><![CDATA[false]]></defaultValue>
+		<defaultValue property="tooltipMode"><![CDATA[Default]]></defaultValue>
+
+	</initialization>
+
+</component>

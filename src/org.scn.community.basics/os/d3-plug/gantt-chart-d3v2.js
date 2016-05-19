@@ -7,7 +7,7 @@
 var d3plug = d3plug || {};
 
 define([
-        "../d3v3/d3"
+        "../d3/d3"
         ]
      , function() {
 
@@ -57,8 +57,17 @@ define([
         	}
         };
 
-        var rectTextName = function(d, i) { 
-			return d.taskName + " / " + d.taskDesc + " [ " + d.startDate.toLocaleDateString() + " - " + d.endDate.toLocaleDateString() + " ]"
+        var rectTextName = function(d, i) {
+        	var timeStart = d.startDate.toLocaleDateString();
+        	if(d.startDate.stampwithtime) {
+        		timeStart = timeStart + " " + d.startDate.toLocaleTimeString();
+        	}
+        	
+        	var timeEnd = d.endDate.toLocaleDateString();
+        	if(d.endDate.stampwithtime) {
+        		timeEnd = timeEnd + " " + d.endDate.toLocaleTimeString();
+        	}
+			return d.taskName + " / " + d.taskDesc + " [ " + timeStart + " - " + timeEnd + " ]"
 		}
         var rectTextShort = function(d, i) { 
 			return d.taskDesc

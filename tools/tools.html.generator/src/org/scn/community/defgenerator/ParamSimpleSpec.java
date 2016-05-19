@@ -60,6 +60,10 @@ public class ParamSimpleSpec {
 		return properties.get("type").contains(",optional");
 	}
 	
+	public String defaultValue() {
+		return properties.get("defaultValue");
+	}
+	
 	private boolean isAps() {
 		String mode = properties.get("mode");
 		
@@ -192,7 +196,11 @@ public class ParamSimpleSpec {
 											
 											boolean optional = paramGenChild2.isOptional();
 											
-											String initValue = paramGenChild2.getType().equals("boolean")?"false":"\"\"";
+											String defaultValue = paramGenChild.defaultValue();
+											if(defaultValue == null) {
+												defaultValue = paramGenChild.getType().equals("boolean")?"false":"\"\"";
+											}
+											String initValue = defaultValue;
 											if(optional) {
 												ASSURE_OPTIONAL_INITIALIZED = ASSURE_OPTIONAL_INITIALIZED + "if(" + paramGenChild2.getName() + " == undefined) { " + paramGenChild2.getName() + " = "+initValue+";}" + "\r\n\t\t";; 
 											}
@@ -253,7 +261,11 @@ public class ParamSimpleSpec {
 								}
 								
 								boolean optional = paramGenChild.isOptional();
-								String initValue = paramGenChild.getType().equals("boolean")?"false":"\"\"";
+								String defaultValue = paramGenChild.defaultValue();
+								if(defaultValue == null) {
+									defaultValue = paramGenChild.getType().equals("boolean")?"false":"\"\"";
+								}
+								String initValue = defaultValue;
 								
 								if(optional) {
 									ASSURE_OPTIONAL_ROOT_INITIALIZED = ASSURE_OPTIONAL_ROOT_INITIALIZED + "if(" + paramGenChild.getName() + " == undefined) { " + paramGenChild.getName() + " = "+initValue+";}" + "\r\n\t\t";; 

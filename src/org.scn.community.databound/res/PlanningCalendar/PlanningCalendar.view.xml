@@ -31,9 +31,9 @@
 			noDataText="{noDataText}"
 			
 			appointmentSelect="onAppointmentSelected"
-			intervalSelect="-onIntervalSelected"
+			intervalSelect="onIntervalSelected"
 			rowSelectionChange="onRowSelectionChanged"
-			startDateChange="-onStartDateChanged"
+			startDateChange="onStartDateChanged"
 			viewChange="onViewChanged"
 
 			>
@@ -45,6 +45,7 @@
 					icon="{icon}"
 					title="{title}"
 					text="{text}"
+					selected="{selected}"
 					app:ownKey="{key}"
 					
 					appointments="{appointments}"
@@ -56,7 +57,8 @@
 							icon="{icon}"
 							title="{title}"
 							text="{text}"
-							type="{type}"
+							type="{ntype}"
+							selected="{selected}"
 							tentative="{tentative}"
 							app:ownKey="{key}"
 							>
@@ -69,7 +71,9 @@
 							icon="{icon}"
 							text="{text}"
 							title="{title}"
-							type="{type}"
+							type="{ntype}"
+							selected="{selected}"
+							tentative="{tentative}"
 							app:ownKey="{key}"
 							>
 						</unified:CalendarAppointment>

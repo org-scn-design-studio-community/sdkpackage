@@ -139,5 +139,62 @@
          "noAps":true,
          "noZtl":true
       }
-    }    
+    },
+    "cleanAllAppointments" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Appointments",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Appointments",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"appointments",
+		   	"refDesc":"Appointments",
+		   	"refValue":"[]",
+		}
+	},
+    "cleanAllRows" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Rows",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Rows",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"rows",
+		   	"refDesc":"Rows",
+		   	"refValue":"[]",
+		}
+	},
+    "cleanAllIntervalHeaders" : {
+		"type" : "boolean", 
+		"value" : false,
+		"visible": false,
+
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "-clean",
+			"desc" : "Clean All Interval Headers",
+			"cat" : "Internal",
+			"tooltip" : "Clean All Interval Headers",
+			"apsControl" : "checkbox",
+			"noAps":true,
+			"noZtl":false,
+	     	"refProperty":"intervalHeaders",
+		   	"refDesc":"Interval Headers",
+		   	"refValue":"[]",
+		}
+	}    
 }

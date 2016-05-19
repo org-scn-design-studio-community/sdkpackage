@@ -1094,28 +1094,28 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 
 	/**
-	 * Sets Text X Position for Element Property
+	 * Sets Text Y Position for Element Property
 	 */	
-	void setElementTextXPos( /**Text X Position for Element*/ int elementTextXPos){*
+	void setElementTextXPos( /**Text Y Position for Element*/ int elementTextXPos){*
 		this.elementTextXPos = elementTextXPos;
 	*}
 
 	/**
-	 * Gets Text X Position for Element Property
+	 * Gets Text Y Position for Element Property
 	 */	
 	int getElementTextXPos() {*
 		return this.elementTextXPos;
 	*}
 
 	/**
-	 * Sets Text Y Position for Element Property
+	 * Sets Text X Position for Element Property
 	 */	
-	void setElementTextYPos( /**Text Y Position for Element*/ int elementTextYPos){*
+	void setElementTextYPos( /**Text X Position for Element*/ int elementTextYPos){*
 		this.elementTextYPos = elementTextYPos;
 	*}
 
 	/**
-	 * Gets Text Y Position for Element Property
+	 * Gets Text X Position for Element Property
 	 */	
 	int getElementTextYPos() {*
 		return this.elementTextYPos;
@@ -1394,6 +1394,34 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	*}
 
 
+
+	/**
+	 * Sets Time Format in Time Axis Property by String
+	 */	
+	void setTimeFormatByString( /**Time Format in Time Axis*/ String timeFormat){*
+		this.timeFormat = timeFormat;
+	*}
+
+	/**
+	 * Gets Time Format in Time Axis Property as String
+	 */	
+	String getTimeFormatAsString() {*
+		return this.timeFormat;
+	*}
+	
+	/**
+	 * Sets Time Format in Time Axis Property by Choice Option
+	 */	
+	void setTimeFormat( /**Time Format in Time Axis*/ org_scn_community_shared_Enumfield timeFormat){*
+		this.timeFormat = timeFormat;
+	*}
+	
+	/**
+	 * Gets Time Format in Time Axis Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getTimeFormat() {*
+		return this.timeFormat;
+	*}
 
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */

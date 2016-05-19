@@ -31,6 +31,19 @@
 	         "apsControl":"checkbox"
 	    }
 	},
+    "DShowKeys":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Show Keys instead of Texts",
+	         "cat":"Data",
+	         "tooltip":"Show Keys instead of Texts",
+	         "apsControl":"checkbox"
+	    }
+	},
 	"DDataProvisioner" : {
 		"type" : "String",
 		"value" : "",

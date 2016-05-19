@@ -3,7 +3,7 @@
 	"currentLocationText" : {
 		"template" : "String",
 		"type" : "String",
-		"value" : "",
+		"value" : "Home",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
@@ -20,7 +20,7 @@
 		"template" : "ObjectArray",
 		"type" : "String",
 		"origType": "Link",
-		"value" : "[]",
+		"value" : "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT_1\",\"leaf\":false,\"text\":\"First Level\",\"contentWidth\":\"400px\",\"subtle\":false,\"textAlign\":\"Begin\",\"textDirection\":\"LTR\",\"wrapping\":false,\"enabled\":false},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Second Level\",\"href\":\"\",\"emphasized\":false,\"enabled\":true}]",
 		"visible": true,
 
 		"opts" : {
@@ -37,35 +37,35 @@
 			"arrayDefinition": {
 				"links": {
 					"type": "Array",
-			        "sequence": "key,contentWidth,emphasized,enabled,href,subtle,target,text,textAlign,textDirection,wrapping",
+			        "sequence": "key,text,textAlign,textDirection,wrapping,emphasized,enabled,subtle,href,target",
 			        
 			        "key": {
 			          "desc": "Unique Property Key",
 			          "type": "String"
 					},
-					"contentWidth": {
-					  "desc": "Content Width",
-					  "type": "int"
-					},
 					"emphasized": {
+					  "apsControl": "checkbox",
 					  "desc": "Emphasized",
-					  "type": "boolean"
+					  "type": "boolean,optional"
 					},
 					"enabled": {
+					  "apsControl": "checkbox",
+					  "defaultValue": "true";
 					  "desc": "Enabled",
-					  "type": "boolean"
+					  "type": "boolean,optional"
 					},
 					"href": {
 					  "desc": "Href",
-					  "type": "String"
+					  "type": "String,optional"
 					},
 					"subtle": {
+					  "apsControl": "checkbox",
 					  "desc": "Subtle",
-					  "type": "boolean"
+					  "type": "boolean,optional"
 					},
 					"target": {
 					  "desc": "Target",
-					  "type": "String"
+					  "type": "String,optional"
 					},
 					"text": {
 					  "desc": "Text",
@@ -73,19 +73,20 @@
 					},
 					"textAlign": {
 					  "desc": "Text Align",
-					  "type": "String",
+					  "type": "String,optional",
 					  "options": [{"key":"Begin","text":"Locale-specific positioning at the beginning of the line"},{"key":"End","text":"Locale-specific positioning at the end of the line"},{"key":"Left","text":"Hard option for left alignment"},{"key":"Right","text":"Hard option for right alignment"},{"key":"Center","text":"Centered text alignment"},{"key":"Initial","text":"Sets no text align, so the browser default is used"}],
 					  "apsControl": "combobox"
 					},
 					"textDirection": {
 					  "desc": "Text Direction",
-					  "type": "String",
+					  "type": "String,optional",
 					  "options": [{"key":"LTR","text":"Specifies left-to-right text direction"},{"key":"RTL","text":"Specifies right-to-left text direction"},{"key":"Inherit","text":"Inherits the direction from its parent control/container"}],
 					  "apsControl": "combobox"
 					},
 					"wrapping": {
+					  "apsControl": "checkbox",
 					  "desc": "Wrapping",
-					  "type": "boolean"
+					  "type": "boolean,optional"
 					}
 		      	}
 	      	},

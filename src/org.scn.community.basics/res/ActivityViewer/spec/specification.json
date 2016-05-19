@@ -37,9 +37,37 @@
 		   	"refValue":"[]",
 		}
    },
+   "timeFormat":{
+        "type":"String",
+        "value":"Days",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "choiceType":"-",
+           "ztlFunction":"",
+           "desc":"Time Format in Time Axis",
+           "cat":"Display-Time Axis",
+           "tooltip":"Time Format in Time Axis",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"Days",
+                 "text":"Days"
+              },
+              {
+                 "key":"Hours",
+                 "text":"Hours"
+              },
+              {
+                 "key":"Seconds",
+                 "text":"Seconds"
+              }
+           ]
+        }
+   },
    "XLegendAngle":{
 	    "type":"int",
-	    "value":-65,
+	    "value":-40,
 	    "visible":true,
 	    "opts":{
 	         "ztlType":"int",
@@ -83,9 +111,9 @@
 	    "opts":{
 	         "ztlType":"int",
 	         "ztlFunction":"",
-	         "desc":"Text X Position for Element",
+	         "desc":"Text Y Position for Element",
 	         "cat":"Display-Texts",
-	         "tooltip":"Text X Position for Element",
+	         "tooltip":"Text Y Position for Element",
 	         "apsControl":"spinner"
 		}
    },
@@ -96,9 +124,9 @@
 	    "opts":{
 	         "ztlType":"int",
 	         "ztlFunction":"",
-	         "desc":"Text Y Position for Element",
+	         "desc":"Text X Position for Element",
 	         "cat":"Display-Texts",
-	         "tooltip":"Text Y Position for Element",
+	         "tooltip":"Text X Position for Element",
 	         "apsControl":"spinner"
 		}
    },
