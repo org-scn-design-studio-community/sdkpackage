@@ -2048,7 +2048,14 @@ __n__}
 		<requireJs modes="commons m">res/Hierarchy/Hierarchy</requireJs>
 		
 		<!-- Resultset Entries -->
-		<property id="rsltSet" type="ResultSet" title="JSON Object that contains the metadata that is assigned with the Datasource" visible="false" group="DataBinding"></property>
+		<property id="rsltSet" type="ResultSet" title="JSON Object that contains the metadata that is assigned with the Datasource" visible="false" group="DataBinding" >
+			<option name="includeResults" value="false"></option>
+			<option name="includeFormattedData" value="false"></option>
+			<option name="includeAttributes" value="true"></option>
+			<option name="includeConditionalFormats" value="false"></option>
+			<option name="includeFormattedData" value="false"></option>
+			
+		</property>
 		
 		<!-- Boolean parameters -->
 		<property id="useDummyData" type="boolean" title="useDummyData - Use Dummy Data when no DataSource" visible="false"></property>
@@ -2060,11 +2067,14 @@ __n__}
 		
 		<!-- String parameters -->
 		<property id="dimHierarchy" type="String" title="dimHierarchy - Which dimension contains the hierarchy" visible="false"></property>
-		<property id="kfBubbleSize" type="String" title="kfBubbleSize - Which keyfigure should get used for size of bubbles" visible="false"></property>
 		<property id="selectedNode" type="String" title="selectedNode - Returns an JSON Object of the selected node" visible="false"></property>
 		<!-- property id="kfBubbleCol" type="String" title="kfBubbleCol - Which keyfigure should get used for the alerter colors of bubbles" visible="true"></property -->
+		<property id="kfBubbleSize" type="String" title="kfBubbleSize - Which keyfigure should get used for size of bubbles" visible="false"></property>
 		<property id="kfColBub" type="String" title="kfColBub - Which keyfigure should get used for the alerter of bubbles" visible="false"></property>
+		<!-- property id="kfBubbleSize" type="ResultSet" title="kfBubbleSize - Which keyfigure should get used for size of bubbles" visible="false"></property>
+		<property id="kfColBub" type="ResultSet" title="kfColBub - Which keyfigure should get used for the alerter of bubbles" visible="false"></property -->
 		<property id="whichTextShown" type="String" title="whichTextShown - possible values are value, value_text, text_value, text" visible="true"></property>
+		<property id="overrideLocale" type="String" title="overrideLocale - here you can define which locale should get used for formating of numbers" visible="false"></property>
 
 		<!-- integer parameters -->
 		<property id="BubbleSizeMaxSize" type="int" title="BubbleSizeMaxSize - What size in pixels should the startpoint have" ></property>
@@ -2084,8 +2094,8 @@ __n__}
 		<property id="onclick" title="On Click" type="ScriptText" group="Events" ></property>
 		<property id="onHExpand" title="On Hierarchy expand" type="ScriptText" group="Events" visible="true" ></property>
 		<property id="onHCollapse" title="On Hierarchy collapse" type="ScriptText" group="Events" visible="true" ></property>
-		<property id="onHExpandInv" title="onHExpandInv" type="ScriptText" group="Events" visible="false" ></property>
-		<property id="onHCollapseInv" title="onHCollapseInv" type="ScriptText" group="Events" visible="false" ></property>
+		<!-- property id="onHExpandInv" title="onHExpandInv" type="ScriptText" group="Events" visible="false" ></property>
+		<property id="onHCollapseInv" title="onHCollapseInv" type="ScriptText" group="Events" visible="false" ></property -->
 		
 		<initialization>
 			<defaultValue property="pollInterval">250</defaultValue>
@@ -2105,6 +2115,7 @@ __n__}
 			<defaultValue property="showWarnings">true</defaultValue>
 			<defaultValue property="showRootBubble">true</defaultValue>
 			<defaultValue property="whichTextShown">text_value</defaultValue>
+			<defaultValue property="overrideLocale">default</defaultValue>
 			<defaultValue property="alertColorRed">red</defaultValue>
 			<defaultValue property="alertColorYellow">yellow</defaultValue>
 			<defaultValue property="alertColorGreen">green</defaultValue>

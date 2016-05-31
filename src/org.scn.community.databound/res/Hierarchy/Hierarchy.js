@@ -1,10 +1,13 @@
 define(["d3",
         "./../../../org.scn.community.shared/os/viz-modules/SDKCore",
-        "sap/designstudio/sdk/component","css!./Hierarchy.css"], function (d3, SDKCore, Component) {
+        "sap/designstudio/sdk/component",
+        "css!./Hierarchy.css"
+        ], function (d3, SDKCore, Component) {
 	var ownComponentName = "org.scn.community.databound.jpd3hier";
 	Hierarchy.prototype = SDKCore;
 	function Hierarchy() {
 		var that = this;
+		//VizCoreDatabound oder SDKCore
 		SDKCore.call(this, {
 			selectedNode : {
 				opts : {
@@ -15,7 +18,7 @@ define(["d3",
 			rsltSet : {
 				value : null,
 				opts : {
-					desc : "Data",
+					desc : "Data to display",
 					cat : "Data",
 					tooltip : "Data from datasource",
 					apsControl : "dataselection"
@@ -121,12 +124,13 @@ define(["d3",
 			},
 			whichTextShown : {
 				opts : {
-					apsControl : "segmentedbutton",
-					desc : "Which Text to Show",
+					//apsControl : "segmentedbutton",
+					apsControl : "combobox",
+					desc : "Text - Property",
 					cat : "General",
 					options : [{
 							key : "value",
-							text : "Value"
+							text : "Only Value"
 						}, {
 							key : "value_text",
 							text : "Value and Text"
@@ -135,30 +139,70 @@ define(["d3",
 							text : "Text and Value"
 						}, {
 							key : "text",
-							text : "Text"
+							text : "Only Text"
+						}
+					]
+				}
+			},
+			overrideLocale : {
+				opts : {
+					//apsControl : "segmentedbutton",
+					apsControl : "combobox",
+					desc : "Number format Locale",
+					cat : "General",
+					options : [{
+							key : "default",
+							text : "use DS Default"
+						}, {
+							key : "de_DE",
+							text : "Deutsch"
+						}, {
+							key : "en_EN",
+							text : "English"
 						}
 					]
 				}
 			},
 			kfColBub : {
 				opts : {
-					desc : "Measure for Bubble",
+					desc : "Measure for Bubble Color",
 					cat : "Data",
-					apsControl : "text"
+					//apsControl : "text",
+					//apsControl : "measurelist"
+					apsControl : "combobox",
+					options : [{
+						key : "KZ1",
+						text : "KZ1"
+					}
+				]
 				}
 			},
 			kfBubbleSize : {
+				/*opts : {
+					desc : "Measure for Bubble Size - Please use technical name out of Data selection dialog (looks like 003N81FHQ23F05W0SD0MUICVE)",
+					cat : "Data",
+					//apsControl : "text",
+					apsControl : "measurelist"
+				}*/
 				opts : {
+					//apsControl : "segmentedbutton",
+					apsControl : "combobox",
 					desc : "Measure for Bubble Size",
 					cat : "Data",
-					apsControl : "text"
+					options : [{
+							key : "KZ1",
+							text : "KZ1"
+						}
+					]
 				}
+			
 			},
 			dimHierarchy : {
 				opts : {
 					desc : "Hierarchy Dimension",
 					cat : "Data",
-					apsControl : "text"
+					apsControl : "text",
+					noAps : true
 				}
 			}
 		});
@@ -241,8 +285,12 @@ define(["d3",
 
 			//jsondata = that.updateChartdata();
 			that.variables.root = that.updateChartdata();
-			that.variables.root.x0 = h / 2;
-			that.variables.root.y0 = 0;
+			if (that.variables.root) {
+				that.variables.root.x0 = h / 2;
+				that.variables.root.y0 = 0;
+				
+				that.update(that.variables.root);
+			}
 
 			/*/
 			 / fillwarningstext
@@ -291,7 +339,7 @@ define(["d3",
 		 * This function initializes a tree with svg
 		 */
 		function drawHierInit() {
-			that.variables.jsondata = that.updateChartdata();
+			//that.variables.jsondata = that.updateChartdata();
 
 			//var m = [20, 120, 20, 120],
 			// [top, left, bottom, right];
@@ -307,6 +355,10 @@ define(["d3",
 					return [d.y, d.x];
 				});
 
+			var tempBubbleRootXTranslation = 0;
+			if (that.BubbleRootXTranslation()) {
+				tempBubbleRootXTranslation = that.BubbleRootXTranslation();
+			}
 			that.variables.vis = d3.select("#d3hier_" + that.owner.sId).append("svg:svg")
 				.attr("width", w + that.variables.m[1] + that.variables.m[3]) // - (w*0.04))
 				//.attr("width", "100%")
@@ -314,7 +366,7 @@ define(["d3",
 				//.attr("height", "100%")
 				.append("svg:g")
 				.attr("id", "d3HierSVG_" + that.owner.sId)
-				.attr("transform", "translate(" + ((that.variables.m[3] * 1) + (that.BubbleRootXTranslation() * 1)) + "," + that.variables.m[0] + ")");
+				.attr("transform", "translate(" + ((that.variables.m[3] * 1) + (tempBubbleRootXTranslation * 1)) + "," + that.variables.m[0] + ")");
 
 			/*: Show a Text with Warnings/Errors in the canvas */
 			that.variables.canvasWarnObject = that.variables.vis.append("svg:g")
@@ -324,16 +376,19 @@ define(["d3",
 				.attr("x", 0)
 				.attr("y", 0)
 				.attr("dy", ".35em")
-				.text("Testtext " + that.BubbleSizeMaxSize() + " - " + that.dimHierarchy());
+				.text("Testtext " + that.BubbleSizeMaxSize() + " - "); // + that.dimHierarchy());
 
 			//d3.json(jsondata, function(json) {
-			that.variables.root = that.variables.jsondata;
-			that.variables.root.x0 = h / 2;
-			that.variables.root.y0 = 0;
+			if (that.variables.root) {
+				that.variables.root = that.variables.jsondata;
+				that.variables.root.x0 = h / 2;
+				that.variables.root.y0 = 0;
+			
+				// Update Hierarchy component
+				that.update(that.variables.root);
+			}
 
-			// Update Hierarchy component
-			that.update(that.variables.root);
-
+			//that.update();
 		}
 
 		// Toggle children.
@@ -356,7 +411,7 @@ define(["d3",
 					if (eventTextSelf != null && eventTextSelf == "mouseClickSelf") {
 						// trigger Event on Hierarchy Collapse
 						that.fireEvent("onHCollapse");
-						that.fireEvent("onHCollapseInv");
+						//that.fireEvent("onHCollapseInv");
 
 						//$("#circleText1ExpCol_" + d.key).html("[+]");
 					}
@@ -366,7 +421,7 @@ define(["d3",
 					if (eventTextSelf != null && eventTextSelf == "mouseClickSelf") {
 						// trigger Event on Hierarchy Expand
 						that.fireEvent("onHExpand");
-						that.fireEvent("onHExpandInv");
+						//that.fireEvent("onHExpandInv");
 
 						//$("#circleText1ExpCol_" + d.key).html("[-]");
 					}
@@ -400,8 +455,8 @@ define(["d3",
 				"max value: " + that.formatValue(that.variables.dataMaxValue, that.variables.bubbleSizeKeyFigureInfo.formatString) + "\n" +
 				"total sum value: " + that.formatValue(that.variables.dataSumValue, that.variables.bubbleSizeKeyFigureInfo.formatString) + "\n" +
 				"value ratio: " + that.formatValue((d.size / that.variables.dataSumValue), that.variables.defaultFormatString) + "\n" +
-				"Level: " + d.depth + "\n"
-				/// TODO global var Test
+				"Level: " + d.depth + "\n" //+
+				//"NodeState: " + d.nodeState
 				//"globalVar-Rest: " + xyzExample + "\n"
 				//" Coord:" + d3.event.pageX + " : " + d3.event.pageY)
 			)
@@ -434,6 +489,12 @@ define(["d3",
 			if (that.BubbleSizeBoderSize() > 15) {
 				that.BubbleSizeBoderSize(15);
 				that.variables.canvasWarnTextString += "The bubbel border size was set to the maximum of 15";
+			}
+			if (!that.BubbleSizeBoderSize()) {
+				that.BubbleSizeBoderSize(10);
+			}
+			if (!that.BubbleSizeMaxSize()) {
+				that.BubbleSizeMaxSize(20);
 			}
 
 			// Compute the new tree layout.
@@ -539,6 +600,7 @@ define(["d3",
 					return "translate(" + d.y + "," + d.x + ")";
 				});
 
+			
 			// adjust circles after dataupdate to the new size
 			nodeUpdate.select("circle")
 			// set the size of the circle according to the value (proportional to the max value)
@@ -609,7 +671,7 @@ define(["d3",
 			//nodeUpdate.select("text")
 			nodeUpdate.select(".circleText1ExpCol_" + that.owner.sId)
 			.text(function (d) {
-				if (d.children || d._children) {
+				if (d.nodeState) {  //|| d._children) {
 					if (d.nodeState == "COLLAPSED") {
 						return "[+]";
 					} else {
@@ -620,6 +682,26 @@ define(["d3",
 				}
 			})
 			.style("fill-opacity", 1);
+			
+			/*
+			
+			nodeEnter.append("svg:text")
+			.attr("class", function (d) {
+				return "circleText1ExpCol_" + that.owner.sId;
+			})
+			.attr("x", function (d) {
+				return -9;
+			})
+			.attr("dy", ".30em")
+			.on("click", function (d) {
+				that.toggle(d, "mouseClickSelf");
+				that.update(d);
+			});
+
+			
+			 */
+			
+			
 
 			//nodeUpdate.select("text")
 			nodeUpdate.select(".circleText2ExpCol_" + that.owner.sId)
@@ -767,9 +849,18 @@ define(["d3",
 				// get to know measureIndex (with that.memberIndex)
 
 				that.variables.bubbleSizeKeyFigId = that.memberIndex(that.kfBubbleSize(), that.variables.tupelColumnKeyFig);
-				// get to know dimension with heirarchy (with that.dimensionIndexByKey)
-				that.variables.tupelColumnHier = that.dimensionIndexByKey(that.dimHierarchy()); // columnindex of the hierarchyDimension
+				// get to know dimension with hierarchy (with that.dimensionIndexByKey)
+				//that.variables.tupelColumnHier = that.dimensionIndexByKey(that.dimHierarchy()); // columnindex of the hierarchyDimension
+				that.variables.tupelColumnHier = that.dimensionIndexByHierarchy(); // columnindex of the hierarchyDimension
 
+				if (that.variables.tupelColumnHier) {
+					/*
+					alert("Hurra! - Es gibt Daten - " + numTuples + 
+							" - BubbleRootXTranslation " + (that.BubbleRootXTranslation() * 1) +
+							" - BubbleSizeMaxSize " + (that.BubbleSizeMaxSize() * 1)
+							);
+							*/
+				}
 
 				// retrieve the Text for the keyfigure Deimension to use it in various positions
 				for (var i = 0; i < that.rsltSet().dimensions[that.variables.tupelColumnKeyFig].members.length; i++) {
@@ -912,96 +1003,101 @@ define(["d3",
 				//canvasWarnTextString += " dataMaxValue=" + dataMaxValue;
 				tempJsonData = dataset;
 			} else {
-				//small set of Dummydata with values
-				tempJsonData = {
-					"name" : "World",
-					"size" : 2311,
-					"key" : "HIERARCHY_NODE/0HIER_NODE/WELT",
-					"text" : "WORLD",
-					"type" : "HIERARCHY_NODE",
-					"nodeState" : "COLLAPSED",
-					"level" : 1,
-					"children" : [{
-							"name" : "North America",
-							"size" : 814,
-							"key" : "HIERARCHY_NODE/0HIER_NODE/NORDAMERIKA",
-							"text" : "NORDAMERIKA",
-							"type" : "HIERARCHY_NODE",
-							"nodeState" : "COLLAPSED",
-							"level" : 2,
-							"children" : [{
-									"name" : "JFK",
-									"size" : 394,
-									"key" : "JFK",
-									"text" : "JFK",
-									"level" : 3
-								}, {
-									"name" : "SFO",
-									"size" : 420,
-									"key" : "SFO",
-									"text" : "SFO",
-									"level" : 3
-								}
-							]
-						}, {
-							"name" : "Asia",
-							"size" : 498,
-							"key" : "HIERARCHY_NODE/0HIER_NODE/ASIEN",
-							"text" : "ASIA",
-							"type" : "HIERARCHY_NODE",
-							"nodeState" : "COLLAPSED",
-							"level" : 2,
-							"children" : [{
-									"name" : "NRT",
-									"size" : 112,
-									"key" : "NRT",
-									"text" : "NRT",
-									"level" : 3
-								}, {
-									"name" : "SIN",
-									"size" : 278,
-									"key" : "SIN",
-									"text" : "SIN",
-									"level" : 3
-								}, {
-									"name" : "TYO",
-									"size" : 108,
-									"key" : "TYO",
-									"text" : "TYO",
-									"level" : 3
-								}
-							]
-						}, {
-							"name" : "Europe",
-							"size" : 1000,
-							"key" : "HIERARCHY_NODE/0HIER_NODE/EUROPA",
-							"text" : "EUROPE",
-							"type" : "HIERARCHY_NODE",
-							"nodeState" : "COLLAPSED",
-							"level" : 2,
-							"children" : [{
-									"name" : "FCO",
-									"size" : 268,
-									"key" : "FCO",
-									"text" : "FCO",
-									"level" : 3
-								}, {
-									"name" : "TXL",
-									"size" : 46,
-									"key" : "TXL",
-									"text" : "TXL",
-									"level" : 3
-								}, {
-									"name" : "FRA",
-									"size" : 686,
-									"key" : "FRA",
-									"text" : "FRA",
-									"level" : 3
-								}
-							]
-						}
-					]
-				};
+				if (!that.rsltSet() && !that.useDummyData()) {
+					tempJsonData = null;
+					return null;
+				} else if (that.useDummyData()) {
+					//small set of Dummydata with values
+					tempJsonData = {
+						"name" : "World",
+						"size" : 2311,
+						"key" : "HIERARCHY_NODE/0HIER_NODE/WELT",
+						"text" : "WORLD",
+						"type" : "HIERARCHY_NODE",
+						"nodeState" : "COLLAPSED",
+						"level" : 1,
+						"children" : [{
+								"name" : "North America",
+								"size" : 814,
+								"key" : "HIERARCHY_NODE/0HIER_NODE/NORDAMERIKA",
+								"text" : "NORDAMERIKA",
+								"type" : "HIERARCHY_NODE",
+								"nodeState" : "COLLAPSED",
+								"level" : 2,
+								"children" : [{
+										"name" : "JFK",
+										"size" : 394,
+										"key" : "JFK",
+										"text" : "JFK",
+										"level" : 3
+									}, {
+										"name" : "SFO",
+										"size" : 420,
+										"key" : "SFO",
+										"text" : "SFO",
+										"level" : 3
+									}
+								]
+							}, {
+								"name" : "Asia",
+								"size" : 498,
+								"key" : "HIERARCHY_NODE/0HIER_NODE/ASIEN",
+								"text" : "ASIA",
+								"type" : "HIERARCHY_NODE",
+								"nodeState" : "COLLAPSED",
+								"level" : 2,
+								"children" : [{
+										"name" : "NRT",
+										"size" : 112,
+										"key" : "NRT",
+										"text" : "NRT",
+										"level" : 3
+									}, {
+										"name" : "SIN",
+										"size" : 278,
+										"key" : "SIN",
+										"text" : "SIN",
+										"level" : 3
+									}, {
+										"name" : "TYO",
+										"size" : 108,
+										"key" : "TYO",
+										"text" : "TYO",
+										"level" : 3
+									}
+								]
+							}, {
+								"name" : "Europe",
+								"size" : 1000,
+								"key" : "HIERARCHY_NODE/0HIER_NODE/EUROPA",
+								"text" : "EUROPE",
+								"type" : "HIERARCHY_NODE",
+								"nodeState" : "COLLAPSED",
+								"level" : 2,
+								"children" : [{
+										"name" : "FCO",
+										"size" : 268,
+										"key" : "FCO",
+										"text" : "FCO",
+										"level" : 3
+									}, {
+										"name" : "TXL",
+										"size" : 46,
+										"key" : "TXL",
+										"text" : "TXL",
+										"level" : 3
+									}, {
+										"name" : "FRA",
+										"size" : 686,
+										"key" : "FRA",
+										"text" : "FRA",
+										"level" : 3
+									}
+								]
+							}
+						]
+					};
+				}
 				that.variables.dataMaxValue = 2311;
 				that.variables.canvasWarnTextString += "This is demodata. <br />To see your own data attach a datasource to this component and select a hierarchy dimension and a keyfigure for the bubble size.<br />";
 			}
@@ -1039,13 +1135,58 @@ define(["d3",
 			}
 			return null;
 		};
+		// Returns position of metadata array - returns the Dimension with Hierarchy
+		this.dimensionIndexByHierarchy = function () {
+			if (!this.rsltSet())
+				return null;
+			for (var i = 0; i < this.rsltSet().dimensions.length; i++) {
+				if (this.rsltSet().dimensions[i].hierarchy) {
+					that.dimHierarchy(this.rsltSet().dimensions[i].key);
+					// fire event that this change is also available via BIAL
+					that.firePropertiesChanged(["dimHierarchy"]);
+					
+					return i;
+				}
+			}
+			return null;
+		};
 		// Returns position of Keyfigure dimension
 		this.dimensionKFIndex = function () {
 			if (this.rsltSet()) { // otherwise there is an exception with no data connection ..
 				if (this.rsltSet().dimensions) { // check if there is a dimensions property ...
+					
+					var tempOptions = [];
+					
 					for (var i = 0; i < this.rsltSet().dimensions.length; i++) {
 						if (this.rsltSet().dimensions[i].hasOwnProperty("containsMeasures"))
-							return i;
+							
+							/*
+					[{
+							key : "value",
+							text : "Value"
+						}, {
+							key : "value_text",
+							text : "Value and Text"
+						}, {
+							key : "text_value",
+							text : "Text and Value"
+						}, {
+							key : "text",
+							text : "Text"
+						}
+					]
+							 */
+						// Fill the List of value with possible keyfigures
+						for (var int = 0; int < this.rsltSet().dimensions[i].members.length; int++) {
+							var tempObj = {};
+							tempObj.key = this.rsltSet().dimensions[i].members[int].key ;
+							tempObj.text = this.rsltSet().dimensions[i].members[int].text;
+							tempOptions[int] = tempObj;
+						}
+						that.props.kfBubbleSize.opts.options = tempOptions;
+						that.props.kfColBub.opts.options = tempOptions;
+							
+						return i;
 					}
 					return null;
 				} else { // there is no this.rsltSet().dimensions
@@ -1070,14 +1211,27 @@ define(["d3",
 
 		// Format a measure based on CVOM library methods
 		this.formatValue = function (value, strFormat) {
-			return value; // TEMP fix - Mike
+			//return value; // TEMP fix - Mike
 			if (value === null)
 				return "";
 			if (this.rsltSet()) {
 				if (strFormat) {
-					sap.common.globalization.NumericFormatManager.setPVL(this.rsltSet().locale);
-					return sap.common.globalization.NumericFormatManager.format(value, strFormat);
+					if (that.overrideLocale() && that.overrideLocale() === "default") {
+					//sap.common.globalization.NumericFormatManager.setPVL(this.rsltSet().locale);
+					//return sap.common.globalization.NumericFormatManager.format(value, strFormat);
+						return jQuery.formatNumber(value, {format:strFormat, locale:this.rsltSet().locale});
+					} else if (that.overrideLocale() && that.overrideLocale() !== "default") {
+						if (that.overrideLocale() === "de_DE") {
+							strFormat = strFormat.replace(",", "=");
+							strFormat = strFormat.replace(".", ",");
+							strFormat = strFormat.replace("=", ".");
+						}
+						return jQuery.formatNumber(value, {format:strFormat, locale:that.overrideLocale()});
+					}
 				}
+			}
+			if (strFormat) {
+				return jQuery.formatNumber(value, {format:strFormat});
 			}
 			return value;
 		};
