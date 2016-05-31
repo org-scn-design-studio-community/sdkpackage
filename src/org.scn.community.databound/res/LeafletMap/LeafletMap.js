@@ -909,6 +909,37 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var overlay = featureLayers[i];
+				// WMS
+				if(overlay && overlay.layer && overlay.layer.layerType=="wms"){
+					var config = overlay.layer.wmsConfig;
+					var aLayers = [];
+					var aStyles = [];
+					var layers = "";
+					var styles = "";
+					if(config && config.capabilities){
+						for(var c=0;c<config.capabilities.length;c++){
+							var cap = config.capabilities[c];
+							if(cap.use) {
+								aLayers.push(cap.name);
+								aStyles.push(cap.style || "");
+							}
+						}
+						layers = aLayers.join(",");
+					}
+					// WMS Layers
+					var newLayer = L.tileLayer.wms(
+						config.baseUrl,
+						{
+							layers: layers,
+							styles: styles,
+						    format: 'image/png',
+						    transparent: true,
+						    attribution: config.attribution
+						}
+					);
+					this._controlLayer.addOverlay(newLayer, overlay.key);
+					newLayer.addTo(this._map);
+				}
 				// FEATURE
 				if(overlay && overlay.layer && overlay.layer.layerType=="feature" && overlay.layer.featureConfig){
 					var layer = overlay.layer.featureConfig;

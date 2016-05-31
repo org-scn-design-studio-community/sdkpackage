@@ -9,6 +9,10 @@ define(["./complexitem"],function(){
 		},
 		metadata : {                             
 	        properties : {
+	        	noAdd : {
+	        		type : "boolean",
+	        		defaultValue : false
+	        	},
 	        	title : "string",
 	        	value : { 
 	        		type : "object[]",
@@ -31,6 +35,11 @@ define(["./complexitem"],function(){
 		},
 		getConfig : function(){
 			return sap.ui.core.Control.prototype.getProperty.apply(this,["config"]);
+		},
+		setNoAdd : function(b){
+			sap.ui.core.Control.prototype.setProperty.apply(this,["noAdd",b]);
+			this.layoutContent();
+			return this;
 		},
 		setValue : function(a){
 			sap.ui.core.Control.prototype.setProperty.apply(this,["value",a]);
@@ -117,10 +126,9 @@ define(["./complexitem"],function(){
 			rowMenu.addItem(rowInsertBefore);
 			rowMenu.addItem(rowInsertAfter);
 			rowMenu.addItem(rowDelete);
-			this.columnTable.addColumn(uiCol);
-
-			
-			
+			if(!this.getNoAdd()){
+				this.columnTable.addColumn(uiCol);	
+			}
 			var c = this.getConfig();
 			var needsDetails = false;
 			for(var p in c){
@@ -132,6 +140,9 @@ define(["./complexitem"],function(){
 						template.attachChange(function (oControlEvent){
 							this.fireValueChange();
 						},this);
+						break;
+					case "label" :
+						template = new sap.ui.commons.Label().bindProperty("text", p);
 						break;
 					case "checkbox" :
 						template = new sap.ui.commons.CheckBox().bindProperty("checked",p);
@@ -257,20 +268,25 @@ define(["./complexitem"],function(){
 				tooltip : "Add Item",
 				icon : "sap-icon://add"
 			});
-			this.addContent(this.addButton);
-			this.addButton.attachPress(this.addNewItem,this);
+			this.addButton.attachPress(this.addNewItem,this);	
 			this.columnTable = new sap.ui.table.Table({
 				title: "Complex Title Here",
 				visibleRowCount: 15,
 				//selectionMode: sap.ui.table.SelectionMode.Single
 				selectionMode: sap.ui.table.SelectionMode.None
 			});
-			this.addContent(this.columnTable);
 			this.apsModel = new sap.ui.model.json.JSONModel();
 			this.columnTable.setModel(this.apsModel);
 			this.columnTable.bindRows("/propertyData");
-			
-		},	 
+			this.layoutContent();
+		},
+		layoutContent : function(){
+			this.removeAllContent();
+			if(!this.getNoAdd()){
+				this.addContent(this.addButton);
+			}
+			this.addContent(this.columnTable);
+		},
 		renderer : {},
 		needsLabel : function() {
 			return false;
@@ -296,6 +312,7 @@ define(["./complexitem"],function(){
 		createComponent : function(property, propertyOptions, changeHandler){
 			var component = new org.scn.community.aps.ComplexCollection({
 				width : "100%",
+				noAdd : propertyOptions.noAdd,
 				title : propertyOptions.desc,
 				config : propertyOptions.apsConfig,
 				showCollapseIcon : false

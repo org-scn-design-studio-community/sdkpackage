@@ -1,0 +1,24 @@
+[ { "label" : "WMS Presets",
+    "presets" : [ { "label" : "Nexrad", "value" : "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi" } ]
+  },{
+  	"label" : "NASA",
+  	"presets" : [
+  		{ "label" : "NASA Earth Observations (NEO) WMS",
+  		  "value" : "https://firms.modaps.eosdis.nasa.gov/wms/c6/"
+  		}
+  	]
+  },{
+  	"label" : "Geological",
+  	"presets" : [
+  		{ "label" : "Colorado Geological Survey",
+  		  "value" : "http://web2.nbmg.unr.edu/arcgis/services/CO_Data/NBMG_COGS_Geology/MapServer/WmsServer"
+  		},{
+  			"label" : "Tennessee Geology",
+  			"value" : "http://mrdata.usgs.gov/services/tn"
+  		},{
+  			"label" : "Mississippi Geology",
+  			"value" : "http://mrdata.usgs.gov/services/ms"
+  		}
+  	]
+  }
+]

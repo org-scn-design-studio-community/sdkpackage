@@ -24,6 +24,10 @@ define([], function () {
 				"value" : {
 					type : "string",
 					defaultValue : ""
+				},
+				"changeHandler" : {
+					type : "any",
+					defaultValue : null
 				}
 			},
 			events : {
@@ -56,6 +60,9 @@ define([], function () {
 						this.setValue(v);
 						this.text.setValue(v);
 						this.fireValueChange();
+						if(this.getChangeHandler()) {
+							this.getChangeHandler()();
+						}
 					};
 					}(o.value), this);
 				}
@@ -102,6 +109,9 @@ define([], function () {
 		textChangeHandler : function(oControlEvent){
 			this.setValue(oControlEvent.getSource().getValue());
 			this.fireValueChange();
+			if(this.getChangeHandler()) {
+				this.getChangeHandler()();
+			}
 		},
 		init : function () {
 			var that = this;
@@ -129,7 +139,8 @@ define([], function () {
 		createComponent : function (property, propertyOptions, changeHandler) {
 			var component = new org.scn.community.aps.TextInputPresets({
 				options : propertyOptions.apsConfig,
-				presets : propertyOptions.presetsIndex
+				presets : propertyOptions.presetsIndex,
+				changeHandler : propertyOptions.changeHandler
 			});
 			component.attachValueChange(changeHandler, this);
 			return component;

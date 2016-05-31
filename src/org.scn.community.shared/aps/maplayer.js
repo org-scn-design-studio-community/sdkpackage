@@ -61,7 +61,8 @@ define(["./complexitem"], function () {
 						apsControl : "segmentedbutton",
 						desc : "Layer Type",
 						options : [{key : "feature", text : "Feature", icon : "sap-icon://choropleth-chart"},
-							       {key : "marker", text : "Marker", icon : "sap-icon://map"}
+							       {key : "marker", text : "Marker", icon : "sap-icon://map"},
+							       {key : "wms", text : "WMS", icon : "sap-icon://dimension"}
 						]
 					}
 				},
@@ -75,6 +76,12 @@ define(["./complexitem"], function () {
 					opts : {
 						apsControl : "markerlayer",
 						desc : "Marker Configuration"							
+					}
+				},
+				wmsConfig : {
+					opts : {
+						apsControl : "wmslayer",
+						desc : "WMS Configuration"							
 					}
 				}
 			};
@@ -92,6 +99,11 @@ define(["./complexitem"], function () {
 			if(this.getValue().layerType == "marker"){
 				this.layout.push({
 					comp : "markerConfig"
+				});
+			}
+			if(this.getValue().layerType == "wms"){
+				this.layout.push({
+					comp : "wmsConfig"
 				});
 			}
 		},
