@@ -2390,6 +2390,7 @@ __n__}
 	<property type="String" title="Active Base Layer" id="currentBaseLayer" visible="false"/>
 	<property type="String" title="Overlays" id="overlays" visible="false"/>
 	<property type="String" title="Map Center" id="mapCenter" visible="false"/>
+	<property type="String" title="CRS" id="crs" visible="false"/>
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
 	<property id="repositoryPath" type="Url" title="Path to BIAPP Repository" tooltip="Property for auto calculation of the root folder" visible="false" />
 	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
@@ -2402,6 +2403,7 @@ __n__}
 		<defaultValue property="data3config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
 		<defaultValue property="data4config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
 		<defaultValue property="data5config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
+		<defaultValue property="crs">EPSG3857</defaultValue>
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>

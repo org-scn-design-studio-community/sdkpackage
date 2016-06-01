@@ -141,6 +141,12 @@ define(["./complexitem"], function () {
 						changeHandler : function(){that.baseUrlChanged.call(that);}
 					}
 				},
+				opacity : {
+					opts : {
+						desc : "Opacity (0.0 - 1.0)",
+						apsControl : "text"
+					}
+				},
 				capabilities : {
 					opts : {
 						desc : "Capabilities",
@@ -178,6 +184,9 @@ define(["./complexitem"], function () {
 				comp : "baseUrl"
 			});
 			this.layout.push({
+				comp : "opacity"
+			});
+			this.layout.push({
 				comp : "capabilities"
 			});
 		},
@@ -188,6 +197,7 @@ define(["./complexitem"], function () {
 		id : "wmslayer",
 		defaultValue : {
 			baseUrl :"http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi",
+			opacity : "1.0",
 			capabilities : [],
 			layers : "nexrad-n0r-900913",
 	    	format : "image/png",
