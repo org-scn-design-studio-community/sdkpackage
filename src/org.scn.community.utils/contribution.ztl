@@ -2591,6 +2591,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Tag Cloud 2.0 component*/
 	org.scn.community.databound.tagCloud returnAsScntagCloud (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to TileContainer 1.0 component*/
+	org.scn.community.databound.TileContainer returnAsScnTileContainer (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Top Flop Chart component*/
 	org.scn.community.databound.TopFlopChart returnAsScnTopFlopChart (Component inputComponent) {* return inputComponent; *}
 
@@ -2632,9 +2635,6 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Horizon Chart component*/
 	org.scn.community.prototypes.horizonChart returnAsScnhorizonChart (Component inputComponent) {* return inputComponent; *}
-
-	/**Cast to (PROTOTYPE!) MyTileContainer component*/
-	org.scn.community.prototypes.MyTileContainer returnAsScnMyTileContainer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Progress Bar Set component*/
 	org.scn.community.prototypes.ProgressSet returnAsScnProgressSet (Component inputComponent) {* return inputComponent; *}
@@ -5722,6 +5722,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		var jsonObject = JSON.parse(this.DHeaders);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Headers
+	 */	
+	String cleanAllHeaders() {*
+		this.DHeaders = "[]";
+	*}
 	
 	/**
 	 * Sets the Value for Header keys<br/>
@@ -6000,6 +6007,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getParametersAsJSON() {*
 		var jsonObject = JSON.parse(this.DParameters);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Parameters
+	 */	
+	String cleanAllParameters() {*
+		this.DParameters = "[]";
 	*}
 	
 	/**
@@ -6336,6 +6350,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		var jsonObject = JSON.parse(this.DReturnHeaders);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All ReturnHeaders
+	 */	
+	String cleanAllReturnHeaders() {*
+		this.DReturnHeaders = "[]";
+	*}
 	
 	/**
 	 * Sets the Value for ReturnHeader keys<br/>
@@ -6600,6 +6621,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getReturnParametersAsJSON() {*
 		var jsonObject = JSON.parse(this.DReturnParameters);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All ReturnParameters
+	 */	
+	String cleanAllReturnParameters() {*
+		this.DReturnParameters = "[]";
 	*}
 	
 	/**

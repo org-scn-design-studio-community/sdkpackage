@@ -212,6 +212,13 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 		var jsonObject = JSON.parse(this.candles);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Candles
+	 */	
+	String cleanAllCandles() {*
+		this.candles = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Candle keys<br/>
@@ -286,6 +293,322 @@ class org.scn.community.prototypes.GoogleCandle extends org.scn.community.shared
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].text;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Start1 for Candle keys<br/>
+	 */
+	void setCandleStart1s (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Start1 */ float start1
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].start1 = start1;
+					break;
+				}
+			}
+		}
+		
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Start1 for Candle Key<br/>
+	 */
+	void setCandleStart1 (
+			/**/ String key,
+			/**/ float start1
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].start1 = start1;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Start1 for Candle Key<br/>
+	 */
+	float getCandleStart1 (
+			/**/ String key
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].start1;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Start2 for Candle keys<br/>
+	 */
+	void setCandleStart2s (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Start2 */ float start2
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].start2 = start2;
+					break;
+				}
+			}
+		}
+		
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Start2 for Candle Key<br/>
+	 */
+	void setCandleStart2 (
+			/**/ String key,
+			/**/ float start2
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].start2 = start2;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Start2 for Candle Key<br/>
+	 */
+	float getCandleStart2 (
+			/**/ String key
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].start2;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the End1 for Candle keys<br/>
+	 */
+	void setCandleEnd1s (
+			/**/ String keys,
+			/**/ String separator,
+	        /* End1 */ float end1
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].end1 = end1;
+					break;
+				}
+			}
+		}
+		
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the End1 for Candle Key<br/>
+	 */
+	void setCandleEnd1 (
+			/**/ String key,
+			/**/ float end1
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].end1 = end1;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of End1 for Candle Key<br/>
+	 */
+	float getCandleEnd1 (
+			/**/ String key
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].end1;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the End2 for Candle keys<br/>
+	 */
+	void setCandleEnd2s (
+			/**/ String keys,
+			/**/ String separator,
+	        /* End2 */ float end2
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].end2 = end2;
+					break;
+				}
+			}
+		}
+		
+		this.candles = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the End2 for Candle Key<br/>
+	 */
+	void setCandleEnd2 (
+			/**/ String key,
+			/**/ float end2
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].end2 = end2;
+				break;
+			}
+		}
+
+		this.candles = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of End2 for Candle Key<br/>
+	 */
+	float getCandleEnd2 (
+			/**/ String key
+			) 
+	{*
+		if (this.candles === undefined || this.candles === "" || this.candles === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.candles);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].end2;
 				break;
 			}
 		}

@@ -401,6 +401,13 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 		var jsonObject = JSON.parse(this.titles);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Titles
+	 */	
+	String cleanAllTitles() {*
+		this.titles = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Title keys<br/>

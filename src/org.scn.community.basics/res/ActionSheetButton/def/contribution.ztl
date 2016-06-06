@@ -236,6 +236,13 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 		var jsonObject = JSON.parse(this.items);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.items = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Item keys<br/>

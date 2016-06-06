@@ -240,6 +240,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		var jsonObject = JSON.parse(this.activities);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Activitys
+	 */	
+	String cleanAllActivitys() {*
+		this.activities = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Activity keys<br/>
@@ -827,6 +834,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		var jsonObject = JSON.parse(this.categories);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Categorys
+	 */	
+	String cleanAllCategorys() {*
+		this.categories = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Category keys<br/>
@@ -1311,6 +1325,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 	String getStatesAsJSON() {*
 		var jsonObject = JSON.parse(this.states);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All States
+	 */	
+	String cleanAllStates() {*
+		this.states = "[]";
 	*}
 	
 	/**

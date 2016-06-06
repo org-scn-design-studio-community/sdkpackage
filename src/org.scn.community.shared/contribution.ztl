@@ -1904,6 +1904,13 @@ class org.scn.community.shared.ui5.Breadcrumbs extends org.scn.community.shared.
 		var jsonObject = JSON.parse(this.links);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Links
+	 */	
+	String cleanAllLinks() {*
+		this.links = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Link keys<br/>
@@ -3039,6 +3046,85 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 		
 		return value;
 	*}
+	/**
+	 * Sets the Value for Actual keys<br/>
+	 */
+	void setActualValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ float value
+			) 
+	{*
+		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.actual);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.actual = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Actual Key<br/>
+	 */
+	void setActualValue (
+			/**/ String key,
+			/**/ float value
+			) 
+	{*
+		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.actual);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.actual = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Actual Key<br/>
+	 */
+	float getActualValue (
+			/**/ String key
+			) 
+	{*
+		if (this.actual === undefined || this.actual === "" || this.actual === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.actual);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 
 
 
@@ -3517,6 +3603,13 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 		var jsonObject = JSON.parse(this.thresholds);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Thresholds
+	 */	
+	String cleanAllThresholds() {*
+		this.thresholds = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for Threshold keys<br/>
@@ -3591,6 +3684,85 @@ class org.scn.community.shared.ui5.BulletChart extends org.scn.community.shared.
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Value for Threshold keys<br/>
+	 */
+	void setThresholdValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ float value
+			) 
+	{*
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.thresholds);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.thresholds = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Threshold Key<br/>
+	 */
+	void setThresholdValue (
+			/**/ String key,
+			/**/ float value
+			) 
+	{*
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.thresholds);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.thresholds = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Threshold Key<br/>
+	 */
+	float getThresholdValue (
+			/**/ String key
+			) 
+	{*
+		if (this.thresholds === undefined || this.thresholds === "" || this.thresholds === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.thresholds);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
 				break;
 			}
 		}
@@ -4103,10 +4275,12 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 			/**Colour*/String color, 
 			/**Formatted Label*/boolean formattedLabel, 
 			/**Fraction*/float fraction, 
-			/**Fraction Label*/String fractionLabel, 
-			/**Fraction Scale*/String fractionScale
+			/**Fraction Label*/optional String fractionLabel, 
+			/**Fraction Scale*/optional String fractionScale
 			) {*
 
+		if(fractionLabel == undefined) { fractionLabel = "";}
+		if(fractionScale == undefined) { fractionScale = "";}
 		
 		var itemDef = {
 			leaf:true,
@@ -4193,8 +4367,8 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 			/**Colour*/String color, 
 			/**Formatted Label*/boolean formattedLabel, 
 			/**Fraction*/float fraction, 
-			/**Fraction Label*/String fractionLabel, 
-			/**Fraction Scale*/String fractionScale
+			/**Fraction Label*/optional String fractionLabel, 
+			/**Fraction Scale*/optional String fractionScale
 			) {*
 
 		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
@@ -4233,8 +4407,8 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 			/**Colour*/String color, 
 			/**Formatted Label*/boolean formattedLabel, 
 			/**Fraction*/float fraction, 
-			/**Fraction Label*/String fractionLabel, 
-			/**Fraction Scale*/String fractionScale
+			/**Fraction Label*/optional String fractionLabel, 
+			/**Fraction Scale*/optional String fractionScale
 			) 
 	{*
 		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
@@ -4292,6 +4466,13 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 	String getItemsAsJSON() {*
 		var jsonObject = JSON.parse(this.items);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.items = "[]";
 	*}
 	
 	/**
@@ -4497,6 +4678,85 @@ class org.scn.community.shared.ui5.HarveyBallMicroChart extends org.scn.communit
 		}
 		
 		return newElementsJson;
+	*}
+	/**
+	 * Sets the Fraction for Item keys<br/>
+	 */
+	void setItemFractions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Fraction */ float fraction
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fraction = fraction;
+					break;
+				}
+			}
+		}
+		
+		this.items = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Fraction for Item Key<br/>
+	 */
+	void setItemFraction (
+			/**/ String key,
+			/**/ float fraction
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fraction = fraction;
+				break;
+			}
+		}
+
+		this.items = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Fraction for Item Key<br/>
+	 */
+	float getItemFraction (
+			/**/ String key
+			) 
+	{*
+		if (this.items === undefined || this.items === "" || this.items === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.items);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].fraction;
+				break;
+			}
+		}
+		
+		return value;
 	*}
 	/**
 	 * Sets the FractionLabel for Item keys<br/>
@@ -5327,6 +5587,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.chart);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Charts
+	 */	
+	String cleanAllCharts() {*
+		this.chart = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for Chart keys<br/>
@@ -5401,6 +5668,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.chart);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.chart = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.chart);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.chart = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.chart);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.chart);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.chart = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.chart);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.chart = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.chart === undefined || this.chart === "" || this.chart === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.chart);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -6214,6 +6639,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.innerMaxThreshold);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All InnerMaxThresholds
+	 */	
+	String cleanAllInnerMaxThresholds() {*
+		this.innerMaxThreshold = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for InnerMaxThreshold keys<br/>
@@ -6288,6 +6720,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.innerMaxThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.innerMaxThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.innerMaxThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.innerMaxThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.innerMaxThreshold === undefined || this.innerMaxThreshold === "" || this.innerMaxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMaxThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -6457,6 +7047,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.innerMinThreshold);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All InnerMinThresholds
+	 */	
+	String cleanAllInnerMinThresholds() {*
+		this.innerMinThreshold = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for InnerMinThreshold keys<br/>
@@ -6531,6 +7128,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.innerMinThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.innerMinThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.innerMinThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.innerMinThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.innerMinThreshold === undefined || this.innerMinThreshold === "" || this.innerMinThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.innerMinThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -7576,6 +8331,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.maxThreshold);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All MaxThresholds
+	 */	
+	String cleanAllMaxThresholds() {*
+		this.maxThreshold = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for MaxThreshold keys<br/>
@@ -7650,6 +8412,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.maxThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.maxThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.maxThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.maxThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.maxThreshold === undefined || this.maxThreshold === "" || this.maxThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.maxThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -8139,6 +9059,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.minThreshold);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All MinThresholds
+	 */	
+	String cleanAllMinThresholds() {*
+		this.minThreshold = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for MinThreshold keys<br/>
@@ -8213,6 +9140,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.minThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.minThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.minThreshold = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.minThreshold = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.minThreshold === undefined || this.minThreshold === "" || this.minThreshold === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.minThreshold);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -8419,6 +9504,13 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.target);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Targets
+	 */	
+	String cleanAllTargets() {*
+		this.target = "[]";
+	*}
 	
 	/**
 	 * Sets the Color for Target keys<br/>
@@ -8493,6 +9585,164 @@ class org.scn.community.shared.ui5.MicroAreaChart extends org.scn.community.shar
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].color;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the X for Points keys<br/>
+	 */
+	void setPointsXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.target);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.target = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Points Key<br/>
+	 */
+	void setPointsX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.target);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.target = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Points Key<br/>
+	 */
+	float getPointsX (
+			/**/ String key
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.target);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Points keys<br/>
+	 */
+	void setPointsYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.target);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.target = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Points Key<br/>
+	 */
+	void setPointsY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.target);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.target = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Points Key<br/>
+	 */
+	float getPointsY (
+			/**/ String key
+			) 
+	{*
+		if (this.target === undefined || this.target === "" || this.target === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.target);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
 				break;
 			}
 		}
@@ -9012,7 +10262,172 @@ class org.scn.community.shared.ui5.MicroAreaChartItem extends org.scn.community.
 		var jsonObject = JSON.parse(this.points);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Points
+	 */	
+	String cleanAllPoints() {*
+		this.points = "[]";
+	*}
 	
+	/**
+	 * Sets the X for Point keys<br/>
+	 */
+	void setPointXs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* X */ float x
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.points);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].x = x;
+					break;
+				}
+			}
+		}
+		
+		this.points = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the X for Point Key<br/>
+	 */
+	void setPointX (
+			/**/ String key,
+			/**/ float x
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.points);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].x = x;
+				break;
+			}
+		}
+
+		this.points = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of X for Point Key<br/>
+	 */
+	float getPointX (
+			/**/ String key
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.points);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].x;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Y for Point keys<br/>
+	 */
+	void setPointYs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Y */ float y
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.points);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].y = y;
+					break;
+				}
+			}
+		}
+		
+		this.points = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Y for Point Key<br/>
+	 */
+	void setPointY (
+			/**/ String key,
+			/**/ float y
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.points);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].y = y;
+				break;
+			}
+		}
+
+		this.points = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Y for Point Key<br/>
+	 */
+	float getPointY (
+			/**/ String key
+			) 
+	{*
+		if (this.points === undefined || this.points === "" || this.points === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.points);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].y;
+				break;
+			}
+		}
+		
+		return value;
+	*}
 
 
 
@@ -9401,6 +10816,13 @@ class org.scn.community.shared.ui5.NavigationList extends org.scn.community.shar
 	String getItemsAsJSON() {*
 		var jsonObject = JSON.parse(this.items);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.items = "[]";
 	*}
 	
 	/**
@@ -10096,6 +11518,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 	String getAppointmentsAsJSON() {*
 		var jsonObject = JSON.parse(this.appointments);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Appointments
+	 */	
+	String cleanAllAppointments() {*
+		this.appointments = "[]";
 	*}
 	
 	/**
@@ -11214,6 +12643,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var jsonObject = JSON.parse(this.intervalHeaders);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All IntervalHeaders
+	 */	
+	String cleanAllIntervalHeaders() {*
+		this.intervalHeaders = "[]";
+	*}
 	
 	/**
 	 * Sets the RowKey for IntervalHeader keys<br/>
@@ -12256,6 +13692,13 @@ class org.scn.community.shared.ui5.PlanningCalendar extends org.scn.community.sh
 		var jsonObject = JSON.parse(this.rows);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Rows
+	 */	
+	String cleanAllRows() {*
+		this.rows = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Row keys<br/>
@@ -12934,6 +14377,13 @@ class org.scn.community.shared.ui5.PlanningCalendarRow extends org.scn.community
 	String getAppointmentsAsJSON() {*
 		var jsonObject = JSON.parse(this.appointments);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Appointments
+	 */	
+	String cleanAllAppointments() {*
+		this.appointments = "[]";
 	*}
 	
 	/**
@@ -13862,6 +15312,13 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 		var jsonObject = JSON.parse(this.connections);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Connections
+	 */	
+	String cleanAllConnections() {*
+		this.connections = "[]";
+	*}
 	
 	/**
 	 * Sets the DrawData for Connection keys<br/>
@@ -14262,6 +15719,13 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 	String getLanesAsJSON() {*
 		var jsonObject = JSON.parse(this.lanes);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Lanes
+	 */	
+	String cleanAllLanes() {*
+		this.lanes = "[]";
 	*}
 	
 	/**
@@ -14995,6 +16459,13 @@ class org.scn.community.shared.ui5.ProcessFlow extends org.scn.community.shared.
 	String getNodesAsJSON() {*
 		var jsonObject = JSON.parse(this.nodes);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Nodes
+	 */	
+	String cleanAllNodes() {*
+		this.nodes = "[]";
 	*}
 	
 	/**
@@ -17106,6 +18577,13 @@ class org.scn.community.shared.ui5.RadioButtonGroup extends org.scn.community.sh
 		var jsonObject = JSON.parse(this.buttons);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.buttons = "[]";
+	*}
 	
 	/**
 	 * Sets the ActiveHandling for Button keys<br/>
@@ -18479,7 +19957,13 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.fixedItem);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All FixedItems
+	 */	
+	String cleanAllFixedItems() {*
+		this.fixedItem = "[]";
+	*}
 	/**
 	 * Sets the Text for FixedItem keys<br/>
 	 */
@@ -19222,7 +20706,13 @@ class org.scn.community.shared.ui5.SideNavigation extends org.scn.community.shar
 		var jsonObject = JSON.parse(this.item);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.item = "[]";
+	*}
 	/**
 	 * Sets the Text for Item keys<br/>
 	 */

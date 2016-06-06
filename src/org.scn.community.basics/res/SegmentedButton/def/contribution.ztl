@@ -180,7 +180,13 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.DElementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Button keys<br/>
 	 */

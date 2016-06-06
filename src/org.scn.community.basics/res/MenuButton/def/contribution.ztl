@@ -182,7 +182,13 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.elementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Item keys<br/>
 	 */

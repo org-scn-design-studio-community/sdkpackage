@@ -162,11 +162,11 @@ function() {
         },
         "fractionLabel": {
           "desc": "Fraction Label",
-          "type": "String"
+          "type": "String,optional"
         },
         "fractionScale": {
           "desc": "Fraction Scale",
-          "type": "String"
+          "type": "String,optional"
         },
         "key": {
           "desc": "Unique Property Key",

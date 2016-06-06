@@ -314,6 +314,13 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 		var jsonObject = JSON.parse(this.markedDates);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.markedDates = "[]";
+	*}
 	
 	/**
 	 * Sets the Mark for Element keys<br/>

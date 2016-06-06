@@ -182,7 +182,13 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		var jsonObject = JSON.parse(this.componentsSpec);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Components
+	 */	
+	String cleanAllComponents() {*
+		this.componentsSpec = "[]";
+	*}
 	/**
 	 * Sets the ComponentType for Component keys<br/>
 	 */

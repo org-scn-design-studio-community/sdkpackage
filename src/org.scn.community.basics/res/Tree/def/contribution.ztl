@@ -211,7 +211,13 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All RootNodes
+	 */	
+	String cleanAllRootNodes() {*
+		this.nodesContent = "[]";
+	*}
 	/**
 	 * Sets the Text for RootNode keys<br/>
 	 */

@@ -242,6 +242,13 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Locations
+	 */	
+	String cleanAllLocations() {*
+		this.elementsContent = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Location keys<br/>
@@ -395,6 +402,164 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].url;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Lat for Location keys<br/>
+	 */
+	void setLocationLats (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Lat */ float lat
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].lat = lat;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Lat for Location Key<br/>
+	 */
+	void setLocationLat (
+			/**/ String key,
+			/**/ float lat
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].lat = lat;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Lat for Location Key<br/>
+	 */
+	float getLocationLat (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].lat;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Long for Location keys<br/>
+	 */
+	void setLocationLongs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Long */ float long
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].long = long;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Long for Location Key<br/>
+	 */
+	void setLocationLong (
+			/**/ String key,
+			/**/ float long
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].long = long;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Long for Location Key<br/>
+	 */
+	float getLocationLong (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].long;
 				break;
 			}
 		}

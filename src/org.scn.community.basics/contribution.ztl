@@ -198,7 +198,13 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Sections
+	 */	
+	String cleanAllSections() {*
+		this.elementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Section keys<br/>
 	 */
@@ -951,6 +957,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		var jsonObject = JSON.parse(this.activities);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Activitys
+	 */	
+	String cleanAllActivitys() {*
+		this.activities = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Activity keys<br/>
@@ -1538,6 +1551,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		var jsonObject = JSON.parse(this.categories);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Categorys
+	 */	
+	String cleanAllCategorys() {*
+		this.categories = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Category keys<br/>
@@ -2023,6 +2043,13 @@ class org.scn.community.basics.ActivityViewer extends org.scn.community.shared.C
 		var jsonObject = JSON.parse(this.states);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All States
+	 */	
+	String cleanAllStates() {*
+		this.states = "[]";
+	*}
 	
 	/**
 	 * Sets the Style for State keys<br/>
@@ -2375,6 +2402,13 @@ class org.scn.community.basics.ActionSheetButton extends org.scn.community.share
 	String getItemsAsJSON() {*
 		var jsonObject = JSON.parse(this.items);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.items = "[]";
 	*}
 	
 	/**
@@ -3116,6 +3150,13 @@ class org.scn.community.basics.Calendar extends org.scn.community.shared.Compone
 		var jsonObject = JSON.parse(this.markedDates);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.markedDates = "[]";
+	*}
 	
 	/**
 	 * Sets the Mark for Element keys<br/>
@@ -3627,6 +3668,13 @@ class org.scn.community.basics.CheckBoxGroup extends org.scn.community.shared.Co
 	String getElementsAsJSON() {*
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
 	*}
 	
 	/**
@@ -4748,6 +4796,13 @@ class org.scn.community.basics.DragDropArea extends org.scn.community.shared.Com
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -5446,7 +5501,13 @@ class org.scn.community.basics.FloatButton extends org.scn.community.shared.Comp
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.DElementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Button keys<br/>
 	 */
@@ -7233,6 +7294,13 @@ class org.scn.community.basics.FishEye extends org.scn.community.shared.Componen
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -7932,6 +8000,13 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -8291,7 +8366,13 @@ class org.scn.community.basics.KpiTile extends org.scn.community.shared.Componen
 		var jsonObject = JSON.parse(this.componentsSpec);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Components
+	 */	
+	String cleanAllComponents() {*
+		this.componentsSpec = "[]";
+	*}
 	/**
 	 * Sets the ComponentType for Component keys<br/>
 	 */
@@ -9762,6 +9843,13 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -9915,6 +10003,85 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].url;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Value for Element keys<br/>
+	 */
+	void setElementValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ float value
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Element Key<br/>
+	 */
+	void setElementValue (
+			/**/ String key,
+			/**/ float value
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Element Key<br/>
+	 */
+	float getElementValue (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
 				break;
 			}
 		}
@@ -10498,6 +10665,13 @@ class org.scn.community.basics.ListSelector extends org.scn.community.shared.Com
 		var jsonObject = JSON.parse(this.titles);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Titles
+	 */	
+	String cleanAllTitles() {*
+		this.titles = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Title keys<br/>
@@ -10839,7 +11013,13 @@ class org.scn.community.basics.MenuBar extends org.scn.community.shared.Componen
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.elementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Item keys<br/>
 	 */
@@ -11710,7 +11890,13 @@ class org.scn.community.basics.MenuButton extends org.scn.community.shared.Compo
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Items
+	 */	
+	String cleanAllItems() {*
+		this.elementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Item keys<br/>
 	 */
@@ -12706,6 +12892,13 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Steps
+	 */	
+	String cleanAllSteps() {*
+		this.DElementsContent = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Step keys<br/>
@@ -13695,6 +13888,13 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Locations
+	 */	
+	String cleanAllLocations() {*
+		this.elementsContent = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Location keys<br/>
@@ -13848,6 +14048,164 @@ class org.scn.community.basics.Map extends org.scn.community.shared.Component {
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].url;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Lat for Location keys<br/>
+	 */
+	void setLocationLats (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Lat */ float lat
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].lat = lat;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Lat for Location Key<br/>
+	 */
+	void setLocationLat (
+			/**/ String key,
+			/**/ float lat
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].lat = lat;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Lat for Location Key<br/>
+	 */
+	float getLocationLat (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].lat;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Long for Location keys<br/>
+	 */
+	void setLocationLongs (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Long */ float long
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].long = long;
+					break;
+				}
+			}
+		}
+		
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Long for Location Key<br/>
+	 */
+	void setLocationLong (
+			/**/ String key,
+			/**/ float long
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].long = long;
+				break;
+			}
+		}
+
+		this.elementsContent = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Long for Location Key<br/>
+	 */
+	float getLocationLong (
+			/**/ String key
+			) 
+	{*
+		if (this.elementsContent === undefined || this.elementsContent === "" || this.elementsContent === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elementsContent);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].long;
 				break;
 			}
 		}
@@ -14852,6 +15210,13 @@ class org.scn.community.basics.RoadMap extends org.scn.community.shared.Componen
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Steps
+	 */	
+	String cleanAllSteps() {*
+		this.DElementsContent = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Step keys<br/>
@@ -15469,7 +15834,13 @@ class org.scn.community.basics.SegmentedButton extends org.scn.community.shared.
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.DElementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Button keys<br/>
 	 */
@@ -16817,7 +17188,13 @@ class org.scn.community.basics.Tree extends org.scn.community.shared.Component {
 		var jsonObject = JSON.parse(this.nodesContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All RootNodes
+	 */	
+	String cleanAllRootNodes() {*
+		this.nodesContent = "[]";
+	*}
 	/**
 	 * Sets the Text for RootNode keys<br/>
 	 */

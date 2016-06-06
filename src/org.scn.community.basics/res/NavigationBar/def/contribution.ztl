@@ -222,6 +222,13 @@ class org.scn.community.basics.NavigationBar extends org.scn.community.shared.Co
 		var jsonObject = JSON.parse(this.DElementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Steps
+	 */	
+	String cleanAllSteps() {*
+		this.DElementsContent = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Step keys<br/>
