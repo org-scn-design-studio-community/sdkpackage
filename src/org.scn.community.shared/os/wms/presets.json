@@ -5,6 +5,18 @@
   	"presets" : [
   		{ "label" : "NASA Earth Observations (NEO) WMS",
   		  "value" : "https://firms.modaps.eosdis.nasa.gov/wms/c6/"
+  		},{
+  			"label" : "Atmospheric Infrared Sounder (AIRS) Near-Real-Time",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_airsnrt"
+  		},{
+  			"label" : "Atmospheric Infrared Sounder (AIRS) Data Products",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_airs"
+  		},{
+  			"label" : "Tropical Rainfall Measurement Mission (TRMM) Gridded Rainfall Data",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_trmm"
+  		},{
+  			"label" : "Ozone Monitoring Instrument (OMI) Data Products",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_omi"
   		}
   	]
   },{
