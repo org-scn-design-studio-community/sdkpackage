@@ -257,7 +257,23 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									}
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
-					} else {
+					} 
+					//+FBL2016
+//					else if (parameterObject.type == "String" && parameterObject.apsControl == "color") {
+//						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "280px"});
+//						
+//						txtElementValue.attachChange(
+//							function(oControlEvent){
+//								var value = oControlEvent.getParameter("newValue");
+//								var key = oControlEvent.getSource()._key;
+//
+//								var rootElement = that.getElement(that._listBuilder.getSelectedKey());
+//								rootElement[key] = value;
+//								
+//								that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
+//						}, that);
+//					}
+					else {
 						txtElementValue = new sap.ui.commons.TextField ({value : targetValue, width: "280px"});
 						
 						txtElementValue.attachChange(
