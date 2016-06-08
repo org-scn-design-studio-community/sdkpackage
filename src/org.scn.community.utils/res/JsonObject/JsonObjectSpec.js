@@ -31,7 +31,7 @@ function() {
 	};
 
 	spec.spec = 
-{"content": {
+{"contentJson": {
   "opts": {
     "apsControl": "array",
     "arrayDefinition": {"property": {

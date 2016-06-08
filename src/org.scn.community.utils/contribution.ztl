@@ -4681,11 +4681,11 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 		
 		
 	
-		if (this.content === undefined || this.content === "" || this.content === "<delete>"){
-			this.content = "{}";
+		if (this.contentJson === undefined || this.contentJson === "" || this.contentJson === "<delete>"){
+			this.contentJson = "{}";
 		}
 		
-		var elementsJson = JSON.parse(this.content);
+		var elementsJson = JSON.parse(this.contentJson);
 		
 		var alreadyFound = false;
 		
@@ -4697,7 +4697,7 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 			elementsJson[key] = value;
 		}
 	
-		this.content = JSON.stringify(elementsJson);
+		this.contentJson = JSON.stringify(elementsJson);
 	*}
 	
 	/** Removes an element by key.
@@ -4714,11 +4714,11 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 			String key
 			) {*		
 		
-		if (this.content === undefined || this.content === "" || this.content === "<delete>"){
-			this.content = "{}";
+		if (this.contentJson === undefined || this.contentJson === "" || this.contentJson === "<delete>"){
+			this.contentJson = "{}";
 		}
 		
-		var elementsJson = JSON.parse(this.content);
+		var elementsJson = JSON.parse(this.contentJson);
 		
 		var alreadyFound = false;
 		for(var existingKey in elementsJson) {
@@ -4728,7 +4728,7 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 			}
 		}
 
-		this.content = JSON.stringify(elementsJson);
+		this.contentJson = JSON.stringify(elementsJson);
 	*}
 
 
@@ -4739,7 +4739,7 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	String getAsJSON (optional boolean noLinebreaks) {*
 		if(noLinebreaks == undefined) {noLinebreaks = false;}
 		
-		var jsonObject = JSON.parse(this.content);
+		var jsonObject = JSON.parse(this.contentJson);
 		if(noLinebreaks) {
 			return JSON.stringify(jsonObject);
 		}
@@ -4750,25 +4750,25 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	 * Returns as Json String
 	 */
 	JSON getAsJSONObject () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 
 	/**
 	 * Returns casted to MultiDimFilter
 	 */
 	JSON getAsMultiDimFilter () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 	
 	/**
 	 * Returns casted to MultiDimFilterExt
 	 */
 	JSON getAsMultiDimFilterExt () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 	
 	String getValueAsString (String key) {*
-		var js = JSON.parse(this.content);
+		var js = JSON.parse(this.contentJson);
 		var result = [];
 		if(js instanceof Array){
 			for(var i=0;i<js.length;i++){
@@ -4787,7 +4787,7 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	*}
 
 	JSON getValueAsJsonObject (String key) {*
-		var js = JSON.parse(this.content);
+		var js = JSON.parse(this.contentJson);
 	
 		var result = [];
 		if(js instanceof Array){
@@ -4814,21 +4814,21 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	 */
 	void createFromValue (String jsonValue) {*
 		var js = JSON.parse(jsonValue);
-		this.content = JSON.stringify(js);
+		this.contentJson = JSON.stringify(js);
 	*}
 	
 	/**
 	 * Creates from different Json Object
 	 */
 	void createFromJSON (JSON json) {*
-		this.content = JSON.stringify(json);
+		this.contentJson = JSON.stringify(json);
 	*}
 	
 	/**
 	 * Clears the Json Object to empty object
 	 */
 	void clear () {*
-		this.content = "{}";
+		this.contentJson = "{}";
 	*}
 	
 	/**
@@ -4851,7 +4851,7 @@ class org.scn.community.utils.JsonObject extends org.scn.community.shared.Compon
 	</example>
 	*/
 	org.scn.community.shared.NameValueArray getReturnHeadersAsNameValueArray () {*
-		var s = this.content;  
+		var s = this.contentJson;  
 		var js = []; 
 		if(s!="") js = JSON.parse(s);
 		
