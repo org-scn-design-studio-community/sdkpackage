@@ -512,6 +512,21 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 			this.metaProps.sort(function (a, b) {
 				var res = that.getIndexForCategory(a.opts.cat) - that.getIndexForCategory(b.opts.cat);
 
+				//FBL20160605: Added code to handle Order in APS
+				if (res == 0) {
+					//Same cat
+					
+					if (a.opts.order == undefined)
+						a.opts.order = 999;
+					if (b.opts.order == undefined)
+						b.opts.order = 999;
+					
+					if (a.opts.order < b.opts.order)
+						res = -1;
+					else if (a.opts.order > b.opts.order)
+						res =  1;
+				}
+				
 				if (res == 0) {
 					// then sort placing boolean "Use" first
 					if (a.opts.desc.indexOf("Use") == 0 && b.opts.desc.indexOf("Use") == 0) {
