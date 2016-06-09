@@ -100,7 +100,7 @@
 		<defaultValue property="cleanAllLinks"><![CDATA[false]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="currentLocationText"><![CDATA[Home]]></defaultValue>
-		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
+		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false,"enabled":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
 		<defaultValue property="onPressed"><![CDATA[]]></defaultValue>
 		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>

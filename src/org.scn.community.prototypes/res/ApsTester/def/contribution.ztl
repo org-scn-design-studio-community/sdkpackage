@@ -211,7 +211,13 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 		var jsonObject = JSON.parse(this.doublearray);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.doublearray = "[]";
+	*}
 	/**
 	 * Sets the Text for Button keys<br/>
 	 */
@@ -989,6 +995,13 @@ class org.scn.community.prototypes.ApsTester extends org.scn.community.shared.Co
 	String getButtonsAsJSON() {*
 		var jsonObject = JSON.parse(this.singlearray);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Buttons
+	 */	
+	String cleanAllButtons() {*
+		this.singlearray = "[]";
 	*}
 	
 	/**

@@ -1,0 +1,79 @@
+	/**
+	 * Sets the %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% keys<br/>
+	 */
+	void set%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL%s (
+			/**/ String keys,
+			/**/ String separator,
+	        /* %NAME_CAPITAL% */ float %NAME%
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].%NAME% = %NAME%;
+					break;
+				}
+			}
+		}
+		
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
+	 */
+	void set%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
+			/**/ String key,
+			/**/ float %NAME%
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].%NAME% = %NAME%;
+				break;
+			}
+		}
+
+		this.%PROPERTY_NAME% = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of %NAME_CAPITAL% for %PROPERTY_CAPITAL_CUT% Key<br/>
+	 */
+	float get%PROPERTY_CAPITAL_CUT%%NAME_CAPITAL% (
+			/**/ String key
+			) 
+	{*
+		if (this.%PROPERTY_NAME% === undefined || this.%PROPERTY_NAME% === "" || this.%PROPERTY_NAME% === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.%PROPERTY_NAME%);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].%NAME%;
+				break;
+			}
+		}
+		
+		return value;
+	*}

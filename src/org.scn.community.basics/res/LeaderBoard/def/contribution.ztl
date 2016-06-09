@@ -242,6 +242,13 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>
@@ -395,6 +402,85 @@ class org.scn.community.basics.LeaderBoard extends org.scn.community.shared.Comp
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].url;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Value for Element keys<br/>
+	 */
+	void setElementValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ float value
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.elements = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Element Key<br/>
+	 */
+	void setElementValue (
+			/**/ String key,
+			/**/ float value
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.elements = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Element Key<br/>
+	 */
+	float getElementValue (
+			/**/ String key
+			) 
+	{*
+		if (this.elements === undefined || this.elements === "" || this.elements === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.elements);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
 				break;
 			}
 		}

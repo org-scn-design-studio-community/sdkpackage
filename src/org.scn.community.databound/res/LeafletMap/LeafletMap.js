@@ -68,6 +68,27 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					noAps : true
 				}
 			},
+			crs : {
+				opts : {
+					apsControl : "segmentedbutton",
+					desc : "CRS",
+					cat : "General",
+					options : [{
+							key : "EPSG3857",
+							text : "EPSG3857"
+						}, {
+							key : "EPSG4326",
+							text : "EPSG4326"
+						}, {
+							key : "EPSG3395",
+							text : "EPSG3395"
+						}, {
+							key : "Simple",
+							text : "Simple"
+						}
+					]
+				}
+			},
 			currentBaseLayer : {
 				opts : {
 					desc : "Active Base Layer",
@@ -265,10 +286,13 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 		 * Fires after property change.
 		 */
 		this.afterUpdate = function () {
-			var deltas = ["tileOptions","overlays"];
+			var deltas = ["tileOptions","overlays","crs"];
 			var rerender = false;
 			for(var i=0;i<deltas.length;i++){
-				if(this[deltas[i]]()!=this.prior[deltas[i]]) rerender = true;
+				if(this[deltas[i]]()!=this.prior[deltas[i]]) {
+					if(deltas[i]=="crs") this.createMap();	// Must destroy and recreate.
+					rerender = true;
+				}
 			}
 			if(rerender || this._designTime) this.updateMap();
 			for(var i=0;i<deltas.length;i++){
@@ -909,6 +933,41 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			this._featureLayer = L.featureGroup();
 			for(var i=0;i<featureLayers.length;i++){
 				var overlay = featureLayers[i];
+				// WMS
+				if(overlay && overlay.layer && overlay.layer.layerType=="wms"){
+					var config = overlay.layer.wmsConfig;
+					var aLayers = [];
+					var aStyles = [];
+					var layers = "";
+					var styles = "";
+					if(config && config.capabilities){
+						for(var c=0;c<config.capabilities.length;c++){
+							var cap = config.capabilities[c];
+							if(cap.use) {
+								aLayers.push(cap.name);
+								aStyles.push(cap.style || "");
+							}
+						}
+						layers = aLayers.join(",");
+						styles = aStyles.join(",");
+						// WMS Layers
+						var opacity = 1.0;
+						if(!isNaN(parseFloat(config.opacity))) opacity = parseFloat(config.opacity);
+						var newLayer = L.tileLayer.wms(
+							config.baseUrl,
+							{
+								layers: layers,
+								opacity : opacity,
+								styles: styles,
+							    format: 'image/png',
+							    transparent: true,
+							    attribution: config.attribution
+							}
+						);
+						this._controlLayer.addOverlay(newLayer, overlay.key);
+						if(overlay.visible) newLayer.addTo(that._featureLayer);
+					}
+				}
 				// FEATURE
 				if(overlay && overlay.layer && overlay.layer.layerType=="feature" && overlay.layer.featureConfig){
 					var layer = overlay.layer.featureConfig;
@@ -1027,7 +1086,19 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 			that.overlays(JSON.stringify(a));
 			that.firePropertiesChanged(["overlays"]);
 		};
-
+		this.createMap = function(){
+			if(this._map) this._map.remove();
+			var crs = L.CRS.EPSG3857;
+			if(this.crs()){
+				crs = L.CRS[this.crs()];
+			}
+			this._map = new L.Map(this._mapContainer.get(0), {
+				attributionControl : false,
+				zoomControl : !this._designTime,
+				maxBounds:[L.latLng(-85.0511,-180),L.latLng(85.0511,180)],
+				crs : crs
+			});
+		}
 		var parentInit = this.init;
 		this.init = function () {
 			this.prior = {};
@@ -1044,12 +1115,7 @@ define(["css!./../../../org.scn.community.shared/os/leaflet/leaflet.css",
 					height : "100%"
 				});
 				this.$().append(this._mapContainer);
-				
-				this._map = new L.Map(this._mapContainer.get(0), {
-					attributionControl : false,
-					zoomControl : !this._designTime,
-					maxBounds:[L.latLng(-85.0511,-180),L.latLng(85.0511,180)]
-				});
+				this.createMap();
 				// CONTROL LAYER
 				// this._controlLayer = L.control.layers(null,null,{ });
 				

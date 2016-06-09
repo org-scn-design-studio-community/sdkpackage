@@ -72,7 +72,6 @@
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
-		<option name="includeAttributes" value="true"/>
 	</property>
 	<property
 		id="dataCellList"

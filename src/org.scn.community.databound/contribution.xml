@@ -377,7 +377,7 @@
 		<defaultValue property="cleanAllLinks"><![CDATA[false]]></defaultValue>
 		<defaultValue property="contentWidth"><![CDATA[0]]></defaultValue>
 		<defaultValue property="currentLocationText"><![CDATA[Home]]></defaultValue>
-		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
+		<defaultValue property="links"><![CDATA[[{"parentKey":"ROOT","key":"ELEMENT_1","leaf":false,"text":"First Level","contentWidth":"400px","subtle":false,"textAlign":"Begin","textDirection":"LTR","wrapping":false,"enabled":false},{"parentKey":"ROOT","key":"ELEMENT2","leaf":false,"text":"Second Level","href":"","emphasized":false,"enabled":true}]]]></defaultValue>
 		<defaultValue property="onPressed"><![CDATA[]]></defaultValue>
 		<defaultValue property="pressedKey"><![CDATA[]]></defaultValue>
 		<defaultValue property="useContentWidth"><![CDATA[true]]></defaultValue>
@@ -586,7 +586,6 @@
 		<option name="includeFormattedData" value="true"/>
 		<option name="includeData" value="true"/>
 		<option name="presentationDelimiter" value=" | " />
-		<option name="includeAttributes" value="true"/>
 	</property>
 	<property
 		id="dataCellList"
@@ -2401,6 +2400,7 @@ __n__}
 	<property type="String" title="Active Base Layer" id="currentBaseLayer" visible="false"/>
 	<property type="String" title="Overlays" id="overlays" visible="false"/>
 	<property type="String" title="Map Center" id="mapCenter" visible="false"/>
+	<property type="String" title="CRS" id="crs" visible="false"/>
 	<property type="int" title="Zoom" id="zoom" visible="false"/>
 	<property id="repositoryPath" type="Url" title="Path to BIAPP Repository" tooltip="Property for auto calculation of the root folder" visible="false" />
 	<property id="TResourceUrl"	type="Url" title="Temporary property for Resource" visible="false" />
@@ -2413,6 +2413,7 @@ __n__}
 		<defaultValue property="data3config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
 		<defaultValue property="data4config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
 		<defaultValue property="data5config">{&quot;ignoreResults&quot;:true,&quot;ignoreExpandedNodes&quot;:true,&quot;useMockData&quot;:true}</defaultValue>
+		<defaultValue property="crs">EPSG3857</defaultValue>
 		<defaultValue property="ignoreTotals">true</defaultValue>
 		<defaultValue property="ignoreExpandedNodes">true</defaultValue>
 		<defaultValue property="swapAxes">false</defaultValue>

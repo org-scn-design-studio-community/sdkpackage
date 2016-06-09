@@ -211,7 +211,7 @@ function() {
     "origType": "Link",
     "template": "ObjectArray",
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT_1\",\"leaf\":false,\"text\":\"First Level\",\"contentWidth\":\"400px\",\"subtle\":false,\"textAlign\":\"Begin\",\"textDirection\":\"LTR\",\"wrapping\":false},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Second Level\",\"href\":\"\",\"emphasized\":false,\"enabled\":true}]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT_1\",\"leaf\":false,\"text\":\"First Level\",\"contentWidth\":\"400px\",\"subtle\":false,\"textAlign\":\"Begin\",\"textDirection\":\"LTR\",\"wrapping\":false,\"enabled\":false},{\"parentKey\":\"ROOT\",\"key\":\"ELEMENT2\",\"leaf\":false,\"text\":\"Second Level\",\"href\":\"\",\"emphasized\":false,\"enabled\":true}]",
     "visible": true
   },
   "onPressed": {

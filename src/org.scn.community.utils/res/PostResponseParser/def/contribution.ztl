@@ -272,6 +272,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		var jsonObject = JSON.parse(this.DHeaders);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Headers
+	 */	
+	String cleanAllHeaders() {*
+		this.DHeaders = "[]";
+	*}
 	
 	/**
 	 * Sets the Value for Header keys<br/>
@@ -550,6 +557,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getParametersAsJSON() {*
 		var jsonObject = JSON.parse(this.DParameters);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Parameters
+	 */	
+	String cleanAllParameters() {*
+		this.DParameters = "[]";
 	*}
 	
 	/**
@@ -886,6 +900,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		var jsonObject = JSON.parse(this.DReturnHeaders);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All ReturnHeaders
+	 */	
+	String cleanAllReturnHeaders() {*
+		this.DReturnHeaders = "[]";
+	*}
 	
 	/**
 	 * Sets the Value for ReturnHeader keys<br/>
@@ -1150,6 +1171,13 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 	String getReturnParametersAsJSON() {*
 		var jsonObject = JSON.parse(this.DReturnParameters);
 		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All ReturnParameters
+	 */	
+	String cleanAllReturnParameters() {*
+		this.DReturnParameters = "[]";
 	*}
 	
 	/**

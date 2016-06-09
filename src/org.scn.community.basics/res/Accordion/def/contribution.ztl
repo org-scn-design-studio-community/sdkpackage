@@ -178,7 +178,13 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 		var jsonObject = JSON.parse(this.elementsContent);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Sections
+	 */	
+	String cleanAllSections() {*
+		this.elementsContent = "[]";
+	*}
 	/**
 	 * Sets the Text for Section keys<br/>
 	 */

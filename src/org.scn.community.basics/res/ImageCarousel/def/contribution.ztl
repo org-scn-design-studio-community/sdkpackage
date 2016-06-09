@@ -230,6 +230,13 @@ class org.scn.community.basics.ImageCarousel extends org.scn.community.shared.Co
 		var jsonObject = JSON.parse(this.elements);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All Elements
+	 */	
+	String cleanAllElements() {*
+		this.elements = "[]";
+	*}
 	
 	/**
 	 * Sets the Text for Element keys<br/>

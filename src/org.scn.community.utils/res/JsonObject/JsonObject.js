@@ -15,7 +15,8 @@ define([
 	) {
 //%DEFINE-END%
 
-var myComponentData = spec;
+var myComponentData = {};
+myComponentData.fullComponentName = "org.scn.community.utils.JsonObject";
 
 JsonObject = function () {
 
@@ -36,8 +37,6 @@ JsonObject = function () {
 	/* COMPONENT SPECIFIC CODE - START METHODS*/
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
-
-	org_scn_community_component_Core(that, myComponentData);
 	
 	return that;
 };

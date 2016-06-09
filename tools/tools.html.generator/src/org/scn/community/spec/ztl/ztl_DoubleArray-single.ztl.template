@@ -151,5 +151,12 @@
 		var jsonObject = JSON.parse(this.%PROPERTY_NAME%);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All %ROOT_CONTENT_NAME%s
+	 */	
+	String cleanAll%ROOT_CONTENT_NAME%s() {*
+		this.%PROPERTY_NAME% = "[]";
+	*}
 	
 %CUSTOM_EXTENSION_PROPERTY%

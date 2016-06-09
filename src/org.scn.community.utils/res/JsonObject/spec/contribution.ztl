@@ -4,7 +4,7 @@
 	String getAsJSON (optional boolean noLinebreaks) {*
 		if(noLinebreaks == undefined) {noLinebreaks = false;}
 		
-		var jsonObject = JSON.parse(this.content);
+		var jsonObject = JSON.parse(this.contentJson);
 		if(noLinebreaks) {
 			return JSON.stringify(jsonObject);
 		}
@@ -15,25 +15,25 @@
 	 * Returns as Json String
 	 */
 	JSON getAsJSONObject () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 
 	/**
 	 * Returns casted to MultiDimFilter
 	 */
 	JSON getAsMultiDimFilter () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 	
 	/**
 	 * Returns casted to MultiDimFilterExt
 	 */
 	JSON getAsMultiDimFilterExt () {*
-		return JSON.parse(this.content);
+		return JSON.parse(this.contentJson);
 	*}
 	
 	String getValueAsString (String key) {*
-		var js = JSON.parse(this.content);
+		var js = JSON.parse(this.contentJson);
 		var result = [];
 		if(js instanceof Array){
 			for(var i=0;i<js.length;i++){
@@ -52,7 +52,7 @@
 	*}
 
 	JSON getValueAsJsonObject (String key) {*
-		var js = JSON.parse(this.content);
+		var js = JSON.parse(this.contentJson);
 	
 		var result = [];
 		if(js instanceof Array){
@@ -79,21 +79,21 @@
 	 */
 	void createFromValue (String jsonValue) {*
 		var js = JSON.parse(jsonValue);
-		this.content = JSON.stringify(js);
+		this.contentJson = JSON.stringify(js);
 	*}
 	
 	/**
 	 * Creates from different Json Object
 	 */
 	void createFromJSON (JSON json) {*
-		this.content = JSON.stringify(json);
+		this.contentJson = JSON.stringify(json);
 	*}
 	
 	/**
 	 * Clears the Json Object to empty object
 	 */
 	void clear () {*
-		this.content = "{}";
+		this.contentJson = "{}";
 	*}
 	
 	/**
@@ -116,7 +116,7 @@
 	</example>
 	*/
 	org.scn.community.shared.NameValueArray getReturnHeadersAsNameValueArray () {*
-		var s = this.content;  
+		var s = this.contentJson;  
 		var js = []; 
 		if(s!="") js = JSON.parse(s);
 		

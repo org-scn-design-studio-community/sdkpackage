@@ -17,7 +17,7 @@
 	
 	
 	<property
-		id="content"
+		id="contentJson"
 		type="String"
 		title="Properties"
 		group="Display"
@@ -35,7 +35,7 @@
 		<defaultValue property="WIDTH">10</defaultValue>
 		<defaultValue property="HEIGHT">10</defaultValue>
 		
-		<defaultValue property="content"><![CDATA[{}]]></defaultValue>
+		<defaultValue property="contentJson"><![CDATA[{}]]></defaultValue>
 
 	</initialization>
 

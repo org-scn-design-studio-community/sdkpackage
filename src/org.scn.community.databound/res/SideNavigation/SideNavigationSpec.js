@@ -138,11 +138,13 @@ function() {
           "type": "boolean,optional"
         },
         "icon": {
+          "defultValue": "sap-icon://",
           "desc": "Icon",
           "type": "String,optional"
         },
         "items": {
           "icon": {
+            "defultValue": "sap-icon://",
             "desc": "Icon",
             "type": "String,optional"
           },
@@ -220,11 +222,13 @@ function() {
           "type": "boolean,optional"
         },
         "icon": {
+          "defultValue": "sap-icon://",
           "desc": "Icon",
           "type": "String,optional"
         },
         "items": {
           "icon": {
+            "defultValue": "sap-icon://",
             "desc": "Icon",
             "type": "String,optional"
           },

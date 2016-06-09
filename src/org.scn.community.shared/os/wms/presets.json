@@ -1,0 +1,36 @@
+[ { "label" : "WMS Presets",
+    "presets" : [ { "label" : "Nexrad", "value" : "http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi" } ]
+  },{
+  	"label" : "NASA",
+  	"presets" : [
+  		{ "label" : "NASA Earth Observations (NEO) WMS",
+  		  "value" : "https://firms.modaps.eosdis.nasa.gov/wms/c6/"
+  		},{
+  			"label" : "Atmospheric Infrared Sounder (AIRS) Near-Real-Time",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_airsnrt"
+  		},{
+  			"label" : "Atmospheric Infrared Sounder (AIRS) Data Products",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_airs"
+  		},{
+  			"label" : "Tropical Rainfall Measurement Mission (TRMM) Gridded Rainfall Data",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_trmm"
+  		},{
+  			"label" : "Ozone Monitoring Instrument (OMI) Data Products",
+  			"value" : "http://disc1.sci.gsfc.nasa.gov/daac-bin/wms_omi"
+  		}
+  	]
+  },{
+  	"label" : "Geological",
+  	"presets" : [
+  		{ "label" : "Colorado Geological Survey",
+  		  "value" : "http://web2.nbmg.unr.edu/arcgis/services/CO_Data/NBMG_COGS_Geology/MapServer/WmsServer"
+  		},{
+  			"label" : "Tennessee Geology",
+  			"value" : "http://mrdata.usgs.gov/services/tn"
+  		},{
+  			"label" : "Mississippi Geology",
+  			"value" : "http://mrdata.usgs.gov/services/ms"
+  		}
+  	]
+  }
+]

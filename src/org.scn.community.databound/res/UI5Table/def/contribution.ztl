@@ -244,6 +244,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		var jsonObject = JSON.parse(this.DDataColWidths);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All ColumnWidthEntrys
+	 */	
+	String cleanAllColumnWidthEntrys() {*
+		this.DDataColWidths = "[]";
+	*}
 	
 	/**
 	 * Sets the Width for ColumnWidthEntry keys<br/>
@@ -544,7 +551,13 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		var jsonObject = JSON.parse(this.DFormattingContentCondition);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
-	
+
+	/**
+	 * Cleans All Rules
+	 */	
+	String cleanAllRules() {*
+		this.DFormattingContentCondition = "[]";
+	*}
 	/**
 	 * Sets the Description for Rule keys<br/>
 	 */

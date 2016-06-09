@@ -48,6 +48,7 @@
 					  "type": "String"
 					},
 					"icon": {
+					  "defultValue": "sap-icon://",
 					  "desc": "Icon",
 					  "type": "String,optional"
 					},
@@ -78,8 +79,8 @@
 						  "type": "String"
 						},
 						"icon":{
+						   "defultValue": "sap-icon://",
 						   "desc":"Icon",
-							
 						   "type":"String,optional"
 						}
 	               }
@@ -121,6 +122,7 @@
 					  "type": "String"
 					},
 					"icon": {
+					  "defultValue": "sap-icon://",
 					  "desc": "Icon",
 					  "type": "String,optional"
 					},
@@ -151,8 +153,8 @@
 						  "type": "String"
 						},
 						"icon":{
+						   "defultValue": "sap-icon://",
 						   "desc":"Icon",
-							
 						   "type":"String,optional"
 						}
 
