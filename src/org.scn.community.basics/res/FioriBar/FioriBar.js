@@ -46,7 +46,7 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 						desc : "Sub-Items",
 						cat : "n/a",
 						defaultValue : [],
-						apsControl : "objectarray",
+						apsControl : "complexcollection",
 						apsConfig : {
 							key : {
 								desc : "Key",
