@@ -82,7 +82,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
  	<example>
 	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
 	<code>
-	FIORIBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	FIORIBAR_1.addRightItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
 	</code>
 	</example>
 	 */
