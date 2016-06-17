@@ -6,3 +6,14 @@
     padding-left:20px;
     margin-top:5px;
 }
+
+.scn-sdk-CustomMap {
+	overflow:auto;
+}
+
+.scn-sdk-CustomMap-LoadingPane {
+	z-index:99;
+	background-color:black;
+	width: 100%;
+    height: 100%;
+}

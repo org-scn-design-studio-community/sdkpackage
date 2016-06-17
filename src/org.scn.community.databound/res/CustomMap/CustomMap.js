@@ -39,8 +39,9 @@ define([
 
 var myComponentData = spec;
 
-var CSS_CLASS_DIV = "scn-sdk-CustomMap";
-var CSS_CLASS_IMG = "scn-sdk-CustomMap-Image";
+var CSS_CLASS_DIV 		= "scn-sdk-CustomMap";
+var CSS_CLASS_LOADING 	= "scn-sdk-CustomMap-LoadingPane";
+var CSS_CLASS_IMG 		= "scn-sdk-CustomMap-Image";
 
 CustomMap = function () {
 
@@ -54,9 +55,9 @@ CustomMap = function () {
 	
 	var _attributeBeforeUpdate 	= {};
 	
-	var _selectedZonesArray 	= [];
-	var _selectedZonesString 	= "";
-	var _hoveredZone 			= "";
+	var _selectedAreasArray 	= [];
+	var _selectedAreasString 	= "";
+	var _hoveredArea 			= "";
 	
 	var _dataUpdated 			= false;
 	var _referenceKFUpdated 	= false;
@@ -68,13 +69,16 @@ CustomMap = function () {
 		
 	that.init = function() {
 		// define root component
+		
+		that.specComp.supportsFlatData = true;
+		
 		org_scn_community_basics.fillDummyDataInit(that, that.initAsync);
 		
 		that._firstRun = true;
 		that._redrawStatus = false;
-		that._selectedZonesArray = [];
-		that._selectedZonesString = "";
-		that._hoveredZone = "";
+		that._selectedAreasArray = [];
+		that._selectedAreasString = "";
+		that._hoveredArea = "";
 		
 		that._mapsterCurrW = 0;
 		that._mapsterCurrH = 0;
@@ -109,49 +113,86 @@ CustomMap = function () {
 			
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 	};
+	
+	/**
+	 * Relays Data Source Metadata over to Additional Properties Sheet.
+	 */
+	that.getAPSMetaData = function(){
+		try{
+			return JSON.stringify({
+    			msg : "Success",
+    			data : that.data()
+    		});	
+		}catch(e){
+			var errMsg = "Component error in getAPSMetaData:\n\n" + e;
+    		return JSON.stringify({
+    			msg : errMsg,
+    			data : {}
+    		})
+			alert(errMsg);
+		}
+	};
+	
+	/**
+	 * Relays Flattened Data to Additional Properties Sheet.
+	 */
+	that.getAPSFlatData = function(){
+		try{
+			return JSON.stringify({
+    			msg : "Success",
+    			data : that.flatData
+    		});
+    	}catch(e){
+    		var errMsg = "Problem returning flattened data to APS.\n\n" + e;
+    		return JSON.stringify({
+    			msg : errMsg,
+    			data : {}
+    		})
+			alert(errMsg);
+		}
+	};
 
-	that.zoneSelected = function(e) {
-		var itemIndex = that._selectedZonesArray.indexOf(e.key);
+	that.areaSelected = function(e) {
+		var itemIndex = that._selectedAreasArray.indexOf(e.key);
 		if (itemIndex == -1) {
-			that._selectedZonesArray.push(e.key);
+			that._selectedAreasArray.push(e.key);
 		} else {
-			that._selectedZonesArray.splice(itemIndex, 1); 
+			that._selectedAreasArray.splice(itemIndex, 1); 
 		}
 		
-		that._selectedZonesString = "";
-		for (var i in that._selectedZonesArray) {
+		that._selectedAreasString = "";
+		for (var i in that._selectedAreasArray) {
 			var sep = "";
 			if (i > 0)
 				sep = ",";
-			that._selectedZonesString = that._selectedZonesString + sep + that._selectedZonesArray[i];
+			that._selectedAreasString = that._selectedAreasString + sep + that._selectedAreasArray[i];
 		}
-		var changedProperties = ["selectedZones"];
-		that.setSelectedZones(that._selectedZonesString);
+		var changedProperties = ["selectedAreas"];
+		that.setSelectedAreas(that._selectedAreasString);
 		that.firePropertiesChangedAndEvent(changedProperties, "onClick");
 	};
 	
 	that.handleMouseMovement = function(data, action) {
-		var changedProp = ["hoveredZone"];
+		var changedProp = ["hoveredArea"];
 		
 		switch(action) {
 			case "onMouseOut": {
-				that._hoveredZone = ""
+				that._hoveredArea = ""
 					break;
 			}
 			case "onMouseOver":
-			case "onShowTooltip":
-				that._hoveredZone = data.key;
+				that._hoveredArea = data.key;
 				break;
 			default:
 				return;
 		}
-		that.setHoveredZone(that._hoveredZone);
+		that.setHoveredArea(that._hoveredArea);
 		that.firePropertiesChangedAndEvent(changedProp, action);
 	};
 	
 	that.onShowTooltip = function(data) {
 
-		that.handleMouseMovement(data, "onShowTooltip" );
+		//that.handleMouseMovement(data, "onShowTooltip" );
 		
 		//		if(that.getOverrideTooltip()) {
 //		var tmpl = $.templates(that.getContentTooltip());
@@ -204,6 +245,9 @@ CustomMap = function () {
 			org_scn_community_databound.toRowTable(flatData, options);
 		}
 		
+		
+		this.flatData = flatData;
+		that.flatData = flatData;
 		//.key or .text
 		if (flatData.dimensionRows.length > 0) {
 			
@@ -267,7 +311,11 @@ CustomMap = function () {
 				data2DStructure[tableKey].lines = [];
 				data2DStructure[tableKey].total = [];
 				
-				data2DStructure[tableKey].attributes				= dimAttributes[rowMeta.key][member.key];
+				if (dimAttributes)
+					if (dimAttributes[rowMeta.key])
+						if (dimAttributes[rowMeta.key][member.key])
+							data2DStructure[tableKey].attributes = dimAttributes[rowMeta.key][member.key];
+				
 				
 				var dimKeyText = that.splitText(member.text);
 				
@@ -301,53 +349,44 @@ CustomMap = function () {
 					}
 					
 					if (flatData.dimensionRows.length > 1 && flatData.data2D[j].raw[1] == "SUMME") {
-						//data2DStructure[tableKey].total 			= {};
-						//data2DStructure[tableKey].total.raw 		= flatData.data2D[j].raw;
-						//data2DStructure[tableKey].total.values 		= flatData.data2D[j].values;
-						
+				
 						that.transformDataToTemplate(j, data2DStructure[tableKey], flatData, false, true);
 						hasSum = true;
 						
-						that.transformDataToTemplate(j, data2DStructure[tableKey].total, flatData, false, true);
-						
-						//Take sum from data
-						//for (var k in flatData.columnHeadersKeys) {
-						//	data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] = flatData.formattedValues[j][k];
-						//	data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] = flatData.values[j][k];
-						//}
+						//that.transformDataToTemplate(j, data2DStructure[tableKey].total, flatData, false, true);
 					}
 					
-					//grand total
-					if (data2DStructure.total.length == 0)  {
-						data2DStructure.total 			=  flatData.values[j].slice();
-					} else {
-						for (var k in data2DStructure.total)
-							data2DStructure.total[k]    = flatData.values[j][k];
-					}
+//					//grand total
+//					if (data2DStructure.total.length == 0)  {
+//						data2DStructure.total 			=  flatData.values[j].slice();
+//					} else {
+//						for (var k in data2DStructure.total)
+//							data2DStructure.total[k]    = flatData.values[j][k];
+//					}
 				}
 				
-				if (!hasSum) {
-					//Local totals. Note % will be wrong ... but can be calculated with MES_***_TOTAL_RAW
-					for (var k in data2DStructure[tableKey].total) {
-						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] 			= data2DStructure[tableKey][k];
-						
-						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
-																												data2DStructure[tableKey].total[k],
-																												flatData.dimensionCols[0].dimension.members[k].formatString);
-					}
-				}
+//				if (!hasSum) {
+//					//Local totals. Note % will be wrong ... but can be calculated with MES_***_TOTAL_RAW
+//					for (var k in data2DStructure[tableKey]) {
+//						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] 			= data2DStructure[tableKey][k];
+//						
+//						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
+//																												data2DStructure[tableKey].total[k],
+//																												flatData.dimensionCols[0].dimension.members[k].formatString);
+//					}
+//				}
 			}
 			
-			data2DStructure.totalStruc = {};
+			//data2DStructure.totalStruc = {};
 			//Grand total
-			for (var k in data2DStructure.total) {
-				data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_RAW"] 			= data2DStructure.total[k];
-				
-				if (flatData.dimensionCols[0].dimension.members[k].hasOwnProperty("formatString"))
-					data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
-																										data2DStructure.total[k],
-																										flatData.dimensionCols[0].dimension.members[k].formatString);
-			}
+//			for (var k in data2DStructure.total) {
+//				data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_RAW"] 			= data2DStructure.total[k];
+//				
+//				if (flatData.dimensionCols[0].dimension.members[k].hasOwnProperty("formatString"))
+//					data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
+//																										data2DStructure.total[k],
+//																										flatData.dimensionCols[0].dimension.members[k].formatString);
+//			}
 			
 			that.dataForTmpl = data2DStructure;
 		}
@@ -386,6 +425,11 @@ CustomMap = function () {
 	that.saveProperties = function () {
 		that._attributeBeforeUpdate = {};
 		for (var i in that.props) {
+			switch(i) {
+				case "data":
+				case "dataCellList":
+					continue;
+			}
 			that._attributeBeforeUpdate[i] = that.props[i].actualValue;
 		}
 		
@@ -397,22 +441,22 @@ CustomMap = function () {
 	that.checkNeedRedraw = function() {	
 		
 		if(that._firstRun) {
-			that._firstRun = false;
-			that._processData = true;
+			that._firstRun 		= false;
+			that._processData 	= true;
 			return true;
 		}
 		
 		for(var i in that._attributeBeforeUpdate) {
 			switch(i) {
-				case "image":
-				case "applyColors":
-				case "colorPalette":
-				case "map":
-				case "contentTooltip":
-				case "mapsterpropjson":
-				case "staticDisplay":
-				case "activateOnMouseOverOut":	
-				case "tooltipMode":
+				case "hoveredArea":
+				case "onMouseOut":
+				case "onMouseOver":
+				case "onMouseClick":
+				//case "onShowTooltip":
+				case "onUpdate":
+				case "selectedAreas":
+					break;
+				default: 
 					that._redrawStatus = that.props[i].actualValue != that._attributeBeforeUpdate[i];
 			}
 			
@@ -420,10 +464,9 @@ CustomMap = function () {
 				break;
 		}
 		if (!that._redrawStatus) {
-			that._redrawStatus = that._dataUpdated || that._referenceKFUpdated;
-			that._processData = that._redrawStatus;
+			that._redrawStatus 	= that._dataUpdated || that._referenceKFUpdated;
+			that._processData 	= that._redrawStatus;
 		}
-			
 		
 		return that._redrawStatus;
 	};
@@ -448,7 +491,6 @@ CustomMap = function () {
 			}
 				
 			that.redraw();
-			that.fireEvent("onUpdate");
 		}
 		
 		//org_scn_community_basics.resizeContentAbsoluteLayout(that, that._canvas, that.onResize);
@@ -474,7 +516,12 @@ CustomMap = function () {
 	that.redraw = function() {
 		that.$().empty();
 		
-		//Destroy old tooltips not linked to the new Maspter context
+		that._loadingPane = $("<div></div>");
+		that._loadingPane.attr("id","scn-custommap-loadingscreen");
+		that._loadingPane.addClass(CSS_CLASS_LOADING);
+		that.$().append(that._loadingPane);
+		
+		//Destroy old tooltips not linked to the new Mapster context
 		var tooltips = $(".mapster_tooltip").remove();
 		
 		//if (that.getAutoResize()) {
@@ -502,11 +549,73 @@ CustomMap = function () {
 		
 		that.$().append(that._map);
 		
-		var mapsterProp = that.getMapsterpropjson();
-		that._mapsterJson = JSON.parse(mapsterProp);
+		that.buildPropMaster();
+		
+		//var mapsterProp = {};
+		//that.getMapsterpropjson();
+		//that._mapsterJson = JSON.parse(mapsterProp);
+		
+		
+		//that._dsmetadata = that.getDSMetadata();
+		//that._data = that.getData();
+
+		that._image.mapster(that._mapsterJson)
+		  .mapster('set',true,that._selectedAreasString)
+		  ;
+	};
+	
+	that.buildPropMaster = function() {
+		//var mapsterProp = {};
+		//that.getMapsterpropjson();
+		//that._mapsterJson = JSON.parse(mapsterProp);
+		
+		that._mapsterJson = {};
+		
+		that._mapsterJson.fill 				= that.getEnableAreaFill();
+		that._mapsterJson.fillColor 		= that.getAreaFillColor().replace('#','');
+		that._mapsterJson.fillOpacity 		= that.getAreaFillOpacity();
+		that._mapsterJson.singleSelect  	= that.getOnlySingleSelect();
+		that._mapsterJson.isSelectable  	= that.getAreaSelectable();
+		that._mapsterJson.isDeselectable 	= that.getAreaDeselectable();
+		that._mapsterJson.stroke 			= that.getDisplayStroke();
+		that._mapsterJson.strokeColor 		= that.getAreaStrokeColor().replace('#','');
+		that._mapsterJson.strokeOpacity 	= that.getAreaStrokeOpacity();
+		that._mapsterJson.strokeWidth 		= that.getAreaStrokeWidth();
+		that._mapsterJson.showToolTip 		= that.getDisplayTooltip();
+		that._mapsterJson.mapKey 			= that.getMapDataKey();
+		
+		that._mapsterJson.render_highlight = {};
+		
+		that._mapsterJson.render_highlight.fillColor 		= that.getHighlightFillColor().replace('#','');
+		that._mapsterJson.render_highlight.fillOpacity 		= that.getHighlightFillOpacity();
+		that._mapsterJson.render_highlight.strokeColor 		= that.getHighlightStrokeColor().replace('#','');
+		that._mapsterJson.render_highlight.strokeOpacity 	= that.getHighlightStrokeOpacity();
+		that._mapsterJson.render_highlight.strokeWidth 		= that.getHighlightStrokeWidth();
+	
+		that._mapsterJson.render_select = {};
+		
+		that._mapsterJson.render_select.fillColor 		= that.getSelectedFillColor().replace('#','');
+		that._mapsterJson.render_select.fillOpacity 		= that.getSelectedFillOpacity();
+		that._mapsterJson.render_select.strokeColor 		= that.getSelectedStrokeColor().replace('#','');
+		that._mapsterJson.render_select.strokeOpacity 	= that.getSelectedStrokeOpacity();
+		that._mapsterJson.render_select.strokeWidth 		= that.getSelectedStrokeWidth();
+		
+		//that._mapsterJson.onShowToolTip 	= that.onShowTooltip;
+		
+		that.updateAreasFromMap();
+		that.updateTooltips();
+		that.applyPalette();
+		that.applyStaticDisplay();
+		
+		that._mapsterJson.onConfigured = function(success) {
+			if (success) {
+				that.fireEvent("onUpdate");
+				that._loadingPane.hide('slow');
+			}
+		};
 		
 		that._mapsterJson.onClick = function (e) {
-			that.zoneSelected(e);
+			that.areaSelected(e);
 		};
 		
 		if (that.getActivateOnMouseOverOut()) {
@@ -517,21 +626,71 @@ CustomMap = function () {
 			that._mapsterJson.onMouseout = function (data) {
 				that.maspterMouseOut(data);
 			};
-		}		
-		
-		that._mapsterJson.onShowToolTip = that.onShowTooltip;
-		
-		//that._dsmetadata = that.getDSMetadata();
-		//that._data = that.getData();
-	
-		that.updateTooltips();
-		that.applyPalette();
-		that.applyStaticDisplay();
-
-		that._image.mapster(that._mapsterJson)
-		  .mapster('set',true,that._selectedZonesString)
-		  ;
+		}
 	};
+	
+	that.updateAreasFromMap = function() {
+		//if (that.getGenerateAreasFromMap() && that.getMapDataKey() != "") {
+			
+			//var oldAreas = that._mapsterJson.areas;
+			//overwrite areas prop in JSON
+			that._mapsterJson.areas = [];
+			
+			//Get specific properties of the different areas
+			var specProps = JSON.parse(that.getAreaProperties());
+			
+			//Loop at the map from HTML and extract the key
+			
+			that._map.children().each(function () {
+				var currentArea = $(this);
+
+			    if (currentArea.attr(that.getMapDataKey())) {
+			    	
+			    	var areaKey = currentArea.attr(that.getMapDataKey());
+			    	
+			    	//if (oldAreas[areaKey]) {
+			    		//Keep the old entry
+			    	//	that._mapsterJson.areas[areaKey] = oldAreas[areaKey];
+			    	//} else {
+			    	var curProp = {
+			    			key: areaKey
+		    		};
+			    		
+			    	var specProp = that.findAreaProperty(specProps,"key",areaKey);
+			    	
+			    	if (specProp != null) {
+			    		//update specific prop
+			    		for (var propKey in specProp) {
+			    			switch(propKey) {
+			    				default:{
+			    					if (specProp[i] != "") {
+					    				curProp[i] = specProp[i];
+					    			}
+			    					break;
+			    				}
+			    				case "key":
+			    				case "leaf":
+			    				case "parent":
+			    					continue;
+			    			}
+			    		}
+			    	}
+			    	that._mapsterJson.areas.push(curProp);
+			    	//}
+			    }
+			});
+		//}
+	};
+	
+	that.findAreaProperty = function(jsonObject, searchKey, searchValue) {
+	    for (var i in jsonObject) {
+	        if (!jsonObject[i].hasOwnProperty(searchKey)) continue;
+	        if (jsonObject[i][searchKey] == searchValue) {
+	            return jsonObject[i];
+	        }
+	    }
+	    return null;
+	}
 	
 	that.applyStaticDisplay = function() {
 		if (that.getStaticDisplay()) {
@@ -545,7 +704,7 @@ CustomMap = function () {
 	
 	that.applyPalette = function() {
 		
-		if (!that.getApplyColors())
+		if (!that.getEnableDynamicColors())
 			return;
 		
 		var options = org_scn_community_databound.initializeOptions();
@@ -558,7 +717,7 @@ CustomMap = function () {
 		
 		var scale = d3.scale.quantile()
 							.domain([maxDataInfo.minValue, maxDataInfo.maxValue])
-							.range(that.getColorPalette().split(','));
+							.range(that.getDynamicColorPalette().split(','));
 		
 		for(var i in that._mapsterJson.areas) {
 			
@@ -574,7 +733,7 @@ CustomMap = function () {
 	
 	that.updateTooltips = function() {
 
-		if(that.getTooltipMode() != "Default") {
+		if(that.getTooltipMode() != "Default" && that.getDisplayTooltip()) {
 			//Loop on mapster data, if tooltip: override.
 			
 			var tmpl = "";

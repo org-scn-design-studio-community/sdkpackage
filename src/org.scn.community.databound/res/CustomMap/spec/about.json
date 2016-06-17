@@ -1,7 +1,8 @@
 {
-	"title": "Data Table 2.0",
-	"description": "Data Table",
+	"title": "Custom Map 1.0",
+	"description": "Custom Map",
 	"icon": "Table.png",
+	"supportsFlatData": true,
 	"topics": 
 	[
 		{
