@@ -268,6 +268,13 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		var jsonObject = JSON.parse(this.areaProperties);
 		return JSON.stringify(jsonObject, null, 4);
 	*}
+
+	/**
+	 * Cleans All AreaPropertys
+	 */	
+	String cleanAllAreaPropertys() {*
+		this.areaProperties = "[]";
+	*}
 	
 	/**
 	 * Sets the FillColor for AreaProperty keys<br/>
@@ -349,6 +356,85 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		return value;
 	*}
 	/**
+	 * Sets the FillOpacity for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyFillOpacitys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* FillOpacity */ float fillOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fillOpacity = fillOpacity;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FillOpacity for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyFillOpacity (
+			/**/ String key,
+			/**/ float fillOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fillOpacity = fillOpacity;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of FillOpacity for AreaProperty Key<br/>
+	 */
+	float getAreaPropertyFillOpacity (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].fillOpacity;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
 	 * Sets the StrokeColor for AreaProperty keys<br/>
 	 */
 	void setAreaPropertyStrokeColors (
@@ -421,6 +507,85 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].strokeColor;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the StrokeOpacity for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyStrokeOpacitys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StrokeOpacity */ float strokeOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].strokeOpacity = strokeOpacity;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StrokeOpacity for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyStrokeOpacity (
+			/**/ String key,
+			/**/ float strokeOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].strokeOpacity = strokeOpacity;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of StrokeOpacity for AreaProperty Key<br/>
+	 */
+	float getAreaPropertyStrokeOpacity (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].strokeOpacity;
 				break;
 			}
 		}
