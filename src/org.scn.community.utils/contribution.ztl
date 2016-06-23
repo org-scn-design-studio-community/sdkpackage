@@ -6888,6 +6888,19 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		return tempA;
 	*}
 
+	/**
+	 * Gets Raw Parameters As String Content Property
+	 */	
+	String getRawParameters() {*
+		return this.DRawParameters;
+	*}
+
+	/**
+	 * Sets Technical proprty for raw parameters Property
+	 */	
+	void setRawParameters( /* &nbsp; */  String rawParameters){*
+		this.DRawParameters = rawParameters;
+	*}
 }
 class org.scn.community.utils.RealDate extends org.scn.community.shared.Component {
 
