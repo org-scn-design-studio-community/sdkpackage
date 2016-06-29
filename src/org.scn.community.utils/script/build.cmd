@@ -22,6 +22,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\PdfPrint\def\contribution.xml ^
 ..\res\PostResponseParser\def\contribution.xml ^
 ..\res\RealDate\def\contribution.xml ^
+..\res\Replacer\def\contribution.xml ^
 ..\res\SimpleDate\def\contribution.xml ^
 ..\res\WSPusher\def\contribution.xml ^
 ..\..\org.scn.community.shared\templates.main\contribution.xml.close.txt > ^
@@ -49,6 +50,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\PdfPrint\def\contribution.ztl ^
 ..\res\PostResponseParser\def\contribution.ztl ^
 ..\res\RealDate\def\contribution.ztl ^
+..\res\Replacer\def\contribution.ztl ^
 ..\res\SimpleDate\def\contribution.ztl ^
 ..\res\WSPusher\def\contribution.ztl ^
 ..\..\org.scn.community.shared\templates.main\contribution.ztl.close.txt > ^

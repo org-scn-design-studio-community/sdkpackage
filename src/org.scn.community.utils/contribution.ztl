@@ -7529,7 +7529,20 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		return timeString;
 	*}
 }
-class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
+/**
+ * Class for Replacer
+ */
+class org.scn.community.utils.Replacer extends org.scn.community.shared.Component {
+	
+	void replaceAccordingToMapping(){*
+		this.replace = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**
 	 * Initialization method with year, month and day
