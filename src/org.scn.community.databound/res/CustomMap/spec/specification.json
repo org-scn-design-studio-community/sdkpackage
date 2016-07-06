@@ -28,7 +28,7 @@
          "arrayDefinition":{
             "areaProperty":{
                "type":"Array",
-               "sequence":"key,fillColor,fillOpacity,strokeColor,strokeOpacity,strokeWidth",
+               "sequence":"key,fillColor,fillOpacity,strokeColor,strokeOpacity,strokeWidth,tooltip",
                "key":{
                   "desc":"key of the area",
                   "type":"String"
