@@ -2696,6 +2696,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Real Date component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Replacer component*/
+	org.scn.community.utils.Replacer returnAsScnReplacer (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
 

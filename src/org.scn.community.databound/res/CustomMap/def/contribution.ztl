@@ -62,13 +62,13 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		return this.areaFillOpacity;
 	*}
 
-	/** Adds a root element containing key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int].
+	/** Adds a root element containing key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String].
 
  	<example>
 	You want to add 2 root elements
 	<code>
-	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int]);<br>
-	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int]);<br>
+	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
+	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
 	<br>
 	</code>
 	</example>
@@ -79,7 +79,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Fill Opacity*/float fillOpacity, 
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
-			/**Stroke Width*/int strokeWidth
+			/**Stroke Width*/int strokeWidth, 
+			/**Stroke Width*/String tooltip
 			) {*
 
 		
@@ -90,7 +91,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			fillOpacity:fillOpacity, 
 			strokeColor:strokeColor, 
 			strokeOpacity:strokeOpacity, 
-			strokeWidth:strokeWidth
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
 			};
 
 		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
@@ -157,7 +159,7 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
  	<example>
 	You want to insert a root element
 	<code>
-	CUSTOMMAP.insertAreaProperty(index [int], key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int]);<br>
+	CUSTOMMAP.insertAreaProperty(index [int], key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
 	<br>
 	</code>
 	</example>
@@ -169,7 +171,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Fill Opacity*/float fillOpacity, 
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
-			/**Stroke Width*/int strokeWidth
+			/**Stroke Width*/int strokeWidth, 
+			/**Stroke Width*/String tooltip
 			) {*
 
 		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
@@ -186,7 +189,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			fillOpacity:fillOpacity, 
 			strokeColor:strokeColor, 
 			strokeOpacity:strokeOpacity, 
-			strokeWidth:strokeWidth
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
 		};
 
 		for (var i = 0; i < elementsJson.length ; i++){
@@ -209,7 +213,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Fill Opacity*/float fillOpacity, 
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
-			/**Stroke Width*/int strokeWidth
+			/**Stroke Width*/int strokeWidth, 
+			/**Stroke Width*/String tooltip
 			) 
 	{*
 		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
@@ -223,7 +228,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			fillOpacity:fillOpacity, 
 			strokeColor:strokeColor, 
 			strokeOpacity:strokeOpacity, 
-			strokeWidth:strokeWidth
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
 		};
 
 		var elementsJson = JSON.parse(this.areaProperties);
@@ -665,6 +671,85 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].strokeWidth;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Tooltip for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyTooltips (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Tooltip */ String tooltip
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].tooltip = tooltip;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Tooltip for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyTooltip (
+			/**/ String key,
+			/**/ String tooltip
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].tooltip = tooltip;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Tooltip for AreaProperty Key<br/>
+	 */
+	String getAreaPropertyTooltip (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].tooltip;
 				break;
 			}
 		}

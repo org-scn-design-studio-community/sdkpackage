@@ -109,7 +109,7 @@ function() {
           "desc": "key of the area",
           "type": "String"
         },
-        "sequence": "key,fillColor,fillOpacity,strokeColor,strokeOpacity,strokeWidth",
+        "sequence": "key,fillColor,fillOpacity,strokeColor,strokeOpacity,strokeWidth,tooltip",
         "strokeColor": {
           "desc": "Stroke Color",
           "type": "String"
