@@ -80,7 +80,7 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
 			/**Stroke Width*/int strokeWidth, 
-			/**Stroke Width*/String tooltip
+			/**Tooltip*/String tooltip
 			) {*
 
 		
@@ -172,7 +172,7 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
 			/**Stroke Width*/int strokeWidth, 
-			/**Stroke Width*/String tooltip
+			/**Tooltip*/String tooltip
 			) {*
 
 		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
@@ -214,7 +214,7 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 			/**Stroke Color*/String strokeColor, 
 			/**Stroke Opacity*/float strokeOpacity, 
 			/**Stroke Width*/int strokeWidth, 
-			/**Stroke Width*/String tooltip
+			/**Tooltip*/String tooltip
 			) 
 	{*
 		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){

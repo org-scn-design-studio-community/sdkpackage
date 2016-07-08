@@ -54,7 +54,7 @@
                   "type":"int"
                },
                "tooltip":{
-                  "desc":"Stroke Width",
+                  "desc":"Tooltip",
                   "type":"String",
                   "apsControl":"textarea"
                }

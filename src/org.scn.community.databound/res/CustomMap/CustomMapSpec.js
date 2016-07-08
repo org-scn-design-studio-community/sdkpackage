@@ -124,7 +124,7 @@ function() {
         },
         "tooltip": {
           "apsControl": "textarea",
-          "desc": "Stroke Width",
+          "desc": "Tooltip",
           "type": "String"
         },
         "type": "Array"
