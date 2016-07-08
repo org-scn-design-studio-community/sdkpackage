@@ -155,8 +155,10 @@ CustomMap = function () {
 	that.areaSelected = function(e) {
 		var itemIndex = that._selectedAreasArray.indexOf(e.key);
 		if (itemIndex == -1) {
+			//Newly selected
 			that._selectedAreasArray.push(e.key);
 		} else {
+			//Deselected
 			that._selectedAreasArray.splice(itemIndex, 1); 
 		}
 		
@@ -516,10 +518,11 @@ CustomMap = function () {
 	that.redraw = function() {
 		that.$().empty();
 		
-		that._loadingPane = $("<div></div>");
-		that._loadingPane.attr("id","scn-custommap-loadingscreen");
-		that._loadingPane.addClass(CSS_CLASS_LOADING);
-		that.$().append(that._loadingPane);
+		//that._loadingPane = $("<div></div>");
+		//that._loadingPane.attr("id","scn-custommap-loadingscreen");
+		//that._loadingPane.addClass(CSS_CLASS_LOADING);
+		
+		//that.$().append(that._loadingPane);
 		
 		//Destroy old tooltips not linked to the new Mapster context
 		var tooltips = $(".mapster_tooltip").remove();
@@ -610,7 +613,7 @@ CustomMap = function () {
 		that._mapsterJson.onConfigured = function(success) {
 			if (success) {
 				that.fireEvent("onUpdate");
-				that._loadingPane.hide('slow');
+				//that._loadingPane.hide('slow');
 			}
 		};
 		

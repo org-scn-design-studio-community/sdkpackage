@@ -3567,6 +3567,9 @@ A jQuery plugin to enhance image maps.
         if (o.options.singleSelect) {
             o.graphics.refreshSelections();
         }
+        
+        //+FBL20160617 Remove double layering when staticState = true
+        o.removeSelectionFinish();
     }
 
     /**
