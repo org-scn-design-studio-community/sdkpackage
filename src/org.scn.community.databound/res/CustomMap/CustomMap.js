@@ -297,7 +297,7 @@ CustomMap = function () {
 			
 			//Loop at data2D and build template data
 			var data2DStructure 		= {};
-			data2DStructure.total 		= [];
+			//data2DStructure.total 		= [];
 			//var data2DCopy 		= flatData.data2D.slice();
 			
 			sap.common.globalization.NumericFormatManager.setPVL(that.data.locale);
@@ -311,7 +311,7 @@ CustomMap = function () {
 				
 				//Build corresponding detailed lines
 				data2DStructure[tableKey].lines = [];
-				data2DStructure[tableKey].total = [];
+				//data2DStructure[tableKey].total = [];
 				
 				if (dimAttributes)
 					if (dimAttributes[rowMeta.key])
@@ -341,16 +341,20 @@ CustomMap = function () {
 					
 					that.transformDataToTemplate(j, data2DStructure[tableKey].lines[lineID], flatData, true, true);
 					
-					//keep track of the total
-					if (data2DStructure[tableKey].total.length == 0) {
-						data2DStructure[tableKey].total 			=  flatData.values[j].slice();
-					} else {
-						for (var k in data2DStructure[tableKey].total) {
-							data2DStructure[tableKey].total[k] 		+= flatData.values[j][k];
-						}
-					}
+//					//keep track of the total
+//					if (data2DStructure[tableKey].total.length == 0) {
+//						data2DStructure[tableKey].total 			=  flatData.values[j].slice();
+//					} else {
+//						for (var k in data2DStructure[tableKey].total) {
+//							data2DStructure[tableKey].total[k] 		+= flatData.values[j][k];
+//						}
+//					}
 					
-					if (flatData.dimensionRows.length > 1 && flatData.data2D[j].raw[1] == "SUMME") {
+					//Get the total of the lines to put on the main char
+					if (flatData.dimensionRows.length > 1 && ( 
+							flatData.data2D[j].raw[1] == "RESULT" ||
+							flatData.data2D[j].raw[1] == "SUMME" )
+							) {
 				
 						that.transformDataToTemplate(j, data2DStructure[tableKey], flatData, false, true);
 						hasSum = true;
@@ -377,6 +381,11 @@ CustomMap = function () {
 //																												flatData.dimensionCols[0].dimension.members[k].formatString);
 //					}
 //				}
+				
+				if (member.key == "RESULT" || member.key == "SUMME") {
+					data2DStructure["RESULT"] = {};
+					that.transformDataToTemplate(j, data2DStructure["RESULT"], flatData, true, true);
+				}
 			}
 			
 			//data2DStructure.totalStruc = {};
@@ -409,8 +418,11 @@ CustomMap = function () {
 		//Keys figures
 		if (pGenKF) {
 			for(var i in pFlatData.columnHeadersKeys) {
-				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_RAW"] 				= pFlatData.values[pIndex][i];
-				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_FORMATED"] 		= pFlatData.formattedValues[pIndex][i];
+				var formatedVal = pFlatData.formattedValues[pIndex][i];
+				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_RAW"] 			= pFlatData.values[pIndex][i];
+				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_FORMATED"] 		= formatedVal;
+				//retrieve the unit from the formatted values. The different units are not stored in the table elsewhere ...
+				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_UNIT"] 		    = formatedVal.split(" ").splice(-1)[0];
 			}
 		}
 		
@@ -776,6 +788,10 @@ CustomMap = function () {
 			return;
 		
 		if (!that.getImage()) {
+			return;
+		}
+		
+		if (width <= 0 || height <= 0) {
 			return;
 		}
 		
