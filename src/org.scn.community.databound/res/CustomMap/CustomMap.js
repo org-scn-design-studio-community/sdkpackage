@@ -57,7 +57,7 @@ CustomMap = function () {
 	
 	var _selectedAreasArray 	= [];
 	var _selectedAreasString 	= "";
-	var _hoveredArea 			= "";
+	var _highlightedArea 			= "";
 	
 	var _dataUpdated 			= false;
 	var _referenceKFUpdated 	= false;
@@ -78,7 +78,7 @@ CustomMap = function () {
 		that._redrawStatus = false;
 		that._selectedAreasArray = [];
 		that._selectedAreasString = "";
-		that._hoveredArea = "";
+		that._highlightedArea = "";
 		
 		that._mapsterCurrW = 0;
 		that._mapsterCurrH = 0;
@@ -175,20 +175,20 @@ CustomMap = function () {
 	};
 	
 	that.handleMouseMovement = function(data, action) {
-		var changedProp = ["hoveredArea"];
+		var changedProp = ["highlightedArea"];
 		
 		switch(action) {
 			case "onMouseOut": {
-				that._hoveredArea = ""
+				that._highlightedArea = ""
 					break;
 			}
 			case "onMouseOver":
-				that._hoveredArea = data.key;
+				that._highlightedArea = data.key;
 				break;
 			default:
 				return;
 		}
-		that.setHoveredArea(that._hoveredArea);
+		that.sethighlightedArea(that._highlightedArea);
 		that.firePropertiesChangedAndEvent(changedProp, action);
 	};
 	
@@ -462,7 +462,7 @@ CustomMap = function () {
 		
 		for(var i in that._attributeBeforeUpdate) {
 			switch(i) {
-				case "hoveredArea":
+				case "highlightedArea":
 				case "onMouseOut":
 				case "onMouseOver":
 				case "onMouseClick":
@@ -678,14 +678,14 @@ CustomMap = function () {
 			    		for (var propKey in specProp) {
 			    			switch(propKey) {
 			    				default:{
-			    					if (specProp[i] != "") {
-					    				curProp[i] = specProp[i];
+			    					if (specProp[propKey] != "") {
+					    				curProp[propKey] = specProp[propKey];
 					    			}
 			    					break;
 			    				}
 			    				case "key":
 			    				case "leaf":
-			    				case "parent":
+			    				case "parentKey":
 			    					continue;
 			    			}
 			    		}
@@ -747,7 +747,10 @@ CustomMap = function () {
 	}
 	
 	that.updateTooltips = function() {
-
+		
+		//allow JS code in JSRender
+		$.views.settings.allowCode(true); 
+		
 		if(that.getTooltipMode() != "Default" && that.getDisplayTooltip()) {
 			//Loop on mapster data, if tooltip: override.
 			
@@ -771,8 +774,9 @@ CustomMap = function () {
 					dataSelection = that.dataForTmpl[area.key];
 					if (that.dataForTmpl.hasOwnProperty("SUMME")) {
 						dataSelection.total = that.dataForTmpl["SUMME"];
-					} else 
-						dataSelection.total = that.dataForTmpl.totalStruc;
+					} else if (that.dataForTmpl.hasOwnProperty("RESULT")) {
+						dataSelection.total = that.dataForTmpl["RESULT"];
+					}
 				}
 				//if (that.dataForTmpl.hasOwnProperty(area.key)) {
 				//	dataSelection.line = [that.dataForTmpl[area.key]];
@@ -790,7 +794,7 @@ CustomMap = function () {
 		if (!that.getImage()) {
 			return;
 		}
-		
+		//avoid errors in resizing, happens on Chrome in local mode 
 		if (width <= 0 || height <= 0) {
 			return;
 		}
