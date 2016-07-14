@@ -192,25 +192,6 @@ CustomMap = function () {
 		that.firePropertiesChangedAndEvent(changedProp, action);
 	};
 	
-	that.onShowTooltip = function(data) {
-
-		//that.handleMouseMovement(data, "onShowTooltip" );
-		
-		//		if(that.getOverrideTooltip()) {
-//		var tmpl = $.templates(that.getContentTooltip());
-//		
-//		var dataSelection = {};
-//		if (that.dataForTmpl.hasOwnProperty(data.key)) {
-//			dataSelection.line = [that.dataForTmpl[data.key]];
-//		}
-//		
-//		var html = tmpl.render(dataSelection);
-//		
-//		data.toolTip.empty();
-//		data.toolTip.append(jQuery.parseHTML(html));
-//	}
-	};
-	
 	that.maspterMouseOver = function(data) {
 		that.handleMouseMovement(data, "onMouseOver" );
 	};
@@ -259,10 +240,12 @@ CustomMap = function () {
 			//columnHeaders contains text of KF
 			//columnHeadersKeys contains keys of KF
 			
-			that.dataForTmpl = {};
+			that.dataForTmpl	= {};
 			
-			var lastDimKey = "";
-			var dimAttributes = {};
+			var lastDimKey 		= "";
+			var dimAttributes 	= {};
+			
+			var dimKeyExemple 	= "";
 			
 			//Populate attributes tables with internal key as table key
 			for(var iDim in flatData.dimensionRows) {
@@ -309,9 +292,12 @@ CustomMap = function () {
 				var tableKey 					= member.key;
 				data2DStructure[tableKey] 		= {};
 				
+				if (dimKeyExemple == "") {
+					dimKeyExemple = member.key;
+				}
+				
 				//Build corresponding detailed lines
 				data2DStructure[tableKey].lines = [];
-				//data2DStructure[tableKey].total = [];
 				
 				if (dimAttributes)
 					if (dimAttributes[rowMeta.key])
@@ -332,23 +318,11 @@ CustomMap = function () {
 					if (member.key != flatData.data2D[j].raw[0]) {
 						continue;
 					}
-					//data2DStructure[tableKey].lines[j] 				= {};
-					//data2DStructure[tableKey].lines[j].raw 			= flatData.data2D[j].raw;
-					//data2DStructure[tableKey].lines[j].values 		= flatData.data2D[j].values;
 					
 					var lineID = data2DStructure[tableKey].lines.length;
 					data2DStructure[tableKey].lines[lineID] = {};
 					
 					that.transformDataToTemplate(j, data2DStructure[tableKey].lines[lineID], flatData, true, true);
-					
-//					//keep track of the total
-//					if (data2DStructure[tableKey].total.length == 0) {
-//						data2DStructure[tableKey].total 			=  flatData.values[j].slice();
-//					} else {
-//						for (var k in data2DStructure[tableKey].total) {
-//							data2DStructure[tableKey].total[k] 		+= flatData.values[j][k];
-//						}
-//					}
 					
 					//Get the total of the lines to put on the main char
 					if (flatData.dimensionRows.length > 1 && ( 
@@ -359,28 +333,9 @@ CustomMap = function () {
 						that.transformDataToTemplate(j, data2DStructure[tableKey], flatData, false, true);
 						hasSum = true;
 						
-						//that.transformDataToTemplate(j, data2DStructure[tableKey].total, flatData, false, true);
 					}
 					
-//					//grand total
-//					if (data2DStructure.total.length == 0)  {
-//						data2DStructure.total 			=  flatData.values[j].slice();
-//					} else {
-//						for (var k in data2DStructure.total)
-//							data2DStructure.total[k]    = flatData.values[j][k];
-//					}
 				}
-				
-//				if (!hasSum) {
-//					//Local totals. Note % will be wrong ... but can be calculated with MES_***_TOTAL_RAW
-//					for (var k in data2DStructure[tableKey]) {
-//						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_RAW"] 			= data2DStructure[tableKey][k];
-//						
-//						data2DStructure[tableKey]["MES_" + flatData.columnHeadersKeys[k] + "_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
-//																												data2DStructure[tableKey].total[k],
-//																												flatData.dimensionCols[0].dimension.members[k].formatString);
-//					}
-//				}
 				
 				if (member.key == "RESULT" || member.key == "SUMME") {
 					data2DStructure["RESULT"] = {};
@@ -388,18 +343,9 @@ CustomMap = function () {
 				}
 			}
 			
-			//data2DStructure.totalStruc = {};
-			//Grand total
-//			for (var k in data2DStructure.total) {
-//				data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_RAW"] 			= data2DStructure.total[k];
-//				
-//				if (flatData.dimensionCols[0].dimension.members[k].hasOwnProperty("formatString"))
-//					data2DStructure.totalStruc["MES_" + flatData.columnHeadersKeys[k] + "_TOTAL_FORMATED"] 	= sap.common.globalization.NumericFormatManager.format(
-//																										data2DStructure.total[k],
-//																										flatData.dimensionCols[0].dimension.members[k].formatString);
-//			}
-			
 			that.dataForTmpl = data2DStructure;
+			
+			that.setDataExemple(JSON.stringify(that.getAreaDataFromDatasource(dimKeyExemple)));
 		}
 	};
 	
@@ -425,9 +371,7 @@ CustomMap = function () {
 				pResult["MES_" + pFlatData.columnHeadersKeys[i] + "_UNIT"] 		    = formatedVal.split(" ").splice(-1)[0];
 			}
 		}
-		
-		//data2DStructure[tableKey]["DIM_" + rowMeta.key + "_KEY"] 
-		//["MES_" + flatData.columnHeadersKeys[k] + "_RAW"]
+
 	}
 	
 	that.beforeUpdate = function() {
@@ -466,7 +410,6 @@ CustomMap = function () {
 				case "onMouseOut":
 				case "onMouseOver":
 				case "onMouseClick":
-				//case "onShowTooltip":
 				case "onUpdate":
 				case "selectedAreas":
 					break;
@@ -565,14 +508,6 @@ CustomMap = function () {
 		that.$().append(that._map);
 		
 		that.buildPropMaster();
-		
-		//var mapsterProp = {};
-		//that.getMapsterpropjson();
-		//that._mapsterJson = JSON.parse(mapsterProp);
-		
-		
-		//that._dsmetadata = that.getDSMetadata();
-		//that._data = that.getData();
 
 		that._image.mapster(that._mapsterJson)
 		  .mapster('set',true,that._selectedAreasString)
@@ -580,10 +515,6 @@ CustomMap = function () {
 	};
 	
 	that.buildPropMaster = function() {
-		//var mapsterProp = {};
-		//that.getMapsterpropjson();
-		//that._mapsterJson = JSON.parse(mapsterProp);
-		
 		that._mapsterJson = {};
 		
 		that._mapsterJson.fill 				= that.getEnableAreaFill();
@@ -614,9 +545,7 @@ CustomMap = function () {
 		that._mapsterJson.render_select.strokeColor 		= that.getSelectedStrokeColor().replace('#','');
 		that._mapsterJson.render_select.strokeOpacity 	= that.getSelectedStrokeOpacity();
 		that._mapsterJson.render_select.strokeWidth 		= that.getSelectedStrokeWidth();
-		
-		//that._mapsterJson.onShowToolTip 	= that.onShowTooltip;
-		
+				
 		that.updateAreasFromMap();
 		that.updateTooltips();
 		that.applyPalette();
@@ -663,10 +592,6 @@ CustomMap = function () {
 			    	
 			    	var areaKey = currentArea.attr(that.getMapDataKey());
 			    	
-			    	//if (oldAreas[areaKey]) {
-			    		//Keep the old entry
-			    	//	that._mapsterJson.areas[areaKey] = oldAreas[areaKey];
-			    	//} else {
 			    	var curProp = {
 			    			key: areaKey
 		    		};
@@ -725,9 +650,7 @@ CustomMap = function () {
 		var options = org_scn_community_databound.initializeOptions();
 		var metaData = that.getDSMetadata;
 		var maxDataInfo = org_scn_community_databound.getTopBottomElements(that.getDataCellList(),that.getDataCellList(), options);
-	
-		//maxDataInfo.list.sort(that.compareForPalette);
-		
+			
 		//Loop at array and calculate according
 		
 		var scale = d3.scale.quantile()
@@ -769,22 +692,32 @@ CustomMap = function () {
 					tmpl = $.templates(area.toolTip);
 				} 
 				
-				var dataSelection = {};
-				if (that.dataForTmpl.hasOwnProperty(area.key)) {
-					dataSelection = that.dataForTmpl[area.key];
-					if (that.dataForTmpl.hasOwnProperty("SUMME")) {
-						dataSelection.total = that.dataForTmpl["SUMME"];
-					} else if (that.dataForTmpl.hasOwnProperty("RESULT")) {
-						dataSelection.total = that.dataForTmpl["RESULT"];
-					}
-				}
-				//if (that.dataForTmpl.hasOwnProperty(area.key)) {
-				//	dataSelection.line = [that.dataForTmpl[area.key]];
-				//}
+				var dataSelection = that.getAreaDataFromDatasource(area.key);
 				
-				area.toolTip = tmpl.render(dataSelection);
+				//avoid JS errors
+				try {
+					area.toolTip = tmpl.render(dataSelection);
+				} catch (e) {
+					area.toolTip = "Error rendering the template:<br>" + tmpl;
+				}
+				
 			}
 		}
+	}
+	
+	that.getAreaDataFromDatasource = function(areaKey) {
+		var dataSelection = {};
+		
+		if (that.dataForTmpl.hasOwnProperty(areaKey)) {
+			dataSelection = that.dataForTmpl[areaKey];
+			if (that.dataForTmpl.hasOwnProperty("SUMME")) {
+				dataSelection.total = that.dataForTmpl["SUMME"];
+			} else if (that.dataForTmpl.hasOwnProperty("RESULT")) {
+				dataSelection.total = that.dataForTmpl["RESULT"];
+			}
+		}
+		
+		return dataSelection;
 	}
 
 	that.onResize = function (width, height, parent) {

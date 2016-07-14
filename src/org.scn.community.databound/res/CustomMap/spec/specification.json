@@ -336,6 +336,23 @@
     "visible": false
     },
     
+  "dataExemple": {
+    "opts": {
+      "apsControl" : "textarea",
+      "cat": "Tooltip",
+      "desc": "Exemple of data",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : true,
+	  "order" : 50
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+    },
+    
   "resizeDuration": {
     "opts": {
       "apsControl" : "spinner",

@@ -1,13 +1,13 @@
 {
-	"title": "Custom Map 1.0",
+	"title": "Custom Map",
 	"description": "Custom Map",
-	"icon": "Table.png",
+	"icon": "custom_map.png",
 	"supportsFlatData": true,
 	"topics": 
 	[
 		{
-			"title" : "Data Table",
-			"content" : "Data Table"
+			"title" : "Custom Map",
+			"content" : "Build you own non geographical visualization with this component using an image and HTML maps"
 		},
 		{
 			"title" : "Visualization",
