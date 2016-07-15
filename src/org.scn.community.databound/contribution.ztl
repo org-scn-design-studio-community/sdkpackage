@@ -969,6 +969,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 
 
 
+
+
 	/**
 	 * Sets Activate Strokes Property
 	 */	
@@ -1140,8 +1142,8 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 	/**
 	 * Gets  Property
 	 */	
-	String getHoveredArea() {*
-		return this.hoveredArea;
+	String getHighlightedArea() {*
+		return this.highlightedArea;
 	*}
 
 	/**
@@ -1337,33 +1339,13 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
-	/**
-	 * Set fill color for the area
-	 */	
-	void setFillColor(String colorHexa, Array Target){*
-		//get mapsterjson, set as json, change value, set mapsterJson
-	*}
+/**
+ * Get selected areas as an array
+ */	
+Array getSelectedAreasAsArray(){*
+	return this.getSelectedAreas().split(",");
+*}
 	
-	/**
-	 * Set fill color for the area
-	 */	
-	String getFillColor(){*
-		//get mapsterjson, set as json, return value
-	*}
-	
-	/**
-	 * Set stroke color
-	 */	
-	void setStroke(String colorHexa, int strokeWidth, String Target){*
-		//get mapsterjson, set as json, change value, set mapsterJson
-	*}
-	
-	/**
-	 * Set fill color for the area
-	 */	
-	String getFillColor(){*
-		//get mapsterjson, set as json, return value
-	*}
 }
 
 /**

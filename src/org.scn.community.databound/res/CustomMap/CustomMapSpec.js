@@ -279,6 +279,22 @@ function() {
     "value": "null",
     "visible": true
   },
+  "dataExemple": {
+    "opts": {
+      "apsControl": "textarea",
+      "cat": "Tooltip",
+      "desc": "Exemple of data",
+      "noAps": false,
+      "noZtl": true,
+      "order": 50,
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+  },
   "displayStroke": {
     "opts": {
       "apsControl": "checkbox",
@@ -460,7 +476,7 @@ function() {
     "value": "1",
     "visible": true
   },
-  "hoveredArea": {
+  "highlightedArea": {
     "opts": {
       "apsControl": "text",
       "cat": "",
@@ -769,13 +785,13 @@ function() {
 	spec.specAbout = 
 {
   "description": "Custom Map",
-  "icon": "Table.png",
+  "icon": "custom_map.png",
   "supportsFlatData": true,
-  "title": "Custom Map 1.0",
+  "title": "Custom Map",
   "topics": [
     {
-      "content": "Data Table",
-      "title": "Data Table"
+      "content": "Build you own non geographical visualization with this component using an image and HTML maps",
+      "title": "Custom Map"
     },
     {
       "content": "This component is a visualization component. It requires specific space in the application canvas.",

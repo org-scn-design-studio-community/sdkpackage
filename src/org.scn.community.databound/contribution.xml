@@ -654,6 +654,15 @@
 		<option name="includeMetadata" value="true"/>
 	</property>
 	<property
+		id="dataExemple"
+		type="String"
+		title="Exemple of data"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="displayStroke"
 		type="boolean"
 		title="Activate Strokes"
@@ -762,7 +771,7 @@
 
 	</property>
 	<property
-		id="hoveredArea"
+		id="highlightedArea"
 		type="String"
 		title=""
 		group="Display"
@@ -942,6 +951,7 @@
 		<defaultValue property="contentTooltip"><![CDATA[]]></defaultValue>
 		<defaultValue property="data"><![CDATA[]]></defaultValue>
 		<defaultValue property="dataCellList"><![CDATA[null]]></defaultValue>
+		<defaultValue property="dataExemple"><![CDATA[]]></defaultValue>
 		<defaultValue property="displayStroke"><![CDATA[true]]></defaultValue>
 		<defaultValue property="displayTooltip"><![CDATA[true]]></defaultValue>
 		<defaultValue property="dynamicColorPalette"><![CDATA[]]></defaultValue>
@@ -954,7 +964,7 @@
 		<defaultValue property="highlightStrokeColor"><![CDATA[#000000]]></defaultValue>
 		<defaultValue property="highlightStrokeOpacity"><![CDATA[0.5]]></defaultValue>
 		<defaultValue property="highlightStrokeWidth"><![CDATA[1]]></defaultValue>
-		<defaultValue property="hoveredArea"><![CDATA[]]></defaultValue>
+		<defaultValue property="highlightedArea"><![CDATA[]]></defaultValue>
 		<defaultValue property="image"><![CDATA[]]></defaultValue>
 		<defaultValue property="map"><![CDATA[]]></defaultValue>
 		<defaultValue property="mapDataKey"><![CDATA[]]></defaultValue>
