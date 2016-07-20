@@ -29,9 +29,34 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 	RapidPrototype.prototype = SDKCore;
 	function RapidPrototype() {
 		var properties = {
+			repositoryPath : {
+				opts : {
+					noAps : true
+				}
+			},
+			useHTMLMime : {
+				opts : {
+					order : 0,
+					desc : "Use File",
+					cat : "HTML",
+					tooltip : "Use File",
+					apsControl : "checkbox"
+				}
+			},
+			HTMLMime : {
+				opts : {
+					order : 1,
+					desc : "HTML File (when use file = true)",
+					cat : "HTML",
+					tooltip : "HTML File",
+					apsControl : "special-url",
+					kind : "CSS"
+				}
+			},
 			HTML : {
 				opts : {
-					desc : "HTML",
+					order : 2,
+					desc : "HTML (when not use file = false)",
 					cat : "HTML",
 					tooltip : "HTML",
 					apsControl : "codemirror",
@@ -93,11 +118,29 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 	    this.componentInfo.icon = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAwZJREFUeNqMU02IFEcU/qq6umemt8ednd1xwN0IyqKgu6LgLmTVg5qLl0Agp+DBXAQFWVDQiyzehD0IKh6FQDx4yCGBgIckmpDsHnQvokQMCUnMZp3d+enp+emZqe6qyuseDXiz6aKorve+933fe816mxul6uLHz6y2Xwa38D4P0xqx6zVKN7+ZFV2l251Yt4qMlZXRgFIUwYaBtOUKHKAX5k2yxWEijkqo29nYtESoTL8VKX+CInTOA3PzFDyMZpRol+x0fwsA2YGuBwgi3czFuisGysCXqs7jHvjCKdhnrwFxRJkOEh4jxbEE6n/68t4S5Nd30ZR2vaCNERFVq0td5RYFhV3AG4V59RvMv3+CCYG4uG3IYMgJukLfmY2GjGuT2kDQQn2gtphH2tp+Klyv/Qh54yK45yGc4AREQXpoCs8XwOwsFY23iDxEglujA+NUptum1QKbmYd95gqY4yBTzBGDNxLI/WjlKyCookZFE1tEcpUeiKfpdWD65MXeQ7BmDqfKM+zdFsZPvoWOdVo0OYsEvC5VVTEnrR7fvkIGZlLfksq9opO2LvvZEkULaGKpDE9l87cAjYGqSeLDVAw+/1FqZLR8gc4SUYmBZRxkT1N3QpI46EHqtGgtyRVJz9f9wO+rjHK1stjUbvB9c9DHP4F5vgo+IWDPHCHQMZjaOhBJ9GODfxpBI8kV5fEiLl1dCvDTFx3Ta40m7cPBo3Au36KE1xgZI9ed3NDD6itoKaGEG1JOc7JcAjOEonth7o/TR17m+8EHxiuAT8+C7Z+DOLCAwlge6tcVqBerUH89pSlsoBJkK7u+/GWPyI+20zZuNYO+1FrmHRtd0qnWHsE8/h56hOZgu5WOryHjaABgDYCejKKKH4RT+dH0N0FEI3nn98byd5udh00FP+O6cL1tdGmgQnIs8hB1MvBbWX+tnX10v8mvx4ypdDYTCRsbG5ia3kNz0MVO19754Xju2InyyKmjE+5JwmArtfCHB+vNBwufn//503OLfw+oY9NTO2BZFv4TYAChu3+OSS5KqAAAAABJRU5ErkJggg==";
    		this._alive = false;
 	    
-    
-	    this.reparse = function(){
-	    	var rHTML = this.HTML();
-	    	var rJS = this.afterInit();
-	    	for(var i=1;i<10;i++){
+   		this.loadResource = function(url, callback){
+			var that = this;
+			$.ajax({
+				// dataType : "json",
+				url : url + "?r=" + that._r,
+				success : function(callback){return function(data){
+					if(callback) {
+						callback.call(that, data);
+					}else{
+						alert("No callback after download");
+					}
+				};}(callback),
+				fail : function(jqxhr, textStatus, error){
+					alert(error);
+				}
+			});
+		};
+		this.replaceTerms = function(original){
+			var repoPath = this.repositoryPath() + "";
+			var resourceRoot = repoPath.replace(/REPOSITORY_ROOT.GIF/,"");
+			var r = original;
+			r = r.replace(new RegExp("%RESOURCEROOT%","g"),resourceRoot);
+			for(var i=1;i<10;i++){
 	    		var term = this["term" + i]();
 	    		var KPIreplacement = this["KPIreplacement" + i]();
 	    		var manualreplacement = this["replacement" + i]();
@@ -108,37 +151,47 @@ define(["./../../../org.scn.community.shared/os/viz-modules/SDKCore",
 	    			}else if(manualreplacement){
 	    				replacement = manualreplacement;
 	    			}
-	    			rHTML = rHTML.replace(new RegExp(term,'g'), replacement);
-	    			rJS = rJS.replace(new RegExp(term,'g'), replacement);
+	    			r = r.replace(new RegExp(term,'g'), replacement);
 	    		}
 	    	};
-	    	return {
-	    		html : rHTML,
-	    		js : rJS
-	    	};
+	    	return r;
+		};
+	    this.parseHTML = function(callback){
+	    	var that = this;
+	    	var rJS = this.afterInit();
+	    	if(!this.useHTMLMime()){
+	    		callback.call(this, this.replaceTerms(this.HTML()));
+	    	}else{
+	    		var repoPath = this.repositoryPath() + "";
+				var url = repoPath.replace(/REPOSITORY_ROOT.GIF/,this.HTMLMime());
+				this.loadResource(url, function(data){
+					callback.call(that, that.replaceTerms(data));
+				});
+	    	}
 	    };
-	    
+	    this.drawHTMLCallback = function(html){
+	    	this.$().html(html);
+	    	this.reEval(this.replaceTerms(this.afterInit()));
+	    };
 	    this.drawHTML = function(){
 	    	if(this._alive == false) return;
 	    	//alert("h");
-	    	var parsed = this.reparse();
-	    	this.$().html(parsed.html);
+	    	this.parseHTML(this.drawHTMLCallback);
 	    };
 	    
-	    this.reEval = function(){
+	    this.reEval = function(code){
 	    	if(this._alive == false) return;
 	    	//alert("j");
-	    	var parsed = this.reparse();
 	    	try{
-				eval(parsed.js);
+				eval(code);
 			}catch(e){
 				alert(e);
 			}
 	    };
 	      
 	    this.afterUpdate = function(){
+	    	this._r = Math.random(); 	// Cache busting
 	    	this.drawHTML();
-	    	this.reEval();
 	    };
 	    
 		this.init = function() {

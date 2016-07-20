@@ -53,6 +53,24 @@ sap.designstudio.sdk.PropertyPage.subclass("org.scn.community.generic.PropertyPa
 		}
 	}
 	/**
+	 * Mike - 07/20/2016 - Special setter/getter for CSS file selection dialog
+	 */
+	this.TCSSUrl = function(s){
+		if(s===undefined){
+			return this._TCSSUrl;			
+		}else{
+			this._TCSSUrl = s;
+			if(s!="empty"){
+				if(this.TCSSUrlCallback) this.TCSSUrlCallback();
+				this._TCSSUrl = "empty";
+				this.firePropertiesChanged(["TCSSUrl"]);
+			}else{
+				// No Callback?
+			}
+			return this;
+		}
+	}
+	/**
 	 * Mike - 12/03/2015 - Convenience function to both modify a property in APS component handler, and fire a DS Update message
 	 */
 	this.updateProperty = function (propertyName, value) {

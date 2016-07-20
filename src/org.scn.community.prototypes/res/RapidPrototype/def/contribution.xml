@@ -9,8 +9,13 @@
 		databound="true">
 		
 		<requireJs modes="commons m">res/RapidPrototype/RapidPrototype</requireJs>
-
+		<property id="repositoryPath" type="Url" title="Path to BIAPP Repository" tooltip="Property for auto calculation of the root folder" visible="false" />
 		<property id="HTML" type="String" title="HTML" group="Display" />
+		<property id="useHTMLMime" type="boolean" title="HTML" group="Display" />
+		<property id="HTMLMime" type="String" title="HTML" group="Display" />
+		<property id="TCSSUrl"	type="Url" title="Temporary property for CSS Resource" visible="false">
+			<option name="kind" value="CSS"/>
+		</property>
 		<property id="afterInit" type="String" title="JavaScript" group="Display" />
 		<property type="String" title="Placeholder 1" id="term1"></property>
 		<property type="String" title="Manual Replacement 1" id="replacement1"></property>
@@ -54,6 +59,10 @@
 		<property type="ResultCell" title="Databound Replacement 10" id="KPIreplacement10"></property>
 		
 		<initialization>
+			<defaultValue property="useHTMLMime">false</defaultValue>
+			<defaultValue property="repositoryPath">
+				<![CDATA[REPOSITORY_ROOT.GIF]]>
+			</defaultValue>
 			<defaultValue property="term1">{kpi1}</defaultValue>
 			<defaultValue property="term2">{kpi2}</defaultValue>
 			<defaultValue property="term3">{kpi3}</defaultValue>
