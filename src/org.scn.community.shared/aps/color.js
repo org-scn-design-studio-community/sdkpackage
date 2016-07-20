@@ -141,7 +141,7 @@ define(["./textfieldmask", "./colorpicker_scn"],function(){
 			if(this._pickerColor!=s){
 				this._pickerColor = s;
 				this._colorTextBox.setValue(s);
-				this.fireColorChange();
+				// this.fireColorChange();
 			}
 		},
 		setAlpha : function(f){
@@ -190,6 +190,7 @@ define(["./textfieldmask", "./colorpicker_scn"],function(){
 									if(!color) color = that.getBackgroundColor();
 									if(alpha==null) alpha = 1;
 									that.setBackgroundColor(color);
+									that.fireColorChange();
 									that.setAlpha(alpha);
 								}
 							})
@@ -208,6 +209,7 @@ define(["./textfieldmask", "./colorpicker_scn"],function(){
 						text : "Cancel",
 						press : function(oControlEvent){
 							that.setBackgroundColor(that._oldColor);
+							that.fireColorChange();
 							that._tp.close(false);
 							that._tp.fireClose();
 						}
@@ -226,6 +228,7 @@ define(["./textfieldmask", "./colorpicker_scn"],function(){
 				change : function(){
 					var v = this.getValue();
 					that.setBackgroundColor(v);
+					that.fireColorChange();
 					this.$().css({"background-color" : v});
 				}
 			});
