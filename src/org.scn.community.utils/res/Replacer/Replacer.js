@@ -57,9 +57,20 @@ Replacer = function () {
 				
 				if(lastElementSelector !== undefined){
 					//Select html element by its id given by the dashboard designer
-					var lastElement = $("#"+that._component).find(lastElementSelector+':contains('+lastRenderedElement+')');
+//					var lastElement = $("#"+that._component).find(lastElementSelector+':contains('+lastRenderedElement+')');
+					var pattern = new RegExp(lastRenderedElement);
+					var valueFound = false;
+					var lastElement = $("#"+that._component).find(lastElementSelector);
+					for(var i=0;i < lastElement.length;i++){
+						if (pattern.test(lastElement[i].innerText)) {
+							lastElement[0] = lastElement[i];
+							valueFound = true;
+							break;
+						}
+					}
+					
 					//wait until element is actually inserted into HTML dom tree, otherwise changes will not be reflected!
-					if(lastElement[0] === undefined /*&& this.initialRunComplete === false*/){
+					if(!valueFound && lastElement[0] === undefined /*&& this.initialRunComplete === false*/){
 						$(lastElement).waitUntilExists(function(){
 							that.replaceTextAccordingToMapping();
 //							that.initialRunComplete = true;
@@ -120,6 +131,20 @@ Replacer = function () {
 			return that._mappingTable;
 		} else {
 			that._mappingTable = value;
+			return this;
+		}
+	};
+	
+	this.manualTable = function (value) {
+		if (value === undefined) {
+			return that._mappingTable;
+		} else {
+			try{
+				that._mappingTable = JSON.parse(value);	
+			}catch (err){
+				if(window.console)console.log("JSON parse error "+value);
+				that._mappingTable = [];
+			}
 			return this;
 		}
 	};

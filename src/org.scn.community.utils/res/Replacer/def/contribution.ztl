@@ -11,6 +11,10 @@ class org.scn.community.utils.Replacer extends org.scn.community.shared.Componen
 		this.replace = calcTimestamp();
 	*}
 	
+	void setMappingTable(String obj){*
+		this.manualTable = obj;
+	*}
+	
 	@Visibility(private)
 	String calcTimestamp() {*
 		return new Date().valueOf();

@@ -28,6 +28,14 @@
 	/>
 	
 	<property
+		id="manualTable"
+		title="Manual Mapping Table"
+		tooltip="Manual Mapping Table"
+		type="String"
+		visible="false"
+	/>
+	
+	<property
 		id="mappingTable"
 		type="Array"
 		title="Mapping Table">

@@ -58,7 +58,7 @@ KpiTile = {
 		that.addStyleClass("scn-pack-KpiTile");
 		
 		that._oComponents = {};
-		that.nextKey = 1;
+//		that.nextKey = 1;
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
 		that.onAfterRendering = function () {
@@ -451,8 +451,9 @@ KpiTile = {
 		var loopObject = undefined;
 		
 		if(createUnique) {
-			jsonDef.id = that.getId() + name + that.nextKey;
-			that.nextKey = that.nextKey + 1;
+			var unique_id = Math.random();
+			jsonDef.id = that.getId() + name + unique_id;//that.nextKey;
+//			that.nextKey = that.nextKey + 1;
 		}
 
 		if(sap.m[name] != undefined) {
