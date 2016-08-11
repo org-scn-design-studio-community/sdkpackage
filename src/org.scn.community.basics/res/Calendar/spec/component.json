@@ -8,6 +8,7 @@
 	"package": "basics",
 	"extension": "Component",
 	"databound": false,
+	"modes": "commons m",
 
 	"require": 
 	[

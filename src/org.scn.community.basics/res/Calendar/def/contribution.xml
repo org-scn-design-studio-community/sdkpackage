@@ -8,10 +8,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/Calendar/Calendar</requireJs>
+	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
