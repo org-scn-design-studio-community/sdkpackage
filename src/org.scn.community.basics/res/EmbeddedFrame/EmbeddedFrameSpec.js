@@ -107,6 +107,7 @@ function() {
   "handlerType": "div",
   "height": "400",
   "id": "EmbeddedFrame",
+  "modes": "commons m",
   "package": "basics",
   "require": [{
     "id": "common_basics",

@@ -272,6 +272,14 @@ UI5Table = {
 			var colWidth = colWidths[colI];
 			if(!colWidth) {
 				colWidth = that.getDHeaderColWidth()+"px";
+			} else {
+				if(colWidth.indexOf("px") == -1 && colWidth.indexOf("%") == -1)	{
+					if(colWidth == "*") {
+						colWidth = "100%";
+					} else {
+						colWidth = colWidth + "px";
+					}
+				}
 			}
 
 			var readArray = "dimensionHeaders";

@@ -145,7 +145,7 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 		renderer : {},
 		metadata : meta,
 		changeHandler : function(oControlEvent){
-			this.fireDesignStudioEvent("onchange");
+			this.fireDesignStudioPropertiesChangedAndEvent(["value"], "onchange");
 		},
 		setInputType : function(b){
 			this.setType(b);

@@ -860,10 +860,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/Calendar/Calendar</requireJs>
+	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
@@ -1843,10 +1843,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/EmbeddedFrame/EmbeddedFrame</requireJs>
+	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrame</requireJs>
 
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
@@ -1905,10 +1905,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	

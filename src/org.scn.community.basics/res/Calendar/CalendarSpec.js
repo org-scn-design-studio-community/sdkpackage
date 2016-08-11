@@ -370,6 +370,7 @@ function() {
   "handlerType": "sapui5",
   "height": "300",
   "id": "Calendar",
+  "modes": "commons m",
   "package": "basics",
   "parentControl": "sap.me.Calendar",
   "require": [
