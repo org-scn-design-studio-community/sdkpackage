@@ -91,6 +91,15 @@ UI5Table = {
 		} else {
 			that._table.setNavigationMode(sap.ui.table.NavigationMode.Scrollbar);
 		}
+		
+		var lSelMode = this.getDSelectionMode();
+		if(lSelMode == "Single") {
+			that._table.setSelectionMode(sap.ui.table.SelectionMode.Single);	
+		} else if (lSelMode == "MultiToggle"){
+			that._table.setSelectionMode(sap.ui.table.SelectionMode.MultiToggle);
+		} else {
+			that._table.setSelectionMode(sap.ui.table.SelectionMode.None);
+		}
 
 		// define model
 		//if(that._flatData == undefined) {

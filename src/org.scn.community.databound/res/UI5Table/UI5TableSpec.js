@@ -399,6 +399,34 @@ function() {
     "value": "Paginator",
     "visible": true
   },
+  "DSelectionMode":{
+      "type":"String",
+      "value":"Single",
+      "visible":true,
+      "opts":{
+         "ztlType":"Choice",
+         "choiceType":"SelectionMode",
+         "ztlFunction":"",
+         "desc":"Selection Mode",
+         "cat":"Display",
+         "tooltip":"Selection Mode",
+         "apsControl":"combobox",
+         "options":[
+            {
+               "key":"Single",
+               "text":"Single Selection"
+            },
+            {
+               "key":"MultiToggle",
+               "text":"Multi Selection"
+            },
+            {
+               "key":"None",
+               "text":"No Selection"
+            }
+         ]
+      }
+   },
   "DOnlyHeaderColumns": {
     "opts": {
       "apsControl": "checkbox",
