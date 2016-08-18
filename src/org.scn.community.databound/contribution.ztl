@@ -3257,6 +3257,16 @@ class org.scn.community.databound.MarimekkoChart extends org.scn.community.share
  */
 class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
 
+	/** gest the dimension */
+	boolean getEnabled () {*
+		return this.DEnabled;	
+	*}
+	
+	/** sets the dimension */
+	void setEnabled (boolean enabled) {*
+		this.DEnabled = enabled;	
+	*}
+	
 	/** returns the selected key 
     <example>
 	
@@ -3285,7 +3295,7 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 		return this.DSelectedText;	
 	*}
 	
-	/** gest the dimension */
+	/** gets the dimension */
 	String getDimension () {*
 		return this.DDimension;	
 	*}

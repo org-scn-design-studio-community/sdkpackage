@@ -44,7 +44,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
               "DSelectAllText": {type: "string"},
               "DSelectNoText": {type: "string"},
               "DItemList": {type: "string"},
-              "DPropFileUrl": {type: "string"}
+              "DPropFileUrl": {type: "string"},
+              "DEnabled": {type: "boolean"}
         }
 	},
 
@@ -151,6 +152,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 			this.placeholderTextLocalized = oBundle.getText(this.placeholderTextIdentifier);
 			this.setPlaceholder(this.placeholderTextLocalized);
 		}
+		
+		this.setEnabled(this.getDEnabled());
 		
 		//make sure of showing formerly selected items when afterUpdate gets triggered from another context
 		var t = this.getSelectedKeys();

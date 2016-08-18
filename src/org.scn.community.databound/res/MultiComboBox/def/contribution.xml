@@ -96,6 +96,14 @@
 		group="Display"
 		visible="true">
 	</property>
+	
+	<property
+		id="DEnabled"
+		type="boolean"
+		title="Enabled flag"
+		group="Display"
+		visible="true">
+	</property>
 
 	<property
 		id="onSelectionFinished"
@@ -122,6 +130,7 @@
 		<defaultValue property="DSkipResultRow">true</defaultValue>
 		<defaultValue property="DSelectAllText">&lt;select all&gt;</defaultValue>
 		<defaultValue property="DSelectNoText">&lt;clear&gt;</defaultValue>
+		<defaultValue property="DEnabled">true</defaultValue>
 	</initialization>
 
 </component>

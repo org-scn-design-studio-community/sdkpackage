@@ -47,7 +47,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 		              "DSelectAllText": {type: "string"},
 		              "DSelectNoText": {type: "string"},
 		              "DItemList": {type: "string"},
-		              "DPropFileUrl": {type: "string"}
+		              "DPropFileUrl": {type: "string"},
+		              "DEnabled": {type: "boolean"}
 		        }
 			},
 		
@@ -154,6 +155,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 					this.placeholderTextLocalized = oBundle.getText(this.placeholderTextIdentifier);
 					this.setPlaceholder(this.placeholderTextLocalized);
 				}
+				
+				this.setEnabled(this.getDEnabled());
 				
 				//make sure of showing formerly selected items when afterUpdate gets triggered from another context
 				var t = this.getSelectedKeys();
