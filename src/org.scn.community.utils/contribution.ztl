@@ -2498,6 +2498,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Clipboard component*/
+	org.scn.community.databound.Clipboard returnAsScnClipboard (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Custom Map 0.0 component*/
 	org.scn.community.databound.CustomMap returnAsScnCustomMap (Component inputComponent) {* return inputComponent; *}
 

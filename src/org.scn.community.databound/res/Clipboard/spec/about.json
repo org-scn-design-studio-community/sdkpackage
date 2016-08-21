@@ -1,0 +1,12 @@
+{
+	"title": "Clipboard",
+	"description": "Clipboard - Allows you to copy content into Clipboard",
+	"icon": "UI5Table.png",
+	"topics": 
+	[
+		{
+			"title" : "Clipboard",
+			"content" : "You can copy some content into clipboard, either data source (as CSV) or any content"
+		}
+	]
+}

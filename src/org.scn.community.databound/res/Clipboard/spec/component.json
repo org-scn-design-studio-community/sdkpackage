@@ -1,0 +1,37 @@
+{
+	"id": "Clipboard",
+	"title": "Clipboard",
+	"tooltip": "Clipboard - Simple Clipboard",
+	"handlerType": "div",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityVisualizations",
+	"package": "databound",
+	"extension": "DataComponent",
+	"databound": true,
+	"modes":"commons m",
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "common_databound",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		}
+	],
+	"cssIncludes": [
+		{ "name": "res/_css/simple_formats.css" }
+	],
+	"width": "64",
+	"height": "32"
+}

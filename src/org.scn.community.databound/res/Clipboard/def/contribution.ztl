@@ -1,0 +1,135 @@
+
+/**
+ * Generated ZTL Class for Clipboard
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Clipboard extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Ignore Results Property
+	 */	
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Property
+	 */	
+	boolean isIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Clipboard Mode Property by String
+	 */	
+	void setModeByString( /**Clipboard Mode*/ String mode){*
+		this.DMode = mode;
+	*}
+
+	/**
+	 * Gets Clipboard Mode Property as String
+	 */	
+	String getModeAsString() {*
+		return this.DMode;
+	*}
+	
+	/**
+	 * Sets Clipboard Mode Property by Choice Option
+	 */	
+	void setMode( /**Clipboard Mode*/ org_scn_community_shared_Enumfield mode){*
+		this.DMode = mode;
+	*}
+	
+	/**
+	 * Gets Clipboard Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_Enumfield getMode() {*
+		return this.DMode;
+	*}
+
+	/**
+	 * Sets Separator Property
+	 */	
+	void setSeparator( /**Separator*/ String separator){*
+		this.DSeparator = separator;
+	*}
+
+	/**
+	 * Gets Separator Property
+	 */	
+	String getSeparator() {*
+		return this.DSeparator;
+	*}
+
+	/**
+	 * Sets Show Keys instead of Texts Property
+	 */	
+	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*
+		this.DShowKeys = showKeys;
+	*}
+
+	/**
+	 * Gets Show Keys instead of Texts Property
+	 */	
+	boolean isShowKeys() {*
+		return this.DShowKeys;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /**Swap Axes*/ boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean isSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Value Property
+	 */	
+	void setValue( /**Value*/ String value){*
+		this.DValue = value;
+	*}
+
+	/**
+	 * Gets Value Property
+	 */	
+	String getValue() {*
+		return this.DValue;
+	*}
+
+
+
+	/**
+	 * Sets Url For Picture Property
+	 */	
+	void setPicture( /**Url For Picture*/ String picture){*
+		this.picture = picture;
+	*}
+
+	/**
+	 * Gets Url For Picture Property
+	 */	
+	String getPicture() {*
+		return this.picture;
+	*}
+
+	/**
+	 * Gets Just As Simple Triger Property
+	 */	
+	String getTrigger() {*
+		return this.trigger;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+	void copy () {*
+		this.trigger = "GO";
+	*}
+}
