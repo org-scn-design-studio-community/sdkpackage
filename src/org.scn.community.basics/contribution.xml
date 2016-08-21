@@ -1870,6 +1870,15 @@
 
 	</property>
 	<property
+		id="explicitlySetDomain"
+		type="boolean"
+		title="Explicitly set document domain"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="url"
 		type="String"
 		title="Url"
@@ -1890,6 +1899,7 @@
 		
 		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
 		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
+		<defaultValue property="explicitlySetDomain"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>

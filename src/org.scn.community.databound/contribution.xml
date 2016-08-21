@@ -3426,6 +3426,14 @@ __n__}
 		group="Display"
 		visible="true">
 	</property>
+	
+	<property
+		id="DEnabled"
+		type="boolean"
+		title="Enabled flag"
+		group="Display"
+		visible="true">
+	</property>
 
 	<property
 		id="onSelectionFinished"
@@ -3452,6 +3460,7 @@ __n__}
 		<defaultValue property="DSkipResultRow">true</defaultValue>
 		<defaultValue property="DSelectAllText">&lt;select all&gt;</defaultValue>
 		<defaultValue property="DSelectNoText">&lt;clear&gt;</defaultValue>
+		<defaultValue property="DEnabled">true</defaultValue>
 	</initialization>
 
 </component>
@@ -6407,6 +6416,15 @@ __n__}
 
 	</property>
 	<property
+		id="DSelectionMode"
+		type="String"
+		title="Selection Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"
 		title="Show Only Header Columns"
@@ -6514,6 +6532,7 @@ __n__}
 		<defaultValue property="DHeaderColumnFixed"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
 		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
+		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
