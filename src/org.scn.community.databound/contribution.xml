@@ -541,15 +541,6 @@
 
 	</property>
 	<property
-		id="DMode"
-		type="String"
-		title="Clipboard Mode"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
 		id="DSeparator"
 		type="String"
 		title="Separator"
@@ -579,7 +570,7 @@
 	<property
 		id="DValue"
 		type="String"
-		title="Value"
+		title="Content"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -606,15 +597,6 @@
 		visible="true">
 
 	</property>
-	<property
-		id="trigger"
-		type="String"
-		title="Just As Simple Triger"
-		group="Display"
-		bindable="true"
-		visible="false">
-
-	</property>
 
 
 	<initialization>
@@ -626,14 +608,12 @@
 		<defaultValue property="HEIGHT">32</defaultValue>
 		
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
-		<defaultValue property="DMode"><![CDATA[Custom]]></defaultValue>
 		<defaultValue property="DSeparator"><![CDATA[;]]></defaultValue>
 		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DSwapAxes"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DValue"><![CDATA[]]></defaultValue>
 		<defaultValue property="data"><![CDATA[null]]></defaultValue>
 		<defaultValue property="picture"><![CDATA[]]></defaultValue>
-		<defaultValue property="trigger"><![CDATA[]]></defaultValue>
 
 	</initialization>
 
@@ -6416,15 +6396,6 @@ __n__}
 
 	</property>
 	<property
-		id="DSelectionMode"
-		type="String"
-		title="Selection Mode"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"
 		title="Show Only Header Columns"
@@ -6449,6 +6420,15 @@ __n__}
 		group="Display"
 		bindable="true"
 		visible="false">
+
+	</property>
+	<property
+		id="DSelectionMode"
+		type="String"
+		title="Selection Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
 
 	</property>
 	<property
@@ -6532,10 +6512,10 @@ __n__}
 		<defaultValue property="DHeaderColumnFixed"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
 		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
-		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DSortMode"><![CDATA[KeyValue]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>

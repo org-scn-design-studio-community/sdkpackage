@@ -5180,6 +5180,20 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 	*}
 
 	/**
+	 * Sets Explicitly set document domain Property
+	 */	
+	void setExplicitlySetDomain( /**Explicitly set document domain*/ boolean explicitlySetDomain){*
+		this.explicitlySetDomain = explicitlySetDomain;
+	*}
+
+	/**
+	 * Gets Explicitly set document domain Property
+	 */	
+	boolean isExplicitlySetDomain() {*
+		return this.explicitlySetDomain;
+	*}
+
+	/**
 	 * Sets Skip port in domain Property
 	 */	
 	void setSkipport( /**Skip port in domain*/ boolean skipport){*

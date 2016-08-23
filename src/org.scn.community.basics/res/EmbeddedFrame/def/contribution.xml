@@ -26,18 +26,18 @@
 
 	</property>
 	<property
-		id="skipport"
+		id="explicitlySetDomain"
 		type="boolean"
-		title="Skip port in domain"
+		title="Explicitly set document domain"
 		group="Display"
 		bindable="true"
 		visible="true">
 
 	</property>
 	<property
-		id="explicitlySetDomain"
+		id="skipport"
 		type="boolean"
-		title="Explicitly set document domain"
+		title="Skip port in domain"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -63,8 +63,8 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
-		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="explicitlySetDomain"><![CDATA[true]]></defaultValue>
+		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 
 	</initialization>

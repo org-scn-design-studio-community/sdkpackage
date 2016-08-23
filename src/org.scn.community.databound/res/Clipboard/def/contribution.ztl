@@ -21,34 +21,6 @@ class org.scn.community.databound.Clipboard extends org.scn.community.shared.Dat
 	*}
 
 	/**
-	 * Sets Clipboard Mode Property by String
-	 */	
-	void setModeByString( /**Clipboard Mode*/ String mode){*
-		this.DMode = mode;
-	*}
-
-	/**
-	 * Gets Clipboard Mode Property as String
-	 */	
-	String getModeAsString() {*
-		return this.DMode;
-	*}
-	
-	/**
-	 * Sets Clipboard Mode Property by Choice Option
-	 */	
-	void setMode( /**Clipboard Mode*/ org_scn_community_shared_Enumfield mode){*
-		this.DMode = mode;
-	*}
-	
-	/**
-	 * Gets Clipboard Mode Property as Choice Option
-	 */	
-	org_scn_community_shared_Enumfield getMode() {*
-		return this.DMode;
-	*}
-
-	/**
 	 * Sets Separator Property
 	 */	
 	void setSeparator( /**Separator*/ String separator){*
@@ -91,14 +63,14 @@ class org.scn.community.databound.Clipboard extends org.scn.community.shared.Dat
 	*}
 
 	/**
-	 * Sets Value Property
+	 * Sets Content Property
 	 */	
-	void setValue( /**Value*/ String value){*
+	void setValue( /**Content*/ String value){*
 		this.DValue = value;
 	*}
 
 	/**
-	 * Gets Value Property
+	 * Gets Content Property
 	 */	
 	String getValue() {*
 		return this.DValue;
@@ -120,16 +92,7 @@ class org.scn.community.databound.Clipboard extends org.scn.community.shared.Dat
 		return this.picture;
 	*}
 
-	/**
-	 * Gets Just As Simple Triger Property
-	 */	
-	String getTrigger() {*
-		return this.trigger;
-	*}
-
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
-	void copy () {*
-		this.trigger = "GO";
-	*}
+
 }

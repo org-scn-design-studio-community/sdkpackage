@@ -1144,6 +1144,34 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 
 
 	/**
+	 * Sets Selection Mode Property by String
+	 */	
+	void setSelectionModeByString( /**Selection Mode*/ String selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+
+	/**
+	 * Gets Selection Mode Property as String
+	 */	
+	String getSelectionModeAsString() {*
+		return this.DSelectionMode;
+	*}
+	
+	/**
+	 * Sets Selection Mode Property by Choice Option
+	 */	
+	void setSelectionMode( /**Selection Mode*/ org_scn_community_shared_SelectionModeEnumfield selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+	
+	/**
+	 * Gets Selection Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_SelectionModeEnumfield getSelectionMode() {*
+		return this.DSelectionMode;
+	*}
+
+	/**
 	 * Sets Show Keys instead of Texts Property
 	 */	
 	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*

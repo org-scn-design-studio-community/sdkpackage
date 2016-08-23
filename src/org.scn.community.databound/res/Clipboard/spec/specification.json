@@ -33,24 +33,7 @@
 			"noAps" : false,
 			"noZtl" : false
 		}
-	},
-    "trigger" : {
-		"template" : "String",
-		"type" : "String",
-		"value" : "",
-		"visible": false,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "-get",
-			"desc" : "Just As Simple Triger",
-			"cat" : "Display",
-			"tooltip" : "Just As Simple Triger",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : false
-		}
    },
-   
    "DIgnoreResults":{
 	    "type":"boolean",
 	    "value":true,
@@ -73,7 +56,7 @@
 			"ztlType": "boolean",
 			"ztlFunction": "",
 			"desc" : "Swap Axes",
-			"cat" : "Display",
+			"cat" : "Data",
 			"tooltip" : "Swap Axes",
 			"apsControl" : "checkbox",
 			"noAps" : false,
@@ -100,7 +83,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "Value",
+			"desc" : "Content",
 			"cat" : "Custom",
 			"tooltip" : "Value",
 			"apsControl" : "text",
@@ -122,29 +105,5 @@
 			"noAps":false,
 			"noZtl":false
 		}
-	},	
-    "DMode":{
-        "type":"String",
-        "value":"Custom",
-        "visible":true,
-        "opts":{
-           "ztlType":"Choice",
-           "choiceType":"-",
-           "ztlFunction":"",
-           "desc":"Clipboard Mode",
-           "cat":"Behavior",
-           "tooltip":"Clipboard Mode",
-           "apsControl":"combobox",
-           "options":[
-              {
-                 "key":"Custom",
-                 "text":"Custom"
-              },
-              {
-                 "key":"Data",
-                 "text":"Data"
-              }
-           ]
-        }
-     }
+	}
 }

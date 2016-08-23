@@ -1,0 +1,25 @@
+.org-scn-ClipboardText {
+	left:-2000px;
+	top:-2000px;
+	width:10000px;
+	height:30px;
+	position:absolute;
+	display:block;
+	overflow:hidden;
+}
+
+.org-scn-ClipboardButton {
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: 0px 0px;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    vertical-align: middle; /* align the text vertically centered */
+}
+
+.org-scn-ClipboardButton:hover {
+	opacity: 0.75;
+	color: #333333;
+	background-color: #eaeaea;
+	border-color: #bfbfbf;
+}

@@ -55,8 +55,9 @@ Clipboard = function () {
 
 		var iImageUrl = org_scn_community_basics.getRepositoryImageUrlPrefix(that, that.getPicture(), "", "Clipboard.png");
 		
-		owner.$().append("<div id=\""+sId+"_content\" style=\"top:-2000px;position:absolute;display:block;overflow:hidden\">"+""+"</div>");
-		owner.$().append("<img id=\""+sId+"_image\" style=\"width:20px;height:20px;cursor:pointer;\" src=\""+iImageUrl+"\" />");
+		// <input type="text" id="myid" value="http://www.sap.com" />
+		owner.$().append("<textarea id=\""+sId+"_content\" class=\"org-scn-ClipboardText\">"+""+"</textarea>");
+		owner.$().append("<button id=\""+sId+"_image\" class=\"org-scn-ClipboardButton\" />");
 		// visualization on processed data
 		
 		owner.$().click(function() {
@@ -69,7 +70,9 @@ Clipboard = function () {
 	this.afterUpdate = function() {
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 
-		// org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
+		that._oRoot = {};
+		that._oRoot.dummy = true;
+		org_scn_community_basics.resizeContentAbsoluteLayout(that, that._oRoot, that.onResize);
 
 		var loadingResultset = "ResultSet";
 		
@@ -97,17 +100,16 @@ Clipboard = function () {
 
 		if(flatData == undefined) {
 			var loadingResultset = "ResultSet";
+
+			var options = org_scn_community_databound.initializeOptions();
+			options.swapAxes = that.getDSwapAxes();
+			options.ignoreResults = that.getDIgnoreResults();
 				
 			if(loadingResultset == "ResultSet"){
-				var options = org_scn_community_databound.initializeOptions();
-				options.swapAxes = that.getDSwapAxes();
-				options.ignoreResults = that.getDIgnoreResults();
-				
 				that._flatData = org_scn_community_databound.flatten(that.getData(), options);
 			} else if(loadingREsultset == "DataCellList"){
 				var lDimensions = that.getDElements();
 		
-				var options = org_scn_community_databound.initializeOptions();
 				options.iMaxNumber = that.getDMaxMembers();
 				options.allKeys = true;
 				options.idPrefix = that.getId();
@@ -127,14 +129,13 @@ Clipboard = function () {
 				var metaData = that.getDSMetadata();
 				
 				that._flatData = org_scn_community_databound.getDataModelForDimensions(dataList, metaData, lDimensions, options);
-
-				options.ignoreResults = that.getDIgnoreResults();
-				options.emptyHeaderValue = "";
-				options.emptyDataValue = "";
-
-				org_scn_community_databound.toRowTable(that._flatData,options);
-
 			}
+
+			options.ignoreResults = that.getDIgnoreResults();
+			options.emptyHeaderValue = "";
+			options.emptyDataValue = "";
+
+			org_scn_community_databound.toRowTable(that._flatData,options);
 		} else {
 			that._flatData = flatData;
 		}
@@ -155,62 +156,68 @@ Clipboard = function () {
 		}
 
 		var contentDiv = $( "#" + sId + "_image");
-		contentDiv[0].src = iImageUrl;
+		contentDiv[0].style.backgroundImage = "url('"+iImageUrl+"')";;
 	};
 	
 	that.onCut = function() {
 		var that = this;
 		
 		var content = that.getDValue();
+		var sepSign = that.getDSeparator();
 
 		if(that.getData() != "null") {
 			content = "";
 			for(var dimHead in that._flatData.dimensionHeaders) {
-				content = content + that._flatData.dimensionHeaders[dimHead] + ";";
+				content = content + that._flatData.dimensionHeaders[dimHead] + sepSign;
 			}
 			for(var colHead in that._flatData.columnHeaders) {
-				content = content + that._flatData.columnHeaders[colHead] + ";";
+				content = content + that._flatData.columnHeaders[colHead] + sepSign;
 			}
 			for(var row in that._flatData.data2DPlain) {
 				content = content + "\r\n";
 				for(var cell in that._flatData.data2DPlain[row]) {
-					content = content + that._flatData.data2DPlain[row][cell] + ";";
+					content = content + that._flatData.data2DPlain[row][cell] + sepSign;
 				}
 			}
 		}
 
 		var sId = that.oComponentProperties.id;
-		var contentDiv = $( "#" + sId + "_content");
-		contentDiv[0].innerText = content;
+		var contentDiv = $( "#" + sId + "_content")[0];
+		contentDiv.value = content;
 
 		if(window.clipboardData) {
 			var didSucceed = window.clipboardData.setData('Text', content);	
 		} else {
 			var sId = that.oComponentProperties.id;
 			
-			// Select the email link anchor text  
-			  var content = $( "#" + sId + "_content")[0];
-			  var range = document.createRange();  
-			  range.selectNode(content);  
-			  window.getSelection().addRange(range);  
+			// var range = document.createRange();
+			// range.selectNode(contentDiv);
+			contentDiv.select();
+			// window.getSelection().addRange(range);
 
-			  try {  
-			    // Now that we've selected the anchor text, execute the copy command  
-			    var successful = document.execCommand('copy');  
-			    var msg = successful ? 'successful' : 'unsuccessful';  
-			    console.log('Copy email command was ' + msg);  
-			  } catch(err) {  
-			    console.log('Oops, unable to copy');  
-			  }  
+		    try {  
+			    var successful = document.execCommand('copy');
+			    if(!successful) {
+				    var msg = successful ? 'successful' : 'unsuccessful';  
+				    console.log('Copy command was ' + msg);  
+			    }
+			} catch(err) {  
+			    console.log('Oops, unable to execute copy command');  
+			}
 
-			  // Remove the selections - NOTE: Should use
-			  // removeRange(range) when it is supported  
-			  window.getSelection().removeAllRanges();  
+			// window.getSelection().removeRange(range);
 		}
 	};
 
 	that.onResize = function (width, height, parent) {
 		// in case special resize code is required
+		var that = parent;
+
+		var sId = that.oComponentProperties.id;
+		var contentDiv = $( "#" + sId + "_image");
+
+		contentDiv[0].style.width = width+"px";
+		contentDiv[0].style.height= height+"px";
 	};
 
 	/* COMPONENT SPECIFIC CODE - END METHODS*/

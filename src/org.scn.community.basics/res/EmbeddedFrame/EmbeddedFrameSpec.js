@@ -47,6 +47,21 @@ function() {
     "value": "0",
     "visible": true
   },
+  "explicitlySetDomain": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Explicitly set document domain",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Explicitly set document domain",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "true",
+    "visible": true
+  },
   "skipport": {
     "opts": {
       "apsControl": "checkbox",
@@ -62,21 +77,6 @@ function() {
     "value": "true",
     "visible": true
   },
-  "explicitlySetDomain": {
-	    "opts": {
-	      "apsControl": "checkbox",
-	      "cat": "Display",
-	      "desc": "Explicitly set document domain",
-	      "noAps": false,
-	      "noZtl": false,
-	      "tooltip": "Explicitly set document domain",
-	      "ztlFunction": "",
-	      "ztlType": "boolean"
-	    },
-	    "type": "boolean",
-	    "value": "true",
-	    "visible": true
-	  },
   "url": {
     "opts": {
       "apsControl": "text",

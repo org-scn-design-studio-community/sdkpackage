@@ -399,34 +399,6 @@ function() {
     "value": "Paginator",
     "visible": true
   },
-  "DSelectionMode":{
-      "type":"String",
-      "value":"Single",
-      "visible":true,
-      "opts":{
-         "ztlType":"Choice",
-         "choiceType":"SelectionMode",
-         "ztlFunction":"",
-         "desc":"Selection Mode",
-         "cat":"Display",
-         "tooltip":"Selection Mode",
-         "apsControl":"combobox",
-         "options":[
-            {
-               "key":"Single",
-               "text":"Single Selection"
-            },
-            {
-               "key":"MultiToggle",
-               "text":"Multi Selection"
-            },
-            {
-               "key":"None",
-               "text":"No Selection"
-            }
-         ]
-      }
-   },
   "DOnlyHeaderColumns": {
     "opts": {
       "apsControl": "checkbox",
@@ -467,6 +439,34 @@ function() {
     "type": "String",
     "value": "",
     "visible": false
+  },
+  "DSelectionMode": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display",
+      "choiceType": "SelectionMode",
+      "desc": "Selection Mode",
+      "options": [
+        {
+          "key": "Single",
+          "text": "Single Selection"
+        },
+        {
+          "key": "MultiToggle",
+          "text": "Multi Selection"
+        },
+        {
+          "key": "None",
+          "text": "No Selection"
+        }
+      ],
+      "tooltip": "Selection Mode",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "Single",
+    "visible": true
   },
   "DShowKeys": {
     "opts": {

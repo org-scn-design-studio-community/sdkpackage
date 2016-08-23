@@ -45,30 +45,6 @@ function() {
     "value": true,
     "visible": true
   },
-  "DMode": {
-    "opts": {
-      "apsControl": "combobox",
-      "cat": "Behavior",
-      "choiceType": "-",
-      "desc": "Clipboard Mode",
-      "options": [
-        {
-          "key": "Custom",
-          "text": "Custom"
-        },
-        {
-          "key": "Data",
-          "text": "Data"
-        }
-      ],
-      "tooltip": "Clipboard Mode",
-      "ztlFunction": "",
-      "ztlType": "Choice"
-    },
-    "type": "String",
-    "value": "Custom",
-    "visible": true
-  },
   "DSeparator": {
     "opts": {
       "apsControl": "text",
@@ -100,7 +76,7 @@ function() {
   "DSwapAxes": {
     "opts": {
       "apsControl": "checkbox",
-      "cat": "Display",
+      "cat": "Data",
       "desc": "Swap Axes",
       "noAps": false,
       "noZtl": false,
@@ -117,7 +93,7 @@ function() {
     "opts": {
       "apsControl": "text",
       "cat": "Custom",
-      "desc": "Value",
+      "desc": "Content",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Value",
@@ -162,22 +138,6 @@ function() {
     "type": "Url",
     "value": "",
     "visible": true
-  },
-  "trigger": {
-    "opts": {
-      "apsControl": "text",
-      "cat": "Display",
-      "desc": "Just As Simple Triger",
-      "noAps": true,
-      "noZtl": false,
-      "tooltip": "Just As Simple Triger",
-      "ztlFunction": "-get",
-      "ztlType": "String"
-    },
-    "template": "String",
-    "type": "String",
-    "value": "",
-    "visible": false
   }
 };
 

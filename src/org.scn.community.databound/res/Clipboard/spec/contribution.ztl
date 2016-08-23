@@ -1,3 +1,0 @@
-	void copy () {*
-		this.trigger = "GO";
-	*}
