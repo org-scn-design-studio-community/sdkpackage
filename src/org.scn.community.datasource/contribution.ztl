@@ -167,6 +167,8 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 	*}
 	/**
 	 * Removes a Row by a given Dimension Key
+	 * It is manipulating the data set from on line basis, the given dimensions must be noted top-down in the resultset
+	 * It can be especially used if the result set is containing unique key in first dimension, but it can also be used w/o uniqueness - then the first row will be removed.
 	 * <example>
 	 * Remove a row with given 2 Dimensions
 	 * <code>
@@ -179,7 +181,7 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 		var foundRow = false;
 		for(var rowIndex in rows) {
 			var row = rows[rowIndex];
-			if(row.indexOf(dimensions) == 0) {
+			if(row.indexOf(dimensions + ",") == 0) {
 				rows.splice(rowIndex, 1);
 				foundRow = true;
 				break;
@@ -191,17 +193,24 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 	*}
 	/**
 	 * Removes multiple Rows by a given Dimension Keys
+	 * It is manipulating the data set from on line basis, the given dimensions must be noted top-down in the resultset
 	 * <example>
-	 * Remove a row with given 1st Dimension
+	 * Remove a row with given 1st dimension
 	 * <code>
 	 * DS_1.removeRow("Grocery");<br>
+	 * </code>
+	 * </example> 
+	 * <example>
+	 * Remove a row with given 1st and and dimensions
+	 * <code>
+	 * DS_1.removeRow("Grocery,Big");<br>
 	 * </code>
 	 * </example> 
 	 */
 	int deleteRows(/*Dimensions*/ String dimensions){*
 		var rows = this.data.split("\n");
 		var foundRows = 0;
-		for(var rowIndex in rows) {
+		for(var rowIndex = rows.length-1;rowIndex>=0;rowIndex--) {
 			var row = rows[rowIndex];
 			if(row.indexOf(dimensions + ",") == 0) {
 				rows.splice(rowIndex, 1);
@@ -211,20 +220,6 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 		var newRows = rows.join("\n");
 		this.data = newRows;
 		return foundRows;
-	*}
-	/**
-	 * Clears all Rows
-	 * <example>
-	 * Clears all rows
-	 * <code>
-	 * DS_1.clearData();<br>
-	 * </code>
-	 * </example> 
-	 */
-	void clearData(){*
-		var rows = this.data.split("\n");
-		var newRows = rows[0];
-		this.data = newRows;
 	*}
 }class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
 	// empty
