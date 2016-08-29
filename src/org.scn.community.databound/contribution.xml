@@ -514,6 +514,112 @@
 	</initialization>
 </component>
 <component
+	id="Clipboard"
+	title="Clipboard"
+	tooltip="Clipboard - Simple Clipboard"
+	icon="res/Clipboard/Clipboard.png"
+	handlerType="div"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityVisualizations"
+	databound="true"
+	modes="commons m"
+>
+	
+	<requireJs modes="commons m">res/Clipboard/Clipboard</requireJs>
+
+	<cssInclude>res/Clipboard/Clipboard.css</cssInclude>
+	<cssInclude>res/_css/simple_formats.css</cssInclude>
+	
+	
+	<property
+		id="DIgnoreResults"
+		type="boolean"
+		title="Ignore Results"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSeparator"
+		type="String"
+		title="Separator"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DShowKeys"
+		type="boolean"
+		title="Show Keys instead of Texts"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DSwapAxes"
+		type="boolean"
+		title="Swap Axes"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="DValue"
+		type="String"
+		title="Content"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Data"
+		group="DataBinding"
+		visible="false">
+
+		<option name="maxCells" value="100000" />
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
+	</property>
+	<property
+		id="picture"
+		type="Url"
+		title="Url For Picture"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">64</defaultValue>
+		<defaultValue property="HEIGHT">32</defaultValue>
+		
+		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
+		<defaultValue property="DSeparator"><![CDATA[;]]></defaultValue>
+		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DSwapAxes"><![CDATA[false]]></defaultValue>
+		<defaultValue property="DValue"><![CDATA[]]></defaultValue>
+		<defaultValue property="data"><![CDATA[null]]></defaultValue>
+		<defaultValue property="picture"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
 	id="CustomMap"
 	title="Custom Map 0.0"
 	tooltip="Custom Map"
@@ -6290,15 +6396,6 @@ __n__}
 
 	</property>
 	<property
-		id="DSelectionMode"
-		type="String"
-		title="Selection Mode"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"
 		title="Show Only Header Columns"
@@ -6323,6 +6420,15 @@ __n__}
 		group="Display"
 		bindable="true"
 		visible="false">
+
+	</property>
+	<property
+		id="DSelectionMode"
+		type="String"
+		title="Selection Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
 
 	</property>
 	<property
@@ -6406,10 +6512,10 @@ __n__}
 		<defaultValue property="DHeaderColumnFixed"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
 		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
-		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DSortMode"><![CDATA[KeyValue]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>

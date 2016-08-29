@@ -1,0 +1,109 @@
+{
+  "data":{
+      "type":"ResultSet",
+      "value":"null",
+      "visible":false,
+      "options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true"
+      },
+      "opts":{
+         "type":"data",
+         "ztlFunction":"",
+         "desc":"Data",
+         "cat":"Data",
+         "tooltip":"Data List",
+         "value":null,
+         "noAps":true,
+         "noZtl":true
+      }
+   },
+   "picture" : {
+		"template" : "default",
+		"type" : "Url",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Url For Picture",
+			"cat" : "Display",
+			"tooltip" : "Url For Picture Which Should Be Shown",
+			"apsControl" : "text",
+			"noAps" : false,
+			"noZtl" : false
+		}
+   },
+   "DIgnoreResults":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Ignore Results",
+	         "cat":"Data",
+	         "tooltip":"Ignore Results on Rows and Columns",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"DSwapAxes" : {
+		"template" : "boolean",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Swap Axes",
+			"cat" : "Data",
+			"tooltip" : "Swap Axes",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+	},
+    "DShowKeys":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Show Keys instead of Texts",
+	         "cat":"Data",
+	         "tooltip":"Show Keys instead of Texts",
+	         "apsControl":"checkbox"
+	    }
+	},
+	"DValue" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Content",
+			"cat" : "Custom",
+			"tooltip" : "Value",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},	
+	"DSeparator" : {
+		"type" : "String",
+		"value" : ";",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Separator",
+			"cat" : "Data",
+			"tooltip" : "Separator",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	}
+}

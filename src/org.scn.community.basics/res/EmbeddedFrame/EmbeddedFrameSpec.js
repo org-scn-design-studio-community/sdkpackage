@@ -77,7 +77,7 @@ function() {
 			"noZtl":false
 		}
 	},
-  "skipport": {
+	"skipport": {
     "opts": {
       "apsControl": "checkbox",
       "cat": "Display",
@@ -92,21 +92,6 @@ function() {
     "value": "true",
     "visible": true
   },
-  "explicitlySetDomain": {
-	    "opts": {
-	      "apsControl": "checkbox",
-	      "cat": "Display",
-	      "desc": "Explicitly set document domain",
-	      "noAps": false,
-	      "noZtl": false,
-	      "tooltip": "Explicitly set document domain",
-	      "ztlFunction": "",
-	      "ztlType": "boolean"
-	    },
-	    "type": "boolean",
-	    "value": "true",
-	    "visible": true
-	  },
   "url": {
     "opts": {
       "apsControl": "text",

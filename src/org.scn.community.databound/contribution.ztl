@@ -65,6 +65,104 @@ class org.scn.community.databound.BarProperty {
 class org.scn.community.databound.CalendarViz extends org.scn.community.shared.Component {
 	
 }
+
+/**
+ * Generated ZTL Class for Clipboard
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Clipboard extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Ignore Results Property
+	 */	
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Property
+	 */	
+	boolean isIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Separator Property
+	 */	
+	void setSeparator( /**Separator*/ String separator){*
+		this.DSeparator = separator;
+	*}
+
+	/**
+	 * Gets Separator Property
+	 */	
+	String getSeparator() {*
+		return this.DSeparator;
+	*}
+
+	/**
+	 * Sets Show Keys instead of Texts Property
+	 */	
+	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*
+		this.DShowKeys = showKeys;
+	*}
+
+	/**
+	 * Gets Show Keys instead of Texts Property
+	 */	
+	boolean isShowKeys() {*
+		return this.DShowKeys;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /**Swap Axes*/ boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean isSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Content Property
+	 */	
+	void setValue( /**Content*/ String value){*
+		this.DValue = value;
+	*}
+
+	/**
+	 * Gets Content Property
+	 */	
+	String getValue() {*
+		return this.DValue;
+	*}
+
+
+
+	/**
+	 * Sets Url For Picture Property
+	 */	
+	void setPicture( /**Url For Picture*/ String picture){*
+		this.picture = picture;
+	*}
+
+	/**
+	 * Gets Url For Picture Property
+	 */	
+	String getPicture() {*
+		return this.picture;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
 class org.scn.community.databound.Choropleth extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
@@ -6505,6 +6603,34 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 
+
+	/**
+	 * Sets Selection Mode Property by String
+	 */	
+	void setSelectionModeByString( /**Selection Mode*/ String selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+
+	/**
+	 * Gets Selection Mode Property as String
+	 */	
+	String getSelectionModeAsString() {*
+		return this.DSelectionMode;
+	*}
+	
+	/**
+	 * Sets Selection Mode Property by Choice Option
+	 */	
+	void setSelectionMode( /**Selection Mode*/ org_scn_community_shared_SelectionModeEnumfield selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+	
+	/**
+	 * Gets Selection Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_SelectionModeEnumfield getSelectionMode() {*
+		return this.DSelectionMode;
+	*}
 
 	/**
 	 * Sets Show Keys instead of Texts Property
