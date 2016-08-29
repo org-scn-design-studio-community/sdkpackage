@@ -106,7 +106,22 @@ function() {
     "type": "String",
     "value": "",
     "visible": true
-  }
+  },
+	"explicitlySetDomain": {
+		  "type" : "boolean",
+		  "value" : "false",
+		  "visible": true,
+		  "opts": {
+			    "apsControl": "checkbox",
+			    "cat": "Display",
+			    "desc": "Explicitly set document domain",
+			    "noAps": false,
+			    "noZtl": false,
+			    "tooltip": "Explicitly set document domain",
+			    "ztlFunction": "",
+			    "ztlType": "boolean"
+			  }
+		}
 };
 
 	spec.specInclude = 

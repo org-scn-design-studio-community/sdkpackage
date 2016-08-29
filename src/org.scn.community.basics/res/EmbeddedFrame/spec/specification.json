@@ -76,7 +76,7 @@
 	},
 	"explicitlySetDomain": {
 	  "type" : "boolean",
-	  "value" : "true",
+	  "value" : "false",
 	  "visible": true,
 	  "opts": {
 		    "apsControl": "checkbox",
