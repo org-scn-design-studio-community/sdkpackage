@@ -66,6 +66,9 @@ EmbeddedFrame = function () {
     	
 		// attributes
 		html = html.concat(src,"=\"",this.url(),"\" ");
+		if(this.usesandbox()){
+			html = html.concat('sandbox="',this.sandbox(),'"');	
+		}
 	
 		// closing
 		html = html.concat(">");

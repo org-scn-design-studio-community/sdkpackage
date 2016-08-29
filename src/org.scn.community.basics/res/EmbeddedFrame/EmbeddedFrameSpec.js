@@ -47,6 +47,36 @@ function() {
     "value": "0",
     "visible": true
   },
+  "usesandbox": {
+	  "type" : "boolean",
+	  "value" : "false",
+	  "visible": true,
+	  "opts": {
+		    "apsControl": "checkbox",
+		    "cat": "Display",
+		    "desc": "Use Sandbox Attribute",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Use Sandbox Attribute",
+		    "ztlFunction": "",
+		    "ztlType": "boolean"
+		  }
+	},
+	"sandbox" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Sandbox Attribute Values",
+			"cat" : "Display",
+			"tooltip" : "Sandbox Attribute Values",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
   "skipport": {
     "opts": {
       "apsControl": "checkbox",
