@@ -156,15 +156,14 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		this.setEnabled(this.getDEnabled());
 		
 		//make sure of showing formerly selected items when afterUpdate gets triggered from another context
-		var t = this.getSelectedKeys();
-	    if (this.getSelectedKeys().length === 0) {
-		  var selectedKeys = this.getProperty('DSelectedKey');
-		  var keys = selectedKeys.split(",");
-		  //avoid allways setting unassigned as preselected key
-	      if(keys[0] !== "" && keys !== undefined){
-			  this.setSelectedKeys(keys);  
-	      }
+//		var t = this.getSelectedKeys();
+		var selectedKeys = this.getProperty('DSelectedKey');
+		var keys = selectedKeys.split(",");
+		//avoid allways setting unassigned as preselected key
+	    if(keys[0] === "" || keys === undefined){
+	    	keys = null;
 	    }
+		this.setSelectedKeys(keys);
 		
 		var that = this;
 		
