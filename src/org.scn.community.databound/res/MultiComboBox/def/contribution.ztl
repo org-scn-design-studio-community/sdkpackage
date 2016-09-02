@@ -36,6 +36,7 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 	String clearSelection () {*
 		this.DSelectedKey = "";
 		this.DSelectedText = "";
+		this.DSelectedKeyBexReady = "";
 	*}
 	/** returns the selected key 
     <example>
