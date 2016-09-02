@@ -3385,7 +3385,8 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 	</example>
 	*/
 	String clearSelection () {*
-		this.DSelectedKey = "";	
+		this.DSelectedKey = "";
+		this.DSelectedText = "";
 	*}
 	/** returns the selected key 
     <example>
