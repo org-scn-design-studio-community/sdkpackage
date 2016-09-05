@@ -71,8 +71,12 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 //				  ]  
 //				};  
 		this._oModel = new sap.ui.model.json.JSONModel();
+		//check https://scn.sap.com/thread/3784288 or https://github.com/SAP/openui5/issues/927
+		this._oModel.setSizeLimit(500);
+		
 		sap.ui.getCore().setModel(this._oModel);
 		this.setModel(this._oModel);
+		
 		
 		this.bindProperty("tooltip", "/tooltip");
 		this.bindProperty("editable", "/editable");
