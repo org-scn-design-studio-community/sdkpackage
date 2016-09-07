@@ -35,6 +35,15 @@
 
 	</property>
 	<property
+		id="sandbox"
+		type="String"
+		title="Sandbox Attribute Values"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="skipport"
 		type="boolean"
 		title="Skip port in domain"
@@ -52,21 +61,10 @@
 		visible="true">
 
 	</property>
-	
 	<property
 		id="usesandbox"
 		type="boolean"
-		title="Use Sandbox Attributes"
-		group="Display"
-		bindable="true"
-		visible="true">
-
-	</property>
-	
-	<property
-		id="sandbox"
-		type="String"
-		title="Sandbox Attributes"
+		title="Use Sandbox Attribute"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -84,9 +82,10 @@
 		
 		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
 		<defaultValue property="explicitlySetDomain"><![CDATA[false]]></defaultValue>
+		<defaultValue property="sandbox"><![CDATA[]]></defaultValue>
 		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
-		<defaultValue property="usesandbox">false</defaultValue>
+		<defaultValue property="usesandbox"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 

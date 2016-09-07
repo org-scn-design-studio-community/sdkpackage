@@ -5194,6 +5194,20 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 	*}
 
 	/**
+	 * Sets Sandbox Attribute Values Property
+	 */	
+	void setSandbox( /**Sandbox Attribute Values*/ String sandbox){*
+		this.sandbox = sandbox;
+	*}
+
+	/**
+	 * Gets Sandbox Attribute Values Property
+	 */	
+	String getSandbox() {*
+		return this.sandbox;
+	*}
+
+	/**
 	 * Sets Skip port in domain Property
 	 */	
 	void setSkipport( /**Skip port in domain*/ boolean skipport){*
@@ -5219,6 +5233,20 @@ class org.scn.community.basics.EmbeddedFrame extends org.scn.community.shared.Co
 	 */	
 	String getUrl() {*
 		return this.url;
+	*}
+
+	/**
+	 * Sets Use Sandbox Attribute Property
+	 */	
+	void setUsesandbox( /**Use Sandbox Attribute*/ boolean usesandbox){*
+		this.usesandbox = usesandbox;
+	*}
+
+	/**
+	 * Gets Use Sandbox Attribute Property
+	 */	
+	boolean isUsesandbox() {*
+		return this.usesandbox;
 	*}
 
 

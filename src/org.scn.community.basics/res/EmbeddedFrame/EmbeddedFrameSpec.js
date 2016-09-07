@@ -47,37 +47,37 @@ function() {
     "value": "0",
     "visible": true
   },
-  "usesandbox": {
-	  "type" : "boolean",
-	  "value" : "false",
-	  "visible": true,
-	  "opts": {
-		    "apsControl": "checkbox",
-		    "cat": "Display",
-		    "desc": "Use Sandbox Attribute",
-		    "noAps": false,
-		    "noZtl": false,
-		    "tooltip": "Use Sandbox Attribute",
-		    "ztlFunction": "",
-		    "ztlType": "boolean"
-		  }
-	},
-	"sandbox" : {
-		"type" : "String",
-		"value" : "",
-		"visible": true,
-		"opts" : {
-			"ztlType": "String",
-			"ztlFunction": "",
-			"desc" : "Sandbox Attribute Values",
-			"cat" : "Display",
-			"tooltip" : "Sandbox Attribute Values",
-			"apsControl" : "text",
-			"noAps":false,
-			"noZtl":false
-		}
-	},
-	"skipport": {
+  "explicitlySetDomain": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Explicitly set document domain",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Explicitly set document domain",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "false",
+    "visible": true
+  },
+  "sandbox": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Sandbox Attribute Values",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Sandbox Attribute Values",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
+  "skipport": {
     "opts": {
       "apsControl": "checkbox",
       "cat": "Display",
@@ -107,21 +107,21 @@ function() {
     "value": "",
     "visible": true
   },
-	"explicitlySetDomain": {
-		  "type" : "boolean",
-		  "value" : "false",
-		  "visible": true,
-		  "opts": {
-			    "apsControl": "checkbox",
-			    "cat": "Display",
-			    "desc": "Explicitly set document domain",
-			    "noAps": false,
-			    "noZtl": false,
-			    "tooltip": "Explicitly set document domain",
-			    "ztlFunction": "",
-			    "ztlType": "boolean"
-			  }
-		}
+  "usesandbox": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Use Sandbox Attribute",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Use Sandbox Attribute",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "true",
+    "visible": true
+  }
 };
 
 	spec.specInclude = 
