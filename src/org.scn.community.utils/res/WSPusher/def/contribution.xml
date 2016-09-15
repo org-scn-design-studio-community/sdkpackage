@@ -51,8 +51,22 @@
 		type="String"
 		visible="false"/>
 	<property
+		id="sendPcpFields"
+		title="PCP Fields from client"
+		tooltip=""
+		type="Array"
+		visible="false">
+		<property id="fields" type="String" title="PCP fields"/>
+	</property>
+	<property
 		id="close"
 		title="Message close trigger"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="open"
+		title="Open WebSocket"
 		tooltip=""
 		type="String"
 		visible="false"/>

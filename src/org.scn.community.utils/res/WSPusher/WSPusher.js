@@ -43,11 +43,13 @@ WSPusher = {
         	"server": {type: "string"},
         	"msg": {type: "string"},
         	"push": {type: "string"},
+        	"open": {type: "string"},
         	"send": {type: "string"},
         	"close": {type: "string"},
         	"protocol": {type: "array"},
         	"sappcp": {type: "boolean"},
-        	"pcpFields": {type: "string"}
+        	"pcpFields": {type: "string"},
+        	"sendPcpFields": {type: "array"}
         }
 	},
 
@@ -64,70 +66,86 @@ WSPusher = {
 			//switch ws and wss for secure connections
 			var url = that.getServer();
 			var protocol = that.getProtocol() || [];
+			if(this.getOpen() !== ""){
+				if(this.getSappcp()){
+					that.connection = new sap.ui.core.ws.SapPcpWebSocket(url, protocol);
+					// When the connection is open, send some data to the server
+					that.connection.attachOpen(this.onOpen);
+					//When the app closes
+					that.connection.attachClose(this.onClose);
+					// Log errors
+					that.connection.attachError(this.onError);
+					// Log messages from the server				
+					that.connection.attachMessage(this.onMessage);
+					
+//					that.connection = that.connection._oWs;
+				}else{
+					that.connection = new WebSocket(url, protocol);
+					// When the connection is open, send some data to the server
+					that.connection.onopen = function(event){
+						that.onOpen(event);
+					};
+					//When the app closes
+					that.connection.onclose = function(event){
+						that.onClose(event);
+					};
+					// Log errors
+					that.connection.onerror = function(err){
+						that.onError(err);
+					};
+					// Log messages from the server
+					that.connection.onmessage = function(result){
+						that.onMessage(result);
+					};
+				}
+				this.setOpen("");
+				this.fireDesignStudioPropertiesChanged(["open"]);
+			}
+		}else{
+			var state = -1;
 			if(this.getSappcp()){
-				that.connection = new sap.ui.core.ws.SapPcpWebSocket(url, protocol);
-				// When the connection is open, send some data to the server
-				that.connection.attachOpen(this.onOpen);
-				//When the app closes
-				that.connection.attachClose(this.onClose);
-				// Log errors
-				that.connection.attachError(this.onError);
-				// Log messages from the server				
-				that.connection.attachMessage(this.onMessage);
-				
-//				that.connection = that.connection._oWs;
+				state = that.connection._oWs.readyState;
 			}else{
-				that.connection = new WebSocket(url, protocol);
-				// When the connection is open, send some data to the server
-				that.connection.onopen = function(event){
-					that.onOpen(event);
-				};
-				//When the app closes
-				that.connection.onclose = function(event){
-					that.onClose(event);
-				};
-				// Log errors
-				that.connection.onerror = function(err){
-					that.onError(err);
-				};
-				// Log messages from the server
-				that.connection.onmessage = function(result){
-					that.onMessage(result);
-				};
+				state = that.connection.readyState;
 			}
-		}
-		
-		var state = -1;
-		if(this.getSappcp()){
-			state = that.connection._oWs.readyState;
-		}else{
-			state = that.connection.readyState;
-		}
-		var sendTrigger = this.getSend();
-		var closeTrigger = this.getClose();
-		//readyState -> 0:not open yet | 1:open | 2:about to close | 3:closed
-		if(state === 0){
-			if(window.console)console.log("WS not open yet");
-		}
-		else if(state === 1){
-			if(sendTrigger !== ""){
-				that.connection.send(that.getMsg());
-				//Reset Send trigger
-				that.setSend("");
-				that.fireDesignStudioPropertiesChanged(["send"]);	
+			var sendTrigger = this.getSend();
+			var closeTrigger = this.getClose();
+			//readyState -> 0:not open yet | 1:open | 2:about to close | 3:closed
+			if(state === 0){
+				if(window.console)console.log("WS not open yet");
 			}
-			if(closeTrigger !== ""){
-				that.connection.close();
-				//Reset Close trigger
-				that.setClose("");
-				that.fireDesignStudioPropertiesChanged(["close"]);
-			}	
-		}else if(state === 2){
-			if(window.console)console.log("WS closing");
-		}else if(state === 3){
-			if(window.console)console.log("WS closed");
-		}else{
-			if(window.console)console.log("Unkown state!");
+			else if(state === 1){
+				if(sendTrigger !== ""){
+					var pcpFields = that.getSendPcpFields();
+					var payload = {};
+					if(pcpFields.length > 0){
+						for(var i=0;i<pcpFields.length;i++){
+							var values = pcpFields[i].split(":");
+							payload[values[0]] = values[1];
+						}
+					}
+					if(that.getSappcp()){
+						that.connection.send(that.getMsg(),payload);	
+					}else{
+						that.connection.send(that.getMsg());
+					}
+					//Reset Send trigger
+					that.setSend("");
+					that.fireDesignStudioPropertiesChanged(["send"]);	
+				}
+				if(closeTrigger !== ""){
+					that.connection.close();
+					//Reset Close trigger
+					that.setClose("");
+					that.fireDesignStudioPropertiesChanged(["close"]);
+				}	
+			}else if(state === 2){
+				if(window.console)console.log("WS closing");
+			}else if(state === 3){
+				if(window.console)console.log("WS closed");
+			}else{
+				if(window.console)console.log("Unkown state!");
+			}
 		}
 	},
 	onOpen: function(){

@@ -54,13 +54,20 @@ Replacer = function () {
 				var lastMappingEntry = that._mappingTable[that._mappingTable.length-1];
 				var lastRenderedElement = lastMappingEntry.item1;
 				var lastElementSelector = lastMappingEntry.selector;
+				var referenceSelector = lastMappingEntry.referenceSelector;
 				
 				if(lastElementSelector !== undefined){
 					//Select html element by its id given by the dashboard designer
 //					var lastElement = $("#"+that._component).find(lastElementSelector+':contains('+lastRenderedElement+')');
 					var pattern = new RegExp(lastRenderedElement);
 					var valueFound = false;
-					var lastElement = $("#"+that._component).find(lastElementSelector);
+					var lastElement = "";
+					if(referenceSelector !== undefined){
+						lastElement = $("#"+that._component).find(referenceSelector);	
+					}else{
+						lastElement = $("#"+that._component).find(lastElementSelector);
+					}
+					
 					for(var i=0;i < lastElement.length;i++){
 						if (pattern.test(lastElement[i].innerText)) {
 							lastElement[0] = lastElement[i];
@@ -101,19 +108,67 @@ Replacer = function () {
 			var item2 = mappingEntry.item2;
 			//retrieve individual selector to work on given HTML sub-tree!
 			var selector = mappingEntry.selector;
-			//find text to be replace by given text to match
-			//allow regex for text matches
-			var pattern = new RegExp(item1);
-			if(selector !== undefined){
-				$("#"+that._component).find(selector).each(
+			//retrieve individual table header reference to work on given HTML sub-tree!
+			//That way we can avoid that the replacement on scrollable components produces
+			//wrong results when working with index based css selectors
+			var referenceSelector = mappingEntry.referenceSelector;
+			var referenceText = mappingEntry.referenceItem;
+			var indexOfReference = -1;
+			if(referenceSelector !== undefined && selector.indexOf("%INDEX%") !== -1){
+				//find text to be replace by given text to match
+				//allow regex for text matches
+				var pattern = new RegExp(referenceText,"g");
+				var t = $("#"+that._component).find(referenceSelector);
+				var referenceFound = false;
+				$("#"+that._component).find(referenceSelector).each(
 						function(){
-							 if (pattern.test($(this).text())) {
-								 $(this).text(item2);	
+							var text = $(this).text().replace(/\s/g, '');
+							 if (pattern.test(text)) {
+								 //css index starts 1!
+								 indexOfReference = $(this).index()+1;
+								 selector = selector.replace("%INDEX%", indexOfReference);
+								 referenceFound = true;
+								 return false;
 							 }
-						});	
+						}
+				);
+				if(referenceFound){
+					//find text to be replace by given text to match
+					//allow regex for text matches
+					var pattern = new RegExp(item1,"g");
+					if(selector !== undefined){
+						$("#"+that._component).find(selector).each(
+								function(){
+									var text = $(this).text();
+									 if (pattern.test(text)) {
+										 $(this).text(item2);
+										 $(this).prop("title",text);
+									 }
+								}
+						);	
+					}else{
+						alert("The selector cannot be left empty!");
+					}
+				}
 			}else{
-				alert("The selector cannot be left empty!");
+				//find text to be replace by given text to match
+				//allow regex for text matches
+				var pattern = new RegExp(item1,"g");
+				if(selector !== undefined){
+					$("#"+that._component).find(selector).each(
+							function(){
+								var text = $(this).text();
+								 if (pattern.test(text)) {
+									 $(this).text(item2);
+									 $(this).prop("title",text);
+								 }
+							}
+					);	
+				}else{
+					alert("The selector cannot be left empty!");
+				}
 			}
+
 		}
 	};
 	
