@@ -460,11 +460,11 @@ KpiTile = {
 			loopObject = new sap.m[name](jsonDef);
 		} else if(sap.ui.core[name] != undefined) {
 			loopObject = new sap.ui.core[name](jsonDef);
-		} else if(sap.suite.ui.microchart[name] != undefined) {
+		} else if(sap.suite.ui.microchart !== undefined && sap.suite.ui.microchart[name] != undefined) {
 			loopObject = new sap.suite.ui.microchart[name](jsonDef);
 		} else if(sap.suite.ui.commons[name] != undefined) {
 			loopObject = new sap.suite.ui.commons[name](jsonDef);
-		} 
+		}
 
 		return loopObject;
 	},

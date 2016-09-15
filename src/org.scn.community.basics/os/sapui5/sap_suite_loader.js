@@ -15,6 +15,13 @@ if(oCfgData.libs.indexOf("sap.suite.ui.commons") == -1) {
 	oCfgData.libs = oCfgData.libs + ",sap.suite.ui.commons";
 }
 
+if(oCfgData.libs.indexOf("sap.suite.ui.microchart") == -1) {
+//	jQuery.sap.registerModulePath("sap.suite.ui.microchart", sap.zen.createStaticSdkMimeUrl("org.scn.community.basics","os") + "/sapui5/suite");
+
+	oCore.loadLibrary("sap.suite.ui.microchart");
+	oCfgData.libs = oCfgData.libs + ",sap.suite.ui.microchart";
+}
+
 if(sap.suite.ui.commons.HarveyBallMicroChartItem == undefined) {
 	/*!
 	 * SAP UI development toolkit for HTML5 (SAPUI5) (c) Copyright 2009-2013 SAP AG. All rights reserved
