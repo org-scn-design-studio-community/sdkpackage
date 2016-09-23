@@ -3416,6 +3416,14 @@ __n__}
 	</property>
 
 	<property
+		id="DTooltip"
+		type="String"
+		title="Tooltip"
+		group="Display"
+		visible="true">
+	</property>
+
+	<property
 		id="onSelectionFinished"
 		type="ScriptText"
 		title="Event for On Selection Finished"
@@ -3441,6 +3449,7 @@ __n__}
 		<defaultValue property="DSelectAllText">&lt;select all&gt;</defaultValue>
 		<defaultValue property="DSelectNoText">&lt;clear&gt;</defaultValue>
 		<defaultValue property="DEnabled">true</defaultValue>
+		<defaultValue property="DTooltip">Use keys to navigate and interact</defaultValue>
 	</initialization>
 
 </component>
