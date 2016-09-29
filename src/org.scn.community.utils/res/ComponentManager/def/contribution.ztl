@@ -897,6 +897,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Repeatable Kpi Tile 2.0 component*/
+	org.scn.community.databound.KpiTile returnAsScnKpiTile (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
 
