@@ -1332,6 +1332,8 @@
 			<property id="selector" type="String" title="jQuery Selector"/>
 			<property id="item1" type="String" title="Match"/>
 			<property id="item2" type="String" title="Replace"/>
+			<property id="referenceSelector" type="String" title="Header Reference"/>
+			<property id="referenceItem" type="String" title="Reference Text"/>
 		</property>
 	</property>
 	
@@ -1395,11 +1397,20 @@
 	<requireJs modes="commons m">res/WSPusher/WSPusher</requireJs>
 	
 	<property
+		id="sappcp"
+		title="Use SAP PCP"
+		tooltip="Use SAP PCP websocket implementation"
+		type="boolean"
+		visible="true"/>
+	<property
 		id="server"
 		title="Server URL"
 		tooltip=""
 		type="String"
 		visible="true"/>
+	<property id="protocol" type="Array" title="WebSocket Protocol" group="Display" visible="true">
+		<property id="entries" type="String" title="Protocol entries"/>
+	</property>
 	<property
 		id="msg"
 		title="Message for server"
@@ -1413,11 +1424,49 @@
 		type="String"
 		visible="false"/>
 	<property
+		id="pcpFields"
+		title="PCP Fields from server"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
 		id="send"
 		title="Message send trigger"
 		tooltip=""
 		type="String"
 		visible="false"/>
+	<property
+		id="sendPcpFields"
+		title="PCP Fields from client"
+		tooltip=""
+		type="Array"
+		visible="false">
+		<property id="fields" type="String" title="PCP fields"/>
+	</property>
+	<property
+		id="close"
+		title="Message close trigger"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="open"
+		title="Open WebSocket"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="onChannelOpen"
+		type="ScriptText"
+		title="On Push Channel Open"
+		group="Events"
+		visible="true"/>
+	<property
+		id="onChannelClosed"
+		type="ScriptText"
+		title="On Push Channel Closed"
+		group="Events"
+		visible="true"/>
 	<property
 		id="onPushReceived"
 		type="ScriptText"
@@ -1439,6 +1488,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="server">ws://echo.websocket.org/</defaultValue>
+		<defaultValue property="sappcp">false</defaultValue>
 	</initialization>
 
 </component>

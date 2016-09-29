@@ -5187,11 +5187,11 @@
 		group="Display"
 		bindable="true"
 		visible="true">
-
+		<option name="kind" value="CSS"/>
 	</property>
 	<property
 		id="feedUrl"
-		type="Url"
+		type="String"
 		title="RSS Feed URL"
 		group="Display"
 		bindable="true"

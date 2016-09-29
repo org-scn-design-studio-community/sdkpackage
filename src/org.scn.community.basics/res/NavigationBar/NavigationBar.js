@@ -129,20 +129,21 @@ NavigationBar = {
 			// distribute content
 			for (var i = 0; i < lElementsToRenderArray.length; i++) {
 				var element = lElementsToRenderArray[i];
+				var key = that.getId() + "_" + element.key;
 				
-				if(that._oElements[that.getId() + "_" + element.key]) {
-					that._oItems[that.getId() + "_" + element.key].setEnabled(element.enabled);
-					that._oItems[that.getId() + "_" + element.key].setVisible(element.visible);
+				if(that._oElements[key]) {
+					that._oItems[key].setEnabled(element.enabled);
+					that._oItems[key].setVisible(element.visible);
 					continue;
 				}
 				
 				var Item = new sap.ui.ux3.NavigationItem(
-						that.getId() + "_" + element.key, {key: element.key, text: element.text, enabled: element.enabled, visible: element.visible});
+						key, {key: element.key, text: element.text, enabled: element.enabled, visible: element.visible});
 				Item._owner = that;
 				Item._dsKey = element.key;
 				
-				that._oElements[that.getId() + "_" + element.key] = element.key;
-				that._oItems[that.getId() + "_" + element.key] = Item;
+				that._oElements[key] = element.key;
+				that._oItems[key] = Item;
 				
 				that._oNavBar.addItem(Item);
 			}
@@ -189,6 +190,24 @@ NavigationBar = {
 		that._oNavBar.addItem(oItem3);
 		that._oNavBar.addItem(oItem4);
 	},
+	onAfterRendering: function(){
+		var that = this;
+		
+		var items = that._oNavBar.getItems();
+		for(var i=0;i<items.length;i++){
+			var item = items[i];
+			var key = that.getId() + "_" + item.getProperty("key");
+			if(key === "invisible_dummy_select")continue;
+			
+			var enabled = item.getProperty("enabled");
+			
+			if(enabled){
+				$("#"+key).removeClass("scn-pack-NavigationBarItemDisabled");
+			}else{
+				$("#"+key).addClass("scn-pack-NavigationBarItemDisabled");
+			}
+		}
+	}
 	/* COMPONENT SPECIFIC CODE - END METHODS*/
 };
 

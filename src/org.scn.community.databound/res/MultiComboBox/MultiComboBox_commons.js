@@ -48,7 +48,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 		              "DSelectNoText": {type: "string"},
 		              "DItemList": {type: "string"},
 		              "DPropFileUrl": {type: "string"},
-		              "DEnabled": {type: "boolean"}
+		              "DEnabled": {type: "boolean"},
+		              "DTooltip": {type: "string"}
 		        }
 			},
 		
@@ -86,6 +87,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				var oItemTemplate = new sap.ui.core.Item();
 				oItemTemplate.bindProperty("text", "text");
 				oItemTemplate.bindProperty("key", "key");
+				oItemTemplate.bindProperty("tooltip", "text");
 				this.bindItems("/items", oItemTemplate); //That doesn't work according to https://github.com/SAP/openui5/issues/121
 				//workaround for bindItems according to https://github.com/SAP/openui5/issues/121
 		//		this.bindAggregation('items', '/items', oItemTemplate);
@@ -211,7 +213,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 								
 								list[i].key = key.replace(replacer,'');
 								//convert Collection object key "label" to match the data model ("text")
-								list[i].text = label.replace(replacer,''); 
+								list[i].text = label.replace(replacer,'');
 								this._content.push(list[i]);
 							}
 						}catch (err){
@@ -226,21 +228,29 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				if(this.getDSorting() === "By Key"){
 					if(this.getDSortingDirection() === "Ascending"){
 						this._content.sort(function(a,b){
-							return a.key > b.key;
+							if(that.isInteger(a.key)){
+								return that.compareIntegers(a.key, b.key);
+							}else{
+								return that.compareText(a.key, b.key);
+							}
 						});
 					}else{
 						this._content.sort(function(a,b){
-							return a.key < b.key;
+							if(that.isInteger(a.key)){
+								return that.compareIntegers(b.key, a.key);
+							}else{
+								return that.compareText(b.key, a.key);
+							}
 						});
 					}
 				}else{
 					if(this.getDSortingDirection() === "Ascending"){
 						this._content.sort(function(a,b){
-							return a.text > b.text;
+							return that.compareText(a.text, b.text);
 						});
 					}else{
 						this._content.sort(function(a,b){
-							return a.text < b.text;
+							return that.compareText(b.text, a.text);
 						});
 					}		
 				}
@@ -249,7 +259,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				// define model
 				this._oModel.setData({
 					items: this._content,
-					editable: true
+					editable: true,
+					tooltip: this.getDTooltip()
 				});
 			},
 			replaceAll: function(string, find, replace) {
@@ -257,6 +268,31 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 			},
 			escapeRegExp: function(string) {
 			    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+			},
+			isInteger: function(value){
+				var regex = /^\d+|"\d+"$/;
+				return regex.test(value);
+			},
+			compareIntegers: function(value1, value2) {  
+				if ((value1 == null || value1 == undefined || value1 == '') &&  
+				(value2 == null || value2 == undefined || value2 == '')) return 0;  
+				if ((value1 == null || value1 == undefined || value1 == '')) return -1;  
+				if ((value2 == null || value2 == undefined || value2 == '')) return 1;  
+				if(parseInt(value1) < parseInt(value2)) return -1;  
+				if(parseInt(value1) == parseInt(value2)) return 0;  
+				if(parseInt(value1) > parseInt(value2)) return 1;              
+			},
+			/**
+			 * Compare simple text with respect to language
+			 * @param value1
+			 * @param value2
+			 * @returns
+			 */
+			compareText: function(value1, value2){
+				//make sure no uppercase characte mix disturbs the sorting
+				value1 = value1.toLowerCase();
+				value2 = value2.toLowerCase();
+			    return value1.localeCompare(value2);
 			},
 			getBexStringFromSelection: function(items){
 				var keys = [];
@@ -273,20 +309,20 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				return keysBexReady;
 			}/*,
 			onAfterRendering : function() {
-				  if (sap.m.MultiComboBox.prototype.onAfterRendering) {
-				    sap.m.MultiComboBox.prototype.onAfterRendering.apply(this);
-				  }
+//				  if (sap.m.MultiComboBox.prototype.onAfterRendering) {
+//				    sap.m.MultiComboBox.prototype.onAfterRendering.apply(this);
+//				  }
 				  var model = this.getModel();
 				  if (model) {
-				    var selectedKeys = model.getProperty('/selected');
-				    if (selectedKeys) {
-				      this.setSelectedKeys(selectedKeys);
-				    } else {
-				      this.setSelectedKeys([]);  
+				    var items = model.getProperty('/items');
+				    if (items) {
+				    	for(var i=0;i<items.length;i++){
+				    		var tmp = items[i];
+				    	}
 				    }
 				  } else {
-				    this.setSelectedKeys([]);
+
 				  }
-				}*/
+			}*/
 	});
 });
