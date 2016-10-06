@@ -1,0 +1,12 @@
+{
+	"title": "Repeatable Kpi Tile 2.0",
+	"description": "Repeatable Kpi Tile",
+	"icon": "KpiTile.png",
+	"topics": 
+	[
+		{
+			"title" : "Repeatable Kpi Tile",
+			"content" : "Repeatable Kpi Tile - Custom Tile Component based on UI5 Specification. Allows you to build own Tiles which can be data bound."
+		}
+	]
+}

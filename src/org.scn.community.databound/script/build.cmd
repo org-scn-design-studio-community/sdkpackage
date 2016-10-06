@@ -23,6 +23,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\FioriBusyDialog\def\contribution.xml ^
 ..\res\HexBin\def\contribution.xml ^
 ..\res\Hierarchy\def\contribution.xml ^
+..\res\KpiTile\def\contribution.xml ^
 ..\res\LeaderBoard\def\contribution.xml ^
 ..\res\LeafletMap\def\contribution.xml ^
 ..\res\LocationIntel\def\contribution.xml ^
@@ -73,6 +74,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\FioriLink\def\contribution.ztl ^
 ..\res\FioriBusyDialog\def\contribution.ztl ^
 ..\res\HexBin\def\contribution.ztl ^
+..\res\KpiTile\def\contribution.ztl ^
 ..\res\LeaderBoard\def\contribution.ztl ^
 ..\res\LeafletMap\def\contribution.ztl ^
 ..\res\LocationIntel\def\contribution.ztl ^
