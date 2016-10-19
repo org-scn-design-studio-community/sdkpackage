@@ -195,6 +195,25 @@ KpiTile = {
 			var prop = spec.properties[prIndex];
 			prop.key = prop.key.replace(spec.key + "/", "");
 			
+			if(prop.dimension != undefined && prop.dimension != "") {
+				var realValue = prop.dimension;
+				
+				realValue = that.findRowContent(that, realValue, rowId);
+
+				if(prop.cast) {
+					if(prop.cast == "integer") {
+						prop.value = "" + parseInt(realValue);
+					} else if(prop.cast == "double") {
+						prop.value = "" + parseFloat(realValue);
+					} else {
+						prop.value = realValue;	
+					}
+				} else {
+					prop.value = realValue;	
+				}
+				
+			}
+
 			if(prop.key.indexOf("/") > -1) {
 				var targetProperty = finalProperties;
 				while (prop.key.indexOf("/") > -1) {
@@ -225,12 +244,6 @@ KpiTile = {
 				prop.value = "";
 			}
 
-			if(prop.dimension != undefined && prop.dimension != "") {
-				var realValue = prop.dimension;
-				
-				realValue = that.findRowContent(that, realValue, rowId);
-				prop.value = realValue;
-			}
 			if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0 || prop.value.indexOf("{") == 0) {
 				var realValue = prop.value;
 				if(realValue.indexOf("/") == 0) {

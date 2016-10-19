@@ -89,9 +89,29 @@ function() {
           "type": "int"
         },
         "property": {
+          "cast": {
+            "apsControl": "combobox",
+            "desc": "Final Property Type (Cast)",
+            "options": [
+              {
+                "key": "string",
+                "text": "Default - String"
+              },
+              {
+                "key": "integer",
+                "text": "Cast to Integer"
+              },
+              {
+                "key": "double",
+                "text": "Cast to Double"
+              }
+            ],
+            "targetValue": "string",
+            "type": "String"
+          },
           "dimension": {
             "apsControl": "textfield",
-            "desc": "Linked Dimension Key",
+            "desc": "Linked Dimension or Measure Key",
             "type": "String"
           },
           "key": {
@@ -103,7 +123,7 @@ function() {
             "mode": "ztl",
             "type": "String"
           },
-          "sequence": "parentKey,key,dimension,value",
+          "sequence": "parentKey,key,dimension,cast,value",
           "type": "Array",
           "value": {
             "apsControl": "textarea",
@@ -139,7 +159,7 @@ function() {
       "ztlType": "DoubleArray"
     },
     "type": "String",
-    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"HEADER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"10\",\"left\":\"10\",\"width\":\"200\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"TITLE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"40\",\"left\":\"10\",\"width\":\"100%\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"VALUE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"60\",\"left\":\"-1\",\"right\":\"10\",\"width\":\"200\",\"height\":\"40\"},{\"parentKey\":\"ROOT\",\"key\":\"FOOTER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"-1\",\"bottom\":\"10\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Department\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Header\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/text\",\"leaf\":true,\"value\":\"Title\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Title\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Value\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/textAlign\",\"leaf\":true,\"value\":\"sap.ui.core.TextAlign.Right\"},{\"parentKey\":\"FOOTER\",\"key\":\"FOOTER/text\",\"leaf\":true,\"value\":\"Footer\"},{\"parentKey\":\"ROOT\",\"key\":\"CHART\",\"leaf\":false,\"specification\":\"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>\n       <firstXLabel>\n         <MicroAreaChartLabel label='June 1' color='Good'/>\n       <\/firstXLabel>\n       <lastXLabel>\n         <MicroAreaChartLabel label='June 30' color='Critical'/>\n       <\/lastXLabel>\n       <firstYLabel>\n         <MicroAreaChartLabel label='0M' color='Good'/>\n       <\/firstYLabel>\n       <lastYLabel>\n         <MicroAreaChartLabel label='80M' color='Critical'/>\n       <\/lastYLabel>\n       <chart>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='20' />\n            <MicroAreaChartPoint x='100' y='80' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/chart>\n       <target>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='30' />\n            <MicroAreaChartPoint x='60' y='40' />\n            <MicroAreaChartPoint x='100' y='90' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/target>\n\n       <minThreshold>\n         <MicroAreaChartItem color='Error'>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='30' />\n            <MicroAreaChartPoint x='100' y='70' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/minThreshold>\n       <\/MicroAreaChart>\",\"componentType\":\"MicroAreaChart\",\"top\":100,\"left\":10,\"right\":10,\"width\":\"auto\",\"height\":80},{\"parentKey\":\"CHART\",\"key\":\"CHART/firstXLabel/MicroAreaChartLabel/label\",\"leaf\":true,\"value\":\"Karol\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y\",\"leaf\":true,\"value\":\"30\",\"dimension\":\"Sales\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y\",\"leaf\":true,\"value\":\"40\"}]",
+    "value": "[{\"parentKey\":\"ROOT\",\"key\":\"HEADER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"10\",\"left\":\"10\",\"width\":\"200\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"TITLE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"40\",\"left\":\"10\",\"width\":\"100%\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"VALUE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"60\",\"left\":\"-1\",\"right\":\"10\",\"width\":\"200\",\"height\":\"40\"},{\"parentKey\":\"ROOT\",\"key\":\"FOOTER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"-1\",\"bottom\":\"10\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Department\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Header\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/text\",\"leaf\":true,\"value\":\"Title\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Title\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Value\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/textAlign\",\"leaf\":true,\"value\":\"sap.ui.core.TextAlign.Right\"},{\"parentKey\":\"FOOTER\",\"key\":\"FOOTER/text\",\"leaf\":true,\"value\":\"Footer\"},{\"parentKey\":\"ROOT\",\"key\":\"CHART\",\"leaf\":false,\"specification\":\"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>\n       <firstXLabel>\n         <MicroAreaChartLabel label='June 1' color='Good'/>\n       <\/firstXLabel>\n       <lastXLabel>\n         <MicroAreaChartLabel label='June 30' color='Critical'/>\n       <\/lastXLabel>\n       <firstYLabel>\n         <MicroAreaChartLabel label='0M' color='Good'/>\n       <\/firstYLabel>\n       <lastYLabel>\n         <MicroAreaChartLabel label='80M' color='Critical'/>\n       <\/lastYLabel>\n       <chart>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='20' />\n            <MicroAreaChartPoint x='100' y='80' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/chart>\n       <target>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='30' />\n            <MicroAreaChartPoint x='60' y='40' />\n            <MicroAreaChartPoint x='100' y='90' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/target>\n\n       <minThreshold>\n         <MicroAreaChartItem color='Error'>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='30' />\n            <MicroAreaChartPoint x='100' y='70' />\n          <\/points>\n         <\/MicroAreaChartItem>\n       <\/minThreshold>\n       <\/MicroAreaChart>\",\"componentType\":\"MicroAreaChart\",\"top\":100,\"left\":10,\"right\":10,\"width\":\"auto\",\"height\":80,\"cast\":\"integer\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/firstXLabel/MicroAreaChartLabel/label\",\"leaf\":true,\"value\":\"Karol\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\",\"cast\":\"integer\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/1/y\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\",\"cast\":\"integer\"}]",
     "visible": true
   },
   "contentHeight": {

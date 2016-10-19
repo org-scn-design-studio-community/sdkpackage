@@ -27,21 +27,22 @@ class org.scn.community.databound.KpiTile extends org.scn.community.shared.Compo
 		return this.columnNumber;
 	*}
 
-	/** Adds an element containing parentKey [String], key [String], dimension [String], value [String] properties.
+	/** Adds an element containing parentKey [String], key [String], dimension [String], cast [String], value [String] properties.
 	 * You need to specify a unique and existing parent element.
 
  	<example>
 	You want to add 2 elements
 	<code>
-	KPITILE.addProperty(parentKey [String], key [String], dimension [String], value [String]);<br>
-	KPITILE.addProperty(parentKey [String], key [String], dimension [String], value [String]);
+	KPITILE.addProperty(parentKey [String], key [String], dimension [String], cast [String], value [String]);<br>
+	KPITILE.addProperty(parentKey [String], key [String], dimension [String], cast [String], value [String]);
 	</code>
 	</example>
 	 */
 	void addProperty (
 			/**Parent Key*/String parentKey, 
 			/**Property Name*/String key, 
-			/**Linked Dimension Key*/String dimension, 
+			/**Linked Dimension or Measure Key*/String dimension, 
+			/**Final Property Type (Cast)*/String cast, 
 			/**Property Value*/String value
 			) {*		
 		
@@ -53,6 +54,7 @@ class org.scn.community.databound.KpiTile extends org.scn.community.shared.Compo
 			parentKey:parentKey, 
 			key:key, 
 			dimension:dimension, 
+			cast:cast, 
 			value:value 
 			};
 	
@@ -910,6 +912,85 @@ class org.scn.community.databound.KpiTile extends org.scn.community.shared.Compo
 		for (var i = 0; i < elementsJson.length ; i++){
 			if (elementsJson[i].key == key) {
 				value = elementsJson[i].dimension;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Cast for Property keys<br/>
+	 */
+	void setPropertyCasts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Cast */ String cast
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].cast = cast;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Cast for Property Key<br/>
+	 */
+	void setPropertyCast (
+			/**/ String key,
+			/**/ String cast
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].cast = cast;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Cast for Property Key<br/>
+	 */
+	String getPropertyCast (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].cast;
 				break;
 			}
 		}

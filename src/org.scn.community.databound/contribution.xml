@@ -2627,7 +2627,7 @@ __n__}
           </points>
          </MicroAreaChartItem>
        </minThreshold>
-       </MicroAreaChart>","componentType":"MicroAreaChart","top":100,"left":10,"right":10,"width":"auto","height":80},{"parentKey":"CHART","key":"CHART/firstXLabel/MicroAreaChartLabel/label","leaf":true,"value":"Karol"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y","leaf":true,"value":"30","dimension":"Sales"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y","leaf":true,"value":"40"}]]]></defaultValue>
+       </MicroAreaChart>","componentType":"MicroAreaChart","top":100,"left":10,"right":10,"width":"auto","height":80,"cast":"integer"},{"parentKey":"CHART","key":"CHART/firstXLabel/MicroAreaChartLabel/label","leaf":true,"value":"Karol"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y","leaf":true,"value":"","dimension":"Sales","cast":"integer"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/1/y","leaf":true,"value":"","dimension":"Sales","cast":"integer"}]]]></defaultValue>
 		<defaultValue property="contentHeight"><![CDATA[260]]></defaultValue>
 		<defaultValue property="contentResponsive"><![CDATA[false]]></defaultValue>
 		<defaultValue property="data"><![CDATA[]]></defaultValue>

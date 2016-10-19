@@ -212,7 +212,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
 					} else if(parameterObject.apsControl == "combobox" && parameterObject.options != undefined) {
-						var txtElementValue = new sap.ui.commons.ComboBox({width: "90%"});
+						txtElementValue = new sap.ui.commons.ComboBox({width: "90%"});
 						
 						for(var i=0;i<parameterObject.options.length;i++){
 							var option = parameterObject.options[i];
@@ -231,7 +231,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 
 									var rootElement = that.getElement(that._listBuilder.getSelectedKey());
 									rootElement[key] = value;
-									
+
 									that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
 							}, that);
 					} else if(parameterObject.type == "float" || parameterObject.type == "int") {
@@ -366,7 +366,8 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 		
 		var txtItemKey = new sap.ui.commons.TextField({value : this._currentItemConfig.key, width: "300px"});
 		txtItemKey.addStyleClass("org-scn-ApsInputArray");
-		
+	
+		try {
 		txtItemKey.attachChange(
 			function(oControlEvent){
 				var value = oControlEvent.getParameter("newValue");
@@ -427,19 +428,19 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 						that._currentItemConfig[key] = value;		
 				}, that);
 			} else if(parameterObject.apsControl == "combobox" && parameterObject.options != undefined) {
-				var txtElementValue = new sap.ui.commons.ComboBox({width: "90%"});
+				txtItemValue = new sap.ui.commons.ComboBox({width: "90%"});
 
 				for(var i=0;i<parameterObject.options.length;i++){
 					var option = parameterObject.options[i];
-					txtElementValue.addItem(new sap.ui.core.ListItem({
+					txtItemValue.addItem(new sap.ui.core.ListItem({
 						key : option.key,
 						text : option.key + " | " + option.text
 					}));
 				}
 
-				txtElementValue.setSelectedKey(targetValue);
+				txtItemValue.setSelectedKey(targetValue);
 
-				txtElementValue.attachChange(
+				txtItemValue.attachChange(
 						function(oControlEvent){
 							var value = oControlEvent.getSource().getSelectedKey();
 							var key = oControlEvent.getSource()._key;
@@ -447,7 +448,7 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 							var rootElement = that.getElement(that._listBuilder.getSelectedKey());
 							rootElement[key] = value;
 
-							that.updateElement(that._listBuilder.getSelectedKey(),rootElement);
+							that._currentItemConfig[key] = value;
 					}, that);
 			} else if(parameterObject.type == "float" || parameterObject.type == "int") {
 				txtItemValue = new sap.ui.commons.TextField ({value : targetValue, width: "200px", textAlign: "Right"});
@@ -485,6 +486,10 @@ sap.ui.commons.layout.VerticalLayout.extend("org.scn.community.aps.ArrayList", {
 			
 			itemDetailLayout.addContent(txtItemValue);
 			
+		}
+		
+		} catch (e) {
+			alert(e);
 		}
 
 		var detailButtons = new sap.ui.commons.layout.HorizontalLayout({ });
