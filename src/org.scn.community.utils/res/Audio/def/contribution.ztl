@@ -1,0 +1,29 @@
+
+/**
+ * 
+ * Play some nice sounds from Design Studio with given audio files
+ * 
+ * This component uses howler.js under MIT license
+ * https://github.com/goldfire/howler.js
+ * 
+ * Authors: Martin Pankraz, Scn Community Contributors
+ */
+class org.scn.community.utils.Audio extends org.scn.community.shared.Component {  
+	/**
+	 * Play the sound
+	 */
+	void play(){*
+		this.play = calcTimestamp();
+	*}
+	/**
+	 * Stop the sound
+	 */
+	void stop(){*
+		this.stop = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}

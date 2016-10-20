@@ -6,6 +6,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.xml.txt ^
 ..\templates\contribution.xml.groups.txt ^
 ..\res\Array\def\contribution.xml ^
+..\res\Audio\def\contribution.xml ^
 ..\res\ClientInformation\def\contribution.xml ^
 ..\res\Collection\def\contribution.xml ^
 ..\res\DataIterator\def\contribution.xml ^
@@ -34,6 +35,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\templates\contribution.ztl.head.txt ^
 ..\..\org.scn.community.shared\templates.main\license.js.txt ^
 ..\res\Array\def\contribution.ztl ^
+..\res\Audio\def\contribution.ztl ^
 ..\res\ClientInformation\def\contribution.ztl ^
 ..\res\Collection\def\contribution.ztl ^
 ..\res\ComponentLayouter\def\contribution.ztl ^

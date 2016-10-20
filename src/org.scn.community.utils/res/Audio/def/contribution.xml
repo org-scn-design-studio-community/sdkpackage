@@ -1,0 +1,62 @@
+
+<component
+	id="Audio"
+	title="Audio Utility"
+	icon="res/Audio/Audio.png"
+	handlerType="div"
+	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
+	>
+
+	<requireJs modes="commons m">res/Audio/Audio</requireJs>
+	<property
+		id="sound"
+		type="Url"
+		title="URL of sound File"
+		group="Display"
+		visible="true"/>
+	
+	<property id="volume"
+		type="float"
+		title="Sound volume"
+		group="Display"
+		visible="true"/>
+		
+	<property id="play"
+		type="String"
+		title="Play volume"
+		group="Display"
+		visible="false"/>
+		
+	<property id="stop"
+		type="String"
+		title="Stop Sound"
+		group="Display"
+		visible="false"/>
+		
+	<property
+		id="onFinish"
+		type="ScriptText"
+		title="Event For On Sound Finish"
+		group="Events"
+		visible="true"/>
+	
+	<property
+		id="onStop"
+		type="ScriptText"
+		title="Event For On Sound Stopped"
+		group="Events"
+		visible="true"/>
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="volume">0.5</defaultValue>
+
+	</initialization>
+
+</component>
