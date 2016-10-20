@@ -173,7 +173,31 @@ KpiTile = {
 			var prop = spec.properties[prIndex];
 			prop.key = prop.key.replace(spec.key + "/", "");
 			
-			finalProperties[prop.key] = prop;
+			if(prop.key.indexOf("/") > -1) {
+				var targetProperty = finalProperties;
+				while (prop.key.indexOf("/") > -1) {
+					var next = prop.key.substring(0, prop.key.indexOf("/"));
+					
+					if(prop.key.indexOf("/") > -1) {
+						if(targetProperty[next].value) {
+							targetProperty = targetProperty[next].value;
+						} else {
+							targetProperty = targetProperty[next];
+						}
+						
+					} else {
+						targetProperty[next] = prop.value;	
+					}
+
+					prop.key = prop.key.substring(prop.key.indexOf("/")+1);
+					
+					if(prop.key.indexOf("/") == -1) {
+						targetProperty[prop.key] = prop.value;
+					}
+				}
+			} else {
+				finalProperties[prop.key] = prop;
+			}
 
 			if(!prop.value) {
 				prop.value = "";

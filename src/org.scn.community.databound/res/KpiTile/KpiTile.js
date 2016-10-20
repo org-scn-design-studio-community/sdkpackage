@@ -195,18 +195,55 @@ KpiTile = {
 			var prop = spec.properties[prIndex];
 			prop.key = prop.key.replace(spec.key + "/", "");
 			
-			finalProperties[prop.key] = prop;
+			if(prop.dimension != undefined && prop.dimension != "") {
+				var realValue = prop.dimension;
+				
+				realValue = that.findRowContent(that, realValue, rowId);
+
+				if(prop.cast) {
+					if(prop.cast == "integer") {
+						prop.value = "" + parseInt(realValue);
+					} else if(prop.cast == "double") {
+						prop.value = "" + parseFloat(realValue);
+					} else {
+						prop.value = realValue;	
+					}
+				} else {
+					prop.value = realValue;	
+				}
+				
+			}
+
+			if(prop.key.indexOf("/") > -1) {
+				var targetProperty = finalProperties;
+				while (prop.key.indexOf("/") > -1) {
+					var next = prop.key.substring(0, prop.key.indexOf("/"));
+					
+					if(prop.key.indexOf("/") > -1) {
+						if(targetProperty[next].value) {
+							targetProperty = targetProperty[next].value;
+						} else {
+							targetProperty = targetProperty[next];
+						}
+						
+					} else {
+						targetProperty[next] = prop.value;	
+					}
+
+					prop.key = prop.key.substring(prop.key.indexOf("/")+1);
+					
+					if(prop.key.indexOf("/") == -1) {
+						targetProperty[prop.key] = prop.value;
+					}
+				}
+			} else {
+				finalProperties[prop.key] = prop;
+			}
 
 			if(!prop.value) {
 				prop.value = "";
 			}
 
-			if(prop.dimension != undefined && prop.dimension != "") {
-				var realValue = prop.dimension;
-				
-				realValue = that.findRowContent(that, realValue, rowId);
-				prop.value = realValue;
-			}
 			if(prop.value.indexOf("[") == 0 || prop.value.indexOf("/") == 0 || prop.value.indexOf("{") == 0) {
 				var realValue = prop.value;
 				if(realValue.indexOf("/") == 0) {
@@ -502,6 +539,8 @@ KpiTile = {
 			loopObject = new sap.ui.core[name](jsonDef);
 		} else if(sap.suite.ui.commons[name] != undefined) {
 			loopObject = new sap.suite.ui.commons[name](jsonDef);
+} else if(sap.suite.ui.microchart !== undefined && sap.suite.ui.microchart[name] != undefined) {
+			loopObject = new sap.suite.ui.microchart[name](jsonDef);
 		}
 
 		return loopObject;
