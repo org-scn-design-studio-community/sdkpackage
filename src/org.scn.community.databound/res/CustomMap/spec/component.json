@@ -1,6 +1,6 @@
 {
 	"id": "CustomMap",
-	"title": "Custom Map 0.0",
+	"title": "Custom Map",
 	"tooltip": "Custom Map",
 	"handlerType": "div",
 	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",

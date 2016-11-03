@@ -85,7 +85,7 @@
          "tooltip":"Reference Measure Selection",
          "value":null,
          "noAps":true,
-         "noZtl":true
+         "noZtl":false
       }
    },
   "map": {
@@ -283,7 +283,7 @@
 			"tooltip" : "Data List",
 			"apsControl" : "text",
 			"noAps" : true,
-			"noZtl" : true
+			"noZtl" : false
 		}
 	},
     "mapDataKey": {
