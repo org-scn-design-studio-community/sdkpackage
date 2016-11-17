@@ -549,7 +549,7 @@ KpiTile = {
 	afterPrepare: function (owner) {
 		var that = owner;
 
-		// that._oRoot.setResponsive(that.getContentResponsive());
+		that._oRoot.setResponsive(that.getContentResponsive());
 		
 		for (var compIndex in that._oComponents) {
 			var compObj = that._oComponents[compIndex];
@@ -630,6 +630,7 @@ KpiTile = {
 							compObj.__specification = comp;
 							compObj.__componentType = comp.__componentType;
 							compObj.__owner = layPanel;
+							compObj.__mainOwner = that;
 
 							layPanel.addContent(compObj, comp.__layoutSettings);
 							that._oComponents[comp.__techKey] = compObj;
@@ -776,7 +777,7 @@ KpiTile = {
 	},
 	
 	contentOnPress: function (oEvent) {
-		var that = oEvent.getSource().__owner;
+		var that = oEvent.getSource().__mainOwner;
 
 		var componentId = oEvent.getSource().__specification.__techKey;
 
@@ -787,7 +788,7 @@ KpiTile = {
 	},
 
 	contentOnSelect: function (oEvent) {
-		var that = oEvent.getSource().__owner;
+		var that = oEvent.getSource().__mainOwner;
 
 		var componentId = oEvent.getSource().__specification.__techKey;
 		var selectedKey = oEvent.getParameters().selectedKey;
