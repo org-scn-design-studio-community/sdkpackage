@@ -14,6 +14,36 @@
 			"noZtl":false
 		}
 	},
+	"usesandbox": {
+	  "type" : "boolean",
+	  "value" : "true",
+	  "visible": true,
+	  "opts": {
+		    "apsControl": "checkbox",
+		    "cat": "Display",
+		    "desc": "Use Sandbox Attribute",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Use Sandbox Attribute",
+		    "ztlFunction": "",
+		    "ztlType": "boolean"
+		  }
+	},
+	"sandbox" : {
+		"type" : "String",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "",
+			"desc" : "Sandbox Attribute Values",
+			"cat" : "Display",
+			"tooltip" : "Sandbox Attribute Values",
+			"apsControl" : "text",
+			"noAps":false,
+			"noZtl":false
+		}
+	},
 	"domainrelaxlevel": {
 	  "type" : "int",
 	  "value" : "0",
@@ -40,6 +70,21 @@
 		    "noAps": false,
 		    "noZtl": false,
 		    "tooltip": "Skip port in domain",
+		    "ztlFunction": "",
+		    "ztlType": "boolean"
+		  }
+	},
+	"explicitlySetDomain": {
+	  "type" : "boolean",
+	  "value" : "false",
+	  "visible": true,
+	  "opts": {
+		    "apsControl": "checkbox",
+		    "cat": "Display",
+		    "desc": "Explicitly set document domain",
+		    "noAps": false,
+		    "noZtl": false,
+		    "tooltip": "Explicitly set document domain",
 		    "ztlFunction": "",
 		    "ztlType": "boolean"
 		  }

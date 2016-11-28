@@ -1,0 +1,8 @@
+
+/**
+ * Get selected areas as an array
+ */	
+Array getSelectedAreasAsArray(){*
+	return this.getSelectedAreas().split(",");
+*}
+	

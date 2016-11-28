@@ -101,6 +101,7 @@ function() {
   "handlerType": "div",
   "height": "400",
   "id": "EmbeddedMedia",
+  "modes": "commons m",
   "package": "basics",
   "require": [{
     "id": "common_basics",

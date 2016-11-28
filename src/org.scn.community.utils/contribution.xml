@@ -223,6 +223,68 @@
 </component>
 
 <component
+	id="Audio"
+	title="Audio Utility"
+	icon="res/Audio/Audio.png"
+	handlerType="div"
+	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
+	>
+
+	<requireJs modes="commons m">res/Audio/Audio</requireJs>
+	<property
+		id="sound"
+		type="Url"
+		title="URL of sound File"
+		group="Display"
+		visible="true"/>
+	
+	<property id="volume"
+		type="float"
+		title="Sound volume"
+		group="Display"
+		visible="true"/>
+		
+	<property id="play"
+		type="String"
+		title="Play volume"
+		group="Display"
+		visible="false"/>
+		
+	<property id="stop"
+		type="String"
+		title="Stop Sound"
+		group="Display"
+		visible="false"/>
+		
+	<property
+		id="onFinish"
+		type="ScriptText"
+		title="Event For On Sound Finish"
+		group="Events"
+		visible="true"/>
+	
+	<property
+		id="onStop"
+		type="ScriptText"
+		title="Event For On Sound Stopped"
+		group="Events"
+		visible="true"/>
+
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="volume">0.5</defaultValue>
+
+	</initialization>
+
+</component>
+
+<component
 	id="ClientInformation"
 	title="Client Information"
 	tooltip="Returns on first roundtrip some information from web client (browser)"
@@ -1285,6 +1347,69 @@
 
 	</component>
 
+<component
+	id="Replacer"
+	title="Replacer"
+	tooltip="Replacer tool"
+	icon="res/Replacer/Replacer.png"
+	handlerType="div"
+	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/Replacer/Replacer</requireJs>
+	
+	<property
+		id="component"
+		title="Root Component"
+		tooltip="Be as selective as possible!"
+		type="String"
+		visible="true"
+	/>
+	
+	<property
+		id="replace"
+		title="replace"
+		tooltip="replace"
+		type="String"
+		visible="false"
+	/>
+	
+	<property
+		id="manualTable"
+		title="Manual Mapping Table"
+		tooltip="Manual Mapping Table"
+		type="String"
+		visible="false"
+	/>
+	
+	<property
+		id="mappingTable"
+		type="Array"
+		title="Mapping Table">
+		<property
+			id="item"
+			type="Object"
+			title="Items">
+			<property id="selector" type="String" title="jQuery Selector"/>
+			<property id="item1" type="String" title="Match"/>
+			<property id="item2" type="String" title="Replace"/>
+			<property id="referenceSelector" type="String" title="Header Reference"/>
+			<property id="referenceItem" type="String" title="Reference Text"/>
+		</property>
+	</property>
+	
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="component">CROSSTAB_1</defaultValue>
+	</initialization>
+
+</component>
 	<component
 		id="SimpleDate"
 		title="Simple Date"
@@ -1334,11 +1459,20 @@
 	<requireJs modes="commons m">res/WSPusher/WSPusher</requireJs>
 	
 	<property
+		id="sappcp"
+		title="Use SAP PCP"
+		tooltip="Use SAP PCP websocket implementation"
+		type="boolean"
+		visible="true"/>
+	<property
 		id="server"
 		title="Server URL"
 		tooltip=""
 		type="String"
 		visible="true"/>
+	<property id="protocol" type="Array" title="WebSocket Protocol" group="Display" visible="true">
+		<property id="entries" type="String" title="Protocol entries"/>
+	</property>
 	<property
 		id="msg"
 		title="Message for server"
@@ -1352,11 +1486,49 @@
 		type="String"
 		visible="false"/>
 	<property
+		id="pcpFields"
+		title="PCP Fields from server"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
 		id="send"
 		title="Message send trigger"
 		tooltip=""
 		type="String"
 		visible="false"/>
+	<property
+		id="sendPcpFields"
+		title="PCP Fields from client"
+		tooltip=""
+		type="Array"
+		visible="false">
+		<property id="fields" type="String" title="PCP fields"/>
+	</property>
+	<property
+		id="close"
+		title="Message close trigger"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="open"
+		title="Open WebSocket"
+		tooltip=""
+		type="String"
+		visible="false"/>
+	<property
+		id="onChannelOpen"
+		type="ScriptText"
+		title="On Push Channel Open"
+		group="Events"
+		visible="true"/>
+	<property
+		id="onChannelClosed"
+		type="ScriptText"
+		title="On Push Channel Closed"
+		group="Events"
+		visible="true"/>
 	<property
 		id="onPushReceived"
 		type="ScriptText"
@@ -1378,6 +1550,7 @@
 		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
 		<defaultValue property="server">ws://echo.websocket.org/</defaultValue>
+		<defaultValue property="sappcp">false</defaultValue>
 	</initialization>
 
 </component>

@@ -38,6 +38,9 @@ define([],function(){
 			 case "GeoJSON":
 				 dlgType = "TGeoJSONUrl";
 				 break;
+			 case "CSS":
+				 dlgType = "TCSSUrl";
+				 break;
 			 default:
 				 break;
 			 }
@@ -52,6 +55,9 @@ define([],function(){
 			 switch(r){
 			 case "GeoJSON":
 				 dlgType = "TGeoJSONUrl";
+				 break;
+			 case "CSS":
+				 dlgType = "TCSSUrl";
 				 break;
 			 default:
 				 break;

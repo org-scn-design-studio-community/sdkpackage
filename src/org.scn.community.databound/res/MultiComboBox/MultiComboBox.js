@@ -44,7 +44,9 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
               "DSelectAllText": {type: "string"},
               "DSelectNoText": {type: "string"},
               "DItemList": {type: "string"},
-              "DPropFileUrl": {type: "string"}
+              "DPropFileUrl": {type: "string"},
+              "DEnabled": {type: "boolean"},
+              "DTooltip": {type: "string"}
         }
 	},
 
@@ -70,8 +72,12 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 //				  ]  
 //				};  
 		this._oModel = new sap.ui.model.json.JSONModel();
+		//check https://scn.sap.com/thread/3784288 or https://github.com/SAP/openui5/issues/927
+		this._oModel.setSizeLimit(500);
+		
 		sap.ui.getCore().setModel(this._oModel);
 		this.setModel(this._oModel);
+		
 		
 		this.bindProperty("tooltip", "/tooltip");
 		this.bindProperty("editable", "/editable");
@@ -79,6 +85,7 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		var oItemTemplate = new sap.ui.core.Item();
 		oItemTemplate.bindProperty("text", "text");
 		oItemTemplate.bindProperty("key", "key");
+		oItemTemplate.bindProperty("tooltip", "text");
 		this.bindItems("/items", oItemTemplate); //That doesn't work according to https://github.com/SAP/openui5/issues/121
 		//workaround for bindItems according to https://github.com/SAP/openui5/issues/121
 //		this.bindAggregation('items', '/items', oItemTemplate);
@@ -152,16 +159,17 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 			this.setPlaceholder(this.placeholderTextLocalized);
 		}
 		
+		this.setEnabled(this.getDEnabled());
+		
 		//make sure of showing formerly selected items when afterUpdate gets triggered from another context
-		var t = this.getSelectedKeys();
-	    if (this.getSelectedKeys().length === 0) {
-		  var selectedKeys = this.getProperty('DSelectedKey');
-		  var keys = selectedKeys.split(",");
-		  //avoid allways setting unassigned as preselected key
-	      if(keys[0] !== "" && keys !== undefined){
-			  this.setSelectedKeys(keys);  
-	      }
+//		var t = this.getSelectedKeys();
+		var selectedKeys = this.getProperty('DSelectedKey');
+		var keys = selectedKeys.split(",");
+		//avoid allways setting unassigned as preselected key
+	    if(keys[0] === "" || keys === undefined){
+	    	keys = null;
 	    }
+		this.setSelectedKeys(keys);
 		
 		var that = this;
 		
@@ -218,21 +226,29 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		if(this.getDSorting() === "By Key"){
 			if(this.getDSortingDirection() === "Ascending"){
 				this._content.sort(function(a,b){
-					return a.key > b.key;
+					if(that.isInteger(a.key)){
+						return that.compareIntegers(a.key, b.key);
+					}else{
+						return that.compareText(a.key, b.key);
+					}
 				});
 			}else{
 				this._content.sort(function(a,b){
-					return a.key < b.key;
+					if(that.isInteger(a.key)){
+						return that.compareIntegers(b.key, a.key);
+					}else{
+						return that.compareText(b.key, a.key);
+					}
 				});
 			}
 		}else{
 			if(this.getDSortingDirection() === "Ascending"){
 				this._content.sort(function(a,b){
-					return a.text > b.text;
+					return that.compareText(a.text, b.text);
 				});
 			}else{
 				this._content.sort(function(a,b){
-					return a.text < b.text;
+					return that.compareText(b.text, a.text);
 				});
 			}		
 		}
@@ -241,7 +257,8 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 		// define model
 		this._oModel.setData({
 			items: this._content,
-			editable: true
+			editable: true,
+			tooltip: this.getDTooltip()
 		});
 	},
 	replaceAll: function(string, find, replace) {
@@ -249,6 +266,31 @@ sap.m.MultiComboBox.extend("org.scn.community.databound.MultiComboBox", {
 	},
 	escapeRegExp: function(string) {
 	    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+	},
+	isInteger: function(value){
+		var regex = /^\d+|"\d+"$/;
+		return regex.test(value);
+	},
+	compareIntegers: function(value1, value2) {  
+		if ((value1 == null || value1 == undefined || value1 == '') &&  
+		(value2 == null || value2 == undefined || value2 == '')) return 0;  
+		if ((value1 == null || value1 == undefined || value1 == '')) return -1;  
+		if ((value2 == null || value2 == undefined || value2 == '')) return 1;  
+		if(parseInt(value1) < parseInt(value2)) return -1;  
+		if(parseInt(value1) == parseInt(value2)) return 0;  
+		if(parseInt(value1) > parseInt(value2)) return 1;              
+	},
+	/**
+	 * Compare simple text with respect to language
+	 * @param value1
+	 * @param value2
+	 * @returns
+	 */
+	compareText: function(value1, value2){
+		//make sure no uppercase characte mix disturbs the sorting
+		value1 = value1.toLowerCase();
+		value2 = value2.toLowerCase();
+	    return value1.localeCompare(value2);
 	},
 	getBexStringFromSelection: function(items){
 		var keys = [];

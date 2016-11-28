@@ -1,0 +1,177 @@
+
+<component
+	id="KpiTile"
+	title="Repeatable Kpi Tile 2.0"
+	tooltip="Repeatable Kpi Tile - Custom KPI Visualization based on Data Source"
+	icon="res/KpiTile/KpiTile.png"
+	handlerType="sapui5"
+	propertySheetPath="aps/PropertyPage.html"
+	group="ScnCommunityVisualizations"
+	databound="true"
+	modes="commons m"
+>
+	
+	<requireJs modes="commons m">res/KpiTile/KpiTile</requireJs>
+
+	<cssInclude>res/KpiTile/KpiTile.css</cssInclude>
+	
+	
+	<property
+		id="clickedComponent"
+		type="String"
+		title="Clicked Component"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="columnNumber"
+		type="int"
+		title="Number of Columns"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="componentsSpec"
+		type="String"
+		title="Components"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentHeight"
+		type="int"
+		title="Content Height"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="contentResponsive"
+		type="boolean"
+		title="Respopnsive Content"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="data"
+		type="ResultSet"
+		title="Result Set"
+		group="DataBinding"
+		visible="false">
+
+		<option name="maxCells" value="100000" />
+		<option name="includeFormattedData" value="true"/>
+		<option name="includeData" value="true"/>
+		<option name="presentationDelimiter" value=" | " />
+	</property>
+	<property
+		id="layoutSpec"
+		type="String"
+		title="Layout Properties"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
+		id="onClick"
+		type="ScriptText"
+		title="On Click"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="onSelect"
+		type="ScriptText"
+		title="On Select"
+		group="Events"
+		visible="true">
+
+	</property>
+	<property
+		id="selectedKey"
+		type="String"
+		title="Selected Key"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+
+
+	<initialization>
+		<defaultValue property="TOP_MARGIN">0</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="LEFT_MARGIN">0</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="WIDTH">260</defaultValue>
+		<defaultValue property="HEIGHT">600</defaultValue>
+		
+		<defaultValue property="clickedComponent"><![CDATA[]]></defaultValue>
+		<defaultValue property="columnNumber"><![CDATA[1]]></defaultValue>
+		<defaultValue property="componentsSpec"><![CDATA[[{"parentKey":"ROOT","key":"HEADER","leaf":false,"componentType":"Label","top":"10","left":"10","width":"200","height":"20"},{"parentKey":"ROOT","key":"TITLE","leaf":false,"componentType":"Label","top":"40","left":"10","width":"100%","height":"20"},{"parentKey":"ROOT","key":"VALUE","leaf":false,"componentType":"Label","top":"60","left":"-1","right":"10","width":"200","height":"40"},{"parentKey":"ROOT","key":"FOOTER","leaf":false,"componentType":"Label","top":"-1","bottom":"10"},{"parentKey":"HEADER","key":"HEADER/text","leaf":true,"value":"","dimension":"Department"},{"parentKey":"HEADER","key":"HEADER/styleClass","leaf":true,"value":"scn-pack-KpiTile-Header"},{"parentKey":"TITLE","key":"TITLE/text","leaf":true,"value":"Title"},{"parentKey":"TITLE","key":"TITLE/styleClass","leaf":true,"value":"scn-pack-KpiTile-Title"},{"parentKey":"VALUE","key":"VALUE/text","leaf":true,"value":"","dimension":"Sales"},{"parentKey":"VALUE","key":"VALUE/styleClass","leaf":true,"value":"scn-pack-KpiTile-Value"},{"parentKey":"VALUE","key":"VALUE/textAlign","leaf":true,"value":"sap.ui.core.TextAlign.Right"},{"parentKey":"FOOTER","key":"FOOTER/text","leaf":true,"value":"Footer"},{"parentKey":"ROOT","key":"CHART","leaf":false,"specification":"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>
+       <firstXLabel>
+         <MicroAreaChartLabel label='June 1' color='Good'/>
+       </firstXLabel>
+       <lastXLabel>
+         <MicroAreaChartLabel label='June 30' color='Critical'/>
+       </lastXLabel>
+       <firstYLabel>
+         <MicroAreaChartLabel label='0M' color='Good'/>
+       </firstYLabel>
+       <lastYLabel>
+         <MicroAreaChartLabel label='80M' color='Critical'/>
+       </lastYLabel>
+       <chart>
+         <MicroAreaChartItem>
+           <points>
+            <MicroAreaChartPoint x='0' y='0' />
+            <MicroAreaChartPoint x='30' y='20' />
+            <MicroAreaChartPoint x='60' y='20' />
+            <MicroAreaChartPoint x='100' y='80' />
+          </points>
+         </MicroAreaChartItem>
+       </chart>
+       <target>
+         <MicroAreaChartItem>
+           <points>
+            <MicroAreaChartPoint x='0' y='0' />
+            <MicroAreaChartPoint x='30' y='30' />
+            <MicroAreaChartPoint x='60' y='40' />
+            <MicroAreaChartPoint x='100' y='90' />
+          </points>
+         </MicroAreaChartItem>
+       </target>
+
+       <minThreshold>
+         <MicroAreaChartItem color='Error'>
+           <points>
+            <MicroAreaChartPoint x='0' y='0' />
+            <MicroAreaChartPoint x='30' y='20' />
+            <MicroAreaChartPoint x='60' y='30' />
+            <MicroAreaChartPoint x='100' y='70' />
+          </points>
+         </MicroAreaChartItem>
+       </minThreshold>
+       </MicroAreaChart>","componentType":"MicroAreaChart","top":100,"left":10,"right":10,"width":"auto","height":80,"cast":"integer"},{"parentKey":"CHART","key":"CHART/firstXLabel/MicroAreaChartLabel/label","leaf":true,"value":"Karol"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y","leaf":true,"value":"","dimension":"Sales","cast":"integer"},{"parentKey":"CHART","key":"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/1/y","leaf":true,"value":"","dimension":"Sales","cast":"integer"}]]]></defaultValue>
+		<defaultValue property="contentHeight"><![CDATA[260]]></defaultValue>
+		<defaultValue property="contentResponsive"><![CDATA[false]]></defaultValue>
+		<defaultValue property="data"><![CDATA[]]></defaultValue>
+		<defaultValue property="layoutSpec"><![CDATA[[]]]></defaultValue>
+		<defaultValue property="onClick"><![CDATA[]]></defaultValue>
+		<defaultValue property="onSelect"><![CDATA[]]></defaultValue>
+		<defaultValue property="selectedKey"><![CDATA[]]></defaultValue>
+
+	</initialization>
+
+</component>

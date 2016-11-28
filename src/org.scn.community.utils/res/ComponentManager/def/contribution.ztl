@@ -867,6 +867,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Clipboard component*/
+	org.scn.community.databound.Clipboard returnAsScnClipboard (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Custom Map 0.0 component*/
 	org.scn.community.databound.CustomMap returnAsScnCustomMap (Component inputComponent) {* return inputComponent; *}
 
@@ -893,6 +896,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Repeatable Kpi Tile 2.0 component*/
+	org.scn.community.databound.KpiTile returnAsScnKpiTile (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
@@ -1064,6 +1070,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Real Date component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Replacer component*/
+	org.scn.community.utils.Replacer returnAsScnReplacer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}

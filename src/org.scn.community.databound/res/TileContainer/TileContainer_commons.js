@@ -165,11 +165,13 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0",
 			var icon		= "";
 			var number 		= "";
 			var numberUnit 	= "";
+			var scale		= "";
 			var info 		= "";
 			var infostate 	= "Warning";
 			
 			if(data[measureDimension] !== undefined){
-				number = data[measureDimension].data;
+				scale = Math.pow(10, data[measureDimension].scale);
+				number = (data[measureDimension].data)*scale;
 				
 				if(data[comparisonDim] !== undefined){
 					var compare = data[comparisonDim].data;
@@ -188,7 +190,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0",
 						infostate = "Warning";
 					}
 				}
-				number = numeral(number).format(this.getDNumeralString());
+				number = numeral(number/scale).format(this.getDNumeralString());
 			}
 			
 			if(data[headerDim] !== undefined){
@@ -223,7 +225,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0",
 				            icon : icon,
 				            title : title,
 				    		number : number,
-				    		numberUnit : numberUnit,
+				    		numberUnit : "x"+scale+" "+numberUnit,
 				    		info : info,
 				    		infoState : infostate,
 			            }).addStyleClass("ccTileLayout");
@@ -282,6 +284,7 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0",
 			var icon			= "";
 			var value 			= "";//"123";
 			var unit 			= "";//"in €";
+			var scale			= "";
 			var trendIndicator	= "";//"arrow-up";
 			var footer 			= "";//"Some footersdvvvvvvvvvvaaaaaaaaaaaa";
 			
@@ -289,7 +292,8 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0",
 
 			
 			if(data[measureDimension] !== undefined){
-				value = data[measureDimension].data;
+				scale = Math.pow(10, data[measureDimension].scale);
+				value = (data[measureDimension].data)*scale;
 				
 				if(data[comparisonDim] !== undefined){
 					var compare = data[comparisonDim].data;

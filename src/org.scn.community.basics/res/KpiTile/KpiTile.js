@@ -58,7 +58,7 @@ KpiTile = {
 		that.addStyleClass("scn-pack-KpiTile");
 		
 		that._oComponents = {};
-		that.nextKey = 1;
+//		that.nextKey = 1;
 		/* COMPONENT SPECIFIC CODE - END(initDesignStudio)*/
 		
 		that.onAfterRendering = function () {
@@ -173,7 +173,31 @@ KpiTile = {
 			var prop = spec.properties[prIndex];
 			prop.key = prop.key.replace(spec.key + "/", "");
 			
-			finalProperties[prop.key] = prop;
+			if(prop.key.indexOf("/") > -1) {
+				var targetProperty = finalProperties;
+				while (prop.key.indexOf("/") > -1) {
+					var next = prop.key.substring(0, prop.key.indexOf("/"));
+					
+					if(prop.key.indexOf("/") > -1) {
+						if(targetProperty[next].value) {
+							targetProperty = targetProperty[next].value;
+						} else {
+							targetProperty = targetProperty[next];
+						}
+						
+					} else {
+						targetProperty[next] = prop.value;	
+					}
+
+					prop.key = prop.key.substring(prop.key.indexOf("/")+1);
+					
+					if(prop.key.indexOf("/") == -1) {
+						targetProperty[prop.key] = prop.value;
+					}
+				}
+			} else {
+				finalProperties[prop.key] = prop;
+			}
 
 			if(!prop.value) {
 				prop.value = "";
@@ -451,17 +475,20 @@ KpiTile = {
 		var loopObject = undefined;
 		
 		if(createUnique) {
-			jsonDef.id = that.getId() + name + that.nextKey;
-			that.nextKey = that.nextKey + 1;
+			var unique_id = Math.random();
+			jsonDef.id = that.getId() + name + unique_id;//that.nextKey;
+//			that.nextKey = that.nextKey + 1;
 		}
 
 		if(sap.m[name] != undefined) {
 			loopObject = new sap.m[name](jsonDef);
 		} else if(sap.ui.core[name] != undefined) {
 			loopObject = new sap.ui.core[name](jsonDef);
-		} else if(sap.suite.ui.commons[name] != undefined) {
+		}else if(sap.suite.ui.commons[name] != undefined) {
 			loopObject = new sap.suite.ui.commons[name](jsonDef);
-		}
+		} else if(sap.suite.ui.microchart !== undefined && sap.suite.ui.microchart[name] != undefined) {
+			loopObject = new sap.suite.ui.microchart[name](jsonDef);
+		} 
 
 		return loopObject;
 	},

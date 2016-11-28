@@ -25,6 +25,12 @@ class org.scn.community.utils.WSPusher extends org.scn.community.shared.Componen
 		return this.push;
 	*}
 	/**
+	 * Get latest pcp message. Should be called from within event handler (onPushReceived,onPushErrorReceived) and with PCP active
+	 */
+	String getLastPushMessagePcpFields(){*
+		return this.pcpFields;
+	*}
+	/**
 	 * Set message to be send to the destination WebSocket. Should be called before send method.
 	 * We recommend using JSON as data format
 	 */
@@ -40,8 +46,24 @@ class org.scn.community.utils.WSPusher extends org.scn.community.shared.Componen
 	/**
 	 * Send actual message to WebSocket compatible server. You need to setup the message with setMessage before!
 	 */
-	void send(){*
+	void send(optional array pcpField){*
+		var current = pcpField || [];
+		this.sendPcpFields = current;
 		this.send = calcTimestamp();
+	*}
+	
+	/**
+	 * Open WebSocket
+	 */
+	void open(){*
+		this.open= calcTimestamp();
+	*}
+	
+	/**
+	 * Close WebSocket
+	 */
+	void close(){*
+		this.close = calcTimestamp();
 	*}
 	
 	@Visibility(private)

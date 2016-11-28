@@ -3,9 +3,6 @@
 		"presets" : [{
 				"label" : "Standard",
 				"url" : "osm-standard.json"
-			}, {
-				"label" : "Satellite",
-				"url" : "osm-satellite.json"
 			}
 		]
 	},{

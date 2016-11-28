@@ -1,12 +1,13 @@
 {
-	"title": "Data Table 2.0",
-	"description": "Data Table",
-	"icon": "Table.png",
+	"title": "Custom Map",
+	"description": "Custom Map",
+	"icon": "custom_map.png",
+	"supportsFlatData": true,
 	"topics": 
 	[
 		{
-			"title" : "Data Table",
-			"content" : "Data Table"
+			"title" : "Custom Map",
+			"content" : "Build you own non geographical visualization with this component using an image and HTML maps. Tutorial: https://blogs.sap.com/2016/07/25/sdk-community-package-custom-map/"
 		},
 		{
 			"title" : "Visualization",

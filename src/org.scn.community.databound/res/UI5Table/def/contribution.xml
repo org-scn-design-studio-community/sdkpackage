@@ -189,6 +189,15 @@
 
 	</property>
 	<property
+		id="DSelectionMode"
+		type="String"
+		title="Selection Mode"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
 		id="DShowKeys"
 		type="boolean"
 		title="Show Keys instead of Texts"
@@ -272,6 +281,7 @@
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>
+		<defaultValue property="DSelectionMode"><![CDATA[Single]]></defaultValue>
 		<defaultValue property="DShowKeys"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DSortMode"><![CDATA[KeyValue]]></defaultValue>
 		<defaultValue property="DVisibleRowCount"><![CDATA[12]]></defaultValue>

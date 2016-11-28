@@ -50,17 +50,11 @@ define([
 			var myId = this.htmlArea.getId();
 			var container = $("#" + myId);
 			if(!this.map) {
-				var osm = L.tileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
+				var osm = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 					minZoom: 0,
 					maxZoom: 22,
-					subdomains : "12",
-					attribution: "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest"
-				});
-				var sat = L.tileLayer("http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png", {
-					minZoom: 0,
-					maxZoom: 22,
-					subdomains : "12",
-					attribution: "&copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest"
+					subdomains : "abc",
+					attribution: "&copy; OpenStreetMap Contributors"
 				});
 				var ff = L.tileLayer("/aad/zen/mimes/sdk_include/org.scn.community.shared/os/tiles/standard/{z}/{x}/{y}.png", {
 					minZoom: 0,
@@ -87,7 +81,7 @@ define([
 		    		prefix : false
 		    	});
 				attributionControl.addTo(this.map);
-				this._controlLayer = L.control.layers({"Standard":osm, "Satellite" : sat, "Firewall-Friendly" : ff },null,{ });
+				this._controlLayer = L.control.layers({"OpenStreetMap Standard":osm, "Firewall-Friendly" : ff },null,{ });
 				this._controlLayer.addTo(this.map);				
 			}
 			}catch(e){

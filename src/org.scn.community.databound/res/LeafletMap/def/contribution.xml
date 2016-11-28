@@ -108,7 +108,7 @@
 		<defaultValue property="swapAxes">false</defaultValue>
 		<defaultValue property="useMockData">true</defaultValue>
 		<!-- End of Databound Defaults -->
-		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256}},{&quot;key&quot;:&quot;Satellite&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://otile{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png&quot;,&quot;attribution&quot;:&quot;&amp;copy; Open StreetMap Contributors | Tiles Courtesy of MapQuest&quot;,&quot;subdomains&quot;:&quot;12&quot;,&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256}}]</defaultValue>
+		<defaultValue property="tileOptions">[{&quot;key&quot;:&quot;Standard&quot;,&quot;tileConfig&quot;:{&quot;baseUrl&quot;:&quot;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,&quot;attribution&quot;:&quot;&amp;copy; OpenStreetMap Contributors&quot;,&quot;subdomains&quot;:&quot;abc&quot;,&quot;minZoom&quot;:0,&quot;maxZoom&quot;:18,&quot;tileSize&quot;:256}}]</defaultValue>
 		<defaultValue property="currentBaseLayer">Standard</defaultValue>
 		<defaultValue property="overlays">
 		<![CDATA[

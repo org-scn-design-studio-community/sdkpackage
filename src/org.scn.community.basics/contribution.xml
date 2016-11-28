@@ -860,10 +860,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/Calendar/Calendar</requireJs>
+	<requireJs modes="commons m">res/Calendar/Calendar</requireJs>
 
 	<cssInclude>res/Calendar/Calendar.css</cssInclude>
 	
@@ -1843,10 +1843,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/EmbeddedFrame/EmbeddedFrame</requireJs>
+	<requireJs modes="commons m">res/EmbeddedFrame/EmbeddedFrame</requireJs>
 
 	<cssInclude>res/EmbeddedFrame/EmbeddedFrame.css</cssInclude>
 	
@@ -1855,6 +1855,24 @@
 		id="domainrelaxlevel"
 		type="int"
 		title="Domain Relax Level"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="explicitlySetDomain"
+		type="boolean"
+		title="Explicitly set document domain"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
+	<property
+		id="sandbox"
+		type="String"
+		title="Sandbox Attribute Values"
 		group="Display"
 		bindable="true"
 		visible="true">
@@ -1878,6 +1896,15 @@
 		visible="true">
 
 	</property>
+	<property
+		id="usesandbox"
+		type="boolean"
+		title="Use Sandbox Attribute"
+		group="Display"
+		bindable="true"
+		visible="true">
+
+	</property>
 
 
 	<initialization>
@@ -1889,8 +1916,11 @@
 		<defaultValue property="HEIGHT">400</defaultValue>
 		
 		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
+		<defaultValue property="explicitlySetDomain"><![CDATA[false]]></defaultValue>
+		<defaultValue property="sandbox"><![CDATA[]]></defaultValue>
 		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
+		<defaultValue property="usesandbox"><![CDATA[true]]></defaultValue>
 
 	</initialization>
 
@@ -1905,10 +1935,10 @@
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
 	databound="false"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/EmbeddedMedia/EmbeddedMedia</requireJs>
+	<requireJs modes="commons m">res/EmbeddedMedia/EmbeddedMedia</requireJs>
 
 	<cssInclude>res/EmbeddedMedia/EmbeddedMedia.css</cssInclude>
 	

@@ -1,0 +1,64 @@
+
+<component
+	id="Replacer"
+	title="Replacer"
+	tooltip="Replacer tool"
+	icon="res/Replacer/Replacer.png"
+	handlerType="div"
+	group="TECHNICAL_COMPONENTS"
+	modes="commons m"
+	>
+	
+	<requireJs modes="commons m">res/Replacer/Replacer</requireJs>
+	
+	<property
+		id="component"
+		title="Root Component"
+		tooltip="Be as selective as possible!"
+		type="String"
+		visible="true"
+	/>
+	
+	<property
+		id="replace"
+		title="replace"
+		tooltip="replace"
+		type="String"
+		visible="false"
+	/>
+	
+	<property
+		id="manualTable"
+		title="Manual Mapping Table"
+		tooltip="Manual Mapping Table"
+		type="String"
+		visible="false"
+	/>
+	
+	<property
+		id="mappingTable"
+		type="Array"
+		title="Mapping Table">
+		<property
+			id="item"
+			type="Object"
+			title="Items">
+			<property id="selector" type="String" title="jQuery Selector"/>
+			<property id="item1" type="String" title="Match"/>
+			<property id="item2" type="String" title="Replace"/>
+			<property id="referenceSelector" type="String" title="Header Reference"/>
+			<property id="referenceItem" type="String" title="Reference Text"/>
+		</property>
+	</property>
+	
+	<initialization>
+		<defaultValue property="WIDTH">10</defaultValue>
+		<defaultValue property="HEIGHT">10</defaultValue>
+		<defaultValue property="TOP_MARGIN">-2000</defaultValue>
+		<defaultValue property="LEFT_MARGIN">-2000</defaultValue>
+		<defaultValue property="RIGHT_MARGIN">auto</defaultValue>
+		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>
+		<defaultValue property="component">CROSSTAB_1</defaultValue>
+	</initialization>
+
+</component>

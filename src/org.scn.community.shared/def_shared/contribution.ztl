@@ -77,7 +77,7 @@ class org.scn.community.shared.Component extends Component {
 /**
  * Class for reusable ZTL data bound component methods
  */
-class org.scn.community.shared.DataComponent extends org.scn.community.shared.Component {
+class org.scn.community.shared.DataComponent extends DataBoundComponent {
 
 	@Visibility(private)
 	String superReadMembers(
@@ -180,6 +180,76 @@ class org.scn.community.shared.DataComponent extends org.scn.community.shared.Co
 		
 		var result = JSON.stringify(dataSourceMetaData);
 		return result;
+	*}
+	
+	@Visibility(private)
+	void internalWriteLog(String log) {*
+		// only for debugging
+		var active = false;
+	
+		if(active) {
+			APPLICATION.log(log);
+		}
+	*}
+
+	/**
+	 * DO NOT USE, ONLY FOR DEBUG ACTIVATION
+	 */
+	@Visibility(private)
+	boolean isDebug(optional String componentName) {*
+		// quick check here
+		if(componentName == undefined) {
+			if(this._dbgDEBUG == "+") { return true; }
+			if(this._dbgDEBUG == "-") { return false; }
+			componentName = "DEBUG";
+		} else {
+			if(this["_dbg" + componentName] == "+") { return true; }
+			if(this["_dbg" + componentName] == "-") { return false; }
+		}
+	
+		internal_assureGlobalAccess ();
+		
+		var something = this.getGlobal()[componentName];
+		if(something != undefined) {
+			this["_dbg" + componentName] == "+";
+			return true;
+		} else {
+			this["_dbg" + componentName] == "-";
+			return false;
+		}
+	*}
+	
+	/**
+	 * Internal function to read return global scope
+	 * http://stackoverflow.com/questions/1162998/how-can-i-add-an-object-property-to-the-global-object-in-rhino-javascript
+	 */
+	@Visibility(private)
+	void internal_assureGlobalAccess () {*
+		if(this.getGlobal == undefined) {
+			this.getGlobal = function () {
+				return (function() {
+					return this;
+				}).call(null);
+			}
+		}
+	*}
+	
+	/**
+	 * Converts Choice values to Strings
+	 */
+	@Visibility(private)
+	String convertChoiceToString (String choice) {*
+		return choice;
+	*}
+
+	/**
+	 * Converts String values to Choices
+	 */
+	@Visibility(private)
+	String convertToStringChoice (String value) {*
+		value = value.toUpper();
+		value = value.replace(" ", "_");
+		return value;
 	*}
 }
 

@@ -96,6 +96,9 @@ Calendar = {
 		}
 		
 		var markedDates = that.getMarkedDates();
+		if(markedDates == undefined) {
+			markedDates = "[]";
+		}
 		markedDates = JSON.parse(markedDates);
 		for (mDate in markedDates) {
 			mDate = markedDates[mDate];

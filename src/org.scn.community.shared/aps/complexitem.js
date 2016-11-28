@@ -27,12 +27,14 @@ define(["./palette","./segmentedbutton","./spinner"], function () {
 			return loaded;
 		},
 		updateProperty : function(value,propertyName) {
+			var priorValue = JSON.stringify(this._config[propertyName]);
 			if(value===undefined) {
 				delete this._config[propertyName];
 			}else{
 				this._config[propertyName] = value;
 			}
-			this.fireValueChange();
+			// Suppress chatty APS log warnings
+			if(priorValue != JSON.stringify(this._config[propertyName])) this.fireValueChange();
 		},
 		setValue : function(o){
 			this._config = o;

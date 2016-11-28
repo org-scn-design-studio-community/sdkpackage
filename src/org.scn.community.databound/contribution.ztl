@@ -65,6 +65,104 @@ class org.scn.community.databound.BarProperty {
 class org.scn.community.databound.CalendarViz extends org.scn.community.shared.Component {
 	
 }
+
+/**
+ * Generated ZTL Class for Clipboard
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.Clipboard extends org.scn.community.shared.DataComponent {
+
+	/**
+	 * Sets Ignore Results Property
+	 */	
+	void setIgnoreResults( /**Ignore Results*/ boolean ignoreResults){*
+		this.DIgnoreResults = ignoreResults;
+	*}
+
+	/**
+	 * Gets Ignore Results Property
+	 */	
+	boolean isIgnoreResults() {*
+		return this.DIgnoreResults;
+	*}
+
+	/**
+	 * Sets Separator Property
+	 */	
+	void setSeparator( /**Separator*/ String separator){*
+		this.DSeparator = separator;
+	*}
+
+	/**
+	 * Gets Separator Property
+	 */	
+	String getSeparator() {*
+		return this.DSeparator;
+	*}
+
+	/**
+	 * Sets Show Keys instead of Texts Property
+	 */	
+	void setShowKeys( /**Show Keys instead of Texts*/ boolean showKeys){*
+		this.DShowKeys = showKeys;
+	*}
+
+	/**
+	 * Gets Show Keys instead of Texts Property
+	 */	
+	boolean isShowKeys() {*
+		return this.DShowKeys;
+	*}
+
+	/**
+	 * Sets Swap Axes Property
+	 */	
+	void setSwapAxes( /**Swap Axes*/ boolean swapAxes){*
+		this.DSwapAxes = swapAxes;
+	*}
+
+	/**
+	 * Gets Swap Axes Property
+	 */	
+	boolean isSwapAxes() {*
+		return this.DSwapAxes;
+	*}
+
+	/**
+	 * Sets Content Property
+	 */	
+	void setValue( /**Content*/ String value){*
+		this.DValue = value;
+	*}
+
+	/**
+	 * Gets Content Property
+	 */	
+	String getValue() {*
+		return this.DValue;
+	*}
+
+
+
+	/**
+	 * Sets Url For Picture Property
+	 */	
+	void setPicture( /**Url For Picture*/ String picture){*
+		this.picture = picture;
+	*}
+
+	/**
+	 * Gets Url For Picture Property
+	 */	
+	String getPicture() {*
+		return this.picture;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
 class org.scn.community.databound.Choropleth extends org.scn.community.shared.Component {
 	/**
 	Get selected feature
@@ -129,70 +227,837 @@ class org.scn.community.databound.Choropleth extends org.scn.community.shared.Co
 class org.scn.community.databound.CustomMap extends org.scn.community.shared.Component {
 
 	/**
-	 * Sets 0 - Activate onMouseOver/Out Property
+	 * Sets Activate onMouseOver/Out Property
 	 */	
-	void setActivateOnMouseOverOut( /**0 - Activate onMouseOver/Out*/ boolean activateOnMouseOverOut){*
+	void setActivateOnMouseOverOut( /**Activate onMouseOver/Out*/ boolean activateOnMouseOverOut){*
 		this.activateOnMouseOverOut = activateOnMouseOverOut;
 	*}
 
 	/**
-	 * Gets 0 - Activate onMouseOver/Out Property
+	 * Gets Activate onMouseOver/Out Property
 	 */	
 	boolean isActivateOnMouseOverOut() {*
 		return this.activateOnMouseOverOut;
 	*}
 
 	/**
-	 * Sets 1 - Override Mapster Colors with Property
+	 * Sets Area are deselectable Property
 	 */	
-	void setApplyColors( /**1 - Override Mapster Colors with*/ boolean applyColors){*
-		this.applyColors = applyColors;
+	void setAreaDeselectable( /**Area are deselectable*/ boolean areaDeselectable){*
+		this.areaDeselectable = areaDeselectable;
 	*}
 
 	/**
-	 * Gets 1 - Override Mapster Colors with Property
+	 * Gets Area are deselectable Property
 	 */	
-	boolean isApplyColors() {*
-		return this.applyColors;
+	boolean isAreaDeselectable() {*
+		return this.areaDeselectable;
 	*}
 
 	/**
-	 * Sets 0 - Auto resize Property
+	 * Sets Fill Color Property
 	 */	
-	void setAutoResize( /**0 - Auto resize*/ boolean autoResize){*
+	void setAreaFillColor( /**Fill Color*/ String areaFillColor){*
+		this.areaFillColor = areaFillColor;
+	*}
+
+	/**
+	 * Gets Fill Color Property
+	 */	
+	String getAreaFillColor() {*
+		return this.areaFillColor;
+	*}
+
+	/**
+	 * Sets Fill Opacity Property
+	 */	
+	void setAreaFillOpacity( /**Fill Opacity*/ float areaFillOpacity){*
+		this.areaFillOpacity = areaFillOpacity;
+	*}
+
+	/**
+	 * Gets Fill Opacity Property
+	 */	
+	float getAreaFillOpacity() {*
+		return this.areaFillOpacity;
+	*}
+
+	/** Adds a root element containing key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
+	CUSTOMMAP.addAreaProperty(key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addAreaProperty (
+			/**key of the area*/String key, 
+			/**Fill Color*/String fillColor, 
+			/**Fill Opacity*/float fillOpacity, 
+			/**Stroke Color*/String strokeColor, 
+			/**Stroke Opacity*/float strokeOpacity, 
+			/**Stroke Width*/int strokeWidth, 
+			/**Tooltip*/String tooltip
+			) {*
+
+		
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			fillColor:fillColor, 
+			fillOpacity:fillOpacity, 
+			strokeColor:strokeColor, 
+			strokeOpacity:strokeOpacity, 
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
+			};
+
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			this.areaProperties = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	CUSTOMMAP.removeAreaProperty(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeAreaProperty (
+			String key
+			) {*
+
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			this.areaProperties = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/** Insert a root element by index.
+
+ 	<example>
+	You want to insert a root element
+	<code>
+	CUSTOMMAP.insertAreaProperty(index [int], key [String], fillColor [String], fillOpacity [float], strokeColor [String], strokeOpacity [float], strokeWidth [int], tooltip [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void insertAreaProperty (
+			/**Index to Insert (0-based)*/int insertionIndex0based,
+			/**key of the area*/String key, 
+			/**Fill Color*/String fillColor, 
+			/**Fill Opacity*/float fillOpacity, 
+			/**Stroke Color*/String strokeColor, 
+			/**Stroke Opacity*/float strokeOpacity, 
+			/**Stroke Width*/int strokeWidth, 
+			/**Tooltip*/String tooltip
+			) {*
+
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			this.areaProperties = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.areaProperties);
+		var newElementsJson = [];
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			fillColor:fillColor, 
+			fillOpacity:fillOpacity, 
+			strokeColor:strokeColor, 
+			strokeOpacity:strokeOpacity, 
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
+		};
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (i == insertionIndex0based) {
+				newElementsJson.push(itemDef);
+			}
+
+			newElementsJson.push(elementsJson[i]);
+		}
+
+		this.areaProperties = JSON.stringify(newElementsJson);
+	*}
+
+	/**
+	 * Updates given AreaProperty<br/>
+	 */
+	void updateAreaProperty (
+			/**key of the area*/String key, 
+			/**Fill Color*/String fillColor, 
+			/**Fill Opacity*/float fillOpacity, 
+			/**Stroke Color*/String strokeColor, 
+			/**Stroke Opacity*/float strokeOpacity, 
+			/**Stroke Width*/int strokeWidth, 
+			/**Tooltip*/String tooltip
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			this.areaProperties = "[]";
+		}
+
+		var itemDef = {
+			leaf:true,
+			key:key, 
+			fillColor:fillColor, 
+			fillOpacity:fillOpacity, 
+			strokeColor:strokeColor, 
+			strokeOpacity:strokeOpacity, 
+			strokeWidth:strokeWidth, 
+			tooltip:tooltip
+		};
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == elementKey) {
+				elementsJson[i] = itemDef;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Returns Key at given Index<br/>
+	 */
+	String getAreaPropertyAtIndex (
+			/**Index to pick the key*/ int index0based
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			this.areaProperties = "[]";
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (index0based == i) {
+				return elementsJson[i].key;
+			}
+		}
+
+		return "";
+	*}
+
+	/**
+	 * Gets AreaPropertys As JSON String
+	 */	
+	String getAreaPropertysAsJSON() {*
+		var jsonObject = JSON.parse(this.areaProperties);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All AreaPropertys
+	 */	
+	String cleanAllAreaPropertys() {*
+		this.areaProperties = "[]";
+	*}
+	
+	/**
+	 * Sets the FillColor for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyFillColors (
+			/**/ String keys,
+			/**/ String separator,
+	        /* FillColor */ String fillColor
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fillColor = fillColor;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FillColor for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyFillColor (
+			/**/ String key,
+			/**/ String fillColor
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fillColor = fillColor;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of FillColor for AreaProperty Key<br/>
+	 */
+	String getAreaPropertyFillColor (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].fillColor;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the FillOpacity for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyFillOpacitys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* FillOpacity */ float fillOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].fillOpacity = fillOpacity;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the FillOpacity for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyFillOpacity (
+			/**/ String key,
+			/**/ float fillOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].fillOpacity = fillOpacity;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of FillOpacity for AreaProperty Key<br/>
+	 */
+	float getAreaPropertyFillOpacity (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].fillOpacity;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the StrokeColor for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyStrokeColors (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StrokeColor */ String strokeColor
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].strokeColor = strokeColor;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StrokeColor for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyStrokeColor (
+			/**/ String key,
+			/**/ String strokeColor
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].strokeColor = strokeColor;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of StrokeColor for AreaProperty Key<br/>
+	 */
+	String getAreaPropertyStrokeColor (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].strokeColor;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the StrokeOpacity for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyStrokeOpacitys (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StrokeOpacity */ float strokeOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].strokeOpacity = strokeOpacity;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StrokeOpacity for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyStrokeOpacity (
+			/**/ String key,
+			/**/ float strokeOpacity
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].strokeOpacity = strokeOpacity;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of StrokeOpacity for AreaProperty Key<br/>
+	 */
+	float getAreaPropertyStrokeOpacity (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].strokeOpacity;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the StrokeWidth for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyStrokeWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* StrokeWidth */ int strokeWidth
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].strokeWidth = strokeWidth;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the StrokeWidth for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyStrokeWidth (
+			/**/ String key,
+			/**/ int strokeWidth
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].strokeWidth = strokeWidth;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of StrokeWidth for AreaProperty Key<br/>
+	 */
+	int getAreaPropertyStrokeWidth (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].strokeWidth;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Tooltip for AreaProperty keys<br/>
+	 */
+	void setAreaPropertyTooltips (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Tooltip */ String tooltip
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].tooltip = tooltip;
+					break;
+				}
+			}
+		}
+		
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Tooltip for AreaProperty Key<br/>
+	 */
+	void setAreaPropertyTooltip (
+			/**/ String key,
+			/**/ String tooltip
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].tooltip = tooltip;
+				break;
+			}
+		}
+
+		this.areaProperties = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Tooltip for AreaProperty Key<br/>
+	 */
+	String getAreaPropertyTooltip (
+			/**/ String key
+			) 
+	{*
+		if (this.areaProperties === undefined || this.areaProperties === "" || this.areaProperties === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.areaProperties);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].tooltip;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+
+	/**
+	 * Sets Area are selectable Property
+	 */	
+	void setAreaSelectable( /**Area are selectable*/ boolean areaSelectable){*
+		this.areaSelectable = areaSelectable;
+	*}
+
+	/**
+	 * Gets Area are selectable Property
+	 */	
+	boolean isAreaSelectable() {*
+		return this.areaSelectable;
+	*}
+
+	/**
+	 * Sets Stroke Color Property
+	 */	
+	void setAreaStrokeColor( /**Stroke Color*/ String areaStrokeColor){*
+		this.areaStrokeColor = areaStrokeColor;
+	*}
+
+	/**
+	 * Gets Stroke Color Property
+	 */	
+	String getAreaStrokeColor() {*
+		return this.areaStrokeColor;
+	*}
+
+	/**
+	 * Sets Stroke Opacity Property
+	 */	
+	void setAreaStrokeOpacity( /**Stroke Opacity*/ float areaStrokeOpacity){*
+		this.areaStrokeOpacity = areaStrokeOpacity;
+	*}
+
+	/**
+	 * Gets Stroke Opacity Property
+	 */	
+	float getAreaStrokeOpacity() {*
+		return this.areaStrokeOpacity;
+	*}
+
+	/**
+	 * Sets Stroke Width Property
+	 */	
+	void setAreaStrokeWidth( /**Stroke Width*/ int areaStrokeWidth){*
+		this.areaStrokeWidth = areaStrokeWidth;
+	*}
+
+	/**
+	 * Gets Stroke Width Property
+	 */	
+	int getAreaStrokeWidth() {*
+		return this.areaStrokeWidth;
+	*}
+
+	/**
+	 * Sets Auto resize Property
+	 */	
+	void setAutoResize( /**Auto resize*/ boolean autoResize){*
 		this.autoResize = autoResize;
 	*}
 
 	/**
-	 * Gets 0 - Auto resize Property
+	 * Gets Auto resize Property
 	 */	
 	boolean isAutoResize() {*
 		return this.autoResize;
 	*}
 
 	/**
-	 * Sets 2 - Color Palette Property
+	 * Sets Tooltip template (html + Mustache) Property
 	 */	
-	void setColorPalette( /**2 - Color Palette*/ String colorPalette){*
-		this.colorPalette = colorPalette;
-	*}
-
-	/**
-	 * Gets 2 - Color Palette Property
-	 */	
-	String getColorPalette() {*
-		return this.colorPalette;
-	*}
-
-	/**
-	 * Sets 2 - Tooltip template (html + Mustache) Property
-	 */	
-	void setContentTooltip( /**2 - Tooltip template (html + Mustache)*/ String contentTooltip){*
+	void setContentTooltip( /**Tooltip template (html + Mustache)*/ String contentTooltip){*
 		this.contentTooltip = contentTooltip;
 	*}
 
 	/**
-	 * Gets 2 - Tooltip template (html + Mustache) Property
+	 * Gets Tooltip template (html + Mustache) Property
 	 */	
 	String getContentTooltip() {*
 		return this.contentTooltip;
@@ -202,56 +1067,224 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 
 
 
+
+
 	/**
-	 * Gets  Property
+	 * Sets Activate Strokes Property
 	 */	
-	String getHoveredZone() {*
-		return this.hoveredZone;
+	void setDisplayStroke( /**Activate Strokes*/ boolean displayStroke){*
+		this.displayStroke = displayStroke;
 	*}
 
 	/**
-	 * Sets 1 - Image url of Base 64 Property
+	 * Gets Activate Strokes Property
 	 */	
-	void setImage( /**1 - Image url of Base 64*/ String image){*
+	boolean isDisplayStroke() {*
+		return this.displayStroke;
+	*}
+
+	/**
+	 * Sets Display Tooltip Property
+	 */	
+	void setDisplayTooltip( /**Display Tooltip*/ boolean displayTooltip){*
+		this.displayTooltip = displayTooltip;
+	*}
+
+	/**
+	 * Gets Display Tooltip Property
+	 */	
+	boolean isDisplayTooltip() {*
+		return this.displayTooltip;
+	*}
+
+	/**
+	 * Sets Color Palette Property
+	 */	
+	void setDynamicColorPalette( /**Color Palette*/ String dynamicColorPalette){*
+		this.dynamicColorPalette = dynamicColorPalette;
+	*}
+
+	/**
+	 * Gets Color Palette Property
+	 */	
+	String getDynamicColorPalette() {*
+		return this.dynamicColorPalette;
+	*}
+
+	/**
+	 * Sets enable Fill Properties Property
+	 */	
+	void setEnableAreaFill( /**enable Fill Properties*/ boolean enableAreaFill){*
+		this.enableAreaFill = enableAreaFill;
+	*}
+
+	/**
+	 * Gets enable Fill Properties Property
+	 */	
+	boolean isEnableAreaFill() {*
+		return this.enableAreaFill;
+	*}
+
+	/**
+	 * Sets Enable Dynamic Colors Property
+	 */	
+	void setEnableDynamicColors( /**Enable Dynamic Colors*/ boolean enableDynamicColors){*
+		this.enableDynamicColors = enableDynamicColors;
+	*}
+
+	/**
+	 * Gets Enable Dynamic Colors Property
+	 */	
+	boolean isEnableDynamicColors() {*
+		return this.enableDynamicColors;
+	*}
+
+	/**
+	 * Sets Activate special properties on Highlight Property
+	 */	
+	void setEnableSpecificPropHighlight( /**Activate special properties on Highlight*/ boolean enableSpecificPropHighlight){*
+		this.enableSpecificPropHighlight = enableSpecificPropHighlight;
+	*}
+
+	/**
+	 * Gets Activate special properties on Highlight Property
+	 */	
+	boolean isEnableSpecificPropHighlight() {*
+		return this.enableSpecificPropHighlight;
+	*}
+
+	/**
+	 * Sets Activate special properties when Selected Property
+	 */	
+	void setEnableSpecificPropSelected( /**Activate special properties when Selected*/ boolean enableSpecificPropSelected){*
+		this.enableSpecificPropSelected = enableSpecificPropSelected;
+	*}
+
+	/**
+	 * Gets Activate special properties when Selected Property
+	 */	
+	boolean isEnableSpecificPropSelected() {*
+		return this.enableSpecificPropSelected;
+	*}
+
+	/**
+	 * Sets Fill Color Property
+	 */	
+	void setHighlightFillColor( /**Fill Color*/ String highlightFillColor){*
+		this.highlightFillColor = highlightFillColor;
+	*}
+
+	/**
+	 * Gets Fill Color Property
+	 */	
+	String getHighlightFillColor() {*
+		return this.highlightFillColor;
+	*}
+
+	/**
+	 * Sets Fill Opacity Property
+	 */	
+	void setHighlightFillOpacity( /**Fill Opacity*/ float highlightFillOpacity){*
+		this.highlightFillOpacity = highlightFillOpacity;
+	*}
+
+	/**
+	 * Gets Fill Opacity Property
+	 */	
+	float getHighlightFillOpacity() {*
+		return this.highlightFillOpacity;
+	*}
+
+	/**
+	 * Sets Stroke Color Property
+	 */	
+	void setHighlightStrokeColor( /**Stroke Color*/ String highlightStrokeColor){*
+		this.highlightStrokeColor = highlightStrokeColor;
+	*}
+
+	/**
+	 * Gets Stroke Color Property
+	 */	
+	String getHighlightStrokeColor() {*
+		return this.highlightStrokeColor;
+	*}
+
+	/**
+	 * Sets Stroke Opacity Property
+	 */	
+	void setHighlightStrokeOpacity( /**Stroke Opacity*/ float highlightStrokeOpacity){*
+		this.highlightStrokeOpacity = highlightStrokeOpacity;
+	*}
+
+	/**
+	 * Gets Stroke Opacity Property
+	 */	
+	float getHighlightStrokeOpacity() {*
+		return this.highlightStrokeOpacity;
+	*}
+
+	/**
+	 * Sets Stroke Width Property
+	 */	
+	void setHighlightStrokeWidth( /**Stroke Width*/ int highlightStrokeWidth){*
+		this.highlightStrokeWidth = highlightStrokeWidth;
+	*}
+
+	/**
+	 * Gets Stroke Width Property
+	 */	
+	int getHighlightStrokeWidth() {*
+		return this.highlightStrokeWidth;
+	*}
+
+	/**
+	 * Gets  Property
+	 */	
+	String getHighlightedArea() {*
+		return this.highlightedArea;
+	*}
+
+	/**
+	 * Sets Image url of Base 64 Property
+	 */	
+	void setImage( /**Image url of Base 64*/ String image){*
 		this.image = image;
 	*}
 
 	/**
-	 * Gets 1 - Image url of Base 64 Property
+	 * Gets Image url of Base 64 Property
 	 */	
 	String getImage() {*
 		return this.image;
 	*}
 
 	/**
-	 * Sets 2 - Associated map, same scaling as base image Property
+	 * Sets Associated map, same scaling as base image Property
 	 */	
-	void setMap( /**2 - Associated map, same scaling as base image*/ String map){*
+	void setMap( /**Associated map, same scaling as base image*/ String map){*
 		this.map = map;
 	*}
 
 	/**
-	 * Gets 2 - Associated map, same scaling as base image Property
+	 * Gets Associated map, same scaling as base image Property
 	 */	
 	String getMap() {*
 		return this.map;
 	*}
 
 	/**
-	 * Sets 2 - Mapster properties Property
+	 * Sets Map key attribute Property
 	 */	
-	void setMapsterpropjson( /**2 - Mapster properties*/ String mapsterpropjson){*
-		this.mapsterpropjson = mapsterpropjson;
+	void setMapDataKey( /**Map key attribute*/ String mapDataKey){*
+		this.mapDataKey = mapDataKey;
 	*}
 
 	/**
-	 * Gets 2 - Mapster properties Property
+	 * Gets Map key attribute Property
 	 */	
-	String getMapsterpropjson() {*
-		return this.mapsterpropjson;
+	String getMapDataKey() {*
+		return this.mapDataKey;
 	*}
-
-
 
 
 
@@ -262,14 +1295,28 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 
 
 	/**
-	 * Sets 1 - Resize Duration (ms) Property
+	 * Sets Single Select Property
 	 */	
-	void setResizeDuration( /**1 - Resize Duration (ms)*/ int resizeDuration){*
+	void setOnlySingleSelect( /**Single Select*/ boolean onlySingleSelect){*
+		this.onlySingleSelect = onlySingleSelect;
+	*}
+
+	/**
+	 * Gets Single Select Property
+	 */	
+	boolean isOnlySingleSelect() {*
+		return this.onlySingleSelect;
+	*}
+
+	/**
+	 * Sets Resize Duration (ms) Property
+	 */	
+	void setResizeDuration( /**Resize Duration (ms)*/ int resizeDuration){*
 		this.resizeDuration = resizeDuration;
 	*}
 
 	/**
-	 * Gets 1 - Resize Duration (ms) Property
+	 * Gets Resize Duration (ms) Property
 	 */	
 	int getResizeDuration() {*
 		return this.resizeDuration;
@@ -278,40 +1325,110 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 	/**
 	 * Sets  Property
 	 */	
-	void setSelectedZones( /***/ String selectedZones){*
-		this.selectedZones = selectedZones;
+	void setSelectedAreas( /***/ String selectedAreas){*
+		this.selectedAreas = selectedAreas;
 	*}
 
 	/**
 	 * Gets  Property
 	 */	
-	String getSelectedZones() {*
-		return this.selectedZones;
+	String getSelectedAreas() {*
+		return this.selectedAreas;
 	*}
 
 	/**
-	 * Sets 0 - Display all areas by default Property
+	 * Sets Fill Color Property
 	 */	
-	void setStaticDisplay( /**0 - Display all areas by default*/ boolean staticDisplay){*
+	void setSelectedFillColor( /**Fill Color*/ String selectedFillColor){*
+		this.selectedFillColor = selectedFillColor;
+	*}
+
+	/**
+	 * Gets Fill Color Property
+	 */	
+	String getSelectedFillColor() {*
+		return this.selectedFillColor;
+	*}
+
+	/**
+	 * Sets Fill Opacity Property
+	 */	
+	void setSelectedFillOpacity( /**Fill Opacity*/ float selectedFillOpacity){*
+		this.selectedFillOpacity = selectedFillOpacity;
+	*}
+
+	/**
+	 * Gets Fill Opacity Property
+	 */	
+	float getSelectedFillOpacity() {*
+		return this.selectedFillOpacity;
+	*}
+
+	/**
+	 * Sets Stroke Color Property
+	 */	
+	void setSelectedStrokeColor( /**Stroke Color*/ String selectedStrokeColor){*
+		this.selectedStrokeColor = selectedStrokeColor;
+	*}
+
+	/**
+	 * Gets Stroke Color Property
+	 */	
+	String getSelectedStrokeColor() {*
+		return this.selectedStrokeColor;
+	*}
+
+	/**
+	 * Sets Stroke Opacity Property
+	 */	
+	void setSelectedStrokeOpacity( /**Stroke Opacity*/ float selectedStrokeOpacity){*
+		this.selectedStrokeOpacity = selectedStrokeOpacity;
+	*}
+
+	/**
+	 * Gets Stroke Opacity Property
+	 */	
+	float getSelectedStrokeOpacity() {*
+		return this.selectedStrokeOpacity;
+	*}
+
+	/**
+	 * Sets Stroke Width Property
+	 */	
+	void setSelectedStrokeWidth( /**Stroke Width*/ int selectedStrokeWidth){*
+		this.selectedStrokeWidth = selectedStrokeWidth;
+	*}
+
+	/**
+	 * Gets Stroke Width Property
+	 */	
+	int getSelectedStrokeWidth() {*
+		return this.selectedStrokeWidth;
+	*}
+
+	/**
+	 * Sets Display all areas by default Property
+	 */	
+	void setStaticDisplay( /**Display all areas by default*/ boolean staticDisplay){*
 		this.staticDisplay = staticDisplay;
 	*}
 
 	/**
-	 * Gets 0 - Display all areas by default Property
+	 * Gets Display all areas by default Property
 	 */	
 	boolean isStaticDisplay() {*
 		return this.staticDisplay;
 	*}
 
 	/**
-	 * Sets 1 - Tooltip override mode Property
+	 * Sets Tooltip override mode Property
 	 */	
-	void setTooltipMode( /**1 - Tooltip override mode*/ String tooltipMode){*
+	void setTooltipMode( /**Tooltip override mode*/ String tooltipMode){*
 		this.tooltipMode = tooltipMode;
 	*}
 
 	/**
-	 * Gets 1 - Tooltip override mode Property
+	 * Gets Tooltip override mode Property
 	 */	
 	String getTooltipMode() {*
 		return this.tooltipMode;
@@ -320,6 +1437,13 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 
 	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
 
+/**
+ * Get selected areas as an array
+ */	
+Array getSelectedAreasAsArray(){*
+	return this.getSelectedAreas().split(",");
+*}
+	
 }
 
 /**
@@ -1923,6 +3047,1145 @@ class org.scn.community.databound.HexBin extends org.scn.community.shared.DataCo
 }
 
 /**
+ * Generated ZTL Class for KpiTile
+ * 
+ * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
+ */
+class org.scn.community.databound.KpiTile extends org.scn.community.shared.Component {
+
+	/**
+	 * Gets Clicked Component Property
+	 */	
+	String getClickedComponent() {*
+		return this.clickedComponent;
+	*}
+
+	/**
+	 * Sets Number of Columns Property
+	 */	
+	void setColumnNumber( /**Number of Columns*/ int columnNumber){*
+		this.columnNumber = columnNumber;
+	*}
+
+	/**
+	 * Gets Number of Columns Property
+	 */	
+	int getColumnNumber() {*
+		return this.columnNumber;
+	*}
+
+	/** Adds an element containing parentKey [String], key [String], dimension [String], cast [String], value [String] properties.
+	 * You need to specify a unique and existing parent element.
+
+ 	<example>
+	You want to add 2 elements
+	<code>
+	KPITILE.addProperty(parentKey [String], key [String], dimension [String], cast [String], value [String]);<br>
+	KPITILE.addProperty(parentKey [String], key [String], dimension [String], cast [String], value [String]);
+	</code>
+	</example>
+	 */
+	void addProperty (
+			/**Parent Key*/String parentKey, 
+			/**Property Name*/String key, 
+			/**Linked Dimension or Measure Key*/String dimension, 
+			/**Final Property Type (Cast)*/String cast, 
+			/**Property Value*/String value
+			) {*		
+		
+		var leaf = (parentKey != "ROOT");
+		
+		
+		var itemDef = {
+			leaf:leaf,
+			parentKey:parentKey, 
+			key:key, 
+			dimension:dimension, 
+			cast:cast, 
+			value:value 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Adds a root element containing key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String].
+
+ 	<example>
+	You want to add 2 root elements
+	<code>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	KPITILE.addComponent(key [String], componentType [String], top [int], bottom [int], left [int], right [int], width [int], height [int], specification [String]);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void addComponent (
+			/**Unique Key*/String key, 
+			/**Component Type*/String componentType, 
+			/**Top Position (-1 if bottom margin is set)*/int top, 
+			/**Bottom Position*/int bottom, 
+			/**Left Position (-1 if right margin is set)*/int left, 
+			/**Rigth Position*/int right, 
+			/**Width in Px*/int width, 
+			/**Height in Px*/int height, 
+			/**Full Specification*/String specification
+			) {*		
+		
+		
+		var itemDef = {
+			leaf:false,
+			parentKey:"ROOT",
+			key:key, 
+			componentType:componentType, 
+			top:top, 
+			bottom:bottom, 
+			left:left, 
+			right:right, 
+			width:width, 
+			height:height, 
+			specification:specification 
+			};
+	
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				alreadyFound = true;
+				break;
+			}
+		}
+		
+		if(!alreadyFound) {
+			elementsJson.push(itemDef);
+		}
+	
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/** removes an element by String key properties.
+	 * You need to specify a unique and existing key.
+
+ 	<example>
+	You want to remove element
+	<code>
+	KPITILE.removeProperty(String key);<br>
+	</code>
+	</example>
+	 */
+	void removeProperty (
+			String key
+			) {*		
+		
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			this.componentsSpec = "[]";
+		}
+		
+		var elementsJson = JSON.parse(this.componentsSpec);
+		
+		var alreadyFound = false;
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson.splice(i,1);
+				break;
+			}
+		}
+
+		// remove all items with this parent
+		for (var i = elementsJson.length - 1; i >= 0; i--){
+			if (elementsJson[i].parentKey == key) {
+				elementsJson.splice(i,1);
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/** Removes a root element by key.
+
+ 	<example>
+	You want to remove root element
+	<code>
+	KPITILE.removeComponent(String key);<br>
+	<br>
+	</code>
+	</example>
+	 */
+	void removeComponent (
+			String key
+			) {*		
+		
+		this.removeProperty(key);
+	*}
+
+	/**
+	 * Gets Components As JSON String
+	 */	
+	String getComponentsAsJSON() {*
+		var jsonObject = JSON.parse(this.componentsSpec);
+		return JSON.stringify(jsonObject, null, 4);
+	*}
+
+	/**
+	 * Cleans All Components
+	 */	
+	String cleanAllComponents() {*
+		this.componentsSpec = "[]";
+	*}
+	/**
+	 * Sets the ComponentType for Component keys<br/>
+	 */
+	void setComponentComponentTypes (
+			/**/ String keys,
+			/**/ String separator,
+	        /* ComponentType */ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].componentType = componentType;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the ComponentType for Component Key<br/>
+	 */
+	void setComponentComponentType (
+			/**/ String key,
+			/**/ String componentType
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].componentType = componentType;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of ComponentType for Component Key<br/>
+	 */
+	String getComponentComponentType (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].componentType;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Top for Component keys<br/>
+	 */
+	void setComponentTops (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Top */ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].top = top;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Top for Component Key<br/>
+	 */
+	void setComponentTop (
+			/**/ String key,
+			/**/ int top
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].top = top;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Top for Component Key<br/>
+	 */
+	int getComponentTop (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].top;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Bottom for Component keys<br/>
+	 */
+	void setComponentBottoms (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Bottom */ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].bottom = bottom;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Bottom for Component Key<br/>
+	 */
+	void setComponentBottom (
+			/**/ String key,
+			/**/ int bottom
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].bottom = bottom;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Bottom for Component Key<br/>
+	 */
+	int getComponentBottom (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].bottom;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Left for Component keys<br/>
+	 */
+	void setComponentLefts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Left */ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].left = left;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Left for Component Key<br/>
+	 */
+	void setComponentLeft (
+			/**/ String key,
+			/**/ int left
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].left = left;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Left for Component Key<br/>
+	 */
+	int getComponentLeft (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].left;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Right for Component keys<br/>
+	 */
+	void setComponentRights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Right */ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].right = right;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Right for Component Key<br/>
+	 */
+	void setComponentRight (
+			/**/ String key,
+			/**/ int right
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].right = right;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Right for Component Key<br/>
+	 */
+	int getComponentRight (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].right;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Width for Component keys<br/>
+	 */
+	void setComponentWidths (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Width */ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].width = width;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Width for Component Key<br/>
+	 */
+	void setComponentWidth (
+			/**/ String key,
+			/**/ int width
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].width = width;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Width for Component Key<br/>
+	 */
+	int getComponentWidth (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].width;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Height for Component keys<br/>
+	 */
+	void setComponentHeights (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Height */ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].height = height;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Height for Component Key<br/>
+	 */
+	void setComponentHeight (
+			/**/ String key,
+			/**/ int height
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].height = height;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Height for Component Key<br/>
+	 */
+	int getComponentHeight (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = undefined;
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].height;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Specification for Component keys<br/>
+	 */
+	void setComponentSpecifications (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Specification */ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].specification = specification;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Specification for Component Key<br/>
+	 */
+	void setComponentSpecification (
+			/**/ String key,
+			/**/ String specification
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].specification = specification;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Specification for Component Key<br/>
+	 */
+	String getComponentSpecification (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].specification;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Dimension for Property keys<br/>
+	 */
+	void setPropertyDimensions (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Dimension */ String dimension
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].dimension = dimension;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Dimension for Property Key<br/>
+	 */
+	void setPropertyDimension (
+			/**/ String key,
+			/**/ String dimension
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].dimension = dimension;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Dimension for Property Key<br/>
+	 */
+	String getPropertyDimension (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].dimension;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Cast for Property keys<br/>
+	 */
+	void setPropertyCasts (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Cast */ String cast
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].cast = cast;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Cast for Property Key<br/>
+	 */
+	void setPropertyCast (
+			/**/ String key,
+			/**/ String cast
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].cast = cast;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Cast for Property Key<br/>
+	 */
+	String getPropertyCast (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].cast;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+	/**
+	 * Sets the Value for Property keys<br/>
+	 */
+	void setPropertyValues (
+			/**/ String keys,
+			/**/ String separator,
+	        /* Value */ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+	
+		var changeKeys = keys.split(separator);	
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and change
+		for (var i = 0; i < elementsJson.length ; i++){
+			for (var j = 0; j < changeKeys.length ; j++){
+				if (elementsJson[i].key == changeKeys[j]) {
+					elementsJson[i].value = value;
+					break;
+				}
+			}
+		}
+		
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+
+	/**
+	 * Sets the Value for Property Key<br/>
+	 */
+	void setPropertyValue (
+			/**/ String key,
+			/**/ String value
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				elementsJson[i].value = value;
+				break;
+			}
+		}
+
+		this.componentsSpec = JSON.stringify(elementsJson);
+	*}
+	
+	/**
+	 * Returns value of Value for Property Key<br/>
+	 */
+	String getPropertyValue (
+			/**/ String key
+			) 
+	{*
+		if (this.componentsSpec === undefined || this.componentsSpec === "" || this.componentsSpec === "<delete>"){
+			return;
+		}
+
+		var elementsJson = JSON.parse(this.componentsSpec);
+
+		var value = "";
+		// loop and find and update
+		for (var i = 0; i < elementsJson.length ; i++){
+			if (elementsJson[i].key == key) {
+				value = elementsJson[i].value;
+				break;
+			}
+		}
+		
+		return value;
+	*}
+
+
+	/**
+	 * Sets Content Height Property
+	 */	
+	void setContentHeight( /**Content Height*/ int contentHeight){*
+		this.contentHeight = contentHeight;
+	*}
+
+	/**
+	 * Gets Content Height Property
+	 */	
+	int getContentHeight() {*
+		return this.contentHeight;
+	*}
+
+	/**
+	 * Sets Respopnsive Content Property
+	 */	
+	void setContentResponsive( /**Respopnsive Content*/ boolean contentResponsive){*
+		this.contentResponsive = contentResponsive;
+	*}
+
+	/**
+	 * Gets Respopnsive Content Property
+	 */	
+	boolean isContentResponsive() {*
+		return this.contentResponsive;
+	*}
+
+	/**
+	 * Sets Result Set Property
+	 */	
+	void setData( /**Result Set*/ ResultSet data){*
+		this.data = data;
+	*}
+
+	/**
+	 * Gets Result Set Property
+	 */	
+	ResultSet getData() {*
+		return this.data;
+	*}
+
+
+
+
+
+
+
+	/**
+	 * Gets Selected Key Property
+	 */	
+	String getSelectedKey() {*
+		return this.selectedKey;
+	*}
+
+
+	/* START HERE PLACE FOR CUSTOM ZTL FUNCTIONS */
+
+}
+
+/**
  * Generated ZTL Class for LeaderBoard
  * 
  * DO NOT EDIT, ROOT SOURCE for custom functions in /spec/contribution.ztl
@@ -2220,6 +4483,16 @@ class org.scn.community.databound.MarimekkoChart extends org.scn.community.share
  */
 class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
 
+	/** gest the dimension */
+	boolean getEnabled () {*
+		return this.DEnabled;	
+	*}
+	
+	/** sets the dimension */
+	void setEnabled (boolean enabled) {*
+		this.DEnabled = enabled;	
+	*}
+	
 	/** returns the selected key 
     <example>
 	
@@ -2230,6 +4503,19 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 	*/
 	String getSelectedKey () {*
 		return this.DSelectedKey;	
+	*}
+	/** Clear selection 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String clearSelection () {*
+		this.DSelectedKey = "";
+		this.DSelectedText = "";
+		this.DSelectedKeyBexReady = "";
 	*}
 	/** returns the selected key 
     <example>
@@ -2248,7 +4534,7 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 		return this.DSelectedText;	
 	*}
 	
-	/** gest the dimension */
+	/** gets the dimension */
 	String getDimension () {*
 		return this.DDimension;	
 	*}
@@ -5458,6 +7744,34 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 
+
+	/**
+	 * Sets Selection Mode Property by String
+	 */	
+	void setSelectionModeByString( /**Selection Mode*/ String selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+
+	/**
+	 * Gets Selection Mode Property as String
+	 */	
+	String getSelectionModeAsString() {*
+		return this.DSelectionMode;
+	*}
+	
+	/**
+	 * Sets Selection Mode Property by Choice Option
+	 */	
+	void setSelectionMode( /**Selection Mode*/ org_scn_community_shared_SelectionModeEnumfield selectionMode){*
+		this.DSelectionMode = selectionMode;
+	*}
+	
+	/**
+	 * Gets Selection Mode Property as Choice Option
+	 */	
+	org_scn_community_shared_SelectionModeEnumfield getSelectionMode() {*
+		return this.DSelectionMode;
+	*}
 
 	/**
 	 * Sets Show Keys instead of Texts Property

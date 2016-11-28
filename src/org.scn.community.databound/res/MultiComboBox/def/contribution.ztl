@@ -4,6 +4,16 @@
  */
 class org.scn.community.databound.MultiComboBox extends org.scn.community.shared.DataComponent {
 
+	/** gest the dimension */
+	boolean getEnabled () {*
+		return this.DEnabled;	
+	*}
+	
+	/** sets the dimension */
+	void setEnabled (boolean enabled) {*
+		this.DEnabled = enabled;	
+	*}
+	
 	/** returns the selected key 
     <example>
 	
@@ -14,6 +24,19 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 	*/
 	String getSelectedKey () {*
 		return this.DSelectedKey;	
+	*}
+	/** Clear selection 
+    <example>
+	
+	<code>
+    
+	</code>
+	</example>
+	*/
+	String clearSelection () {*
+		this.DSelectedKey = "";
+		this.DSelectedText = "";
+		this.DSelectedKeyBexReady = "";
 	*}
 	/** returns the selected key 
     <example>
@@ -32,7 +55,7 @@ class org.scn.community.databound.MultiComboBox extends org.scn.community.shared
 		return this.DSelectedText;	
 	*}
 	
-	/** gest the dimension */
+	/** gets the dimension */
 	String getDimension () {*
 		return this.DDimension;	
 	*}

@@ -66,6 +66,9 @@ EmbeddedFrame = function () {
     	
 		// attributes
 		html = html.concat(src,"=\"",this.url(),"\" ");
+		if(this.usesandbox()){
+			html = html.concat('sandbox="',this.sandbox(),'"');	
+		}
 	
 		// closing
 		html = html.concat(">");
@@ -94,7 +97,9 @@ EmbeddedFrame = function () {
         		domainName = pathArray.join('.');
         	}
             //set relaxed domain for the current scope where document is active
-            document.domain = domainName;
+        	if(this.explicitlySetDomain()){
+                document.domain = domainName;	
+        	}
         }
 
 		this.$().html(html);

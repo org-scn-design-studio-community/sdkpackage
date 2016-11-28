@@ -381,6 +381,35 @@ class org.scn.community.utils.Array extends org.scn.community.shared.Component {
 		if(this.isDebug()) { DEBUG.inspectZtl(that, l)};
 	*}
 }
+
+/**
+ * 
+ * Play some nice sounds from Design Studio with given audio files
+ * 
+ * This component uses howler.js under MIT license
+ * https://github.com/goldfire/howler.js
+ * 
+ * Authors: Martin Pankraz, Scn Community Contributors
+ */
+class org.scn.community.utils.Audio extends org.scn.community.shared.Component {  
+	/**
+	 * Play the sound
+	 */
+	void play(){*
+		this.play = calcTimestamp();
+	*}
+	/**
+	 * Stop the sound
+	 */
+	void stop(){*
+		this.stop = calcTimestamp();
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}
 /**
  * Class for ClientInformation
  */
@@ -2498,6 +2527,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Choropleth Map 2.0 component*/
 	org.scn.community.databound.Choropleth returnAsScnChoropleth (Component inputComponent) {* return inputComponent; *}
 
+	/**Cast to Clipboard component*/
+	org.scn.community.databound.Clipboard returnAsScnClipboard (Component inputComponent) {* return inputComponent; *}
+
 	/**Cast to Custom Map 0.0 component*/
 	org.scn.community.databound.CustomMap returnAsScnCustomMap (Component inputComponent) {* return inputComponent; *}
 
@@ -2524,6 +2556,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to D3 Hierarchy 2.0 component*/
 	org.scn.community.databound.jpd3hier returnAsScnjpd3hier (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Repeatable Kpi Tile 2.0 component*/
+	org.scn.community.databound.KpiTile returnAsScnKpiTile (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Leader Board component*/
 	org.scn.community.databound.LeaderBoard returnAsScnLeaderBoard (Component inputComponent) {* return inputComponent; *}
@@ -2695,6 +2730,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Real Date component*/
 	org.scn.community.utils.RealDate returnAsScnRealDate (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Replacer component*/
+	org.scn.community.utils.Replacer returnAsScnReplacer (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Simple Date component*/
 	org.scn.community.utils.SimpleDate returnAsScnSimpleDate (Component inputComponent) {* return inputComponent; *}
@@ -6801,6 +6839,106 @@ class org.scn.community.utils.PostResponseParser extends org.scn.community.share
 		var elementsArray = [];
 		this.DHeaders = JSON.stringify(elementsArray);
 	*}
+	
+	/**
+	Returns the content of property Return Parameters as loopable name/value array.
+	<example>
+	You want to loop at values:
+	<code>
+	var content = POSTRESPONSEPARSER.getReturnParametersAsNameValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.name, element.value);<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul>
+		<li>key: k1; value: v1</li>
+		<li>key: k2; value: v2</li>
+		<li>key: k3; value: v3</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.NameValueArray getReturnParametersAsNameValueArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.DReturnParameters;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"name": a[i].name, 
+				"value": a[i].value
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	Returns the content of property Return Headers as loopable name/value array.
+	<example>
+	You want to loop at values:
+	<code>
+	var content = POSTRESPONSEPARSER.getReturnHeadersAsNameValueArray();<br>
+	<br>
+	// a loop for all entries<br>
+	content.forEach(function(element, index) {<br>
+		LISTBOX_1.addItem(element.name, element.value);<br>
+	});
+	</code>
+	This LISTBOX_1 has now following values entries:<br>
+		<ul>
+		<li>key: k1; value: v1</li>
+		<li>key: k2; value: v2</li>
+		<li>key: k3; value: v3</li></ul>
+	</example>
+	*/
+	org.scn.community.shared.NameValueArray getReturnHeadersAsNameValueArray (
+			/**max members*/ optional int maxMembers) {*
+		var s = this.DReturnHeaders;  
+		var a = []; 
+		if(s!="") a = JSON.parse(s);
+		
+		var tempA = [];
+		
+		if(maxMembers == undefined || maxMembers <= 0 || maxMembers > a.length) {
+			maxMembers = a.length;
+		}
+		
+		for(var i=0;i<maxMembers;i++){
+			var itemDef = { 
+				"name": a[i].name, 
+				"value": a[i].value
+			};
+			
+			tempA.push(itemDef);
+		}
+		
+		return tempA;
+	*}
+
+	/**
+	 * Gets Raw Parameters As String Content Property
+	 */	
+	String getRawParameters() {*
+		return this.DRawParameters;
+	*}
+
+	/**
+	 * Sets Technical proprty for raw parameters Property
+	 */	
+	void setRawParameters( /* &nbsp; */  String rawParameters){*
+		this.DRawParameters = rawParameters;
+	*}
 }
 class org.scn.community.utils.RealDate extends org.scn.community.shared.Component {
 
@@ -7422,14 +7560,63 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		    };
 		};
 	*}
-	
+	/**
+	 * Get current time (HH:MM:SS:SSS)
+	 */
 	String getCurrentTime(){*
 		var d = new Date();
 		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
 		return timeString;
 	*}
+	/**
+	 * Determine last day of a given month. You can either specify the month and optionally the year yourself
+	 * or use the initialized date right away. To do that don't pass a month or a year.
+	 */
+	String getLastDayOfMonth (/** date format pattern (default YYYYMMDD) */optional String formatPattern,
+			  				  /** target month(1-12)*/optional String month,
+			  				  /** target year*/optional String year){*
+		var lastDay = null;
+		if(month){
+			if(month.indexOf("0") == 0) {
+				month = month.substring(1);
+			}
+			month = parseInt(month);
+			if(year){
+				this.initialize(parseInt(year), month + 1, 0);
+			}else{
+				this.initialize(this.getYear(), month + 1, 0);
+			}
+		}else{
+			this.initialize(this.getYear(), this.getMonth()+1, 0);
+		}
+		if(formatPattern){
+			return this.format(formatPattern);
+		}
+		return this.format("YYYYMMDD");
+	*}
 }
-class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
+/**
+ * Class for Replacer
+ */
+class org.scn.community.utils.Replacer extends org.scn.community.shared.Component {
+	
+	/**
+	 * Start the replace mechanism. Make sure to load the component and its data beforehand.
+	 * The component will make sure to wait for the data to arrive though.
+	 */
+	void replaceAccordingToMapping(){*
+		this.replace = calcTimestamp();
+	*}
+	
+	void setMappingTable(String obj){*
+		this.manualTable = obj;
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Component {
 
 	/**
 	 * Initialization method with year, month and day
@@ -13300,11 +13487,41 @@ class org.scn.community.utils.SimpleDate extends org.scn.community.shared.Compon
 		 + "Formatted [MM/DD/YYYY WW]: " + this.format("MM/DD/YYYY WW") + "\n\n"
 		 + "";
 	*}
-	
+	/**
+	 * Get current time (HH:MM:SS:SSS)
+	 */
 	String getCurrentTime(){*
 		var d = new Date();
 		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
 		return timeString;
+	*}
+	/**
+	 * Determine last day of a given month. You can either specify the month and optionally the year yourself
+	 * or use the initialized date right away. To do that don't pass a month or a year.
+	 */
+	String getLastDayOfMonth (/** date format pattern (default YYYYMMDD) */optional String formatPattern,
+							  /** target month(1-12)*/optional String month,
+							  /** target year*/optional String year){*
+		var lastDay = null;
+		if(month){
+			if(month.indexOf("0") == 0) {
+				month = month.substring(1);
+			}
+			month = parseInt(month);
+			if(year){
+				this.initialize(parseInt(year), month, 1);
+			}else{
+				this.initialize(this.getYear(), month, 1);
+			}
+		}else{
+			this.initialize(this.getYear(), this.getMonth(), 1);
+		}
+		this.rollMonths(1);
+		this.rollDays(-1);
+		if(formatPattern){
+			return this.format(formatPattern);
+		}
+		return this.format("YYYYMMDD");
 	*}
 
 }
@@ -13335,6 +13552,12 @@ class org.scn.community.utils.WSPusher extends org.scn.community.shared.Componen
 		return this.push;
 	*}
 	/**
+	 * Get latest pcp message. Should be called from within event handler (onPushReceived,onPushErrorReceived) and with PCP active
+	 */
+	String getLastPushMessagePcpFields(){*
+		return this.pcpFields;
+	*}
+	/**
 	 * Set message to be send to the destination WebSocket. Should be called before send method.
 	 * We recommend using JSON as data format
 	 */
@@ -13350,8 +13573,24 @@ class org.scn.community.utils.WSPusher extends org.scn.community.shared.Componen
 	/**
 	 * Send actual message to WebSocket compatible server. You need to setup the message with setMessage before!
 	 */
-	void send(){*
+	void send(optional array pcpField){*
+		var current = pcpField || [];
+		this.sendPcpFields = current;
 		this.send = calcTimestamp();
+	*}
+	
+	/**
+	 * Open WebSocket
+	 */
+	void open(){*
+		this.open= calcTimestamp();
+	*}
+	
+	/**
+	 * Close WebSocket
+	 */
+	void close(){*
+		this.close = calcTimestamp();
 	*}
 	
 	@Visibility(private)

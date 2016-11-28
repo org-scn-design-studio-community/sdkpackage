@@ -2,19 +2,73 @@
    "image": {
     "opts": {
       "apsControl": "text",
-      "cat": "Display",
-      "desc": "1 - Image url of Base 64",
+      "cat": "Display*",
+      "desc": "Image url of Base 64",
       "noAps": false,
       "noZtl": false,
       "tooltip": "Image",
       "ztlFunction": "",
-      "ztlType": "String"
+      "ztlType": "String",
+      "order":1
     },
     "template": "Url",
     "type": "Url",
     "value": "",
     "visible": true
   },
+  
+  "areaProperties":{
+      "type":"String",
+      "value":"[]",
+      "visible":true,
+      "opts":{
+         "ztlType":"SingleArray",
+         "ztlFunction":"",
+         
+         "arrayDefinition":{
+            "areaProperty":{
+               "type":"Array",
+               "sequence":"key,fillColor,fillOpacity,strokeColor,strokeOpacity,strokeWidth,tooltip",
+               "key":{
+                  "desc":"key of the area",
+                  "type":"String"
+               },
+               "fillColor":{
+                  "desc":"Fill Color",
+                  "type":"String"
+               },
+               "fillOpacity":{
+                  "desc":"Fill Opacity",
+                  "type":"float"
+               },
+               "strokeColor":{
+                  "desc":"Stroke Color",
+                  "type":"String"
+               },
+               "strokeOpacity":{
+                  "desc":"Stroke Opacity",
+                  "type":"float"
+               },
+               "strokeWidth":{
+                  "desc":"Stroke Width",
+                  "type":"int"
+               },
+               "tooltip":{
+                  "desc":"Tooltip",
+                  "type":"String",
+                  "apsControl":"textarea"
+               }
+            }
+         },
+         
+         "desc":"Area Specific Properties",
+         "cat":"Areas Properties-Specific",
+         "tooltip":"",
+         "apsControl":"array",
+         "arrayMode":"OneLevelArray"
+      }
+   },
+   
   "dataCellList":{
       "type":"ResultCellList",
       "value":"null",
@@ -31,17 +85,18 @@
          "tooltip":"Reference Measure Selection",
          "value":null,
          "noAps":true,
-         "noZtl":true
+         "noZtl":false
       }
    },
   "map": {
     "opts": {
       "apsControl": "codemirror",
-      "cat": "Display",
-      "desc": "2 - Associated map, same scaling as base image",
+      "cat": "Display*",
+      "desc": "Associated map, same scaling as base image",
       "tooltip": "Map",
       "ztlFunction": "",
       "ztlType": "String" ,
+      "order":10,
       "apsConfig" : {
 			"lineNumbers": "true",
 			"mode": "text/html",
@@ -54,30 +109,172 @@
     "value": "",
     "visible": false
   },
-  "mapsterpropjson": {
+  "enableAreaFill":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"enable Fill Properties",
+	         "cat":"Areas Properties-Global",
+	         "apsControl":"checkbox",
+	         "order": 5
+	    }
+	},
+  "areaFillColor": {
     "opts": {
-      "apsControl" : "codemirror",
-      "cat": "Mapster Properties",
-      "desc": "2 - Mapster properties",
+      "apsControl" : "color",
+      "cat": "Areas Properties-Global",
+      "tooltip" : "Fill Color to apply on all areas",
+      "desc": "Fill Color",
 	  "ztlFunction": "",
       "ztlType": "String",
-      "apsConfig" : {
-			"lineNumbers": true,
-			"mode": "application/ld+json",
-			"theme": "eclipse",
-			"matchBrackets": true
-			}
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 10
     },
     "template": "String",
     "type": "String",
-    "value": "",
-    "visible": false
+    "value": "#FF0000",
+    "visible": true
     },
-    "data" : {
+    
+   "areaFillOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Global",
+      "tooltip" : "Fill Opacity to apply on all areas",
+      "desc": "Fill Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 20
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+    
+  "onlySingleSelect":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Single Select",
+	         "cat":"Behavior",
+	         "tooltip":"Single Select",
+	         "apsControl":"checkbox",
+	         "order": 20
+	    }
+	},
+  "areaSelectable":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Area are selectable",
+	         "cat":"Behavior",
+	         "apsControl":"checkbox",
+	         "order": 30
+	    }
+	},
+  "areaDeselectable":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Area are deselectable",
+	         "cat":"Behavior",
+	         "apsControl":"checkbox",
+	         "order": 40
+	    }
+	},
+  "displayStroke":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Activate Strokes",
+	         "cat":"Areas Properties-Global",
+	         "apsControl":"checkbox",
+	         "order": 30
+	    }
+	},
+	
+  "areaStrokeColor": {
+    "opts": {
+      "apsControl" : "color",
+      "cat": "Areas Properties-Global",
+      "tooltip" : "Stroke Color to apply on all areas",
+      "desc": "Stroke Color",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 40
+    },
+    "template": "String",
+    "type": "String",
+    "value": "#000000",
+    "visible": true
+    },
+    
+   "areaStrokeOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Global",
+      "tooltip" : "Stroke Opacity to apply on all areas",
+      "desc": "Stroke Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 50
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+  "areaStrokeWidth": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Global",
+      "tooltip" : "Stroke Opacity to apply on all areas",
+      "desc": "Stroke Width",
+	  "ztlFunction": "",
+      "ztlType": "int",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 60
+    },
+    "template": "int",
+    "type": "int",
+    "value": "1",
+    "visible": true
+    },
+    
+  "data" : {
 		"template" : "default",
 		"type" : "ResultSet",
 		"value" : "",
 		"visible": true,
+		"options":{
+      	"includeFormattedData":"true",
+      	"includeData":"true",
+      	"includeAttributes":"true"
+      },
 		"opts" : {
 			"ztlType": "ResultSet",
 			"ztlFunction": "",
@@ -86,11 +283,28 @@
 			"tooltip" : "Data List",
 			"apsControl" : "text",
 			"noAps" : true,
-			"noZtl" : true
+			"noZtl" : false
 		}
 	},
-    
-  "selectedZones": {
+    "mapDataKey": {
+	    "opts": {
+	      "apsControl" : "text",
+	      "cat": "Display*",
+	      "desc": "Map key attribute",
+		  "ztlFunction": "",
+	      "ztlType": "String",
+	      "tooltip" : "Which attribute from the HTML map will be mapped to the data",
+	      "noAps" : false,
+		  "noZtl" : false,
+		  "order" : 5
+	    },
+	    "template": "String",
+	    "type": "String",
+	    "value": "",
+	    "visible": false
+	    },
+  
+  "selectedAreas": {
     "opts": {
       "apsControl" : "text",
       "cat": "",
@@ -106,7 +320,7 @@
     "visible": false
     },
     
-  "hoveredZone": {
+  "highlightedArea": {
     "opts": {
       "apsControl" : "text",
       "cat": "",
@@ -122,15 +336,33 @@
     "visible": false
     },
     
+  "dataExemple": {
+    "opts": {
+      "apsControl" : "textarea",
+      "cat": "Tooltip",
+      "desc": "Exemple of data",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : true,
+	  "order" : 50
+    },
+    "template": "String",
+    "type": "String",
+    "value": "",
+    "visible": false
+    },
+    
   "resizeDuration": {
     "opts": {
       "apsControl" : "spinner",
-      "cat": "Mapster Properties",
-      "desc": "1 - Resize Duration (ms)",
+      "cat": "Behavior",
+      "desc": "Resize Duration (ms)",
 	  "ztlFunction": "",
       "ztlType": "int",
       "noAps" : false,
-	  "noZtl" : false
+	  "noZtl" : false,
+	  "order" : 10
     },
     "template": "int",
     "type": "int",
@@ -180,21 +412,6 @@
 			"noZtl" : true
 		}
 	},
-	
-	"onShowTooltip" : {
-		"template" : "Event",
-		"type" : "ScriptText",
-		"value" : "",
-		"visible": true,
-		"opts" : {
-			"desc" : "On Show Tooltip",
-			"cat" : "Events",
-			"tooltip" : "On Show Tooltip",
-			"apsControl" : "text",
-			"noAps" : true,
-			"noZtl" : true
-		}
-	},
 	"onUpdate" : {
 		"template" : "Event",
 		"type" : "ScriptText",
@@ -218,7 +435,7 @@
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "1 - Tooltip override mode",
+			"desc" : "Tooltip override mode",
 			"cat" : "Tooltip",
 			"tooltip" : "Tooltip override mode",
 			"apsControl" : "combobox",
@@ -238,7 +455,8 @@
 				
             ],
 			"noAps" : false,
-			"noZtl" : false
+			"noZtl" : false,
+	        "order": 20
 		}
 	},
 	
@@ -246,7 +464,7 @@
 	    "opts": {
 	      "apsControl": "codemirror",
 	      "cat": "Tooltip",
-	      "desc": "2 - Tooltip template (html + Mustache)",
+	      "desc": "Tooltip template (html + Mustache)",
 	      "tooltip": "new Tooltip (using Mustache template)",
 	      "ztlFunction": "",
 	      "ztlType": "String",
@@ -255,7 +473,8 @@
 				"mode": "text/html",
 				"theme": "eclipse",
 				"matchBrackets": "true"
-				}
+				},
+	      "order": 30
 	    },
 	    "template": "String",
 	    "type": "String",
@@ -263,30 +482,32 @@
 	    "visible": true
 	  },
 	  
-	"applyColors":{
+	"displayTooltip":{
 	    "type":"boolean",
-	    "value":false,
+	    "value":true,
 	    "visible":true,
 	    "opts":{
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
-	         "desc":"1 - Override Mapster Colors with",
-	         "cat":"Colors",
-	         "tooltip":"1 - Override Mapster Colors with",
-	         "apsControl":"checkbox"
+	         "desc":"Display Tooltip",
+	         "cat":"Tooltip",
+	         "tooltip":"",
+	         "apsControl":"checkbox",
+	         "order": 10
 	    }
 	},
 	"staticDisplay":{
 	    "type":"boolean",
-	    "value":false,
+	    "value":true,
 	    "visible":true,
 	    "opts":{
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
-	         "desc":"0 - Display all areas by default",
-	         "cat":"Display",
-	         "tooltip":"0 - Display all areas by default",
-	         "apsControl":"checkbox"
+	         "desc":"Display all areas by default",
+	         "cat":"Areas Properties-Global",
+	         "tooltip":"DDisplay all areas by default",
+	         "apsControl":"checkbox",
+	         "order":3
 	    }
 	},
 	"activateOnMouseOverOut":{
@@ -296,10 +517,11 @@
 	    "opts":{
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
-	         "desc":"0 - Activate onMouseOver/Out",
-	         "cat":"Display",
-	         "tooltip":"0 - Activate onMouseOver/Out",
-	         "apsControl":"checkbox"
+	         "desc":"Activate onMouseOver/Out",
+	         "cat":"Behavior",
+	         "tooltip":"Activate onMouseOver/Out",
+	         "apsControl":"checkbox",
+	         "order":50
 	    }
 	},
 	
@@ -310,26 +532,241 @@
 	    "opts":{
 	         "ztlType":"boolean",
 	         "ztlFunction":"",
-	         "desc":"0 - Auto resize",
-	         "cat":"Display",
-	         "tooltip":"0 - Auto resize",
-	         "apsControl":"checkbox"
+	         "desc":"Auto resize",
+	         "cat":"Behavior",
+	         "tooltip":"Auto resize",
+	         "apsControl":"checkbox",
+	         "order":1
 	    }
 	},
-	  
-	"colorPalette": {
+	"enableDynamicColors":{
+	    "type":"boolean",
+	    "value":false,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Enable Dynamic Colors",
+	         "cat":"Dyn. Colors",
+	         "tooltip":"Based on the selected measure from Reference Measure",
+	         "apsControl":"checkbox",
+	         "order":1
+	    }
+	},
+	"dynamicColorPalette": {
 		"type" : "String",
 		"value" : "",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
 			"ztlFunction": "",
-			"desc" : "2 - Color Palette",
-			"cat" : "Colors",
+			"desc" : "Color Palette",
+			"cat" : "Dyn. Colors",
 			"tooltip" : "Color palette to apply",
 			"apsControl" : "palette",
 			"noAps": false,
 	      	"noZtl": false,
+	      	"order":5
 		}
-	  }
+	  },
+	"enableSpecificPropHighlight":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Activate special properties on Highlight",
+	         "cat":"Areas Properties-Highlight",
+	         "apsControl":"checkbox",
+	         "order": 1
+	    }
+	},
+	"highlightFillColor": {
+    "opts": {
+      "apsControl" : "color",
+      "cat": "Areas Properties-Highlight",
+      "tooltip" : "Fill Color on highlight",
+      "desc": "Fill Color",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 10
+    },
+    "template": "String",
+    "type": "String",
+    "value": "#FF0000",
+    "visible": true
+    },
+    
+   "highlightFillOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Highlight",
+      "tooltip" : "Fill Opacity to apply on highlight",
+      "desc": "Fill Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 20
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+	"highlightStrokeColor": {
+    "opts": {
+      "apsControl" : "color",
+      "cat": "Areas Properties-Highlight",
+      "tooltip" : "Stroke Color to apply on highlight",
+      "desc": "Stroke Color",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 40
+    },
+    "template": "String",
+    "type": "String",
+    "value": "#000000",
+    "visible": true
+    },
+    
+   "highlightStrokeOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Highlight",
+      "tooltip" : "Stroke Opacity to apply on highlight",
+      "desc": "Stroke Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 50
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+  "highlightStrokeWidth": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Highlight",
+      "tooltip" : "Stroke Opacity to apply on highlight",
+      "desc": "Stroke Width",
+	  "ztlFunction": "",
+      "ztlType": "int",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 60
+    },
+    "template": "int",
+    "type": "int",
+    "value": "1",
+    "visible": true
+    },
+    "enableSpecificPropSelected":{
+	    "type":"boolean",
+	    "value":true,
+	    "visible":true,
+	    "opts":{
+	         "ztlType":"boolean",
+	         "ztlFunction":"",
+	         "desc":"Activate special properties when Selected",
+	         "cat":"Areas Properties-Selected",
+	         "apsControl":"checkbox",
+	         "order": 1
+	    }
+	},
+	"selectedFillColor": {
+    "opts": {
+      "apsControl" : "color",
+      "cat": "Areas Properties-Selected",
+      "tooltip" : "Fill Color on selected",
+      "desc": "Fill Color",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 10
+    },
+    "template": "String",
+    "type": "String",
+    "value": "#FF0000",
+    "visible": true
+    },
+    
+   "selectedFillOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Selected",
+      "tooltip" : "Fill Opacity to apply on selected",
+      "desc": "Fill Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 20
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+	"selectedStrokeColor": {
+    "opts": {
+      "apsControl" : "color",
+      "cat": "Areas Properties-Selected",
+      "tooltip" : "Stroke Color to apply on selected",
+      "desc": "Stroke Color",
+	  "ztlFunction": "",
+      "ztlType": "String",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 40
+    },
+    "template": "String",
+    "type": "String",
+    "value": "#000000",
+    "visible": true
+    },
+    
+   "selectedStrokeOpacity": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Selected",
+      "tooltip" : "Stroke Opacity to apply on selected",
+      "desc": "Stroke Opacity",
+	  "ztlFunction": "",
+      "ztlType": "float",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 50
+    },
+    "template": "float",
+    "type": "float",
+    "value": "0.5",
+    "visible": true
+    },
+  "selectedStrokeWidth": {
+    "opts": {
+      "apsControl" : "spinner",
+      "cat": "Areas Properties-Selected",
+      "tooltip" : "Stroke Opacity to apply on selected",
+      "desc": "Stroke Width",
+	  "ztlFunction": "",
+      "ztlType": "int",
+      "noAps" : false,
+	  "noZtl" : false,
+	  "order": 60
+    },
+    "template": "int",
+    "type": "int",
+    "value": "1",
+    "visible": true
+    }
   }

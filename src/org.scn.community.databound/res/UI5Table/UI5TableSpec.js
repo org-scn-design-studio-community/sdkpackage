@@ -440,6 +440,34 @@ function() {
     "value": "",
     "visible": false
   },
+  "DSelectionMode": {
+    "opts": {
+      "apsControl": "combobox",
+      "cat": "Display",
+      "choiceType": "SelectionMode",
+      "desc": "Selection Mode",
+      "options": [
+        {
+          "key": "Single",
+          "text": "Single Selection"
+        },
+        {
+          "key": "MultiToggle",
+          "text": "Multi Selection"
+        },
+        {
+          "key": "None",
+          "text": "No Selection"
+        }
+      ],
+      "tooltip": "Selection Mode",
+      "ztlFunction": "",
+      "ztlType": "Choice"
+    },
+    "type": "String",
+    "value": "Single",
+    "visible": true
+  },
   "DShowKeys": {
     "opts": {
       "apsControl": "checkbox",

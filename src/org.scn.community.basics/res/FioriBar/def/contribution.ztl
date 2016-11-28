@@ -1,14 +1,14 @@
 class org.scn.community.basics.FioriBar extends org.scn.community.shared.Component {
-	/** Add a header button
+	/** Add a right header button
  	<example>
-	Add or update a header button by key 'MENU'.
+	Add or update a right header button by key 'MENU'.
 	<code>
-	FIORIBAR_1.addHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	FIORIBAR_1.addRightHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
 	</code>
 	</example>
 	 */
-	void addHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
-		var o = eval(this.itemConfig);
+	void addRightHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		var sTitle = true;
 		if(showTitle != undefined) sTitle = showTitle;
@@ -31,70 +31,70 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
 		}		
-		itemConfig = JSON.stringify(o);
+		itemConfigRight = JSON.stringify(o);
 	*}
-	/** Remove All Button
+	/** Remove All Right Buttons
  	<example>
-	Remove all button
+	Remove all right buttons
 	<code>
-	FIORIBAR_1.removeAllButtons();<br>
+	FIORIBAR_1.removeAllRightButtons();<br>
 	</code>
 	</example>
 	 */
-	void removeAllButtons () {*		
-		itemConfig = JSON.stringify([]);
+	void removeAllRightButtons () {*		
+		itemConfigRight = JSON.stringify([]);
 	*}
-	/** Remove All Items in a header button
+	/** Remove All Items in a right header button
  	<example>
-	Remove all items in header button 'MENU'
+	Remove all items in right header button 'MENU'
 	<code>
-	FIORIBAR_1.removeAllItems("Menu");<br>
+	FIORIBAR_1.removeAllRightItems("Menu");<br>
 	</code>
 	</example>
 	 */
-	void removeAllItems (/*Button Key*/String buttonKey) {*		
-		var o = eval(this.itemConfig);
+	void removeAllRightItems (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex>-1) o[matchIndex].items = [];
-		itemConfig = JSON.stringify(o);
+		itemConfigRight = JSON.stringify(o);
 	*}
-	/** Remove a button
+	/** Remove a right button
  	<example>
-	Remove a header button with key 'MENU'
+	Remove a right header button with key 'MENU'
 	<code>
-	FIORIBAR_1.removeHeaderButton("MENU");<br>
+	FIORIBAR_1.removeRightHeaderButton("MENU");<br>
 	</code>
 	</example>
 	 */
-	void removeHeaderButton (/*Button Key*/String buttonKey) {*		
-		var o = eval(this.itemConfig);
+	void removeRightHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex>-1) o.splice(matchIndex,1);
-		itemConfig = JSON.stringify(o);
+		itemConfigRight = JSON.stringify(o);
 	*}
-	/** Add an item to a header button.  Will add the header button if it does not yet exist.
+	/** Add an item to a right header button.  Will add the right header button if it does not yet exist.
  	<example>
 	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
 	<code>
-	FIORIBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	FIORIBAR_1.addRightItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
 	</code>
 	</example>
 	 */
-	void addItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
-		var o = eval(this.itemConfig);
+	void addRightItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
 		if(matchIndex == -1 ){	// Add section for the lazy
-			this.addHeaderButton(buttonKey, buttonKey);
-			o = eval(this.itemConfig);
+			this.addRightHeaderButton(buttonKey, buttonKey);
+			o = eval(this.itemConfigRight);
 			matchIndex = o.length-1;
 		}
 		o[matchIndex].items.push({
@@ -102,18 +102,18 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 			text : itemText,
 			icon : itemIcon || ""
 		});
-		itemConfig = JSON.stringify(o);
+		itemConfigRight = JSON.stringify(o);
 	*}
-	/** Removes an item from a header button.
+	/** Removes an item from a right header button.
  	<example>
-	Remove an item with key 'HELP' from header button with key 'MENU'
+	Remove an item with key 'HELP' from right header button with key 'MENU'
 	<code>
-	FIORIBAR_1.removeItem("MENU", "HELP");<br>
+	FIORIBAR_1.removeRightItem("MENU", "HELP");<br>
 	</code>
 	</example>
 	 */
-	void removeItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
-		var o = eval(this.itemConfig);
+	void removeRightItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
+		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
@@ -125,9 +125,280 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 				if(items[i].key == itemKey) itemIndex = i;
 			}
 			if(itemIndex>-1) items.splice(itemIndex,1);
-			itemConfig = JSON.stringify(o);
+			itemConfigRight = JSON.stringify(o);
 		}		
 	*}
+	
+	
+	
+	/** Add a left header button
+ 	<example>
+	Add or update a left header button by key 'MENU'.
+	<code>
+	FIORIBAR_1.addLeftHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	</code>
+	</example>
+	 */
+	void addLeftHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfigLeft);
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon,
+				items : [],
+				type : buttonType || "Default"
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+			o[matchIndex].type = buttonType || "Default";
+		}		
+		itemConfigLeft = JSON.stringify(o);
+	*}
+	/** Remove All Left Buttons
+ 	<example>
+	Remove all left buttons
+	<code>
+	FIORIBAR_1.removeAllLeftButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllLeftButtons () {*		
+		itemConfigLeft = JSON.stringify([]);
+	*}
+	/** Remove All Items in a left header button
+ 	<example>
+	Remove all items in left header button 'MENU'
+	<code>
+	FIORIBAR_1.removeAllLeftItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllLeftItems (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigLeft);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfigLeft = JSON.stringify(o);
+	*}
+	/** Remove a left button
+ 	<example>
+	Remove a left header button with key 'MENU'
+	<code>
+	FIORIBAR_1.removeLeftHeaderButton("MENU");<br>
+	</code>
+	</example>
+	 */
+	void removeLeftHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigLeft);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfigLeft = JSON.stringify(o);
+	*}
+	/** Add an item to a left header button.  Will add the left header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
+	<code>
+	FIORIBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	</code>
+	</example>
+	 */
+	void addLeftItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+		var o = eval(this.itemConfigLeft);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addLeftHeaderButton(buttonKey, buttonKey);
+			o = eval(this.itemConfigLeft);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push({
+			key : itemKey,
+			text : itemText,
+			icon : itemIcon || ""
+		});
+		itemConfigLeft = JSON.stringify(o);
+	*}
+	/** Removes an item from a left header button.
+ 	<example>
+	Remove an item with key 'HELP' from left header button with key 'MENU'
+	<code>
+	FIORIBAR_1.removeLeftItem("MENU", "HELP");<br>
+	</code>
+	</example>
+	 */
+	void removeLeftItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
+		var o = eval(this.itemConfigLeft);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i].key == itemKey) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfigLeft = JSON.stringify(o);
+		}		
+	*}
+
+	
+	/** Add a middle header button
+ 	<example>
+	Add or update a middle header button by key 'MENU'.
+	<code>
+	FIORIBAR_1.addMiddleHeaderButton("MENU","Menu",false,"sap-icon://menu2","Emphasized");<br>
+	</code>
+	</example>
+	 */
+	void addMiddleHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+		var o = eval(this.itemConfigMiddle);
+		var matchIndex = -1;
+		var sTitle = true;
+		if(showTitle != undefined) sTitle = showTitle;
+		var h;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex==-1) {
+			o.push({
+				key : buttonKey,
+				text : buttonTitle,
+				showTitle : sTitle,
+				icon : icon,
+				items : [],
+				type : buttonType || "Default"
+			});
+		}else{	// Don't overwrite items
+			o[matchIndex].text = buttonTitle;
+			o[matchIndex].showTitle = sTitle;
+			o[matchIndex].icon = icon;
+			o[matchIndex].type = buttonType || "Default";
+		}		
+		itemConfigMiddle = JSON.stringify(o);
+	*}
+	/** Remove All Middle Buttons
+ 	<example>
+	Remove all middle buttons
+	<code>
+	FIORIBAR_1.removeAllMiddleButtons();<br>
+	</code>
+	</example>
+	 */
+	void removeAllMiddleButtons () {*		
+		itemConfigMiddle = JSON.stringify([]);
+	*}
+	/** Remove All Items in a middle header button
+ 	<example>
+	Remove all items in middle header button 'MENU'
+	<code>
+	FIORIBAR_1.removeAllMiddleItems("Menu");<br>
+	</code>
+	</example>
+	 */
+	void removeAllMiddleItems (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigMiddle);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o[matchIndex].items = [];
+		itemConfigMiddle = JSON.stringify(o);
+	*}
+	/** Remove a middle button
+ 	<example>
+	Remove a middle header button with key 'MENU'
+	<code>
+	FIORIBAR_1.removeMiddleHeaderButton("MENU");<br>
+	</code>
+	</example>
+	 */
+	void removeMiddleHeaderButton (/*Button Key*/String buttonKey) {*		
+		var o = eval(this.itemConfigMiddle);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex>-1) o.splice(matchIndex,1);
+		itemConfigMiddle = JSON.stringify(o);
+	*}
+	/** Add an item to a middle header button.  Will add the middle header button if it does not yet exist.
+ 	<example>
+	Add an item called 'Help' to header button with key 'MENU' with an icon sys-help-2
+	<code>
+	FIORIBAR_1.addItem("MENU", "help", "Help", "sap-icon://sys-help-2");<br>
+	</code>
+	</example>
+	 */
+	void addMiddleItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+		var o = eval(this.itemConfigMiddle);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex == -1 ){	// Add section for the lazy
+			this.addMiddleHeaderButton(buttonKey, buttonKey);
+			o = eval(this.itemConfigMiddle);
+			matchIndex = o.length-1;
+		}
+		o[matchIndex].items.push({
+			key : itemKey,
+			text : itemText,
+			icon : itemIcon || ""
+		});
+		itemConfigMiddle = JSON.stringify(o);
+	*}
+	/** Removes an item from a middle header button.
+ 	<example>
+	Remove an item with key 'HELP' from middle header button with key 'MENU'
+	<code>
+	FIORIBAR_1.removeMiddleItem("MENU", "HELP");<br>
+	</code>
+	</example>
+	 */
+	void removeMiddleItem (/*Button Key*/String buttonKey, /*Item Key*/ String itemKey) {*		
+		var o = eval(this.itemConfigMiddle);
+		var matchIndex = -1;
+		for(var i=0;i<o.length;i++){
+			if(o[i].key == buttonKey) matchIndex = i;
+		}
+		if(matchIndex != -1 ){
+			var items = o[matchIndex].items;
+			var itemIndex = -1;
+			for(var i=0;i<items.length;i++){
+				if(items[i].key == itemKey) itemIndex = i;
+			}
+			if(itemIndex>-1) items.splice(itemIndex,1);
+			itemConfigMiddle = JSON.stringify(o);
+		}		
+	*}
+
+	
+	
+	
+	
+	
+	
+	
 	/**
 	Get item clicked.
 	*/

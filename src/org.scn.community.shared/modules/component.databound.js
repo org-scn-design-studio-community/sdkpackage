@@ -921,14 +921,20 @@ define(["./component.basics"], function() {
 		var rowsData = [];
 		var rowsDataPlain = [];
 		var headerDataPlain = [];
+		var colId2Index = {};
 	
 		if(options.createHaderRow) {
+			var mainIndex = 0;
 			for(rI=0;rI<flatData.dimensionHeaders.length;rI++){
-				headerDataPlain.push(flatData.dimensionHeaders[rI].text);
+				headerDataPlain.push(flatData.dimensionHeaders[rI]);
+				colId2Index[flatData.dimensionHeaders[rI]] = mainIndex;
+				mainIndex++;
 			}
 		
 			for(var cI=0;cI<flatData.columnHeaders.length;cI++){
-				headerDataPlain.push(flatData.columnHeaders[cI].text);
+				headerDataPlain.push(flatData.columnHeaders[cI]);
+				colId2Index[flatData.columnHeaders[cI]] = mainIndex;
+				mainIndex++;
 			}
 		}
 		
@@ -964,6 +970,7 @@ define(["./component.basics"], function() {
 		flatData.data2D = rowsData;
 		flatData.data2DPlain = rowsDataPlain;
 		flatData.headerDataPlain = headerDataPlain;
+		flatData.colId2Index = colId2Index;
 		
 		flatData.data2DStructured = {};
 		

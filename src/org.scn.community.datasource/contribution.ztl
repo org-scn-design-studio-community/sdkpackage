@@ -165,6 +165,62 @@ class org.scn.community.datasource.BYOData extends SdkDataSource {
 		var newRows = rows.join("\n");
 		this.data = newRows;
 	*}
+	/**
+	 * Removes a Row by a given Dimension Key
+	 * It is manipulating the data set from on line basis, the given dimensions must be noted top-down in the resultset
+	 * It can be especially used if the result set is containing unique key in first dimension, but it can also be used w/o uniqueness - then the first row will be removed.
+	 * <example>
+	 * Remove a row with given 2 Dimensions
+	 * <code>
+	 * DS_1.removeRow("Grocery,Juice");<br>
+	 * </code>
+	 * </example> 
+	 */
+	boolean deleteRow(/*Dimensions*/ String dimensions){*
+		var rows = this.data.split("\n");
+		var foundRow = false;
+		for(var rowIndex in rows) {
+			var row = rows[rowIndex];
+			if(row.indexOf(dimensions + ",") == 0) {
+				rows.splice(rowIndex, 1);
+				foundRow = true;
+				break;
+			}
+		}
+		var newRows = rows.join("\n");
+		this.data = newRows;
+		return foundRow;
+	*}
+	/**
+	 * Removes multiple Rows by a given Dimension Keys
+	 * It is manipulating the data set from on line basis, the given dimensions must be noted top-down in the resultset
+	 * <example>
+	 * Remove a row with given 1st dimension
+	 * <code>
+	 * DS_1.removeRow("Grocery");<br>
+	 * </code>
+	 * </example> 
+	 * <example>
+	 * Remove a row with given 1st and and dimensions
+	 * <code>
+	 * DS_1.removeRow("Grocery,Big");<br>
+	 * </code>
+	 * </example> 
+	 */
+	int deleteRows(/*Dimensions*/ String dimensions){*
+		var rows = this.data.split("\n");
+		var foundRows = 0;
+		for(var rowIndex = rows.length-1;rowIndex>=0;rowIndex--) {
+			var row = rows[rowIndex];
+			if(row.indexOf(dimensions + ",") == 0) {
+				rows.splice(rowIndex, 1);
+				foundRows++;
+			}
+		}
+		var newRows = rows.join("\n");
+		this.data = newRows;
+		return foundRows;
+	*}
 }class org.scn.community.datasource.DynCsvDataSource extends SdkDataBuffer {
 	// empty
 }

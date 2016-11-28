@@ -47,6 +47,36 @@ function() {
     "value": "0",
     "visible": true
   },
+  "explicitlySetDomain": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Explicitly set document domain",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Explicitly set document domain",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "false",
+    "visible": true
+  },
+  "sandbox": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Sandbox Attribute Values",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Sandbox Attribute Values",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "",
+    "visible": true
+  },
   "skipport": {
     "opts": {
       "apsControl": "checkbox",
@@ -75,6 +105,21 @@ function() {
     },
     "type": "String",
     "value": "",
+    "visible": true
+  },
+  "usesandbox": {
+    "opts": {
+      "apsControl": "checkbox",
+      "cat": "Display",
+      "desc": "Use Sandbox Attribute",
+      "noAps": false,
+      "noZtl": false,
+      "tooltip": "Use Sandbox Attribute",
+      "ztlFunction": "",
+      "ztlType": "boolean"
+    },
+    "type": "boolean",
+    "value": "true",
     "visible": true
   }
 };
@@ -107,6 +152,7 @@ function() {
   "handlerType": "div",
   "height": "400",
   "id": "EmbeddedFrame",
+  "modes": "commons m",
   "package": "basics",
   "require": [{
     "id": "common_basics",

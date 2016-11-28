@@ -1,0 +1,44 @@
+{
+	"id": "KpiTile",
+	"title": "Repeatable Kpi Tile 2.0",
+	"tooltip": "Repeatable Kpi Tile - Custom KPI Visualization based on Data Source",
+	"handlerType": "sapui5",
+	"parentControl": "sap.zen.commons.layout.AbsoluteLayout",
+	"group": "ScnCommunityVisualizations",
+	"package": "databound",
+	"extension": "Component",
+	"databound": true,
+	"dataType": "ResultSet",
+	"modes":"commons m",
+
+	"require": 
+	[
+		{
+			"space" : "known",
+			"id" : "common_basics",
+		},
+		{
+			"space" : "known",
+			"id" : "jshashtable",
+		},
+		{
+			"space" : "known",
+			"id" : "numberformatter",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_m_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "sap_suite_loader",
+		},
+		{
+			"space" : "known",
+			"id" : "x2js",
+		}
+	],
+	
+	"width": "260",
+	"height": "600"
+}

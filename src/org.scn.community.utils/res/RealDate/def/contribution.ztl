@@ -618,10 +618,38 @@ class org.scn.community.utils.RealDate extends org.scn.community.shared.Componen
 		    };
 		};
 	*}
-	
+	/**
+	 * Get current time (HH:MM:SS:SSS)
+	 */
 	String getCurrentTime(){*
 		var d = new Date();
 		var timeString = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+"."+d.getMilliseconds();
 		return timeString;
+	*}
+	/**
+	 * Determine last day of a given month. You can either specify the month and optionally the year yourself
+	 * or use the initialized date right away. To do that don't pass a month or a year.
+	 */
+	String getLastDayOfMonth (/** date format pattern (default YYYYMMDD) */optional String formatPattern,
+			  				  /** target month(1-12)*/optional String month,
+			  				  /** target year*/optional String year){*
+		var lastDay = null;
+		if(month){
+			if(month.indexOf("0") == 0) {
+				month = month.substring(1);
+			}
+			month = parseInt(month);
+			if(year){
+				this.initialize(parseInt(year), month + 1, 0);
+			}else{
+				this.initialize(this.getYear(), month + 1, 0);
+			}
+		}else{
+			this.initialize(this.getYear(), this.getMonth()+1, 0);
+		}
+		if(formatPattern){
+			return this.format(formatPattern);
+		}
+		return this.format("YYYYMMDD");
 	*}
 }

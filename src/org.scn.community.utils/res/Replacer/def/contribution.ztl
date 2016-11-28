@@ -1,0 +1,22 @@
+/**
+ * Class for Replacer
+ */
+class org.scn.community.utils.Replacer extends org.scn.community.shared.Component {
+	
+	/**
+	 * Start the replace mechanism. Make sure to load the component and its data beforehand.
+	 * The component will make sure to wait for the data to arrive though.
+	 */
+	void replaceAccordingToMapping(){*
+		this.replace = calcTimestamp();
+	*}
+	
+	void setMappingTable(String obj){*
+		this.manualTable = obj;
+	*}
+	
+	@Visibility(private)
+	String calcTimestamp() {*
+		return new Date().valueOf();
+	*}
+}

@@ -1,0 +1,266 @@
+{
+	"data" : {
+		"template" : "default",
+		"type" : "ResultSet",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "ResultSet",
+			"ztlFunction": "-get",
+			"desc" : "Result Set",
+			"cat" : "DataBinding",
+			"tooltip" : "Result Set",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+   },
+   "contentHeight" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 260,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Content Height",
+			"cat" : "Content",
+			"tooltip" : "Content Height",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+   },
+   "columnNumber" : {
+		"template" : "int",
+		"type" : "int",
+		"value" : 1,
+		"visible": true,
+		"opts" : {
+			"ztlType": "int",
+			"ztlFunction": "",
+			"desc" : "Number of Columns",
+			"cat" : "Content",
+			"tooltip" : "Number of Columns",
+			"apsControl" : "spinner",
+			"noAps" : false,
+			"noZtl" : false
+		}
+   },
+   "contentResponsive" : {
+		"template" : "int",
+		"type" : "boolean",
+		"value" : false,
+		"visible": true,
+		"opts" : {
+			"ztlType": "boolean",
+			"ztlFunction": "",
+			"desc" : "Respopnsive Content",
+			"cat" : "Content",
+			"tooltip" : "Respopnsive Content",
+			"apsControl" : "checkbox",
+			"noAps" : false,
+			"noZtl" : false
+		}
+   },
+   "layoutSpec": {
+		"type":"String",
+		"value":"[]",
+		"visible":false,
+	  
+		"opts":{
+			"ztlType":"SingleArray",
+	        "ztlFunction":"",
+	         
+	        "arrayDefinition":{
+	            "layout":{
+	               "type":"Array",
+                   "sequence":"key,value",
+                   "key":{
+                     "desc":"Property Name",
+                     "type":"String"
+                   },
+               	   "value":{
+                     "desc":"Property Value",
+                     "type":"String",
+                     "apsControl": "textarea"
+               	   }
+	            }
+	        },
+ 
+			"desc":"Layout Properties",
+			"cat":"Content-Layout",
+			"tooltip":"Layout Properties",
+
+			"apsControl":"array",
+			"arrayMode":"OneLevelArray",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"componentsSpec": {
+		"type":"String",
+		"value":"[{\"parentKey\":\"ROOT\",\"key\":\"HEADER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"10\",\"left\":\"10\",\"width\":\"200\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"TITLE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"40\",\"left\":\"10\",\"width\":\"100%\",\"height\":\"20\"},{\"parentKey\":\"ROOT\",\"key\":\"VALUE\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"60\",\"left\":\"-1\",\"right\":\"10\",\"width\":\"200\",\"height\":\"40\"},{\"parentKey\":\"ROOT\",\"key\":\"FOOTER\",\"leaf\":false,\"componentType\":\"Label\",\"top\":\"-1\",\"bottom\":\"10\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Department\"},{\"parentKey\":\"HEADER\",\"key\":\"HEADER/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Header\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/text\",\"leaf\":true,\"value\":\"Title\"},{\"parentKey\":\"TITLE\",\"key\":\"TITLE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Title\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/text\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/styleClass\",\"leaf\":true,\"value\":\"scn-pack-KpiTile-Value\"},{\"parentKey\":\"VALUE\",\"key\":\"VALUE/textAlign\",\"leaf\":true,\"value\":\"sap.ui.core.TextAlign.Right\"},{\"parentKey\":\"FOOTER\",\"key\":\"FOOTER/text\",\"leaf\":true,\"value\":\"Footer\"},{\"parentKey\":\"ROOT\",\"key\":\"CHART\",\"leaf\":false,\"specification\":\"<MicroAreaChart minXValue='0' maxXValue='100' minYValue='0' maxYValue='100' class='marginTopLeft' press='press'>\n       <firstXLabel>\n         <MicroAreaChartLabel label='June 1' color='Good'/>\n       </firstXLabel>\n       <lastXLabel>\n         <MicroAreaChartLabel label='June 30' color='Critical'/>\n       </lastXLabel>\n       <firstYLabel>\n         <MicroAreaChartLabel label='0M' color='Good'/>\n       </firstYLabel>\n       <lastYLabel>\n         <MicroAreaChartLabel label='80M' color='Critical'/>\n       </lastYLabel>\n       <chart>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='20' />\n            <MicroAreaChartPoint x='100' y='80' />\n          </points>\n         </MicroAreaChartItem>\n       </chart>\n       <target>\n         <MicroAreaChartItem>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='30' />\n            <MicroAreaChartPoint x='60' y='40' />\n            <MicroAreaChartPoint x='100' y='90' />\n          </points>\n         </MicroAreaChartItem>\n       </target>\n\n       <minThreshold>\n         <MicroAreaChartItem color='Error'>\n           <points>\n            <MicroAreaChartPoint x='0' y='0' />\n            <MicroAreaChartPoint x='30' y='20' />\n            <MicroAreaChartPoint x='60' y='30' />\n            <MicroAreaChartPoint x='100' y='70' />\n          </points>\n         </MicroAreaChartItem>\n       </minThreshold>\n       </MicroAreaChart>\",\"componentType\":\"MicroAreaChart\",\"top\":100,\"left\":10,\"right\":10,\"width\":\"auto\",\"height\":80,\"cast\":\"integer\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/firstXLabel/MicroAreaChartLabel/label\",\"leaf\":true,\"value\":\"Karol\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/0/y\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\",\"cast\":\"integer\"},{\"parentKey\":\"CHART\",\"key\":\"CHART/chart/MicroAreaChartItem/points/MicroAreaChartPoint/1/y\",\"leaf\":true,\"value\":\"\",\"dimension\":\"Sales\",\"cast\":\"integer\"}]",
+		"visible":true,
+	  
+		"opts":{
+			"ztlType":"DoubleArray",
+	        "ztlFunction":"-unique",
+	         
+	        "arrayDefinition":{
+	            "component":{
+	               "type":"Array",
+	               "sequence":"key,componentType,top,bottom,left,right,width,height,specification,property",
+	               "key":{
+	                  "desc":"Unique Key",
+	                  "type":"String"
+	               },
+	               "componentType":{
+	                  "desc":"Component Type",
+	                  "type":"String"
+	               },
+	               "top":{
+	                  "desc":"Top Position (-1 if bottom margin is set)",
+	                  "type":"int"
+	               },
+	               "bottom":{
+	                  "desc":"Bottom Position",
+	                  "type":"int"
+	               },
+	               "left":{
+	                  "desc":"Left Position (-1 if right margin is set)",
+	                  "type":"int"
+	               },
+	               "right":{
+	                  "desc":"Rigth Position",
+	                  "type":"int"
+	               },
+	               "width":{
+	                  "desc":"Width in Px",
+	                  "type":"int"
+	               },
+	               "height":{
+	                  "desc":"Height in Px",
+	                  "type":"int"
+	               },
+                   "specification":{
+                     "desc":"Full Specification",
+                     "type":"String",
+                     "apsControl": "textarea"
+               	   },
+	               "property":{
+	                  "type":"Array",
+	                  "sequence":"parentKey,key,dimension,cast,value",
+	                  "parentKey":{
+		                "desc":"Parent Key",
+		                "type":"String",
+		              	"mode":"ztl"
+		              },
+	                  "key":{
+	                     "desc":"Property Name",
+	                     "type":"String"
+	                  },
+	               	  "dimension":{
+	                     "desc":"Linked Dimension or Measure Key",
+	                     "type":"String",
+	                     "apsControl": "textfield"
+	               	  },
+	               	  "cast":{
+	                     "desc":"Final Property Type (Cast)",
+	                     "type":"String",
+	                     "apsControl": "combobox",
+	                     "targetValue": "string",
+	                     "options": [
+				            {
+				              "key": "string",
+				              "text": "Default - String"
+				            },
+				            {
+				              "key": "integer",
+				              "text": "Cast to Integer"
+				            },
+				            {
+				              "key": "double",
+				              "text": "Cast to Double"
+				            }
+				          ]
+	               	  },
+	               	  "value":{
+	                     "desc":"Property Value",
+	                     "type":"String",
+	                     "apsControl": "textarea"
+	               	  }
+	               }
+	            }
+	        },
+ 
+			"desc":"Components",
+			"cat":"Content-Components",
+			"tooltip":"List of Components",
+
+			"apsControl":"array",
+			"arrayMode":"TwoLevelArray"
+		}
+	},
+	"selectedKey" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Selected Key",
+			"cat" : "Internal",
+			"tooltip" : "Selected Key",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+	"clickedComponent" : {
+		"template" : "String",
+		"type" : "String",
+		"value" : "",
+		"visible": false,
+		"opts" : {
+			"ztlType": "String",
+			"ztlFunction": "-get",
+			"desc" : "Clicked Component",
+			"cat" : "Internal",
+			"tooltip" : "Clicked Component",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : false
+		}
+	},
+
+	"onClick" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Click",
+			"cat" : "Events",
+			"tooltip" : "On Click",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+	"onSelect" : {
+		"template" : "Event",
+		"type" : "ScriptText",
+		"value" : "",
+		"visible": true,
+		"opts" : {
+			"desc" : "On Select",
+			"cat" : "Events",
+			"tooltip" : "On Select",
+			"apsControl" : "text",
+			"noAps" : true,
+			"noZtl" : true
+		}
+	},
+}
