@@ -121,7 +121,22 @@ function() {
     "type": "boolean",
     "value": "true",
     "visible": true
-  }
+  },
+  "reload": {
+	    "opts": {
+	      "apsControl": "text",
+	      "cat": "Display",
+	      "desc": "Trigger Reload",
+	      "noAps": true,
+	      "noZtl": true,
+	      "tooltip": "Trigger Reload",
+	      "ztlFunction": "",
+	      "ztlType": "String"
+	    },
+	    "type": "String",
+	    "value": "init",
+	    "visible": false
+	  }
 };
 
 	spec.specInclude = 

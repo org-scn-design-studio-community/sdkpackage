@@ -11,6 +11,7 @@
 	 */	
 	void setDomainRelaxLevel(int level){*
 		this.domainrelaxlevel = level;
+		this.reload = calcTimestamp();
 	*}
 	
 		/**
@@ -25,4 +26,20 @@
 	 */	
 	void setSkipPort(boolean skip){*
 		this.skipport = skip;
+		this.reload = calcTimestamp();
+	*}
+	
+	/**
+	 * Trigger reload of IFrame
+	 */
+	void triggerReload(){*
+		this.reload = calcTimestamp();
+	*}	
+	
+	@Visibility(private)
+	/**
+	 *	Workaround for strange DesignStudio lifecycle handling when calling functions via scriptting triggers
+	 */
+	String calcTimestamp() {*
+		return ""+new Date().getTime();
 	*}

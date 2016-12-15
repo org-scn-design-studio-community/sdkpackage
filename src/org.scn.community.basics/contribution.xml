@@ -1905,7 +1905,15 @@
 		visible="true">
 
 	</property>
+	<property
+		id="reload"
+		type="String"
+		title="Reload"
+		group="Display"
+		bindable="true"
+		visible="false">
 
+	</property>
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -1921,7 +1929,7 @@
 		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 		<defaultValue property="usesandbox"><![CDATA[true]]></defaultValue>
-
+		<defaultValue property="reload"><![CDATA[init]]></defaultValue>
 	</initialization>
 
 </component>
