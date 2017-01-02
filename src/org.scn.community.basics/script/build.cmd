@@ -26,6 +26,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\FioriAppHeader\def\contribution.xml ^
 ..\res\FioriBar\def\contribution.xml ^
 ..\res\FioriButton\def\contribution.xml ^
+..\res\FioriButtonM\def\contribution.xml ^
 ..\res\FioriInput\def\contribution.xml ^
 ..\res\FioriSegmentedButton\def\contribution.xml ^
 ..\res\FioriSlider\def\contribution.xml ^
@@ -95,6 +96,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.ztl.head.txt ^
 ..\res\FioriAppHeader\def\contribution.ztl ^
 ..\res\FioriBar\def\contribution.ztl ^
 ..\res\FioriButton\def\contribution.ztl ^
+..\res\FioriButtonM\def\contribution.ztl ^
 ..\res\FioriInput\def\contribution.ztl ^
 ..\res\FioriSegmentedButton\def\contribution.ztl ^
 ..\res\FioriSlider\def\contribution.ztl ^
