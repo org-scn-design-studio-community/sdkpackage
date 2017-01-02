@@ -108,7 +108,7 @@ FioriButtonM = {
 		var style = that.getDStyle();
 		
 		if(style == "Default") {
-			that.setStyle(sap.m.ButtonType.Default);
+			that.setType(sap.m.ButtonType.Default);
 			// other settings on after rendering
 		} else {
 			if(style == "Emph") {
