@@ -658,7 +658,22 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to specific component*/
 	Tabstrip returnAsTabstrip (Component inputComponent) {* return inputComponent; *}
 
-	
+	/*M COMPONENTS*/
+	/**Cast to specific component*/
+	ListBox returnAsListBox (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	DropdownBox returnAsDropdownBox (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	SegmentedButton returnAsSegmentedButton (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Switch returnAsSwitch (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Icon returnAsIcon (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Link returnAsLink (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	ProgressIndicator returnAsProgressIndicator (Component inputComponent) {* return inputComponent; *}
+
 	/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */
 	/**Cast to Accordion 2.0 component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
