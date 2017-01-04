@@ -250,7 +250,7 @@ function() {
       "cat": "DataBinding",
       "desc": "Data List",
       "noAps": true,
-      "noZtl": true,
+      "noZtl": false,
       "tooltip": "Data List",
       "ztlFunction": "",
       "ztlType": "ResultSet"
@@ -269,7 +269,7 @@ function() {
       "cat": "Data",
       "desc": "Reference Measure Selection",
       "noAps": true,
-      "noZtl": true,
+      "noZtl": false,
       "tooltip": "Reference Measure Selection",
       "type": "data",
       "value": null,
@@ -790,7 +790,7 @@ function() {
   "title": "Custom Map",
   "topics": [
     {
-      "content": "Build you own non geographical visualization with this component using an image and HTML maps",
+      "content": "Build you own non geographical visualization with this component using an image and HTML maps. Tutorial: https://blogs.sap.com/2016/07/25/sdk-community-package-custom-map/",
       "title": "Custom Map"
     },
     {
@@ -808,6 +808,7 @@ function() {
   "handlerType": "div",
   "height": "400",
   "id": "CustomMap",
+  "modes": "commons m",
   "package": "databound",
   "parentControl": "sap.zen.commons.layout.AbsoluteLayout",
   "require": [
@@ -819,7 +820,7 @@ function() {
     {"id": "databound/os/d3v3/d3.min"},
     {"id": "shared/os/jsrender/jsrender"}
   ],
-  "title": "Custom Map 0.0",
+  "title": "Custom Map",
   "tooltip": "Custom Map",
   "width": "400"
 };

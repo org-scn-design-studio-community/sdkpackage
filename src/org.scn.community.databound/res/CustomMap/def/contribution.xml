@@ -1,17 +1,17 @@
 
 <component
 	id="CustomMap"
-	title="Custom Map 0.0"
+	title="Custom Map"
 	tooltip="Custom Map"
 	icon="res/CustomMap/CustomMap.png"
 	handlerType="div"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityVisualizations"
 	databound="true"
-	modes="commons"
+	modes="commons m"
 >
 	
-	<requireJs modes="commons">res/CustomMap/CustomMap</requireJs>
+	<requireJs modes="commons m">res/CustomMap/CustomMap</requireJs>
 
 	<cssInclude>res/CustomMap/CustomMap.css</cssInclude>
 	

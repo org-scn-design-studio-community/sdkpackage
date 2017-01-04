@@ -843,9 +843,33 @@ class org.scn.community.databound.CustomMap extends org.scn.community.shared.Com
 		return this.contentTooltip;
 	*}
 
+	/**
+	 * Sets Data List Property
+	 */	
+	void setData( /**Data List*/ ResultSet data){*
+		this.data = data;
+	*}
 
+	/**
+	 * Gets Data List Property
+	 */	
+	ResultSet getData() {*
+		return this.data;
+	*}
 
+	/**
+	 * Sets Reference Measure Selection Property
+	 */	
+	void setDataCellList( /**Reference Measure Selection*/ ResultCellList dataCellList){*
+		this.dataCellList = dataCellList;
+	*}
 
+	/**
+	 * Gets Reference Measure Selection Property
+	 */	
+	ResultCellList getDataCellList() {*
+		return this.dataCellList;
+	*}
 
 
 
