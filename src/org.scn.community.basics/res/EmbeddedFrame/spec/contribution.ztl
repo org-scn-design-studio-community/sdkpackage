@@ -1,34 +1,62 @@
 	// here is the place for other custom functions	
+
+	// manual SETTERS
 	/**
-	 * Gets Domain Relaxation level Property
+	 * Sets Domain Relax Level Property
 	 */	
-	int getDomainRelaxLevel(){*
-		return this.domainrelaxlevel;
-	*}
-	
-	/**
-	 * Gets Domain Relaxation level Property
-	 */	
-	void setDomainRelaxLevel(int level){*
-		this.domainrelaxlevel = level;
+	void setDomainrelaxlevel( /**Domain Relax Level*/ int domainrelaxlevel){*
+		this.domainrelaxlevel = domainrelaxlevel;
 		this.reload = calcTimestamp();
 	*}
-	
-		/**
-	 * Gets Domain Relaxation level Property
+
+	/**
+	 * Sets Explicitly set document domain Property
+	 */	
+	void setExplicitlySetDomain( /**Explicitly set document domain*/ boolean explicitlySetDomain){*
+		this.explicitlySetDomain = explicitlySetDomain;
+		this.reload = calcTimestamp();
+	*}
+
+	/**
+	 * Sets Sandbox Attribute Values Property
+	 */	
+	void setSandbox( /**Sandbox Attribute Values*/ String sandbox){*
+		this.sandbox = sandbox;
+		this.reload = calcTimestamp();
+	*}
+
+	/**
+	 * Sets Skip port in domain Property
+	 */	
+	void setSkipport( /**Skip port in domain*/ boolean skipport){*
+		this.skipport = skipport;
+		this.reload = calcTimestamp();	
+	*}
+
+	/**
+	 * Sets Url Property
+	 */	
+	void setUrl( /**Url*/ String url){*
+		this.url = url;
+		this.reload = calcTimestamp();
+	*}
+
+	/**
+	 * Sets Use Sandbox Attribute Property
+	 */	
+	void setUsesandbox( /**Use Sandbox Attribute*/ boolean usesandbox){*
+		this.usesandbox = usesandbox;
+		this.reload = calcTimestamp();
+	*}
+
+	// Special get for BOOLEAN (copy of isSkipPort())
+	/**
+	 * Gets Skip Port Property
 	 */	
 	boolean getSkipPort(){*
 		return this.skipport;
 	*}
-	
-	/**
-	 * Gets Domain Relaxation level Property
-	 */	
-	void setSkipPort(boolean skip){*
-		this.skipport = skip;
-		this.reload = calcTimestamp();
-	*}
-	
+
 	/**
 	 * Trigger reload of IFrame
 	 */

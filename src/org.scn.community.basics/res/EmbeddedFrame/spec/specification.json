@@ -5,7 +5,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
-			"ztlFunction": "",
+			"ztlFunction": "-get",
 			"desc" : "Url",
 			"cat" : "Display",
 			"tooltip" : "Url to Embedd",
@@ -25,7 +25,7 @@
 		    "noAps": false,
 		    "noZtl": false,
 		    "tooltip": "Use Sandbox Attribute",
-		    "ztlFunction": "",
+		    "ztlFunction": "-get",
 		    "ztlType": "boolean"
 		  }
 	},
@@ -35,7 +35,7 @@
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",
-			"ztlFunction": "",
+			"ztlFunction": "-get",
 			"desc" : "Sandbox Attribute Values",
 			"cat" : "Display",
 			"tooltip" : "Sandbox Attribute Values",
@@ -55,7 +55,7 @@
 		    "noAps": false,
 		    "noZtl": false,
 		    "tooltip": "Level of Domain Relaxation",
-		    "ztlFunction": "",
+		    "ztlFunction": "-get",
 		    "ztlType": "int"
 		  }
 	},
@@ -70,7 +70,7 @@
 		    "noAps": false,
 		    "noZtl": false,
 		    "tooltip": "Skip port in domain",
-		    "ztlFunction": "",
+		    "ztlFunction": "-get",
 		    "ztlType": "boolean"
 		  }
 	},
@@ -85,7 +85,7 @@
 		    "noAps": false,
 		    "noZtl": false,
 		    "tooltip": "Explicitly set document domain",
-		    "ztlFunction": "",
+		    "ztlFunction": "-get",
 		    "ztlType": "boolean"
 		  }
 	},

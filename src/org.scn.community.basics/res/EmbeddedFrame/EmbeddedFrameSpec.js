@@ -40,7 +40,7 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Level of Domain Relaxation",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "int"
     },
     "type": "int",
@@ -55,12 +55,27 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Explicitly set document domain",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "boolean"
     },
     "type": "boolean",
     "value": "false",
     "visible": true
+  },
+  "reload": {
+    "opts": {
+      "apsControl": "text",
+      "cat": "Display",
+      "desc": "Trigger Reload",
+      "noAps": true,
+      "noZtl": true,
+      "tooltip": "Trigger Reload",
+      "ztlFunction": "",
+      "ztlType": "String"
+    },
+    "type": "String",
+    "value": "init",
+    "visible": false
   },
   "sandbox": {
     "opts": {
@@ -70,7 +85,7 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Sandbox Attribute Values",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "String"
     },
     "type": "String",
@@ -85,7 +100,7 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Skip port in domain",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "boolean"
     },
     "type": "boolean",
@@ -100,7 +115,7 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Url to Embedd",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "String"
     },
     "type": "String",
@@ -115,28 +130,13 @@ function() {
       "noAps": false,
       "noZtl": false,
       "tooltip": "Use Sandbox Attribute",
-      "ztlFunction": "",
+      "ztlFunction": "-get",
       "ztlType": "boolean"
     },
     "type": "boolean",
     "value": "true",
     "visible": true
-  },
-  "reload": {
-	    "opts": {
-	      "apsControl": "text",
-	      "cat": "Display",
-	      "desc": "Trigger Reload",
-	      "noAps": true,
-	      "noZtl": true,
-	      "tooltip": "Trigger Reload",
-	      "ztlFunction": "",
-	      "ztlType": "String"
-	    },
-	    "type": "String",
-	    "value": "init",
-	    "visible": false
-	  }
+  }
 };
 
 	spec.specInclude = 
