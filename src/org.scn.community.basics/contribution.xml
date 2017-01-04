@@ -1870,6 +1870,15 @@
 
 	</property>
 	<property
+		id="reload"
+		type="String"
+		title="Trigger Reload"
+		group="Display"
+		bindable="true"
+		visible="false">
+
+	</property>
+	<property
 		id="sandbox"
 		type="String"
 		title="Sandbox Attribute Values"
@@ -1905,15 +1914,7 @@
 		visible="true">
 
 	</property>
-	<property
-		id="reload"
-		type="String"
-		title="Reload"
-		group="Display"
-		bindable="true"
-		visible="false">
 
-	</property>
 
 	<initialization>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
@@ -1925,11 +1926,12 @@
 		
 		<defaultValue property="domainrelaxlevel"><![CDATA[0]]></defaultValue>
 		<defaultValue property="explicitlySetDomain"><![CDATA[false]]></defaultValue>
+		<defaultValue property="reload"><![CDATA[init]]></defaultValue>
 		<defaultValue property="sandbox"><![CDATA[]]></defaultValue>
 		<defaultValue property="skipport"><![CDATA[true]]></defaultValue>
 		<defaultValue property="url"><![CDATA[]]></defaultValue>
 		<defaultValue property="usesandbox"><![CDATA[true]]></defaultValue>
-		<defaultValue property="reload"><![CDATA[init]]></defaultValue>
+
 	</initialization>
 
 </component>
@@ -2366,7 +2368,7 @@
 	id="FioriButtonM"
 	title="Fiori Button 2.0"
 	tooltip="Fiori Button 2.0"
-	icon="res/FioriButton/FioriButton.png"
+	icon="res/FioriButtonM/FioriButtonM.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
@@ -2376,7 +2378,7 @@
 	
 	<requireJs modes="m">res/FioriButtonM/FioriButtonM</requireJs>
 
-	<cssInclude>res/FioriButtonM/FioriButton.css</cssInclude>
+	<cssInclude>res/FioriButtonM/FioriButtonM.css</cssInclude>
 	
 	
 	<property
@@ -2385,7 +2387,7 @@
 		title="Background Colour"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
@@ -2394,7 +2396,7 @@
 		title="Font Colour"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property

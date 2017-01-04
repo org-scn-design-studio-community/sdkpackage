@@ -2318,7 +2318,22 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to specific component*/
 	Tabstrip returnAsTabstrip (Component inputComponent) {* return inputComponent; *}
 
-	
+	/*M COMPONENTS*/
+	/**Cast to specific component*/
+	ListBox returnAsListBox (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	DropdownBox returnAsDropdownBox (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	SegmentedButton returnAsSegmentedButton (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Switch returnAsSwitch (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Icon returnAsIcon (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	Link returnAsLink (Component inputComponent) {* return inputComponent; *}
+	/**Cast to specific component*/
+	ProgressIndicator returnAsProgressIndicator (Component inputComponent) {* return inputComponent; *}
+
 	/* GENERATION PLACE BELOW - DO NOT DELETE THIS LINE ! */
 	/**Cast to Accordion 2.0 component*/
 	org.scn.community.basics.Accordion returnAsScnAccordion (Component inputComponent) {* return inputComponent; *}
@@ -2376,6 +2391,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Fiori Bar 2.0 component*/
 	org.scn.community.basics.FioriBar returnAsScnFioriBar (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Fiori Button 2.0 component*/
+	org.scn.community.basics.FioriButtonM returnAsScnFioriButtonM (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Fiori Button 2.0 component*/
 	org.scn.community.basics.FioriButton returnAsScnFioriButton (Component inputComponent) {* return inputComponent; *}
@@ -2530,7 +2548,7 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 	/**Cast to Clipboard component*/
 	org.scn.community.databound.Clipboard returnAsScnClipboard (Component inputComponent) {* return inputComponent; *}
 
-	/**Cast to Custom Map 0.0 component*/
+	/**Cast to Custom Map component*/
 	org.scn.community.databound.CustomMap returnAsScnCustomMap (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Data Drop Down 2.0 component*/
@@ -2682,6 +2700,9 @@ class org.scn.community.utils.ComponentManager extends org.scn.community.shared.
 
 	/**Cast to Array Utility component*/
 	org.scn.community.utils.Array returnAsScnArray (Component inputComponent) {* return inputComponent; *}
+
+	/**Cast to Audio Utility component*/
+	org.scn.community.utils.Audio returnAsScnAudio (Component inputComponent) {* return inputComponent; *}
 
 	/**Cast to Client Information component*/
 	org.scn.community.utils.ClientInformation returnAsScnClientInformation (Component inputComponent) {* return inputComponent; *}
