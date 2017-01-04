@@ -15,7 +15,7 @@
 			"tooltip" : "Background Colour For This Button",
 			"apsControl" : "color",
 			"noAps" : false,
-			"noZtl" : false
+			"noZtl" : true
 		}
 	},
 	"dFontColor" : {
@@ -31,13 +31,13 @@
 			"tooltip" : "Font Colour For This Button",
 			"apsControl" : "color",
 			"noAps" : false,
-			"noZtl" : false
+			"noZtl" : true
 		}
 	},
 	"dIcon" : {
 		"template" : "String",
 		"type" : "String",
-		"value" : "e03e",
+		"value" : "sap-icon://home",
 		"visible": true,
 		"opts" : {
 			"ztlType": "String",

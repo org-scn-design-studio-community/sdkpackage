@@ -3,7 +3,7 @@
 	id="FioriButtonM"
 	title="Fiori Button 2.0"
 	tooltip="Fiori Button 2.0"
-	icon="res/FioriButton/FioriButton.png"
+	icon="res/FioriButtonM/FioriButtonM.png"
 	handlerType="sapui5"
 	propertySheetPath="aps/PropertyPage.html"
 	group="ScnCommunityBasics"
@@ -13,7 +13,7 @@
 	
 	<requireJs modes="m">res/FioriButtonM/FioriButtonM</requireJs>
 
-	<cssInclude>res/FioriButtonM/FioriButton.css</cssInclude>
+	<cssInclude>res/FioriButtonM/FioriButtonM.css</cssInclude>
 	
 	
 	<property
@@ -22,7 +22,7 @@
 		title="Background Colour"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property
@@ -31,7 +31,7 @@
 		title="Font Colour"
 		group="Display"
 		bindable="true"
-		visible="false">
+		visible="true">
 
 	</property>
 	<property

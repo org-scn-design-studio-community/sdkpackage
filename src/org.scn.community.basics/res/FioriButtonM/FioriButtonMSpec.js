@@ -22,10 +22,10 @@ function() {
 	var spec = {
 		id: "FioriButtonM",
 		name: "basics.FioriButtonM",
-		requireName: "basicsfioributtonM",
+		requireName: "basicsfioributtonm",
 		fullComponentName: "org.scn.community.basics.FioriButtonM",
 		fullComponentPackage: "org.scn.community.basics/res/FioriButtonM",
-		script: "org.scn.community.basics/res/FioriButton/FioriButtonM",
+		script: "org.scn.community.basics/res/FioriButtonM/FioriButtonM",
 		scriptSpec: "org.scn.community.basics/res/FioriButtonM/FioriButtonMSpec",
 		min: false
 	};
@@ -46,7 +46,7 @@ function() {
     "template": "default",
     "type": "String",
     "value": "",
-    "visible": false
+    "visible": true
   },
   "dFontColor": {
     "opts": {
@@ -62,7 +62,7 @@ function() {
     "template": "default",
     "type": "String",
     "value": "",
-    "visible": false
+    "visible": true
   },
   "dIcon": {
     "opts": {
@@ -77,7 +77,7 @@ function() {
     },
     "template": "String",
     "type": "String",
-    "value": "e03e",
+    "value": "sap-icon://home",
     "visible": true
   },
   "dSize": {
@@ -218,6 +218,7 @@ function() {
   "handlerType": "sapui5",
   "height": "42",
   "id": "FioriButtonM",
+  "modes": "m",
   "package": "basics",
   "parentControl": "sap.m.Button",
   "require": [{
@@ -226,7 +227,7 @@ function() {
   }],
   "title": "Fiori Button 2.0",
   "tooltip": "Fiori Button 2.0",
-  "width": "42"
+  "width": "100"
 };
 
 	return spec;
