@@ -6583,15 +6583,7 @@ __n__}
 		visible="true">
 
 	</property>
-	<property
-		id="DNavigationMode"
-		type="String"
-		title="Navigation Mode"
-		group="Display"
-		bindable="true"
-		visible="true">
 
-	</property>
 	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"
@@ -6708,7 +6700,6 @@ __n__}
 		<defaultValue property="DHeaderColWidth"><![CDATA[200]]></defaultValue>
 		<defaultValue property="DHeaderColumnFixed"><![CDATA[-1]]></defaultValue>
 		<defaultValue property="DIgnoreResults"><![CDATA[true]]></defaultValue>
-		<defaultValue property="DNavigationMode"><![CDATA[Paginator]]></defaultValue>
 		<defaultValue property="DOnlyHeaderColumns"><![CDATA[false]]></defaultValue>
 		<defaultValue property="DRowHeight"><![CDATA[20]]></defaultValue>
 		<defaultValue property="DSelection"><![CDATA[]]></defaultValue>

@@ -455,30 +455,6 @@
 			"noZtl":false
 		}
 	},		
-    "DNavigationMode":{
-        "type":"String",
-        "value":"Paginator",
-        "visible":true,
-        "opts":{
-           "ztlType":"Choice",
-           "choiceType":"NavigationMode",
-           "ztlFunction":"",
-           "desc":"Navigation Mode",
-           "cat":"Display",
-           "tooltip":"Navigation Mode",
-           "apsControl":"combobox",
-           "options":[
-              {
-                 "key":"Paginator",
-                 "text":"Use Page Paginator"
-              },
-              {
-                 "key":"Scrollbar",
-                 "text":"Use Scrollbar"
-              }
-           ]
-        }
-     },
      "DSelectionMode":{
         "type":"String",
         "value":"Single",

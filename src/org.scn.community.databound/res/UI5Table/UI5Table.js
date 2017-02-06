@@ -49,11 +49,6 @@ UI5Table = {
     		// cut header
     		height = height - 32;
     		
-    		var lNavMode = that.getDNavigationMode();
-    		if(lNavMode == "Paginator") {
-    			height = height - 26;
-    		}
-    		
     		if(height > 0) {
     			var rowH = that.getDRowHeight();
     			
@@ -83,14 +78,7 @@ UI5Table = {
 		
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 		that._table.setVisibleRowCount(this.getDVisibleRowCount());
-		that._table.setRowHeight(this.getDRowHeight());
-		
-		var lNavMode = this.getDNavigationMode();
-		if(lNavMode == "Paginator") {
-			that._table.setNavigationMode(sap.ui.table.NavigationMode.Paginator);	
-		} else {
-			that._table.setNavigationMode(sap.ui.table.NavigationMode.Scrollbar);
-		}
+		that._table.setRowHeight(this.getDRowHeight());		
 		
 		var lSelMode = this.getDSelectionMode();
 		if(lSelMode == "Single") {
@@ -182,7 +170,7 @@ UI5Table = {
 		var lAllowReorder = that.getDAllowColumnReorder();
 		var lAllowFilter = that.getDAllowFilter();
 
-		var allowSelection = that.getDAllowSelection();;
+		var allowSelection = that.getDAllowSelection();
 		var lPathPrefix = "";
 		var lPathSortPrefix = "";
 
@@ -239,7 +227,7 @@ UI5Table = {
 		}
 		
 		that._oModel.setData(that._flatData);
-		that._table.setAllowColumnReordering();
+		that._table.setEnableColumnReordering();
 
 		var correctLabelPackage = sap.ui.commons == undefined ? sap.m : sap.ui.commons;
 		

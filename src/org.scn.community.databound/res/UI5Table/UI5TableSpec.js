@@ -375,30 +375,6 @@ function() {
     "value": true,
     "visible": true
   },
-  "DNavigationMode": {
-    "opts": {
-      "apsControl": "combobox",
-      "cat": "Display",
-      "choiceType": "NavigationMode",
-      "desc": "Navigation Mode",
-      "options": [
-        {
-          "key": "Paginator",
-          "text": "Use Page Paginator"
-        },
-        {
-          "key": "Scrollbar",
-          "text": "Use Scrollbar"
-        }
-      ],
-      "tooltip": "Navigation Mode",
-      "ztlFunction": "",
-      "ztlType": "Choice"
-    },
-    "type": "String",
-    "value": "Paginator",
-    "visible": true
-  },
   "DOnlyHeaderColumns": {
     "opts": {
       "apsControl": "checkbox",
