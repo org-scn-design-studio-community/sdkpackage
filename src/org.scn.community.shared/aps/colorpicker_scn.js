@@ -15,17 +15,22 @@ define([],function(){
 		renderer : { },
 		setShowAlpha : function(b){
 			this._showAlpha = b;
+			return this;
+			/* The following is broken in 1.6 SP4 UI5 change.
 			if(!b) {
 				this._oldParent.removeContent(this._vLayout);
 			}else{
 				this._oldParent.addContent(this._vLayout);
 			}
+			*/
 		},
 		getShowAlpha : function(){
 			return this._showAlpha;
 		},
 		init : function(){
 			sap.ui.commons.ColorPicker.prototype.init.apply(this, arguments);
+			return;
+			/* The following is broken in 1.6 SP4 UI5 change.
 			this._oldParent = this.oAlphaSlider.getParent();
 			this._sliderParent = this.oSlider.getParent();
 			this._sliderParent.removeContent(this.oSlider);
@@ -41,6 +46,7 @@ define([],function(){
 			this._vLayout.addContent(new sap.ui.commons.TextView({text:"Alpha (Opacity):"}));
 			this._vLayout.addContent(this.oAlphaSlider);
 			if(!this.getShowAlpha()) this._oldParent.removeContent(this._vLayout);
+			*/
 		}
 	});
 });
