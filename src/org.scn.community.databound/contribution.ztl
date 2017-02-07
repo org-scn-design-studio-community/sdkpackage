@@ -7712,34 +7712,6 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 	*}
 
 	/**
-	 * Sets Navigation Mode Property by String
-	 */	
-	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
-		this.DNavigationMode = navigationMode;
-	*}
-
-	/**
-	 * Gets Navigation Mode Property as String
-	 */	
-	String getNavigationModeAsString() {*
-		return this.DNavigationMode;
-	*}
-	
-	/**
-	 * Sets Navigation Mode Property by Choice Option
-	 */	
-	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
-		this.DNavigationMode = navigationMode;
-	*}
-	
-	/**
-	 * Gets Navigation Mode Property as Choice Option
-	 */	
-	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
-		return this.DNavigationMode;
-	*}
-
-	/**
 	 * Sets Show Only Header Columns Property
 	 */	
 	void setOnlyHeaderColumns( /**Show Only Header Columns*/ boolean onlyHeaderColumns){*
@@ -7974,6 +7946,34 @@ class org.scn.community.databound.UI5Table extends org.scn.community.shared.Data
 		}
 
 		return tempA;
+	*}
+	
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
+		
+	*}
+
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	String getNavigationModeAsString() {*
+		return "Scrollbar";
+	*}
+
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
+		
+	*}
+	
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
+		return "Scrollbar";
 	*}
 }
 

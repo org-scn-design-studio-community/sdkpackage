@@ -6583,7 +6583,6 @@ __n__}
 		visible="true">
 
 	</property>
-
 	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"

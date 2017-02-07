@@ -152,7 +152,6 @@
 		visible="true">
 
 	</property>
-
 	<property
 		id="DOnlyHeaderColumns"
 		type="boolean"

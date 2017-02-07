@@ -112,3 +112,31 @@
 
 		return tempA;
 	*}
+	
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	void setNavigationModeByString( /**Navigation Mode*/ String navigationMode){*
+		
+	*}
+
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	String getNavigationModeAsString() {*
+		return "Scrollbar";
+	*}
+
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	void setNavigationMode( /**Navigation Mode*/ org_scn_community_shared_NavigationModeEnumfield navigationMode){*
+		
+	*}
+	
+	/**
+	 * This method is not functional any more, keeping only to avoid compilation issues! #153
+	 */	
+	org_scn_community_shared_NavigationModeEnumfield getNavigationMode() {*
+		return "Scrollbar";
+	*}
