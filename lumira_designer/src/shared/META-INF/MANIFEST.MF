@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Version: 3.0.0.qualifier
+Require-Bundle: com.sap.ip.bi.zen.rt.components.sdk;bundle-version="16.0.0"
+Bundle-Vendor: Lumira Designer SCN Community
+Bundle-Name: Shared Files
+Bundle-SymbolicName: org.scn.community.lumiradesigner.shared;singleton:=true
