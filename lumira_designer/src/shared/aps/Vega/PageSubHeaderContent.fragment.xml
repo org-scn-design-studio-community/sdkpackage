@@ -1,0 +1,9 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<OverflowToolbar id="subheader" content="{navState>/tabs}">
+		<Button text="{navState>text}" press=".tabPress" type="{= ${navState>selected} === true ? 'Emphasized' : 'Default' }"></Button>
+	</OverflowToolbar>
+</core:FragmentDefinition>

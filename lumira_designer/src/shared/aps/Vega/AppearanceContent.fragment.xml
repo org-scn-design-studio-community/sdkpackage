@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<List headerText="Appearance" visible="{navState>selected}">
+		<InputListItem label="{/description/title}" tooltip="{/testProperty/tooltip}"><Input value="{/description/value}"/></InputListItem>
+		<InputListItem label="{/autosize/title}">
+			<SegmentedButton selectedKey="{/autosize/value}">
+				<items>
+					<SegmentedButtonItem key="none" text="None" />
+					<SegmentedButtonItem key="pad" text="Pad"/>
+					<SegmentedButtonItem key="shrink" text = "Shrink"/>
+				</items>
+			</SegmentedButton>
+		</InputListItem>
+		<InputListItem label="Padding Top"><Input value="{/padding/value/top}"/></InputListItem>
+		<InputListItem label="Padding Bottom"><Input value="{/padding/value/bottom}"/></InputListItem>
+		<InputListItem label="Padding Left"><Input value="{/padding/value/left}"/></InputListItem>
+		<InputListItem label="Padding Right"><Input value="{/padding/value/right}"/></InputListItem>
+	</List>
+</core:FragmentDefinition>

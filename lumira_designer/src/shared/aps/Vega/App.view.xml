@@ -1,0 +1,10 @@
+<mvc:View controllerName="PropertyPage.App"  xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" >
+	<App id="PropertyPage" class="sapUiResponsiveContentPadding sapUiSizeCompact">
+		<pages>
+			<!--
+			 Handled by Router in manifest
+			 <mvc:XMLView id="General" viewName="PropertyPage.General"/>
+			 -->
+		</pages>
+	</App>
+</mvc:View>

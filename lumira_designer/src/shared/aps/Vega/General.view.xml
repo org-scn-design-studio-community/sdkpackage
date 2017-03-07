@@ -1,0 +1,17 @@
+<mvc:View
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns:l="sap.ui.layout"  
+  xmlns:s="sap.suite.ui.commons"
+  xmlns:ld="PropertyPage.LumiraDesigner"
+  controllerName="PropertyPage.General" >
+	<Page title="Main Properties" content="{path : 'navState>/tabs', factory : '.fragmentFactory'}">
+		<headerContent>
+			<core:Fragment fragmentName="PropertyPage.PageHeaderContent" type="XML" />
+		</headerContent>
+		<subHeader>
+			<core:Fragment fragmentName="PropertyPage.PageSubHeaderContent" type="XML" />
+		</subHeader>
+	</Page>
+</mvc:View>

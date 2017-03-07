@@ -1,0 +1,43 @@
+{
+   "_version": "1.1.0",
+   "sap.ui5": {
+      "_version": "1.1.0",
+      "rootView": "PropertyPage.App",
+      "routing": {
+         "config": {
+            "routerClass": "sap.m.routing.Router",
+            "viewType": "XML",
+            "viewPath": "PropertyPage",
+            "controlId": "PropertyPage",
+            "controlAggregation": "pages",
+            "transition": "slide",
+            "bypassed": {
+               "target": "notFound"
+            }
+         },
+         "routes": [{
+            "pattern": "",
+            "name": "appHome",
+            "target" : "home"
+         },{
+         	"pattern" : "datasets",
+         	"name" : "datasets",
+         	"target" : "datasets"
+         },{
+         	"pattern" : "layer/{index}",
+         	"name" : "layer",
+         	"target" : "layer"
+         }],
+         "targets": {
+            "home": {
+               "viewName": "General",
+               "viewLevel" : 1
+            },
+            "layer": {
+               "viewName": "Layer",
+               "viewLevel" : 2
+            }
+         }
+      }
+   }
+}

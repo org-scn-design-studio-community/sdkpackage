@@ -185,14 +185,9 @@
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
   </license>
-
-	<group
-		id="ScnCommunityVisualizations"
-		title="Scn Community Visualizations"/>	
-	<group
-		id="ScnCommunityBasics"
-		title="Scn Community Basics"/>	
-<component
+	<group id="ScnCommunityVisualizations"	title="Scn Community Visualizations"/>	
+	<group id="dss" title="Datasources" visible="true"/>	
+	<component
 		id="Vega"
 		title="Vega"
 		icon="res/icon.png"
@@ -201,7 +196,7 @@
 		propertySheetPath="aps/Vega.html"
 		group="ScnCommunityVisualizations"
 		databound="true"
->
+	>
 	<requireJs modes="commons m">res/Vega</requireJs>
 	<!-- Base Databound Properties -->
 	<property
@@ -212,14 +207,151 @@
 			<option name="includeFormattedData" value="false"/>
 			<option name="includeData" value="true"/>
 	</property>
+	<!--  Datasets -->
+	<property id="dataset1" type="ResultCellSet" title="Dataset 1" group="dss"
+		visible="true" tooltip="Dataset 1" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset2" type="ResultCellSet" title="Dataset 2" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset3" type="ResultCellSet" title="Dataset 3" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset4" type="ResultCellSet" title="Dataset 4" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset5" type="ResultCellSet" title="Dataset 5" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset6" type="ResultCellSet" title="Dataset 6" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset7" type="ResultCellSet" title="Dataset 7" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset8" type="ResultCellSet" title="Dataset 8" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset9" type="ResultCellSet" title="Dataset 9" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
+	<property id="dataset10" type="ResultCellSet" title="Dataset 10" group="dss"
+		visible="true" tooltip="Dataset 2" bindable="true">
+		<option name="includeTuples" value="true" />
+		<option name="includeAxesTuples" value="true" />
+		<option name="includeMetadata" value="true" />
+		<option name="includeData" value="true" />
+		<option name="includeResults" value="false" />
+		<option name="includeFormattedData" value="false" />
+		<option name="fillMetadataProperty" value="false" />
+		<option name="selectionShape" value="1" />
+	</property>
 	<property id="spec" type="String" title="Vega Spec"></property>
 	<property id="ignoreTotals" type="boolean" title = "Ignore Totals" visible="false" group="DataBinding"/>
 	<property id="ignoreExpandedNodes" type="boolean" title = "Ignore Expanded Nodes" visible="false" group="DataBinding"/>
 	<property id="swapAxes" type="boolean" title = "Swap Axes" visible="false" group="DataBinding"/>
 	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
-	<!-- End of Base Databound Properties -->
-
+	
+	<!-- Top-Level Specifications -->
+	<property id="schema" type="String" title="Schema"/>
+	<property id="description" type="String" title="Description"/>
+	<property id="background" type="String" title="Background Colour"/>
+	<property id="padding" type="String" title="Padding"/>
+	<property id="autosize" type="String" title="Autosize"/>
+	<property id="config" type="String" title="Config"/>
+	<property id="signals" type="String" title="Signals"/>
+	<property id="scales" type="String" title="Scales"/>
+	<property id="projections" type="String" title="Projections"/>
+	<property id="axes" type="String" title="Axes"/>
+	<property id="legends" type="String" title="Legends"/>
+	<property id="marks" type="String" title="Marks"/>
+	<property id="encode" type="String" title="Encode"/>
+	<!-- End of Top-Level Specifications -->
 	<initialization>
+		<defaultValue property="schema">https://vega.github.io/schema/vega/v3.0.json</defaultValue>
+		<defaultValue property="description">My Vega Visualization</defaultValue>
+		<defaultValue property="config">{}</defaultValue>
+		<defaultValue property="padding">{}</defaultValue>
+		<defaultValue property="signals">[]</defaultValue>
+		<defaultValue property="scales">[]</defaultValue>
+		<defaultValue property="projections">[]</defaultValue>
+		<defaultValue property="axes">[]</defaultValue>
+		<defaultValue property="legends">[]</defaultValue>
+		<defaultValue property="marks">[]</defaultValue>
+		<defaultValue property="encode">{}</defaultValue>
+		
 		<defaultValue property="spec">{}</defaultValue>
 		<defaultValue property="TOP_MARGIN">0</defaultValue>
 		<defaultValue property="BOTTOM_MARGIN">auto</defaultValue>

@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:ld="PropertyPage.LumiraDesigner">
+	<Panel headerText="Marks" visible="{navState>selected}">
+		<content>
+			<ld:CodeMirror value="{/marks/value}"></ld:CodeMirror>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

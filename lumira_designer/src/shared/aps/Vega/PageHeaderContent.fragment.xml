@@ -1,0 +1,7 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<Button icon="sap-icon://sys-help" tooltip="Help" press="showHelp"/>
+</core:FragmentDefinition>
