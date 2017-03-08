@@ -13,6 +13,7 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 	Component.subclass("org.scn.community.lumiradesigner.vega.Vega", function(){
 		this.props = {
 			schema : { },
+			dataSpec : { },
 			description : { },
 			padding : { },
 			autosize : { },
@@ -79,6 +80,7 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 				spec.marks = this.parse(this.marks());
 				spec.legends = this.parse(this.legends());
 				spec.signals = this.parse(this.signals());
+				spec.data = this.parse(this.dataSpec());
 				
 				var strSpec = JSON.stringify(spec);
 				// Replace relative row header placeholders
@@ -100,18 +102,13 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 					return ret;
 				});
 				spec = JSON.parse(strSpec);
+				for(var i=0;i<spec.data.length;i++){
+					spec.data[i].values = json;	//temporary.  change to multisource soon
+				}
 			}catch(e){
 				this.$().html("Spec JSON is empty or incorrect.<br/><br/>" + e);
 				return;
 			}
-			
-			spec.data = [
-				{ 
-					name : "table",
-					values : json
-				}
-			];
-			
 			
 			width = width - parseInt(spec.padding) * 2;
 			height = height - parseInt(spec.padding) * 2;

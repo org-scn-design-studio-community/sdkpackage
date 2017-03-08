@@ -19,6 +19,10 @@ try{
 				title : "Description",
 				tooltip : "A text description of the visualization."
 			},
+			dataSpec : {
+				title : "Data",
+				tooltip : "Data Operations"
+			},
 			background : {
 				title : "Background Color",
 				tooltip : "The background color of the entire view (defaults to transparent)."
@@ -172,6 +176,9 @@ try{
 				{
 					text : "Config",
 					selected : true
+				},{
+					text : "Data",
+					selected : false
 				},{
 					text : "Appearance",
 					selected : false

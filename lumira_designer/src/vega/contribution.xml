@@ -325,6 +325,7 @@
 	<property id="useMockData" type="boolean" title = "Use Mock Data" visible="false" group="DataBinding"/>
 	
 	<!-- Top-Level Specifications -->
+	<property id="dataSpec" type="String" title="Schema"/>
 	<property id="schema" type="String" title="Schema"/>
 	<property id="description" type="String" title="Description"/>
 	<property id="background" type="String" title="Background Colour"/>
@@ -342,6 +343,7 @@
 	<initialization>
 		<defaultValue property="schema">https://vega.github.io/schema/vega/v3.0.json</defaultValue>
 		<defaultValue property="description">My Vega Visualization</defaultValue>
+		<defaultValue property="dataSpec">[]</defaultValue>
 		<defaultValue property="config">{}</defaultValue>
 		<defaultValue property="padding">5</defaultValue>
 		<defaultValue property="signals">[]</defaultValue>
