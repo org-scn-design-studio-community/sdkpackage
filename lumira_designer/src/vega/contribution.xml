@@ -343,7 +343,7 @@
 		<defaultValue property="schema">https://vega.github.io/schema/vega/v3.0.json</defaultValue>
 		<defaultValue property="description">My Vega Visualization</defaultValue>
 		<defaultValue property="config">{}</defaultValue>
-		<defaultValue property="padding">{}</defaultValue>
+		<defaultValue property="padding">5</defaultValue>
 		<defaultValue property="signals">[]</defaultValue>
 		<defaultValue property="scales">[]</defaultValue>
 		<defaultValue property="projections">[]</defaultValue>

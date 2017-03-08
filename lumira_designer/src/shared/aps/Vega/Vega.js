@@ -30,7 +30,7 @@ try{
 			padding : {
 				title : "Padding",
 				tooltip : "The padding in pixels to add around the visualization.",
-				serialize : true
+				// serialize : true
 			},
 			config : {
 				title : "Config",

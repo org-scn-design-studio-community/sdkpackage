@@ -10,13 +10,10 @@
 				<items>
 					<SegmentedButtonItem key="none" text="None" />
 					<SegmentedButtonItem key="pad" text="Pad"/>
-					<SegmentedButtonItem key="shrink" text = "Shrink"/>
+					<SegmentedButtonItem key="fit" text = "Fit"/>
 				</items>
 			</SegmentedButton>
 		</InputListItem>
-		<InputListItem label="Padding Top"><Input value="{/padding/value/top}"/></InputListItem>
-		<InputListItem label="Padding Bottom"><Input value="{/padding/value/bottom}"/></InputListItem>
-		<InputListItem label="Padding Left"><Input value="{/padding/value/left}"/></InputListItem>
-		<InputListItem label="Padding Right"><Input value="{/padding/value/right}"/></InputListItem>
+		<InputListItem label="Padding"><Input value="{/padding/value}"/></InputListItem>
 	</List>
 </core:FragmentDefinition>

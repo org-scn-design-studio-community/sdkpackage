@@ -9,7 +9,7 @@ requirejs.config({
 		vg : {deps : ["d3"]}
 	}
 });
-define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/component.databound", "sap/designstudio/sdk/component"],function(d3, vg, databound, Component){
+define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/component.databound", "sap/designstudio/sdk/component"],function(d3, vega, databound, Component){
 	Component.subclass("org.scn.community.lumiradesigner.vega.Vega", function(){
 		this.props = {
 			schema : { },
@@ -66,22 +66,45 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 			var height = this.$().innerHeight();			
 			var spec = {};
 			try{
+				var json = databound.json(this.data());
+				var flat = databound.flatten(this.data());
 				// spec = JSON.parse(this.spec());
 				// delete spec.data;
 				spec["$schema"] = this.schema();
 				spec.description = this.description();
 				spec.autosize = this.autosize(); 
-				spec.padding = this.parse(this.padding());
+				spec.padding = this.padding() || 0;
 				spec.axes = this.parse(this.axes());
 				spec.scales = this.parse(this.scales());
 				spec.marks = this.parse(this.marks());
 				spec.legends = this.parse(this.legends());
 				spec.signals = this.parse(this.signals());
+				
+				var strSpec = JSON.stringify(spec);
+				// Replace relative row header placeholders
+				strSpec = strSpec.replace(/{rowheader-position-(.*?)}/g, function(a,b){
+					var ret = "category";
+					var columnIndex = parseInt(b);
+					if(flat.dimensionHeadersKeys.length>=columnIndex) ret = flat.dimensionHeadersKeys[columnIndex];
+					return ret;
+				});
+				// Replace relative column placeholders
+				strSpec = strSpec.replace(/{measure-position-(.*?)}/g, function(a,b){
+					if(flat && flat.columnHeaders){
+						var ret = flat.columnHeaders[0];
+						var columnIndex = parseInt(b);
+						if(flat.columnHeaders.length>=columnIndex) ret = flat.columnHeaders[columnIndex];
+					}else{
+						ret = null;
+					}
+					return ret;
+				});
+				spec = JSON.parse(strSpec);
 			}catch(e){
-				this.$().html("Spec JSON is empty or incorrect.");
+				this.$().html("Spec JSON is empty or incorrect.<br/><br/>" + e);
 				return;
 			}
-			var json = databound.json(this.data());
+			
 			spec.data = [
 				{ 
 					name : "table",
@@ -89,30 +112,20 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 				}
 			];
 			
-			var paddingLeft = (spec.padding && spec.padding.left!=undefined)?spec.padding.left:0;
-			var paddingRight = (spec.right && spec.padding.right!=undefined)?spec.padding.right:0;
-			var paddingTop = (spec.padding && spec.padding.top!=undefined)?spec.padding.top:0;
-			var paddingBottom = (spec.right && spec.padding.bottom!=undefined)?spec.padding.bottom:0;
 			
-			width = width - paddingLeft - paddingRight;
-			height = height - paddingTop - paddingBottom;
+			width = width - parseInt(spec.padding) * 2;
+			height = height - parseInt(spec.padding) * 2;
 			
 			spec.width = width;
 			spec.height = height;
 			
 			console.log(spec);
 			try{
-				vg.parse.spec(spec, function(chart){
-					try{
-						var view = chart({
-							el : "#" + id,
-							renderer : "svg"
-						});
-						view.update();					
-					}catch(e){
-						that.$().html("Error while updating view:" + e);
-					}
-				});
+				var view = new vega.View(vega.parse(spec))
+				  .renderer("svg") 		 // set renderer (canvas or svg)
+				  .initialize( "#" + id) // initialize view within parent DOM container
+				  .hover()          	 // enable hover encode set processing
+				  .run();                // run the dataflow and render the view
 			}catch(e){
 				that.$().html("Error while parsing spec:" + e);
 			}
