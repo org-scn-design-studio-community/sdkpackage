@@ -1,9 +1,7 @@
 <html>
 <head>
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 <script type='text/javascript'>
-	google.load("feeds", "1");
 	
 	function getSearchParameters() {
 	    var prmstr = window.location.search.substr(1);
@@ -104,12 +102,16 @@
 						xsl = $.parseXML(xsl.responseText);
 					}
 					
-					var feed = new google.feeds.Feed(feedUrl);
+					/*var feed = new google.feeds.Feed(feedUrl);
 				  	feed.setResultFormat(google.feeds.Feed.XML_FORMAT);
-			      	feed.load(function(result) {
+			      	feed.load(function(result) { */
+		      		$.getJSON("https://query.yahooapis.com/v1/public/yql?q=select * from xml where url = '"+feedUrl+"'&format=xml&env=store://datatables.org/alltableswithkeys&callback=?",
+		      		
+		      		function(result){
+		      			var xml = $.parseXML(result.results[0]);
+		      			debugger
 				    	try {
-					      	if (!result.error) {
-								var xml = result.xmlDocument;
+					      	if (result.results) {
 							  	if (isIE !== false) {
 									if (typeof (xml.transformNode) != "undefined") {
 							  			var ex = xml.transformNode(xsl);
@@ -157,7 +159,7 @@
 								}
 							  	
 					        }else{
-					        	if(window.console)console.log("error loading rss feed! "+result.error.message);
+					        	if(window.console)console.log("error loading rss feed! ");
 					        }
 					    }
 				        catch (e) {
@@ -190,10 +192,13 @@
 		
 	  	loadXMLDoc(myXsl, myFeed, myCss);      
     }
-    google.setOnLoadCallback(initialize);
+    
 </script>
 </head>
 <body>
 	<div id="feed"></div>
+	<script type="text/javascript">
+		initialize();
+    </script>
 </body>
 </html>
