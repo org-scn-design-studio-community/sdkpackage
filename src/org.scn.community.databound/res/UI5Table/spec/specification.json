@@ -441,6 +441,34 @@
               }
            ]
         }
+     },		
+    "DSelectionMode":{
+        "type":"String",
+        "value":"None",
+        "visible":true,
+        "opts":{
+           "ztlType":"Choice",
+           "choiceType":"SelectionMode",
+           "ztlFunction":"",
+           "desc":"Selection Mode",
+           "cat":"Display",
+           "tooltip":"Selection Mode",
+           "apsControl":"combobox",
+           "options":[
+              {
+                 "key":"None",
+                 "text":"None"
+              },
+              {
+                 "key":"Single",
+                 "text":"Single Row Selection"
+              },
+              {
+                 "key":"Multi",
+                 "text":"Multiple Row Selection"
+              }
+           ]
+        }
      },
 	"DSelection" : {
 		"type" : "String",

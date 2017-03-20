@@ -388,6 +388,34 @@
     "value": "Paginator",
     "visible": true
   },
+  "DSelectionMode": {
+	    "opts": {
+	      "apsControl": "combobox",
+	      "cat": "Display",
+	      "choiceType": "SelectionMode",
+	      "desc": "Selection Mode",
+	      "options":[
+	                 {
+	                    "key":"None",
+	                    "text":"None"
+	                 },
+	                 {
+	                    "key":"Single",
+	                    "text":"Single Row Selection"
+	                 },
+	                 {
+	                    "key":"Multi",
+	                    "text":"Multiple Row Selection"
+	                 }
+	              ],
+	      "tooltip": "Selection Mode",
+	      "ztlFunction": "",
+	      "ztlType": "Choice"
+	    },
+	    "type": "String",
+	    "value": "None",
+	    "visible": true
+	  },
   "DOnlyHeaderColumns": {
     "opts": {
       "apsControl": "checkbox",

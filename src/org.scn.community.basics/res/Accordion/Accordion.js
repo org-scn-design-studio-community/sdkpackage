@@ -105,6 +105,11 @@ Accordion = {
 					lNewElement.index = that._oElementsArray.length;
 					that._oElements[element.key] = lNewElement;
 					that._oElementsArray.push(lNewElement);
+					
+					if(that.getSelectedKey() === element.key){
+						that._updateSelection(element.key);
+						that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+					}
 				}
 			}
 		}
