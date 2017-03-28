@@ -106,10 +106,6 @@ Accordion = {
 					that._oElements[element.key] = lNewElement;
 					that._oElementsArray.push(lNewElement);
 					
-					if(that.getSelectedKey() === element.key){
-						that._updateSelection(element.key);
-						that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-					}
 				}
 			}
 		}
@@ -150,6 +146,12 @@ Accordion = {
 				// need to code update?
 			}
 		}
+		
+		var key = that.getSelectedKey();
+//		if(key !== ""){
+			that._updateSelection(key);
+			that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+//		}
 		
 		that._cleanUpAfterUpdate();
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
@@ -407,6 +409,11 @@ Accordion = {
 			if(lElement.addStyleClass) {
 				if(iSelectedKey == lElement._Key){
 					lElement.addStyleClass("scn-pack-Accordion-SelectedValue");
+					var parent = that._oElements[lElement._ParentKey];
+					var longId = that._oAccordion.getOpenedSectionsId();
+					var accordionPrefix = longId.substr(0,longId.lastIndexOf("-"));
+					var newOpenedSection = accordionPrefix+"-"+parent._Key;
+					that._oAccordion.openSection(newOpenedSection);
 				} else {
 					lElement.removeStyleClass("scn-pack-Accordion-SelectedValue");
 				};
