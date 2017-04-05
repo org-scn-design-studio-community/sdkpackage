@@ -167,6 +167,13 @@ Accordion = {
 		}
 		
 		that._cleanUpAfterUpdate();
+		
+		var key = that.getSelectedKey();
+//		if(key !== ""){
+		that._updateSelection(key);
+		that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+		//that._oAccordion.setOpenedSectionsId();
+//		}
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
@@ -426,6 +433,9 @@ Accordion = {
 			if(lElement.addStyleClass) {
 				if(iSelectedKey == lElement._Key){
 					lElement.addStyleClass("scn-pack-Accordion-SelectedValue");
+					var parent = that._oElements[lElement._ParentKey];
+					var newOpenedSection = that.sId + "-sec-" + parent._Key;
+					that._oAccordion.openSection(newOpenedSection);
 				} else {
 					lElement.removeStyleClass("scn-pack-Accordion-SelectedValue");
 				};
