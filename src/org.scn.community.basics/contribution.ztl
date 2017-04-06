@@ -681,7 +681,12 @@ class org.scn.community.basics.Accordion extends org.scn.community.shared.Compon
 
 
 
-
+	/**
+	 * Sets Selected Key Property.
+	 */	
+	void setSelectedKey(String key) {*
+		this.selectedKey = key;
+	*}
 
 	/**
 	 * Gets Selected Key Property
