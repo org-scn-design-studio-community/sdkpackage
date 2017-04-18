@@ -153,7 +153,7 @@ Accordion = {
 //		if(key !== ""){
 		that._updateSelection(key);
 		that.sectionOpenFired = false;
-		//that.fireDesignStudioPropertiesChanged(["selectedKey"]);
+		that.fireDesignStudioPropertiesChanged(["selectedKey"]);
 		//that._oAccordion.setOpenedSectionsId();
 //		}
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
