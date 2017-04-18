@@ -171,6 +171,7 @@ Accordion = {
 		var key = that.getSelectedKey();
 //		if(key !== ""){
 		that._updateSelection(key);
+		that.sectionOpenFired = false;
 		that.fireDesignStudioPropertiesChanged(["selectedKey"]);
 		//that._oAccordion.setOpenedSectionsId();
 //		}
@@ -191,9 +192,11 @@ Accordion = {
 		that._oAccordion = new sap.ui.commons.Accordion();
 		that.addStyleClass("scn-pack-FullSizeChildren");
 		that._oAccordion.addStyleClass("scn-pack-Accordion-Main");
+		that.sectionOpenFired = false;
 		
 		that._oAccordion.attachSectionOpen(function(oControlEvent, oControl) {
 			var lElementId = oControlEvent.getParameters().openSectionId;
+			that.sectionOpenFired = true;
 			lElementId = lElementId.replace(that.getId() + "-sec-", "");
 			
 			var lElement = that._oElements[lElementId];
@@ -430,12 +433,17 @@ Accordion = {
 		var that = this;
 		for (lElementKey in that._oElements) {
 			var lElement = that._oElements[lElementKey];
+			
 			if(lElement.addStyleClass) {
+				var parent = that._oElements[lElement._ParentKey];
+			
 				if(iSelectedKey == lElement._Key){
 					lElement.addStyleClass("scn-pack-Accordion-SelectedValue");
-					var parent = that._oElements[lElement._ParentKey];
 					var newOpenedSection = that.sId + "-sec-" + parent._Key;
-					that._oAccordion.openSection(newOpenedSection);
+					//fix backOneStep and bookmarking problems due to invalid sections
+					if(!that.sectionOpenFired){
+						that._oAccordion.openSection(newOpenedSection);	
+					}	
 				} else {
 					lElement.removeStyleClass("scn-pack-Accordion-SelectedValue");
 				};
