@@ -17,6 +17,7 @@ div[class~=scn-pack-FullSizeChildren] div[class=sapUiLayoutAbsPos] {width: 100% 
 
 .scn-pack-Accordion-SelectedValue {
 	/* border: solid 2px #000000 !important; */
+	background-color: #f2f2f2;
 }
 
 .scn-pack-Accordion-Image {
