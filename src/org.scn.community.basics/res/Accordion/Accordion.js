@@ -169,12 +169,9 @@ Accordion = {
 		that._cleanUpAfterUpdate();
 		
 		var key = that.getSelectedKey();
-//		if(key !== ""){
 		that._updateSelection(key);
 		that.sectionOpenFired = false;
-		that.fireDesignStudioPropertiesChanged(["selectedKey"]);
-		//that._oAccordion.setOpenedSectionsId();
-//		}
+		//that.fireDesignStudioPropertiesChanged(["selectedKey"]);
 		/* COMPONENT SPECIFIC CODE - START(afterDesignStudioUpdate)*/
 	},
 	
@@ -403,6 +400,7 @@ Accordion = {
 			if(that.getSelectedKey() != oLayout._Key) {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
+				that.sectionOpenFired = false;
 				
 				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
@@ -412,6 +410,7 @@ Accordion = {
 			if(that.getSelectedKey() != oLayout._Key) {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
+				that.sectionOpenFired = false;
 				
 				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
@@ -421,6 +420,7 @@ Accordion = {
 			if(that.getSelectedKey() != oLayout._Key) {
 				that.setSelectedKey(oLayout._Key);
 				that._updateSelection(oLayout._Key);
+				that.sectionOpenFired = false;
 				
 				that.fireDesignStudioPropertiesChangedAndEvent(["selectedKey"], "onSelectionChanged");
 			}
