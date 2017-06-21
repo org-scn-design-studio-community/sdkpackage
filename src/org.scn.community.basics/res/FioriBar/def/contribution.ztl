@@ -7,11 +7,13 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addRightHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+	void addRightHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType, /* Enabled */ optional boolean enabled) {*		
 		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
 		var sTitle = true;
 		if(showTitle != undefined) sTitle = showTitle;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;
 		var h;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
@@ -22,6 +24,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 				text : buttonTitle,
 				showTitle : sTitle,
 				icon : icon,
+				enabled : bEnabled,
 				items : [],
 				type : buttonType || "Default"
 			});
@@ -86,9 +89,12 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addRightItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+	void addRightItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon, /* Enabled */ optional boolean enabled ) {*		
 		var o = eval(this.itemConfigRight);
 		var matchIndex = -1;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;
+		
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
@@ -100,7 +106,8 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 		o[matchIndex].items.push({
 			key : itemKey,
 			text : itemText,
-			icon : itemIcon || ""
+			icon : itemIcon || "",
+			enabled : bEnabled
 		});
 		itemConfigRight = JSON.stringify(o);
 	*}
@@ -139,10 +146,12 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addLeftHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+	void addLeftHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType, /* Enabled */ optional boolean enabled) {*		
 		var o = eval(this.itemConfigLeft);
 		var matchIndex = -1;
 		var sTitle = true;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;
 		if(showTitle != undefined) sTitle = showTitle;
 		var h;
 		for(var i=0;i<o.length;i++){
@@ -154,6 +163,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 				text : buttonTitle,
 				showTitle : sTitle,
 				icon : icon,
+				enabled : bEnabled,
 				items : [],
 				type : buttonType || "Default"
 			});
@@ -218,9 +228,12 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addLeftItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+	void addLeftItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon, /* Enabled */ optional boolean enabled ) {*		
 		var o = eval(this.itemConfigLeft);
 		var matchIndex = -1;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;
+		
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
@@ -232,7 +245,8 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 		o[matchIndex].items.push({
 			key : itemKey,
 			text : itemText,
-			icon : itemIcon || ""
+			icon : itemIcon || "",
+			enabled : bEnabled
 		});
 		itemConfigLeft = JSON.stringify(o);
 	*}
@@ -270,11 +284,13 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addMiddleHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType) {*		
+	void addMiddleHeaderButton (/*Button Key*/String buttonKey, /*Button Title*/String buttonTitle, /* Show Title */ optional boolean showTitle, /*Icon*/ optional String icon, /*Button Type*/ optional String buttonType, /* Enabled */ optional boolean enabled) {*		
 		var o = eval(this.itemConfigMiddle);
 		var matchIndex = -1;
 		var sTitle = true;
 		if(showTitle != undefined) sTitle = showTitle;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;
 		var h;
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
@@ -285,6 +301,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 				text : buttonTitle,
 				showTitle : sTitle,
 				icon : icon,
+				enabled : bEnabled,
 				items : [],
 				type : buttonType || "Default"
 			});
@@ -349,9 +366,11 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 	</code>
 	</example>
 	 */
-	void addMiddleItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon) {*		
+	void addMiddleItem (/*Button Key*/String buttonKey, /*Item Key*/String itemKey, /*Item Text*/String itemText, /*Item Icon*/optional String itemIcon, /* Enabled */ optional boolean enabled ) {*		
 		var o = eval(this.itemConfigMiddle);
 		var matchIndex = -1;
+		var bEnabled = true;
+		if(enabled != undefined) bEnabled = enabled;		
 		for(var i=0;i<o.length;i++){
 			if(o[i].key == buttonKey) matchIndex = i;
 		}
@@ -363,7 +382,8 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 		o[matchIndex].items.push({
 			key : itemKey,
 			text : itemText,
-			icon : itemIcon || ""
+			icon : itemIcon || "",
+			enabled : bEnabled
 		});
 		itemConfigMiddle = JSON.stringify(o);
 	*}

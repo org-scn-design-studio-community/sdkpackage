@@ -47,7 +47,7 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 		}
 		this.parse = function(s){
 			if(s==null || s===undefined || s == ""){
-				console.log("JSON stringy is empty.");
+				console.log("JSON string is empty.");
 				return null;
 			}else{
 				try{
@@ -117,6 +117,7 @@ define(["d3", "vg", "./../../org.scn.community.lumiradesigner.shared/os/scn/comp
 			spec.height = height;
 			
 			console.log(spec);
+			console.log(JSON.stringify(spec));
 			try{
 				var view = new vega.View(vega.parse(spec))
 				  .renderer("svg") 		 // set renderer (canvas or svg)

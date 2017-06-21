@@ -14,7 +14,8 @@ sap.ui.define([
 		changeHandler : function(instance){
 			try{
 				if(instance && instance.getValue()){
-					this.setValue(instance.getValue());
+					this.setProperty("value", instance.getValue(), true);
+					//this.setValue(instance.getValue());
 					this.fireChange();				
 				}
 				event.cancelBubble = true;	// Prevent Browser Save				

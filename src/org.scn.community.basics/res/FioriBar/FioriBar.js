@@ -58,6 +58,11 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 								defaultValue : "Some Item",
 								apsControl : "text"
 							},
+							enabled : {
+								desc : "Enabled",
+								defaultValue : true,
+								apsControl : "checkbox"
+							},
 							icon : {
 								desc : "Icon",
 								defaultValue : "sap-icon://action",
@@ -83,6 +88,11 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 					},
 					showTitle : {
 						desc : "Show Title",
+						defaultValue : true,
+						apsControl : "checkbox"
+					},
+					enabled : {
+						desc : "Enabled",
 						defaultValue : true,
 						apsControl : "checkbox"
 					},
@@ -285,11 +295,16 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 				for(var z = 0; z < conf.length; z++){
 					for(var i=0;i<this["_"+conf[z].prop].length;i++){
 						var title = "";
+						var enabled = true;
 						var actualTitle = this["_"+conf[z].prop][i].text;
+						if(this["_"+conf[z].prop][i].enabled != undefined){
+							enabled = this["_"+conf[z].prop][i].enabled;
+						}
 						if(this["_"+conf[z].prop][i].showTitle) title = actualTitle;
 						var b = new sap.m.Button({
 							text : title,
 							tooltip : actualTitle,
+							enabled : enabled,
 							icon : this["_"+conf[z].prop][i].icon
 						});
 						b.addStyleClass("DesignStudioSCN");
@@ -322,9 +337,14 @@ define(["css!../../../org.scn.community.shared/modules/ZenCrosstabFix.css"], fun
 									actionSheet.addStyleClass("DesignStudioSCN");
 									for(var j=0;j<items.length;j++){
 										var item = items[j];
+										var enabled2 = true;
+										if(item.enabled != undefined){
+											enabled2 = item.enabled;
+										}
 										var actionButton = new sap.m.Button({
 											text : item.text,
-										    icon : item.icon
+										    icon : item.icon,
+										    enabled : enabled2
 										});
 										actionButton.addStyleClass("DesignStudioSCN");
 										// Action Item Handler

@@ -8,7 +8,7 @@ try{
 				return this.specData;
 			}else{
 				this.specData = v;
-				this.editor.setValue(v);
+				// this.editor.setValue(v);
 				return this;
 			}
 		};
