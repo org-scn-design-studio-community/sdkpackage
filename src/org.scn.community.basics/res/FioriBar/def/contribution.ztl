@@ -33,6 +33,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigRight = JSON.stringify(o);
 	*}
@@ -172,6 +173,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigLeft = JSON.stringify(o);
 	*}
@@ -310,6 +312,7 @@ class org.scn.community.basics.FioriBar extends org.scn.community.shared.Compone
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigMiddle = JSON.stringify(o);
 	*}

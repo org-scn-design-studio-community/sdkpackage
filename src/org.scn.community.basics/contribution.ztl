@@ -6553,6 +6553,7 @@ class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.C
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigRight = JSON.stringify(o);
 	*}
@@ -6692,6 +6693,7 @@ class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.C
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigLeft = JSON.stringify(o);
 	*}
@@ -6830,6 +6832,7 @@ class org.scn.community.basics.FioriAppHeader extends org.scn.community.shared.C
 			o[matchIndex].showTitle = sTitle;
 			o[matchIndex].icon = icon;
 			o[matchIndex].type = buttonType || "Default";
+			o[matchIndex].enabled = bEnabled;
 		}		
 		itemConfigMiddle = JSON.stringify(o);
 	*}
