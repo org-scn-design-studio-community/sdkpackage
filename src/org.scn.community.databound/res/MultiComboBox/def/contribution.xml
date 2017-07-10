@@ -113,11 +113,11 @@
 		visible="true">
 	</property>
 
-	<property
+	<!-- <property
 		id="onSelectionFinished"
 		type="ScriptText"
 		title="Event for On Selection Finished"
-		group="Events" />
+		group="Events" /> -->
 
 	<property
 		id="onChange"

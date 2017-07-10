@@ -93,31 +93,31 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 		//		this.bindAggregation('items', '/items', oItemTemplate);
 				
 				//This event handler doesn't fire properly on IE and firefox. Therefore logic ported to onChange. Unfortunately the popover needs to be opened on every selection
-				var onSelectionFinish = function(oControlEvent) {
-					var selection = oControlEvent.getParameter("selectedItems");
-					var keys = [];
-					var texts = [];
-					for(var i=0;i<selection.length;i++){
-						keys.push(selection[i].getKey());
-						texts.push(selection[i].getText());
-					}
-					//get values bex variable ready (has to be seperated by semicolons!)
-					var keysBexReady = JSON.stringify(keys)
-					keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
-					keysBexReady = this.replaceAll(keysBexReady,",",";")
-					keysBexReady = this.replaceAll(keysBexReady,'"',"");
-					this.setDSelectedKey(keys);
-					this.setDSelectedText(texts);
-					this.setDSelectedKeyBexReady(keysBexReady);
-					
-					that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
-					that.fireDesignStudioEvent("onSelectionFinished");
-				};
+//				var onSelectionFinish = function(oControlEvent) {
+//					var selection = oControlEvent.getParameter("selectedItems");
+//					var keys = [];
+//					var texts = [];
+//					for(var i=0;i<selection.length;i++){
+//						keys.push(selection[i].getKey());
+//						texts.push(selection[i].getText());
+//					}
+//					//get values bex variable ready (has to be seperated by semicolons!)
+//					var keysBexReady = JSON.stringify(keys)
+//					keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
+//					keysBexReady = this.replaceAll(keysBexReady,",",";")
+//					keysBexReady = this.replaceAll(keysBexReady,'"',"");
+//					this.setDSelectedKey(keys);
+//					this.setDSelectedText(texts);
+//					this.setDSelectedKeyBexReady(keysBexReady);
+//					
+//					that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
+//					that.fireDesignStudioEvent("onSelectionFinished");
+//				};
 				
 				var onChange = function(oControlEvent){
-					var selection = oControlEvent.getParameter("changedItem").getText();
+					var selection = oControlEvent.getParameter("changedItem");
 					
-					if(selection === this.getDSelectAllText()){
+					if(selection.getText() === this.getDSelectAllText()){
 						var items = this._oModel.oData.items;
 						var selectedKeys = [];
 						for(var i=0;i<items.length;i++){
@@ -128,15 +128,28 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 						//assign every key to be marked as selected
 						this.setSelectedKeys(selectedKeys);
 
-					}else if(selection === this.getDSelectNoText()){
+					}else if(selection.getText() === this.getDSelectNoText()){
 
 						//assign every key to be marked as not selected
 						this.setSelectedKeys([]);
+					}else{
+						var keys = this.getSelectedKeys();
+						var items = this.getSelectedItems();
+						var texts = this.getTextFromItemList(items);
+						var keysBexReady = JSON.stringify(keys)
+						keysBexReady = keysBexReady.substring(2,keysBexReady.length-2);
+						keysBexReady = this.replaceAll(keysBexReady,",",";")
+						keysBexReady = this.replaceAll(keysBexReady,'"',"");
+						this.setDSelectedKey(keys);
+						this.setDSelectedText(texts);
+						this.setDSelectedKeyBexReady(keysBexReady);
+						
+						that.fireDesignStudioPropertiesChanged(["DSelectedKey", "DSelectedText", "DSelectedKeyBexReady"]);
 					}
 					that.fireDesignStudioEvent("onChange");
 				};
 				this.attachSelectionChange(onChange);
-				this.attachSelectionFinish(onSelectionFinish);
+				//this.attachSelectionFinish(onSelectionFinish);
 				
 				this.setPlaceholder(this.placeholderTextLocalized);
 				this.DItemList = [];
@@ -307,7 +320,16 @@ define(["../../../org.scn.community.shared/os/sapui5/load.sap.m_2.0"],function()
 				keysBexReady = this.replaceAll(keysBexReady,",",";")
 				keysBexReady = this.replaceAll(keysBexReady,'"',"");
 				return keysBexReady;
-			}/*,
+			},
+			
+			getTextFromItemList: function(items){
+				var texts = [];
+				for(var i=0;i<items.length;i++){
+					texts.push(items[i].getText());
+				}
+				return texts;
+			}
+			/*,
 			onAfterRendering : function() {
 //				  if (sap.m.MultiComboBox.prototype.onAfterRendering) {
 //				    sap.m.MultiComboBox.prototype.onAfterRendering.apply(this);
