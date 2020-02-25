@@ -13,6 +13,7 @@ type ..\..\org.scn.community.shared\templates.main\contribution.xml.head.txt ^
 ..\res\Base64Image\def\contribution.xml ^
 ..\res\BasicBusinessCard\def\contribution.xml ^
 ..\res\Calendar\def\contribution.xml ^
+..\res\CalendarMonth\def\contribution.xml ^
 ..\res\CheckBoxGroup\def\contribution.xml ^
 ..\res\ColorPicker\def\contribution.xml ^
 ..\res\DateRangeScroller\def\contribution.xml ^
