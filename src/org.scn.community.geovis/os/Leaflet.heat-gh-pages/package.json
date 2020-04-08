@@ -19,7 +19,7 @@
   "main": "dist/leaflet-heat.js",
   "devDependencies": {
     "simpleheat": "~0.2.0",
-    "uglify-js": "~2.4.12"
+    "uglify-js": "~3.8.1"
   },
   "scripts": {
     "test": "jshint src",
